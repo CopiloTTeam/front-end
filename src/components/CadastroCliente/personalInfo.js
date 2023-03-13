@@ -5,6 +5,7 @@ function PersonalInfo({ formData, setFormData }) {
   return (
     <div className='container'>
       <div className='row-1'>
+       {/* label */}
         <input type="text"
           placeholder='Nome Completo'
           value={formData.nome}

@@ -5,7 +5,7 @@ import Analytics from "../../images/estatistica.png"
 import Perfil from "../../images/perfil.png"
 import Logout from "../../images/logout.png"
 import { useLocation } from 'react-router-dom'
-import '../../styles/navbar.css'
+import './navbar.css'
 
 
 const Navbar = () => {

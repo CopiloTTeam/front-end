@@ -7,18 +7,18 @@ const MultistepForm = () => {
 
     const [page, setPage] = useState(0);
     const [formData, setFormData] = useState({
-        nome: "Victor dos Santos Salles",
-        cpf: "47193452800",
-        email: "victorgamesbr091@gmail.com",
-        data: "11042004",
-        telefone: "12988083815",
-        celular: "12389075385",
-        cep: "12225670",
-        rua: "Rua dos Encanadores",
-        bairro: "Novo Horizonte",
-        cidade: "São José dos Campos",
-        estado: "SP",
-        numero: "151",
+        nome: "",
+        cpf: "",
+        email: "",
+        data: "",
+        telefone: "",
+        celular: "",
+        cep: "",
+        rua: "",
+        bairro: "",
+        cidade: "",
+        estado: "",
+        numero: "",
         complemento: "",
     });
 
