@@ -1,0 +1,248 @@
+ /*------------------------- SideBar -------------------------*/
+
+ .sidebar {
+  background: #231742;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 2rem 1.5rem;
+  width: 12rem;
+  height: 100vh;
+  transition: 0.4s all;
+}
+
+.sidebar .logoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+h2.title {
+  font-size: 20px;
+  color: #fff;
+  padding: 0 0 0 1rem;
+}
+
+/*-------------------------  Profile Container ------------------------- */
+
+.sidebar .profileContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.sidebar .profileContainer img {
+  width: auto;
+  height: 3rem;
+}
+
+.sidebar .profileContents {
+  padding: 0 0 0 1rem;
+}
+
+.sidebar .profileContents p {
+  padding: 0;
+  margin: 0;
+  font-size: 13px;
+  color: #fff;
+  text-transform: lowercase;
+}
+
+.sidebar .profileContents .name {
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+  color: #fff;
+  text-transform: capitalize;
+  font-weight: 600;
+}
+
+/*------------------------- Burguer Container -------------------------*/
+
+.sidebar .burgerContainer {
+  content: "";
+  background: #4d348d;
+  position: absolute;
+  right: calc(-35px / 2);
+  width: 35px;
+  height: 35px;
+  top: 5px;
+  border-radius: 2rem;
+  z-index: 1;
+}
+
+.sidebar .burgerTrigger {
+  content: "";
+  width: 35px;
+  height: 35px;
+  background-color: red;
+  cursor: pointer;
+  z-index: 6;
+  opacity: 0;
+  position: relative;
+}
+
+.sidebar .burgerMenu {
+  content: "";
+  background-color: #4d348d;
+  position: relative;
+  z-index: 1;
+  width: 20px;
+  height: 3px;
+  border-radius: 2rem;
+  bottom: calc(35px / 2);
+  left: 0.45rem;
+  transition: 0.4s all;
+
+}
+
+.sidebar .burgerMenu::after {
+  content: "";
+  background: #fff;
+  position: absolute;
+  width: 20px;
+  height: 3px;
+  border-radius: 2rem;
+  top: 0.4rem;
+  transform: translateY(-0.4rem) rotate(45deg);
+  transition: 0.4s all;
+}
+
+.sidebar .burgerMenu::before {
+  content: "";
+  background: #fff;
+  position: absolute;
+  width: 20px;
+  height: 3px;
+  border-radius: 2rem;
+  top: -0.4rem;
+  transform: translateY(0.4rem) rotate(-45deg);
+  transition: 0.4s all;
+}
+
+.sidebar .burgerContainer::after {
+  content: "";
+  position: absolute;
+  right: 35px;
+  top: 90px;
+  z-index: 0;
+  width: calc(4rem + 15rem);
+  background: #7f63c5;
+  height: 2px;
+  transition: 0.4s all;
+}
+
+.sidebar .contentsContainer {
+  margin: 2rem 0 0 0;
+}
+
+/*------------------------- Contents Container -------------------------*/
+
+.contentsContainer ul {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-direction: column;
+  list-style: none;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.contentsContainer li {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  margin: 0.4rem 0;
+  padding: 0.2rem 0;
+  width: 200px;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: 0.4s ease;
+}
+
+.contentsContainer .logout {
+  margin-top: 30px;
+}
+
+.contentsContainer li.active {
+  background: #4d348d;
+  padding: 0.2rem 0.1rem;
+}
+
+.contentsContainer li.active p {
+  color: #fff;
+}
+
+.contentsContainer li:hover {
+  background: #7f63c5;
+}
+
+.contentsContainer li .icon {
+  padding: 0;
+  margin: 0 0 0 0.6rem;
+  width: 30px;
+  height: 30px;
+}
+.contentsContainernt ul a{
+  width: 120px;
+}
+
+.contentsContainer li p {
+  text-decoration: none;
+  color: #ccc;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 0 0 0.5rem;
+}
+
+/*------------------------- Active Sidebar ------------------------- */
+
+.sidebar.active {
+  width: 3rem;
+  transition: 0.4s all;
+}
+
+.sidebar.active .logoContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.sidebar.active .logoContainer.active h2.title {
+  opacity: 0;
+}
+
+.sidebar.active .burgerContainer::after {
+  width: calc(4rem + 15rem);
+}
+
+.sidebar.active .burgerContainer.active .burgerMenu {
+  background: #fff;
+}
+
+.sidebar.active .burgerContainer.active .burgerMenu::before {
+  transform: translateY(0rem) rotate(0deg);
+}
+
+.sidebar.active .burgerContainer.active .burgerMenu::after {
+  transform: translateY(0rem) rotate(0deg);
+}
+
+.sidebar.active .profileContainer .profileContents {
+  display: none;
+}
+
+.sidebar.active .contentsContainer p {
+  display: none;
+}
+.sidebar.active .contentsContainer li, li:hover{
+  width: 50px;
+}
+.sidebar.active .contentsContainer li.active {
+  background: #4d348d;
+  padding: 0.2rem 0.2rem;
+}

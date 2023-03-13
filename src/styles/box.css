@@ -1,0 +1,29 @@
+.container-box{
+   display: flex;
+   overflow: scroll;
+   overflow-y: hidden;
+}
+.container-box > .box{
+    flex: 1 0 300px; 
+}
+.container-box .box{
+    width: 500px;
+    height: 110px;
+    background: #3c0c64;
+    margin: 0 1rem;
+    padding: 1rem;
+    border-radius: 5px;
+    
+}
+.container-box .box:hover{
+    background: #60278f;
+    cursor: pointer;
+}
+.container-box .box h1{
+    font-size: 18px;
+    color: #e4e4e4;
+}
+.container-box .box p{
+    font-size: 28px;
+    color: #e4e4e4;
+}
