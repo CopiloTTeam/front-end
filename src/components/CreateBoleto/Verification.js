@@ -8,10 +8,12 @@ const Verification = () => {
       <div className='boletoContainer'>
         <div className='head-content'>
           <div className='logo'>
-            <img src={Logo} alt='logo'/>
+            <img src={Logo} alt='logo' />
+            <h2>CopiloTTeam</h2>
           </div>
-          <h2>CopiloTTeam</h2>
-          <h2>23791.11103.60000.000103 01000.222206 1 48622000000000</h2>
+          <div className='head-text'>
+            <h2>23791.11103.60000.000103 01000.222206 1 48622000000000</h2>
+          </div>
         </div>
         <div className='mid-content'>
           <div className='right-side'>
@@ -105,7 +107,7 @@ const Verification = () => {
           </div>
         </div>
         <div className='bottom-content'>
-
+<p>Código de barras</p>
         </div>
       </div>
     </div>
