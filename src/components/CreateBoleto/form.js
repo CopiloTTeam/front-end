@@ -7,7 +7,7 @@ const CreateBoleto = () => {
     const [page, setPage] = useState(0);
     const [formData, setFormData] = useState({
         nome: "Pedro Henrique da Silva Campos",
-        cpf: "47193452800",
+        cpf: "1234567890",
         email: "pedrocmpos@gmail.com",
         nomeProduto: "Cadeira Gamer",
         valorTotal: "590",
