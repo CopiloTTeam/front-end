@@ -6,6 +6,7 @@ import Perfil from "../../images/perfil.png"
 import Logout from "../../images/logout.png"
 import { useLocation } from 'react-router-dom'
 import './navbar.css'
+import'../../styles/global/global.css'
 
 
 const Navbar = () => {

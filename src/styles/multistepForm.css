@@ -42,31 +42,11 @@
     width: 100%;
     border: 1px solid #000;
 }
-.container .row-1, .row-2, .row-3, .row-4 {
-    width: 100%;
-    display: flex;
-    margin: 2rem 0;
-}
-.container .row-1 input:first-child{
-    height: 35px;
-    width: 100%;
-    border-radius: 10px;
-}
-.container .row-1 input{
-    height: 35px;
-    border-radius: 10px;
-}
 
-.container .row-2 input{
-    height: 35px;
-    width: 100%;
-    border-radius: 10px;
-}
-.container .row-3 input{
-    height: 35px;
-    width: 100%;
-    border-radius: 10px;
-}
+
+
+
+
 
 .container .row-4 .component{
     width: 100%;
@@ -82,9 +62,11 @@
 }
 
 
-@media(max-width:925px){
+@media(max-width:725px){
     .container .row-1 , .row-2 , .row-3 {
         display: flex;
+        justify-content: center;
+        align-items: center;
         flex-direction: column;
         width: 100%;
     }

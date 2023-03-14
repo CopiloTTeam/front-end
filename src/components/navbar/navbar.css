@@ -1,11 +1,11 @@
  /*------------------------- SideBar -------------------------*/
 
  .sidebar {
-  background: #231742;
+  background: var(--color-primary);
   position: fixed;
   top: 0;
   left: 0;
-  padding: 2rem 1.5rem;
+  padding: 1rem 0.9rem;
   width: 12rem;
   height: 100vh;
   transition: 0.4s all;
@@ -19,7 +19,7 @@
 
 h2.title {
   font-size: 20px;
-  color: #fff;
+  color:  var(--color-background);
   padding: 0 0 0 1rem;
 }
 
@@ -29,6 +29,7 @@ h2.title {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  margin-top: 0.7rem;
 }
 
 .sidebar .profileContainer img {
@@ -44,7 +45,7 @@ h2.title {
   padding: 0;
   margin: 0;
   font-size: 13px;
-  color: #fff;
+  color:  var(--color-background);
   text-transform: lowercase;
 }
 
@@ -52,7 +53,7 @@ h2.title {
   padding: 0;
   margin: 0;
   font-size: 16px;
-  color: #fff;
+  color:  var(--color-background);
   text-transform: capitalize;
   font-weight: 600;
 }
@@ -98,7 +99,7 @@ h2.title {
 
 .sidebar .burgerMenu::after {
   content: "";
-  background: #fff;
+  background:  var(--color-background);
   position: absolute;
   width: 20px;
   height: 3px;
@@ -110,7 +111,7 @@ h2.title {
 
 .sidebar .burgerMenu::before {
   content: "";
-  background: #fff;
+  background:  var(--color-background);
   position: absolute;
   width: 20px;
   height: 3px;
@@ -126,8 +127,8 @@ h2.title {
   right: 35px;
   top: 90px;
   z-index: 0;
-  width: calc(4rem + 15rem);
-  background: #7f63c5;
+  width: calc(4rem + 8rem);
+  background:  var(--color-secundary);
   height: 2px;
   transition: 0.4s all;
 }
@@ -156,8 +157,8 @@ h2.title {
   flex-direction: row;
   margin: 0.4rem 0;
   padding: 0.2rem 0;
-  width: 200px;
-  border-radius: 1rem;
+  width: 185px;
+  border-radius: 0.5rem;
   cursor: pointer;
   transition: 0.4s ease;
 }
@@ -172,11 +173,11 @@ h2.title {
 }
 
 .contentsContainer li.active p {
-  color: #fff;
+  color:  var(--color-background);
 }
 
 .contentsContainer li:hover {
-  background: #7f63c5;
+  background: var(--color-secundary);
 }
 
 .contentsContainer li .icon {
@@ -221,7 +222,7 @@ h2.title {
 }
 
 .sidebar.active .burgerContainer.active .burgerMenu {
-  background: #fff;
+  background:  var(--color-background);
 }
 
 .sidebar.active .burgerContainer.active .burgerMenu::before {
@@ -239,8 +240,8 @@ h2.title {
 .sidebar.active .contentsContainer p {
   display: none;
 }
-.sidebar.active .contentsContainer li, li:hover{
-  width: 50px;
+.sidebar.active .contentsContainer li{
+  width: 40px;
 }
 .sidebar.active .contentsContainer li.active {
   background: #4d348d;
