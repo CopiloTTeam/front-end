@@ -4,7 +4,7 @@ import '../../styles/multistepForm.css'
 function PersonalInfo({ formData, setFormData }) {
   return (
     <div className='container'>
-      <div className='row-1'>
+      <div className='row-cn'>
         <div className='bx-input'>
           <p>Nome Completo</p>
           <input type="text"
@@ -21,7 +21,7 @@ function PersonalInfo({ formData, setFormData }) {
             onChange={(event) => setFormData({ ...formData, cpf: event.target.value })} />
         </div>
       </div>
-      <div className='row-2'>
+      <div className='row-cn'>
         <div className='bx-input'>
           <p>Email</p>
           <input type="text"
@@ -37,7 +37,7 @@ function PersonalInfo({ formData, setFormData }) {
             onChange={(event) => setFormData({ ...formData, data: event.target.value })} />
         </div>
       </div>
-      <div className='row-3'>
+      <div className='row-cn'>
         <div className='bx-input'>
           <p>Tlefone</p>
           <input type="number"
