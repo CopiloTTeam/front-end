@@ -6,7 +6,7 @@ import Perfil from "../../images/perfil.png"
 import Logout from "../../images/logout.png"
 import { useLocation } from 'react-router-dom'
 import './navbar.css'
-import'../../styles/global/global.css'
+import '../../styles/global/global.css'
 
 
 const Navbar = () => {
@@ -27,13 +27,15 @@ const Navbar = () => {
                 </div>
                 <div className='burgerMenu'></div>
             </div>
-            <div className='profileContainer'>
-                <img src={Perfil} alt="perfil" className='profile' />
-                <div className='profileContents'>
-                    <p className='name'>Olá, Bobby</p>
-                    <p>Comercial</p>
+            <a href='/Perfil'> 
+                <div className='profileContainer'>
+                    <img src={Perfil} alt="perfil" className='profile' />
+                    <div className='profileContents'>
+                        <p className='name'>Olá, Bobby</p>
+                        <p>Comercial</p>
+                    </div>
                 </div>
-            </div>
+            </a>
             <div className='contentsContainer'>
                 <ul>
                     <a href='/Cadastro'>

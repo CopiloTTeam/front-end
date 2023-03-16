@@ -1,6 +1,9 @@
+*{
+  list-style: none;
+  text-decoration: none;
+}
 body{
   overflow: auto;
-
   width: 100%;
 }
 

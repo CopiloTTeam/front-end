@@ -4,7 +4,7 @@ import '../../styles/multistepForm.css'
 function PessoalInfo({ formData, setFormData }) {
   return (
     <div className='container'>
-      <div className='row-cn'>
+      <div className='row-cn-1'>
         <div className='bx-input'>
           <p>CPF</p>
           <input type="text"

@@ -3,7 +3,7 @@ import React from 'react'
 function LocalInfo({ formData, setFormData }) {
   return (
     <div className='container'>
-      <div className='row-cn'>
+      <div className='row-cn-1'>
         <div className='bx-input'>
           <p>CEP</p>
           <input type="number"
@@ -21,7 +21,7 @@ function LocalInfo({ formData, setFormData }) {
           />
         </div>
       </div>
-      <div className='row-cn'>
+      <div className='row-cn-1'>
         <div className='bx-input'>
           <p>Bairro</p>
           <input type="text"
@@ -39,7 +39,7 @@ function LocalInfo({ formData, setFormData }) {
           />
         </div>
       </div>
-      <div className='row-cn'>
+      <div className='row-cn-1'>
         <div className='bx-input'>
           <p>Estado</p>
           <input type="text"

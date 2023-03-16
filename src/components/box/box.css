@@ -7,7 +7,7 @@
     width: 3rem;
 }
 .container-box::-webkit-scrollbar-thumb{
-  background: #755391;
+  background: var(--color-secundary);
 }
 .container-box > .box{
     flex: 1 0 300px; 

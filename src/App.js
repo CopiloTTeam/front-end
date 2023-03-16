@@ -4,6 +4,7 @@ import Navbar from './components/navbar/navbar';
 import CadastroCliente from './pages/Cadastro';
 import Estatisticas from './pages/Estatisticas';
 import Boleto from './pages/Boleto';
+import Perfil from './pages/Perfil';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
             <Route path="/Boletos" element={<Boleto />} />
             <Route path="/Cadastro" element={<CadastroCliente />} />
             <Route path="/Estatisticas" element={<Estatisticas />} />
+            <Route path="/Perfil" element={<Perfil />} />
         </Routes>
       </Router>
     </>

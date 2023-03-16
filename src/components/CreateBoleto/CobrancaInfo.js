@@ -13,7 +13,7 @@ function CobrancaInfo({ formData, setFormData }) {
           />
         </div>
       </div>
-      <div className='row-cn'>
+      <div className='row-cn-1'>
         <div className='bx-input'>
           <p>Valor Total</p>
           <input type="number"
