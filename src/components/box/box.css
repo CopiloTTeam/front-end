@@ -15,14 +15,14 @@
 .container-box .box{
     width: 500px;
     height: 110px;
-    background: #3c0c64;
+    background: var(--color-primary);
     margin: 0 1rem;
     padding: 1rem;
     border-radius: 5px;
     
 }
 .container-box .box:hover{
-    background: #60278f;
+    background: var(--color-secundary);
     cursor: pointer;
 }
 .container-box .box h1{

@@ -62,7 +62,7 @@ h2.title {
 
 .sidebar .burgerContainer {
   content: "";
-  background: #4d348d;
+  background: var(--color-primary-two);
   position: absolute;
   right: calc(-35px / 2);
   width: 35px;
@@ -85,7 +85,7 @@ h2.title {
 
 .sidebar .burgerMenu {
   content: "";
-  background-color: #4d348d;
+  background: var(--color-primary-two);
   position: relative;
   z-index: 1;
   width: 20px;
@@ -168,7 +168,7 @@ h2.title {
 }
 
 .contentsContainer li.active {
-  background: #4d348d;
+  background: var(--color-secundary);
   padding: 0.2rem 0.1rem;
 }
 
@@ -244,6 +244,6 @@ h2.title {
   width: 40px;
 }
 .sidebar.active .contentsContainer li.active {
-  background: #4d348d;
+  background: var(--color-secundary);
   padding: 0.2rem 0.2rem;
 }
