@@ -9,6 +9,8 @@ Este repositório é referente ao FrontEnd da aplicação, onde nesta etapa(1°S
 - **Menu**: Página onde o administrador (Pessoa que irá ter acesso total ao sistema) pode visualizar estáticas financeiras e solicitações de títulos.
 - **Cadastro de Cliente**: Página onde são apresentador um formulário para o registro de um cliente no sistema.
 - **Emissão de Títulos de dívida**: Página onde é registrado a emissão de títulos e geração de boletos.
+- **Perfil de Úsuario**: Exibe os dados do úsuario da sessão atual.
+- **Gerenciador de perfis(Administrador)**: Uma tela exclusiva que o poder admistrativo controla os perfis do sistemas, alterando cargos entre comercial, financeiro e administrativo.
 
 ### :gear: Como utilizar
 
