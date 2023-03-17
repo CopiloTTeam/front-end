@@ -1,5 +1,5 @@
 import React from 'react'
-import Logo from "../../images/CopiloTTeam.png"
+import Logo from "../../assets/img/CopiloTTeam.png"
 import '../../styles/multistepForm.css'
 
 const Verification = () => {

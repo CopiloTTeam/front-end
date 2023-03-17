@@ -1,0 +1,5 @@
+@import '../../../src/styles/global/global.css';
+
+.h2 {
+  font-family: var(--font-tittle);
+}

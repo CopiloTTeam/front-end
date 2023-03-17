@@ -1,12 +1,16 @@
+@font-face {
+  font-family: "Helvetica";
+  src: url("../../assets/fonts/HELVETICA.TTF") format("truetype");
+}
+
 :root {
-    /* Color */
-    --color-primary: #263056;  
-    --color-primary-two: #161d3a;  
-    --color-secundary: #5C6480;     
-    --color-background: #FBFBFB; 
-    --color-font: #CCCCCC;
+  /* Color */
+  --color-primary: #263056;
+  --color-primary-two: #161d3a;
+  --color-secundary: #5c6480;
+  --color-background: #fbfbfb;
+  --color-font: #cccccc;
 
-    /* Font */
-
-    
+  /* Fonts */
+  --body-fonts: "Helvetica Bold", sans-serif;
 }
