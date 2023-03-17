@@ -23,7 +23,7 @@ Com o [Node](https://nodejs.org/en/) instalado em sua máquina, utilize estes co
 $ git clone https://github.com/CopiloTTeam/front-end
 
 # Acesse a pasta e inicie o projeto
-$ cd Send.me-FrontEnd-2022-2
+$ cd front-end
 $ yarn install
 $ yarn start
 ```
