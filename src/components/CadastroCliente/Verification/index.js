@@ -1,6 +1,5 @@
 import React  from 'react'
-import '../../styles/multistepForm.css'
-
+import './style.css'
 
 function Verification({ formData, setFormData }) {
   

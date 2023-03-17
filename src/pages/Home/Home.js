@@ -1,5 +1,5 @@
 import React from "react";
-import Box from "../../components/box/box";
+import Box from "../../components/Box";
 
 const Home = () => {
   return (

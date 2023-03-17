@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "../src/styles/global/App.css";
 import Navbar from "./components/navbar/navbar";
-import CadastroCliente from "./pages/Cadastro";
+import CadastroCliente from "./pages/CustomerRegistration/index";
 import Home from "./pages/Home/Home";
 import Boleto from "./pages/Boleto";
 import Perfil from "./pages/Perfil";
