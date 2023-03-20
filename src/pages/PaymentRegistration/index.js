@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
-import CobrancaInfo from './CobrancaInfo';
-import PessoalInfo from './PessoalInfo';
-import Verification from './Verification';
+import CobrancaInfo from '../../components/CreatePayment/CobrancaInfo';
+import PessoalInfo from '../../components/CreatePayment/PessoalInfo';
+import Verification from '../../components/CreatePayment/Verification';
 
 const CreateBoleto = () => {
     const [page, setPage] = useState(0);

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { useLocation } from "react-router-dom";
-import "./navbar.css";
+import "./style.css";
 import "../../styles/global/global.css";
 
 import AddUser from "../../assets/img/adicionarUser.png";

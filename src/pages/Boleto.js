@@ -1,5 +1,5 @@
 import React from 'react'
-import CreateBoleto from '../components/CreateBoleto/form'
+import CreateBoleto from '../pages/PaymentRegistration/index'
 
 const Boleto = () => {
   return (

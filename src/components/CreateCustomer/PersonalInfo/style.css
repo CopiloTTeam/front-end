@@ -13,12 +13,12 @@
   width: 100%;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 }
 
 .first-box {
-  width: 100%;
+  width: 65%;
   font-size: 16px;
-  margin-right: 32px;
 }
 
 .first-box h1 {
@@ -34,7 +34,7 @@
 }
 
 .second-box {
-  width: 50%;
+  width: 32%;
   font-size: 16px;
   margin-bottom: 6px;
 }
@@ -83,8 +83,8 @@
 }
 
 .tel-plus button {
-  width: 43px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   border: 0px;
   border-radius: 5px;
   background-color: #6e6e6e;

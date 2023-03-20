@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import LocalInfo from "../../components/CadastroCliente/LocalInfo/index";
-import PersonalInfo from "../../components/CadastroCliente/PersonalInfo/index";
-import Verification from "../../components/CadastroCliente/Verification/index";
+import LocalInfo from "../../components/CreateCustomer/LocalInfo";
+import PersonalInfo from "../../components/CreateCustomer/PersonalInfo";
+import Verification from "../../components/CreateCustomer/Verification";
 import "./style.css";
 
 const CadastroCliente = () => {

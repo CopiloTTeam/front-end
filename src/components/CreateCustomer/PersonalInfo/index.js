@@ -1,5 +1,5 @@
 import React from "react";
-import "../PersonalInfo/style.css";
+import "./style.css";
 
 function PersonalInfo({ formData, setFormData }) {
   return (

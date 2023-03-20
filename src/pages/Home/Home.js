@@ -6,7 +6,7 @@ const Home = () => {
     <>
       <main>
         <h2>DashBoards</h2>
-        <Box />
+        <Box/>
       </main>
     </>
   );

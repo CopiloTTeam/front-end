@@ -1,6 +1,7 @@
 * {
   list-style: none;
   text-decoration: none;
+  box-sizing: border-box;
 }
 body {
   overflow: auto;
@@ -13,7 +14,8 @@ main {
 
 input {
   color: #1e1e1e;
-  padding-left:8px;
+  padding-left: 8px;
+  padding-right: 8px;
 }
 input::placeholder {
   color: #6e6e6e;
