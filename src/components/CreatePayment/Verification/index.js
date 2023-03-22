@@ -1,5 +1,5 @@
 import React from 'react'
-import Logo from "../../assets/img/CopiloTTeam.png"
+import Logo from "../../../assets/img/CopiloTTeam.png"
 import './style.css'
 
 const Verification = () => {

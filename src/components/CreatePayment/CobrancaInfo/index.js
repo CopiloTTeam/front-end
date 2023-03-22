@@ -3,9 +3,9 @@ import React from 'react'
 function CobrancaInfo({ formData, setFormData }) {
   return (
     <div className='container'>
-      <div className='row-cn'>
-        <div className='bx-input'>
-          <p>Nome do Produto</p>
+      <div className='row'>
+        <div className='box'>
+          <h1>Nome do Produto</h1>
           <input type="text"
             placeholder='Nome do Produto'
             value={formData.nomeProduto}
@@ -13,25 +13,25 @@ function CobrancaInfo({ formData, setFormData }) {
           />
         </div>
       </div>
-      <div className='row-cn-1'>
-        <div className='bx-input'>
-          <p>Valor Total</p>
+      <div className='row'>
+        <div className='third-box'>
+          <h1>Valor Total</h1>
           <input type="number"
             placeholder='Valor Total'
             value={formData.valorTotal}
             onChange={(event) => setFormData({ ...formData, valorTotal: event.target.value })}
           />
         </div>
-        <div className='bx-input'>
-          <p>Numero Total de Parcelas</p>
+        <div className='fourth-box'>
+          <h1>Numero Total de Parcelas</h1>
           <input type="number"
             placeholder='Numero de Parcelas '
             value={formData.numeroParcelas}
             onChange={(event) => setFormData({ ...formData, numeroParcelas: event.target.value })}
           />
         </div>
-        <div className='bx-input'>
-          <p>Data de Vencimento</p>
+        <div className='fifth-box'>
+          <h1>Data de Vencimento</h1>
           <input type="date"
             placeholder='Data de Vencimento '
             value={formData.dataVencimento}
