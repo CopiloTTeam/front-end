@@ -6,7 +6,7 @@
   top: 0;
   left: 0;
   padding: 1rem 0.9rem;
-  width: 12rem;
+  width: 13.8rem;
   height: 100vh;
   transition: 0.4s all;
 }
@@ -203,7 +203,7 @@ h2.title {
 /*------------------------- Active Sidebar ------------------------- */
 
 .sidebar.active {
-  width: 3rem;
+  width: 4.8rem;
   transition: 0.4s all;
 }
 

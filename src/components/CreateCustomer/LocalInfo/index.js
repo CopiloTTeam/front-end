@@ -1,4 +1,5 @@
 import React from "react";
+import "./style.css";
 
 
 function LocalInfo({ formData, setFormData }) {
@@ -28,7 +29,7 @@ function LocalInfo({ formData, setFormData }) {
           />
         </div>
       </div>
-      <div className="row-cn-1">
+      
         <div className="bx-input">
           <h1>Bairro</h1>
           <input
@@ -51,8 +52,7 @@ function LocalInfo({ formData, setFormData }) {
             }
           />
         </div>
-      </div>
-      <div className="row-cn-1">
+      
         <div className="bx-input">
           <h1>Estado</h1>
           <input
@@ -86,7 +86,6 @@ function LocalInfo({ formData, setFormData }) {
             }
           />
         </div>
-      </div>
     </div>
   );
 }

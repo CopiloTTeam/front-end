@@ -40,6 +40,7 @@ const CadastroCliente = () => {
 
   return (
     <>
+    <main>
       <div className="form">
         <div className="title">
           <h2>Cadastro de Clientes</h2>
@@ -78,6 +79,7 @@ const CadastroCliente = () => {
           </button>
         </div>
       </div>
+      </main>
     </>
   );
 };
