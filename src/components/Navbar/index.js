@@ -55,12 +55,12 @@ const Navbar = () => {
               <p>Criar Boleto</p>
             </li>
           </a>
-          <a href="/Estatisticas">
+          <a href="/Home">
             <li
-              className={location.pathname === "/Estatisticas" ? "active" : ""}
+              className={location.pathname === "/Home" ? "active" : ""}
             >
-              <img src={Analytics} alt="estatisticas" className="icon" />
-              <p>Estatisticas</p>
+              <img src={Analytics} alt="Home" className="icon" />
+              <p>Home</p>
             </li>
           </a>
           <a href="/logout">

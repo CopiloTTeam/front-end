@@ -1,27 +1,29 @@
 .container-box {
   display: flex;
-  overflow: scroll;
-  overflow-y: hidden;
+  /* overflow: scroll;
+  overflow-y: hidden; */
+  flex-wrap: wrap;
 }
 .container-box::-webkit-scrollbar {
   width: 3rem;
 }
 .container-box::-webkit-scrollbar-thumb {
   background: var(--color-secundary);
+  border-radius: 10px;
 }
 .container-box > .box {
   flex: 1 0 300px;
 }
 .container-box .box {
   width: 500px;
-  height: 110px;
-  background: var(--color-secundary);
-  margin: 0 1rem;
+  height: 130px;
+  background: var(--color-primary);
+  margin: 1rem 1rem;
   padding: 1rem;
   border-radius: 5px;
 }
 .container-box .box:hover {
-  background: var(--color-font);
+  background: var(--color-hover);
   color: var(--color-primary);
   cursor: pointer;
 }

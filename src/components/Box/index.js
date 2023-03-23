@@ -17,6 +17,10 @@ const Box = () => {
                     <h1>Expectativa de Crédito</h1>
                     <p>R$999.999,99</p>
                 </div>
+                <div className='box'>
+                    <h1>Expectativa de Crédito</h1>
+                    <p>R$999.999,99</p>
+                </div>
             </div>
         </>
     )

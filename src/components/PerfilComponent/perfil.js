@@ -4,7 +4,10 @@ const PerfilComponent = () => {
    
   return (
    <>
-    <h2>Perfil</h2>
+    <div className='container-perfil'>
+      <h2>Perfil</h2>
+      <p>Administrador</p>
+    </div>
    </>
   )
 }

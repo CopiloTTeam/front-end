@@ -8,3 +8,28 @@
     border-radius: 5px;
     margin-bottom: 24px;
 }
+@media (max-width: 955px) {
+    .container {
+      width: 30rem;
+    }
+  
+    .row {
+      flex-direction: column;
+      margin-bottom: 24px;
+    }
+  
+    .third-box,
+    .fourth-box,
+    .fifth-box,
+    .sixth-box,
+    .seventh-box {
+      width: 100%;
+    }
+  
+  }
+  
+  @media (max-width: 577px) {
+    .container {
+      width: 23rem;
+    }
+  }
