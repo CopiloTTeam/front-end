@@ -1,249 +1,131 @@
- /*------------------------- SideBar -------------------------*/
-
- .sidebar {
-  background: var(--color-primary);
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding: 1rem 0.9rem;
-  width: 13.8rem;
-  height: 100vh;
-  transition: 0.4s all;
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-decoration: none;
 }
 
-.sidebar .logoContainer {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #333;
+    transition: .4s;
+    height: 4rem;
+    padding: 0 3rem;
+    align-items: center;
+    box-shadow: 0 1rem 1rem rgba(132, 139, 200, 0.18);
 }
 
-h2.title {
-  font-size: 20px;
-  color:  var(--color-background);
-  padding: 0 0 0 1rem;
+.nav {
+    height: 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.navlogo{
+    display: flex;
+    gap: 0.6rem;
+}
+.navlogo img{
+    width: 35px;
+    height: 35px;
+}
+.navlogo .logoText h3{
+    color: #fff;
+    font-size: 0.8rem;
+}
+.navlogo .logoText p{
+    color: #cccccc;
+    font-size: 0.8rem;
+}
+.navlink img {
+    width: 25px;
+    height: 25px;
+}
+.navmenu{
+    width: 400px;
+    display: flex;
+    align-items: center;
+}
+.navlist,
+.navlink {
+    display: flex;
 }
 
-/*-------------------------  Profile Container ------------------------- */
-
-.sidebar .profileContainer {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  margin-top: 0.7rem;
+.navlink {
+    flex-direction: column;
+    align-items: center;
+    row-gap: .25rem;
+    color: #fff;
+}
+.navitem:hover{
+    background: #797979;
+    border-radius: 5px;
+    transition: 0.2s ease-in-out;
+}
+.navlist {
+    justify-content: space-around;
+}
+.navlist .navitem{
+    padding: 0.4rem 0.7rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+}
+.navlink.active::before{
+    content: '';
+    position: absolute;
+    bottom: -.75rem;
+    width: 4px;
+    height: 4px;
+    background: #d919ff;
+    border-radius: 50%;
+}
+@media(min-width:1024px) {
+    .container{
+        
+    }
+}
+@media(max-width:768px) {
+    .header{
+        padding: 0 1.5rem;
+    }
+    .navmenu {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        background: #333;
+        width: 100%;
+        height: 4rem;
+        padding: 0 1rem;
+        display: grid;
+        align-items: center;
+        transition: .4s;
+    }
+    .navlist{
+        justify-content: center;
+        column-gap: 3rem;
+    }
 }
 
-.sidebar .profileContainer img {
-  width: auto;
-  height: 2.7rem;
+@media(min-width:768px){
+    .navitem img{
+        display: none;
+    }
+    
 }
-
-.sidebar .profileContents {
-  padding: 0 0 0 1rem;
-}
-
-.sidebar .profileContents p {
-  padding: 0;
-  margin: 0;
-  font-size: 13px;
-  color:  var(--color-background);
-  text-transform: lowercase;
-}
-
-.sidebar .profileContents .name {
-  padding: 0;
-  margin: 0;
-  font-size: 16px;
-  color:  var(--color-background);
-  text-transform: capitalize;
-  font-weight: 600;
-}
-
-/*------------------------- Burguer Container -------------------------*/
-
-.sidebar .burgerContainer {
-  content: "";
-  background: var(--color-primary-two);
-  position: absolute;
-  right: calc(-35px / 2);
-  width: 35px;
-  height: 35px;
-  top: 5px;
-  border-radius: 2rem;
-  z-index: 1;
-}
-
-.sidebar .burgerTrigger {
-  content: "";
-  width: 35px;
-  height: 35px;
-  background-color: red;
-  cursor: pointer;
-  z-index: 6;
-  opacity: 0;
-  position: relative;
-}
-
-.sidebar .burgerMenu {
-  content: "";
-  background: var(--color-primary-two);
-  position: relative;
-  z-index: 1;
-  width: 20px;
-  height: 3px;
-  border-radius: 2rem;
-  bottom: calc(35px / 2);
-  left: 0.45rem;
-  transition: 0.4s all;
-
-}
-
-.sidebar .burgerMenu::after {
-  content: "";
-  background:  var(--color-background);
-  position: absolute;
-  width: 20px;
-  height: 3px;
-  border-radius: 2rem;
-  top: 0.4rem;
-  transform: translateY(-0.4rem) rotate(45deg);
-  transition: 0.4s all;
-}
-
-.sidebar .burgerMenu::before {
-  content: "";
-  background:  var(--color-background);
-  position: absolute;
-  width: 20px;
-  height: 3px;
-  border-radius: 2rem;
-  top: -0.4rem;
-  transform: translateY(0.4rem) rotate(-45deg);
-  transition: 0.4s all;
-}
-
-.sidebar .burgerContainer::after {
-  content: "";
-  position: absolute;
-  right: 35px;
-  top: 90px;
-  z-index: 0;
-  width: calc(4rem + 8rem);
-  background:  var(--color-secundary);
-  height: 2px;
-  transition: 0.4s all;
-}
-
-.sidebar .contentsContainer {
-  margin: 2rem 0 0 0;
-}
-
-/*------------------------- Contents Container -------------------------*/
-
-.contentsContainer ul {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  flex-direction: column;
-  list-style: none;
-  width: 100%;
-  padding: 0;
-  margin: 0;
-}
-
-.contentsContainer li {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  flex-direction: row;
-  margin: 0.4rem 0;
-  padding: 0.2rem 0;
-  width: 185px;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: 0.4s ease;
-}
-
-.contentsContainer .logout {
-  margin-top: 30px;
-}
-
-.contentsContainer li.active {
-  background: var(--color-secundary);
-  padding: 0.2rem 0.1rem;
-}
-
-.contentsContainer li.active p {
-  color:  var(--color-background);
-}
-
-.contentsContainer li:hover {
-  background: var(--color-secundary);
-}
-
-.contentsContainer li .icon {
-  padding: 0;
-  margin: 0 0 0 0.6rem;
-  width: 30px;
-  height: 30px;
-}
-.contentsContainernt ul a{
-  width: 120px;
-}
-
-.contentsContainer li p {
-  text-decoration: none;
-  color: #ccc;
-  font-size: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 0 0 0 0.5rem;
-}
-
-/*------------------------- Active Sidebar ------------------------- */
-
-.sidebar.active {
-  width: 4.8rem;
-  transition: 0.4s all;
-}
-
-.sidebar.active .logoContainer {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.sidebar.active .logoContainer.active h2.title {
-  opacity: 0;
-}
-
-.sidebar.active .burgerContainer::after {
-  width: calc(4rem + 15rem);
-}
-
-.sidebar.active .burgerContainer.active .burgerMenu {
-  background:  var(--color-background);
-}
-
-.sidebar.active .burgerContainer.active .burgerMenu::before {
-  transform: translateY(0rem) rotate(0deg);
-}
-
-.sidebar.active .burgerContainer.active .burgerMenu::after {
-  transform: translateY(0rem) rotate(0deg);
-}
-
-.sidebar.active .profileContainer .profileContents {
-  display: none;
-}
-
-.sidebar.active .contentsContainer p {
-  display: none;
-}
-.sidebar.active .contentsContainer li{
-  width: 50px;
-}
-.sidebar.active .contentsContainer li.active {
-  background: var(--color-secundary);
-  padding: 0.2rem 0.2rem;
+@media(max-width:520px) {
+    .navlist {
+        column-gap: 5rem;
+    }
+    .navname{
+        display: none;
+    }
+    .navitem{
+        padding: 5px;
+    }
 }
