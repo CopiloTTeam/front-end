@@ -36,7 +36,8 @@ export function LocalInformation({ nome, cpf, email, data, telefone, celular, up
             required
             type="text"
             placeholder="CPF"
-            value={cpf} onChange={e => updateFields({ cpf: e.target.value })}
+            value={cpf} 
+            onChange={e => updateFields({ cpf: e.target.value })}
           />
         </div>
       </div>
@@ -48,7 +49,8 @@ export function LocalInformation({ nome, cpf, email, data, telefone, celular, up
             required
             type="text"
             placeholder="Email"
-            value={email} onChange={e => updateFields({ email: e.target.value })}
+            value={email} 
+            onChange={e => updateFields({ email: e.target.value })}
           />
         </div>
         <div className="second-box">
@@ -57,7 +59,8 @@ export function LocalInformation({ nome, cpf, email, data, telefone, celular, up
             required
             type="date"
             placeholder="Data de Nascimento"
-            value={data} onChange={e => updateFields({ data: e.target.value })}
+            value={data} 
+            onChange={e => updateFields({ data: e.target.value })}
           />
         </div>
       </div>
@@ -69,7 +72,8 @@ export function LocalInformation({ nome, cpf, email, data, telefone, celular, up
               required
               type="number"
               placeholder="Telefone"
-              value={telefone} onChange={e => updateFields({ telefone: e.target.value })}
+              value={telefone} 
+              onChange={e => updateFields({ telefone: e.target.value })}
             />
             <button>+</button>
           </div>
@@ -81,7 +85,8 @@ export function LocalInformation({ nome, cpf, email, data, telefone, celular, up
               required
               type="number"
               placeholder="Celular"
-              value={celular} onChange={e => updateFields({ celular: e.target.value })}
+              value={celular} 
+              onChange={e => updateFields({ celular: e.target.value })}
             />
             <button className="cel-plus">+</button>
           </div>

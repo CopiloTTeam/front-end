@@ -1,10 +1,11 @@
 import React from 'react'
 
 const Validation = () => {
+
   return (
-    <div>
-      <p>Validação Final</p>
-    </div>
+    
+      <div className='container'>
+      </div>
   )
 }
 

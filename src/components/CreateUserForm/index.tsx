@@ -21,8 +21,8 @@ const UserForm = () => {
     complemento: string,
   }
   const INITIAL_DATA: FormData = {
-    nome: "vitao",
-    cpf: "12345",
+    nome: "",
+    cpf: "",
     email: "",
     data: "",
     telefone: "",
@@ -64,9 +64,9 @@ const UserForm = () => {
           {step}
         </form>
         <div>
-          {!isFirstStep && <button type="button" onClick={back}>Back</button>}
-          <button type="submit" onClick={next}>
-            {isLastStep ? "Concluir" : "Next"}
+          {!isFirstStep && <button className='red' type="button" onClick={back}>Voltar</button>}
+          <button className='green' type="submit" onClick={next}>
+            {isLastStep ? "Concluir" : "Avançar"}
           </button>
         </div>
       </div>

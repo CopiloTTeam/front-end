@@ -3,7 +3,7 @@ import './style.css'
 
 const Login = () => {
   return (
-    <div className="container" > 
+    <div className="login-container" > 
         <div className="image-left">
             
         </div>

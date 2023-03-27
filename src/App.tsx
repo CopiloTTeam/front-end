@@ -5,6 +5,7 @@ import CustomerForm from './pages/CustomerCreate';
 import PayForm from './pages/PaymentCreate';
 import Login from './pages/Login';
 import '../src/styles/global.css';
+import Profile from './pages/Profile';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/Estatisticas" element={<Analytics />} />
          <Route path="/CadastroUsuario" element={<CustomerForm />} />
          <Route path="/CriarBoleto" element={<PayForm />} />
+         <Route path="/Perfil" element={<Profile />} />
       </Routes>
     </BrowserRouter>
   );

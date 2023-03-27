@@ -1,7 +1,8 @@
 import React, { FormEvent, useState } from 'react'
 import { useMultistepForm } from '../../utils/function'
-import { LocalInformation } from './LocalInformation'
+import { BilingInformation } from './BilingInformation'
 import { PersonalInformation } from './PersonalInformation'
+import '../../styles/global.css'
 // import Validation from './Validation'
 
 const PaymentForm = () => {
@@ -9,31 +10,19 @@ const PaymentForm = () => {
     nome: string,
     cpf: string,
     email: string,
-    data: string,
-    telefone: string,
-    celular: string,
-    cep: string,
-    rua: string,
-    bairro: string,
-    cidade: string,
-    estado: string,
-    numero: string,
-    complemento: string,
+    nomeProduto: string,
+    valorTotal: string,
+    numeroParcelas: string,
+    dataVencimento: string,
   }
   const INITIAL_DATA: FormData = {
-    nome: "vitao",
-    cpf: "12345",
+    nome: "",
+    cpf: "",
     email: "",
-    data: "",
-    telefone: "",
-    celular: "",
-    cep: "",
-    rua: "",
-    bairro: "",
-    cidade: "",
-    estado: "",
-    numero: "",
-    complemento: "",
+    nomeProduto: "",
+    valorTotal: "",
+    numeroParcelas: "",
+    dataVencimento: "",
   }
   const [data, setData] = useState(INITIAL_DATA)
   function updateFields(fields: Partial<FormData>) {
@@ -44,8 +33,8 @@ const PaymentForm = () => {
 
   const { steps, currentStepIndex, step, isFirstStep, isLastStep, next, back } =
     useMultistepForm([
-      <LocalInformation {...data} updateFields={updateFields} />,
       <PersonalInformation {...data} updateFields={updateFields} />,
+       <BilingInformation {...data} updateFields={updateFields} />,
       // <Validation {...data} updateFields={updateFields}/>,
     ])
 
@@ -64,9 +53,9 @@ const PaymentForm = () => {
           {step}
         </form>
         <div>
-          {!isFirstStep && <button type="button" onClick={back}>Back</button>}
-          <button type="submit" onClick={next}>
-            {isLastStep ? "Concluir" : "Next"}
+          {!isFirstStep && <button className="red" type="button" onClick={back}>Voltar</button>}
+          <button className="green" type="submit" onClick={next}>
+            {isLastStep ? "Concluir" : "Avançar"}
           </button>
         </div>
       </div>
