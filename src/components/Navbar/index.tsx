@@ -14,7 +14,7 @@ const Navbar = () => {
                 <a href='/Perfil' className='navlogo'>
                     <img src={Perfil} alt='Perfil' />
                     <div className="logoText">
-                        <h3>Olá Bobby</h3>
+                        <h3>Olá,Bobby</h3>
                         <p>administrador</p>
                     </div>
                 </a>

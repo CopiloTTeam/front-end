@@ -10,10 +10,11 @@ const Table = () => {
       <table>
         <thead>
           <tr>
-            <td>Nome</td>
-            <td>Email</td>
-            <td>Idade</td>
-            <td>Endereço</td>
+            <td>CPF</td>
+            <td>Nome Cliente</td>
+            <td>Titulo</td>
+            <td>Valor Total</td>
+            <td>Nº Parcelas</td>
           </tr>
         </thead>
         <tbody>
@@ -22,17 +23,20 @@ const Table = () => {
             <td>vitin@gmail.com</td>
             <td>18</td>
             <td>rua das Ostras</td>
-          </tr>
-          <tr>
-            <td>Victor Salles</td>
-            <td>vitin@gmail.com</td>
-            <td>18</td>
             <td>rua das Ostras</td>
           </tr>
           <tr>
             <td>Victor Salles</td>
             <td>vitin@gmail.com</td>
             <td>18</td>
+            <td>rua das Ostras</td>
+            <td>rua das Ostras</td>
+          </tr>
+          <tr>
+            <td>Victor Salles</td>
+            <td>vitin@gmail.com</td>
+            <td>18</td>
+            <td>rua das Ostras</td>
             <td>rua das Ostras</td>
           </tr>
         </tbody>
