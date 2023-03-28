@@ -1,7 +1,7 @@
 import React from 'react'
 import AnalyticBox from '../../components/AnalyticBox'
-import Navbar from '../../components/Navbar'
-import Table from '../../components/Table'
+import Navbar from '../../components/navbar'
+import Table from '../../components/table'
 
 const  Analytics = () => {
   return (
