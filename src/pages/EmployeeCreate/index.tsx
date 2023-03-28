@@ -1,18 +1,18 @@
+/* Nome, Email, senha, cpf, cargo */
+
 import React from 'react'
 import './style.css'
-import Download from '../../assets/download.png'
 
 const Login = () => {
   return (
     <div className="login-container" >
       <div className="image-left">
-        <img src={Download}/>
+
       </div>
       <div className="form-right">
-        <div className='form-box'>
         <div className="info">
-          <h1> Login </h1>
-          <h2> Utilize suas credenciais para acessar o sistema</h2>
+          <h1> Cadastro </h1>
+          <h2> Preencha as informações para realizar o cadastro, você terá acesso ao sistema após a aprovação do administrador</h2>
         </div>
         <div className="email-box">
           <h3>Email</h3>
@@ -36,7 +36,6 @@ const Login = () => {
          <p>Não Possui Conta ? <a href='/cadastro'> Cadastre Aqui </a></p>
         </div>
       </div>
-    </div>
     </div>
   )
 }

@@ -6,16 +6,18 @@ import PayForm from './pages/PaymentCreate';
 import Login from './pages/Login';
 import '../src/styles/global.css';
 import Profile from './pages/Profile';
+import EmployeeForm from './pages/EmployeeCreate';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/Estatisticas" element={<Analytics />} />
-         <Route path="/CadastroUsuario" element={<CustomerForm />} />
-         <Route path="/CriarBoleto" element={<PayForm />} />
-         <Route path="/Perfil" element={<Profile />} />
+        <Route path="/cadastro" element={<EmployeeForm />} />
+        <Route path="/estatisticas" element={<Analytics />} />
+         <Route path="/cadastrousuario" element={<CustomerForm />} />
+         <Route path="/criarboleto" element={<PayForm />} />
+         <Route path="/perfil" element={<Profile />} />
       </Routes>
     </BrowserRouter>
   );

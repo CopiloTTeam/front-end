@@ -13,6 +13,9 @@
     border-radius: 0.4rem;
     box-shadow: 0 2rem 3rem rgba(132, 139, 200, 0.18);
 }
+.box-container .box:hover{
+    background: #5c5c5c;
+}
 .box-container .box h1{
     font-size: 1.4rem;
     color: #fff;

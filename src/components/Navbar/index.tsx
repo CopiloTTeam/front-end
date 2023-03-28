@@ -11,7 +11,7 @@ const Navbar = () => {
     return (
         <div className='header'>
             <div className='nav container'>
-                <a href='/Perfil' className='navlogo'>
+                <a href='/perfil' className='navlogo'>
                     <img src={Perfil} alt='Perfil' />
                     <div className="logoText">
                         <h3>Olá,Bobby</h3>
@@ -20,7 +20,7 @@ const Navbar = () => {
                 </a>
                 <div className='navmenu'>
                     <ul className='navlist'>
-                        <a href='/Estatisticas' className='navlink'>
+                        <a href='/estatisticas' className='navlink'>
                             <li className='navitem'>
 
                                 <img src={Estatisticas} alt='Estatisticas' />
@@ -28,7 +28,7 @@ const Navbar = () => {
 
                             </li>
                         </a>
-                        <a href='/CadastroUsuario' className='navlink'>
+                        <a href='/cadastrousuario' className='navlink'>
                             <li className='navitem'>
 
                                 <img src={User} alt='User' />
@@ -36,7 +36,7 @@ const Navbar = () => {
 
                             </li>
                         </a>
-                        <a href='/CriarBoleto' className='navlink'>
+                        <a href='/criarboleto' className='navlink'>
                             <li className='navitem'>
 
                                 <img src={Boleto} alt='Boleto' />
