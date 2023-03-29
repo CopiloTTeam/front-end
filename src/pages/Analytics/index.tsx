@@ -1,5 +1,5 @@
 import React from "react";
-import Graphic from "../../components/grafic";
+import Graphic from "../../components/Grafic";
 import Navbar from "../../components/Navbar";
 import "./style.css";
 
