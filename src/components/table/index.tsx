@@ -2,6 +2,7 @@ import React from 'react'
 import './style.css'
 
 const Table = () => {
+  
   return (
     <div className='table-box'>
       <div className='table-title'>

@@ -56,6 +56,7 @@ const data = [
 export default class Graphic extends PureComponent {
   static demoUrl = 'https://codesandbox.io/s/simple-bar-chart-tpz8r';
 
+  
   render() {
     return (
       <ResponsiveContainer width="50%" height="100%">

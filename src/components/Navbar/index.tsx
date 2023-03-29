@@ -7,7 +7,6 @@ import './style.css'
 
 const Navbar = () => {
 
-
     return (
         <div className='header'>
             <div className='nav container'>
