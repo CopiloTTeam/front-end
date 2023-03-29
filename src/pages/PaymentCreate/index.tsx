@@ -1,6 +1,6 @@
-import React from 'react'
-import PaymentForm from '../../components/CreatePaymentForm'
-import Navbar from '../../components/navbar'
+import React from "react";
+import PaymentForm from "../../components/CreatePaymentForm";
+import Navbar from "../../components/Navbar";
 
 const PayForm = () => {
   return (
@@ -10,7 +10,7 @@ const PayForm = () => {
         <PaymentForm />
       </main>
     </>
-  )
-}
+  );
+};
 
-export default PayForm
+export default PayForm;

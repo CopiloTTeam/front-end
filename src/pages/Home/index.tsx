@@ -1,19 +1,18 @@
-import React from 'react'
-import AnalyticBox from '../../components/AnalyticBox'
-import Navbar from '../../components/navbar'
-import Table from '../../components/table'
+import React from "react";
+import AnalyticBox from "../../components/AnalyticBox";
+import Navbar from "../../components/Navbar";
+import Table from "../../components/Table";
 
-const  Home = () => {
+const Home = () => {
   return (
     <>
-    <Navbar />
-    <div className='main'>
+      <Navbar />
+      <div className="main">
         <AnalyticBox />
         <Table />
-    </div>
-    
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

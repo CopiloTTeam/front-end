@@ -1,12 +1,12 @@
 import React from 'react'
 import './style.css'
-import Download from '../../assets/download.png'
+import Rocket from '../../assets/rocket.png'
 
 const Login = () => {
   return (
     <div className="login-container" >
       <div className="image-left">
-        <img src={Download} alt='vasco' />
+        <img src={Rocket} alt='rocket' />
       </div>
       <div className="form-right">
         <div className='form-box'>
