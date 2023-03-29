@@ -15,15 +15,27 @@ const Table = () => {
             <td>Titulo</td>
             <td>Valor Total</td>
             <td>Nº Parcelas</td>
+            <td>Info.</td>
           </tr>
         </thead>
         <tbody>
+          
+            <tr>
+            <td>Victor Salles</td>
+            <td>vitin@gmail.com</td>
+            <td>18</td>
+            <td>rua das Ostras</td>
+            <td>rua das Ostras</td>
+            <td><a href='gerenciarParcela'>Ver mais</a></td>
+          </tr>
+        
           <tr>
             <td>Victor Salles</td>
             <td>vitin@gmail.com</td>
             <td>18</td>
             <td>rua das Ostras</td>
             <td>rua das Ostras</td>
+            <td><a href='gerenciarParcela'>Ver mais</a></td>
           </tr>
           <tr>
             <td>Victor Salles</td>
@@ -31,13 +43,7 @@ const Table = () => {
             <td>18</td>
             <td>rua das Ostras</td>
             <td>rua das Ostras</td>
-          </tr>
-          <tr>
-            <td>Victor Salles</td>
-            <td>vitin@gmail.com</td>
-            <td>18</td>
-            <td>rua das Ostras</td>
-            <td>rua das Ostras</td>
+            <td><a href='gerenciarParcela'>Ver mais</a></td>
           </tr>
         </tbody>
       </table>

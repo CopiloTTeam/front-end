@@ -32,3 +32,13 @@
 .profile-container .profile-content .profile-box h1{
     font-size: 1.3rem;
 }
+@media(max-width:592px){
+    .profile-container  .profile-content{
+        flex-direction: column;
+        margin: 0;
+        padding-top: 1rem;
+    }
+    .profile-container .profile-content .profile-box{
+        margin-bottom: 1.2rem;
+    }
+}

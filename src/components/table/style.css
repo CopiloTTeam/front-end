@@ -33,6 +33,9 @@ table tr td:last-child{
 table tr td:nth-child(3){
     text-align: center;
 }
+table tbody tr {
+    width: 100%;
+}
 table tbody tr:hover{
     background: #ebebeb;
 }

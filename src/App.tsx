@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import '../src/styles/global.css';
 import Profile from './pages/Profile';
 import EmployeeForm from './pages/EmployeeCreate';
+import PlotManagement from './pages/PlotManagement';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
          <Route path="/cadastrousuario" element={<CustomerForm />} />
          <Route path="/criarboleto" element={<PayForm />} />
          <Route path="/perfil" element={<Profile />} />
+         <Route path="/gerenciarParcela" element={<PlotManagement />} />
       </Routes>
     </BrowserRouter>
   );

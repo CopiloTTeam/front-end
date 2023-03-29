@@ -7,10 +7,10 @@ const  Analytics = () => {
   return (
     <>
     <Navbar />
-    <main>
+    <div className='main'>
         <AnalyticBox />
         <Table />
-    </main>
+    </div>
     
     </>
   )

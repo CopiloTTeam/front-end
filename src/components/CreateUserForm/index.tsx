@@ -2,7 +2,6 @@ import React, { FormEvent, useState } from 'react'
 import { useMultistepForm } from '../../utils/function'
 import { LocalInformation } from './LocalInformation'
 import { PersonalInformation } from './PersonalInformation'
-import Validation from './Validation'
 
 const UserForm = () => {
   type FormData = {

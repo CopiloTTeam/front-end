@@ -5,6 +5,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.6rem;
+    margin: 3rem 0;
 }
 .box-container .box{
     background: #3f3f3f;
@@ -12,6 +13,7 @@
     padding: 1.7rem 1.3rem;
     border-radius: 0.4rem;
     box-shadow: 0 2rem 3rem rgba(132, 139, 200, 0.18);
+    transition: all 0.3s ease-out;
 }
 .box-container .box:hover{
     background: #5c5c5c;
@@ -28,5 +30,6 @@
 @media screen and (max-width: 768px){
     .box-container{
         grid-template-columns: 1fr;
+        margin: 1.5rem 0;
     }
 }
