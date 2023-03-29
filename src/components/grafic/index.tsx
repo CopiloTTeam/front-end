@@ -58,10 +58,10 @@ export default class Graphic extends PureComponent {
 
   render() {
     return (
-      <ResponsiveContainer width="42%" height="85%">
+      <ResponsiveContainer width="50%" height="100%">
         <BarChart
-          width={500}
-          height={300}
+          width={300}
+          height={100}
           data={data}
           margin={{
             top: 5,
@@ -71,7 +71,7 @@ export default class Graphic extends PureComponent {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
+          <XAxis  />
           <YAxis />
           <Tooltip />
           <Legend />
