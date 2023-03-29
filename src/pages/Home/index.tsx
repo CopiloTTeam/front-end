@@ -1,7 +1,7 @@
 import React from "react";
 import AnalyticBox from "../../components/AnalyticBox";
 import Navbar from "../../components/Navbar";
-import Table from "../../components/Table";
+import Table from "../../components/Tablee";
 
 const Home = () => {
   return (
