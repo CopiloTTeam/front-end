@@ -20,6 +20,14 @@ const Navbar = () => {
                 </a>
                 <div className='navmenu'>
                     <ul className='navlist'>
+                        <a href='/home' className='navlink'>
+                            <li className='navitem'>
+
+                                <img src={Estatisticas} alt='Home' />
+                                <span className='navname'>Home</span>
+
+                            </li>
+                        </a>
                         <a href='/estatisticas' className='navlink'>
                             <li className='navitem'>
 
@@ -32,7 +40,7 @@ const Navbar = () => {
                             <li className='navitem'>
 
                                 <img src={User} alt='User' />
-                                <span className='navname'>Cadastro de Usuarios</span>
+                                <span className='navname'>Cadastro de Clientes</span>
 
                             </li>
                         </a>

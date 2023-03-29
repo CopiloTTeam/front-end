@@ -8,6 +8,7 @@ import '../src/styles/global.css';
 import Profile from './pages/Profile';
 import EmployeeForm from './pages/EmployeeCreate';
 import PlotManagement from './pages/PlotManagement';
+import Home from './pages/Home';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/cadastro" element={<EmployeeForm />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/estatisticas" element={<Analytics />} />
          <Route path="/cadastrousuario" element={<CustomerForm />} />
          <Route path="/criarboleto" element={<PayForm />} />

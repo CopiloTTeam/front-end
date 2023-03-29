@@ -1,17 +1,42 @@
 import React from 'react'
-import AnalyticBox from '../../components/AnalyticBox'
+import Graphic from '../../components/grafic'
 import Navbar from '../../components/navbar'
-import Table from '../../components/table'
+import './style.css'
 
-const  Analytics = () => {
+const Analytics = () => {
+  
   return (
     <>
-    <Navbar />
-    <div className='main'>
-        <AnalyticBox />
-        <Table />
-    </div>
-    
+      <Navbar />
+      <main>
+        <div className='top-box'>
+          <h3>Gerenciamento de Parcelas</h3>
+          <div className='select-box'>
+            <div className='select-input'>
+              <h3>Data de Inicio</h3>
+            <input
+              required
+              type="date"
+            />
+            </div>
+            <div className='select-input'>
+              <h3>Data de Fim</h3>
+            <input
+              required
+              type="date"
+            />
+            </div>
+            <select name="choice">
+            <option value="first">---- Selecione ----</option>
+              <option value="first">Adiantado</option>
+              <option value="second" >Pendente</option>
+              <option value="third">Atrasado</option>
+            </select>
+          </div>
+        </div>
+        <Graphic />
+      </main>
+
     </>
   )
 }
