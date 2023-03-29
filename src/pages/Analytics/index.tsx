@@ -1,5 +1,5 @@
 import React from 'react'
-import Graphic from '../../components/Grafic'
+import Graphic from '../../components/Graficc'
 import Navbar from '../../components/Navbar'
 import './style.css'
 
