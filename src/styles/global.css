@@ -34,9 +34,8 @@
   }
   button{
     border: none;
-    padding: 12px 16px;
     cursor: pointer;
-  }
+  } 
   .red{
     background: red;
     color: #fff;

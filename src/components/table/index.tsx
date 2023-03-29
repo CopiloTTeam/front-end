@@ -1,10 +1,10 @@
-import React from 'react'
-import './style.css'
+import React from "react";
+import "./style.css";
 
 const Table = () => {
   return (
-    <div className='table-box'>
-      <div className='table-title'>
+    <div className="table-box">
+      <div className="table-title">
         <h1>Lista de Usuários</h1>
       </div>
       <table>
@@ -19,23 +19,26 @@ const Table = () => {
           </tr>
         </thead>
         <tbody>
-          
-            <tr>
-            <td>Victor Salles</td>
-            <td>vitin@gmail.com</td>
-            <td>18</td>
-            <td>rua das Ostras</td>
-            <td>rua das Ostras</td>
-            <td><a href='gerenciarParcela'>Ver mais</a></td>
-          </tr>
-        
           <tr>
             <td>Victor Salles</td>
             <td>vitin@gmail.com</td>
             <td>18</td>
             <td>rua das Ostras</td>
             <td>rua das Ostras</td>
-            <td><a href='gerenciarParcela'>Ver mais</a></td>
+            <td>
+              <a href="gerenciarParcela">Ver mais</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Victor Salles</td>
+            <td>vitin@gmail.com</td>
+            <td>18</td>
+            <td>rua das Ostras</td>
+            <td>rua das Ostras</td>
+            <td>
+              <a href="gerenciarParcela">Ver mais</a>
+            </td>
           </tr>
           <tr>
             <td>Victor Salles</td>
@@ -43,12 +46,14 @@ const Table = () => {
             <td>18</td>
             <td>rua das Ostras</td>
             <td>rua das Ostras</td>
-            <td><a href='gerenciarParcela'>Ver mais</a></td>
+            <td>
+              <a href="gerenciarParcela">Ver mais</a>
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
-  )
-}
+  );
+};
 
-export default Table
+export default Table;
