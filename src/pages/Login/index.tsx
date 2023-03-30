@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './style.css'
-import Download from '../../assets/download.png'
+import Rocket from '../../assets/rocket.png'
 import { login } from '../../utils/axios.routes';
 import { useNavigate } from 'react-router-dom';
 
@@ -32,7 +32,7 @@ const Login = () => {
 return (
   <div className="login-container" >
     <div className="image-left">
-      <img src={Download} alt='vasco' />
+      <img src={Rocket} alt='vasco' />
     </div>
     <div className="form-right">
       <div className='form-box'>
@@ -73,4 +73,4 @@ return (
 )
 }
 
-export default Login
+export default Login;

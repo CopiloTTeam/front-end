@@ -22,14 +22,13 @@ const  Home = () => {
     }, []);
   return (
     <>
-    <Navbar />
-    <div className='main'>
+      <Navbar />
+      <div className="main">
         <AnalyticBox />
         <Table />
-    </div>
-    
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
