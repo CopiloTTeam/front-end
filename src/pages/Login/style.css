@@ -85,6 +85,18 @@
 }
 @media(max-width:1080px){
     .login-container{
-        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
+
+    .image-left{
+        display: none;
+
+    }
+
+    .form-right{
+        padding: 0 !important;
+        width: 90% !important;
+    }
+
 }
