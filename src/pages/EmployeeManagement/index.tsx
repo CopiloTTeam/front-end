@@ -1,6 +1,6 @@
 import React from "react";
 import EmployeeWait from "../../components/Card/EmployeeWait";
-import ExployeeFixed from "../../components/Card/ExployeeFixed";
+import EmployeeFixed from "../../components/Card/EmployeeFixed";
 import Navbar from "../../components/Navbar";
 import "./style.css";
 
@@ -15,9 +15,9 @@ const EmployeeManagement = () => {
       <EmployeeWait/>
       <EmployeeWait/>
       <h2 className="title-secundary">Funcionários do Sistema</h2>
-      <ExployeeFixed/>
-      <ExployeeFixed/>
-      <ExployeeFixed/>
+      <EmployeeFixed/>
+      <EmployeeFixed/>
+      <EmployeeFixed/>
     </div>
     </>
   );

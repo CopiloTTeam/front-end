@@ -13,26 +13,26 @@ const EmployeeWait = () => {
           />
         </summary>
         <div className="inside-box">
-        <div className="information-wait-box">
-          <h2>
-            <b> Email:</b> emaildocarinha@gmail.com
-          </h2>
-          <h2>
-            <b> CPF: </b>111.111.111.00
-          </h2>
-          <div className="select-function">
-            <label> Definir um cargo:</label>
-            <select name="select">
-              <option value="finance">Financeiro</option>
-              <option value="comercial">Comercial</option>
-              <option value="adm">Administrador</option>
-            </select>
+          <div className="information-wait-box">
+            <h2>
+              <b> Email:</b>emaildocarinha@gmail.com
+            </h2>
+            <h2>
+              <b> CPF: </b>111.111.111.00
+            </h2>
+            <div className="select-function">
+              <label> Definir um cargo:</label>
+              <select name="select">
+                <option value="finance">Financeiro</option>
+                <option value="comercial">Comercial</option>
+                <option value="adm">Administrador</option>
+              </select>
+            </div>
           </div>
-        </div>
-        <div className="box-confirm">
-          <button className="deny">Recusar</button>
-          <button className="approve">Confirmar</button>
-        </div>
+          <div className="box-confirm">
+            <button className="deny">Recusar</button>
+            <button className="approve">Confirmar</button>
+          </div>
         </div>
       </details>
     </>

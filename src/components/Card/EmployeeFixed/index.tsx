@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
 
-const ExployeeFixed = () => {
+const EmployeeFixed = () => {
   return (
     <>
    <details className="card-wait">
@@ -39,4 +39,4 @@ const ExployeeFixed = () => {
   );
 };
 
-export default ExployeeFixed;
+export default EmployeeFixed;
