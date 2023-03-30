@@ -1,135 +1,131 @@
 * {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    text-decoration: none;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-decoration: none;
 }
 
 .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: #333;
-    transition: .4s;
-    height: 4rem;
-    padding: 0 3rem;
-    align-items: center;
-    box-shadow: 0 1rem 1rem rgba(132, 139, 200, 0.18);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #333;
+  transition: 0.4s;
+  height: 4rem;
+  padding: 0 3rem;
+  align-items: center;
+  box-shadow: 0 1rem 1rem rgba(132, 139, 200, 0.18);
 }
 
 .nav {
-    height: 4rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  height: 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-.navlogo{
-    display: flex;
-    gap: 0.6rem;
+.navlogo {
+  display: flex;
+  gap: 0.6rem;
 }
-.navlogo img{
-    width: 35px;
-    height: 35px;
+.navlogo img {
+  width: 35px;
+  height: 35px;
 }
-.navlogo .logoText h3{
-    color: #fff;
-    font-size: 0.8rem;
+.navlogo .logoText h3 {
+  color: #fff;
+  font-size: 0.8rem;
 }
-.navlogo .logoText p{
-    color: #cccccc;
-    font-size: 0.8rem;
+.navlogo .logoText p {
+  color: #cccccc;
+  font-size: 0.8rem;
 }
 .navlink img {
-    width: 25px;
-    height: 25px;
+  width: 25px;
+  height: 25px;
 }
-.navmenu{
-    width: 450px;
-    display: flex;
-    align-items: center;
+.navmenu {
+  width: 450px;
+  display: flex;
+  align-items: center;
 }
 .navlist,
 .navlink {
-    display: flex;
+  display: flex;
 }
 
 .navlink {
-    flex-direction: column;
-    align-items: center;
-    row-gap: .25rem;
-    color: #fff;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 0.25rem;
+  color: #fff;
 }
-.navitem:hover{
-    background: #797979;
-    border-radius: 5px;
-    transition: 0.2s ease-in-out;
+.navitem:hover {
+  background: #797979;
+  border-radius: 5px;
+  transition: 0.2s ease-in-out;
 }
 .navlist {
-    justify-content: space-around;
+  justify-content: space-around;
+  align-items: center;
 }
-.navlist .navitem{
-    padding: 0.4rem 0.7rem;
-    display: flex;
-    flex-direction: column;
+.navlist .navitem {
+  padding: 0.4rem 0.7rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+}
+.navlink.active::before {
+  content: "";
+  position: absolute;
+  bottom: -0.75rem;
+  width: 4px;
+  height: 4px;
+  background: #d919ff;
+  border-radius: 50%;
+}
+@media (min-width: 1024px) {
+  .container {
+    margin: 0;
+  }
+}
+@media (max-width: 768px) {
+  .header {
+    padding: 0 1.5rem;
+  }
+  .navmenu {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: #333;
+    width: 100%;
+    height: 4rem;
+    padding: 0 1rem;
+    display: grid;
     align-items: center;
-    color: #fff;
-}
-.navlink.active::before{
-    content: '';
-    position: absolute;
-    bottom: -.75rem;
-    width: 4px;
-    height: 4px;
-    background: #d919ff;
-    border-radius: 50%;
-}
-@media(min-width:1024px) {
-    .container{
-        
-    }
-}
-@media(max-width:768px) {
-    .header{
-        padding: 0 1.5rem;
-    }
-    .navmenu {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        background: #333;
-        width: 100%;
-        height: 4rem;
-        padding: 0 1rem;
-        display: grid;
-        align-items: center;
-        transition: .4s;
-    }
-    .navlist{
-        justify-content: center;
-        column-gap: 3rem;
-    }
-    .navname{
-        display: none;
-    }
+    transition: 0.4s;
+  }
+  .navlist {
+    justify-content: center;
+    column-gap: 3rem;
+  }
 }
 
-@media(min-width:662px){
-   
-    .navname{
-        display: none;
-    }
-    
+@media (min-width: 768px) {
+  .navitem img {
+    display: none;
+  }
 }
-@media(max-width:520px) {
-    .navlist {
-        column-gap: 2rem;
-    }
-    .navname{
-        display: none;
-    }
-    .navitem{
-        padding: 5px;
-    }
+@media (max-width: 520px) {
+  .navlist {
+    column-gap: 2rem;
+  }
+  .navname {
+    display: none;
+  }
+  .navitem {
+    padding: 5px;
+  }
 }

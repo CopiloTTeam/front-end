@@ -10,7 +10,7 @@ const PayForm = () => {
         <PaymentForm />
       </main>
     </>
-  )
-}
+  );
+};
 
-export default PayForm
+export default PayForm;
