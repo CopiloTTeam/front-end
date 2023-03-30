@@ -1,11 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Boleto from '../../assets/adicionarBoleto.png'
 import User from '../../assets/adicionarUser.png'
 import Estatisticas from '../../assets/estatistica.png'
 import Perfil from '../../assets/perfil.png'
+import { dadosUsuario } from '../../utils/axios.routes'
 import './style.css'
 
 const Navbar = () => {
+    const [data, setData] = useState<any>();
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await dadosUsuario(1);
+                const data = await response?.data
+                setData(data);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchData();
+    }, []);
 
     return (
         <div className='header'>
@@ -13,7 +29,7 @@ const Navbar = () => {
                 <a href='/perfil' className='navlogo'>
                     <img src={Perfil} alt='Perfil' />
                     <div className="logoText">
-                        <h3>Olá,Bobby</h3>
+                        <h3>Olá, {data?.nome}</h3>
                         <p>administrador</p>
                     </div>
                 </a>
