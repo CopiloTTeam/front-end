@@ -6,7 +6,7 @@ const Table = () => {
   return (
     <div className='table-box'>
       <div className='table-title'>
-        <h1>Lista de Usuários</h1>
+        <h1>Lista de Titulos</h1>
       </div>
       <table>
         <thead>

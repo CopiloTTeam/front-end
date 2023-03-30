@@ -4,7 +4,7 @@ const api: AxiosInstance = axios.create({
   // URL LOCAL
   // baseURL: 'http://localhost:8080',
   // PRODUÇÂO
-  baseURL: 'https://back-end-production-bdba.up.railway.app',
+  baseURL: 'http://localhost:8080',
   timeout: 1000,
 });
 
