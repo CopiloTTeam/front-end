@@ -1,11 +1,12 @@
-import React from "react";
-import "./style.css";
+import React from 'react'
+import './style.css'
 
 const Table = () => {
+  
   return (
-    <div className="table-box">
-      <div className="table-title">
-        <h1>Lista de Usuários</h1>
+    <div className='table-box'>
+      <div className='table-title'>
+        <h1>Lista de Titulos</h1>
       </div>
       <table>
         <thead>
@@ -19,7 +20,8 @@ const Table = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
+          
+            <tr>
             <td>Victor Salles</td>
             <td>vitin@gmail.com</td>
             <td>18</td>

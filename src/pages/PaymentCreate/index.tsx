@@ -1,6 +1,6 @@
-import React from "react";
-import PaymentForm from "../../components/CreatePaymentForm";
-import Navbar from "../../components/Navbar";
+import React from 'react'
+import PaymentForm from '../../components/CreatePaymentForm'
+import Navbar from '../../components/Navbar'
 
 const PayForm = () => {
   return (

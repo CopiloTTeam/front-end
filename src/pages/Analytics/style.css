@@ -7,11 +7,19 @@
 }
 .select-box{
     display: flex;
+    align-items: center;
     gap: 2rem;
 }
 .select-box .select-input{
     margin-top: 0.3rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 .select-box .select-input h3{
     font-size: 1rem;
+}
+.select-box select{
+    height: 1.4rem;
 }
