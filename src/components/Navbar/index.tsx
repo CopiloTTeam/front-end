@@ -67,6 +67,14 @@ const Navbar = () => {
 
                             </li></a>
 
+                        <a href='/gerenciarfunc' className='navlink'>
+                        <li className='navitem'>
+
+                            <img src={Boleto} alt='Gerenciar Funcionário' />
+                            <span className='navname'>Gerenciar Funcionários</span>
+
+                        </li></a>
+
                     </ul>
                 </div>
             </div>

@@ -14,19 +14,23 @@ const PlotManagement = () => {
             <h3>Titulo:</h3>
             <p> Martelo de Borracha 50g</p>
           </div>
+
           <details>
             <summary>
               <h3>Parcela/Maio</h3>
               <p>Status</p>
+              <a href="/payout">Ver mais</a>
             </summary>
             <div className="card-completo">
               <div className="conteudo"></div>
             </div>
           </details>
+
           <details>
             <summary>
               <h3>Parcela/Junho</h3>
               <p>Status</p>
+              <a href="/payout">Ver mais</a>
             </summary>
             <div className="card-completo">
               <div className="conteudo"></div>
