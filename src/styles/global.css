@@ -36,9 +36,14 @@
     border: none;
     cursor: pointer;
   } 
+  .btn-form{
+    display: flex;
+    gap: 1rem;
+  }
   .red{
     background: red;
     color: #fff;
+    padding: 12px;
     border-radius: 5px;
   }.red:hover{
     background: rgb(167, 0, 0);
@@ -46,6 +51,7 @@
   .green{
     background: green;
     color: #fff;
+    padding: 12px;
      border-radius: 5px;
   }
   .green:hover{

@@ -58,7 +58,7 @@ export default class Graphic extends PureComponent {
 
   render() {
     return (
-      <ResponsiveContainer width="42%" height="85%">
+      <ResponsiveContainer width="100%" height="85%">
         <BarChart
           width={500}
           height={300}
