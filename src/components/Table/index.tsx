@@ -1,8 +1,11 @@
 import React from 'react'
 import './style.css'
 
-const Table = () => {
-  
+interface TableProps {
+  data: any[];
+}
+
+const Table = ({ data }: TableProps) => {
   return (
     <div className='table-box'>
       <div className='table-title'>
@@ -20,38 +23,18 @@ const Table = () => {
           </tr>
         </thead>
         <tbody>
-          
-            <tr>
-            <td>Victor Salles</td>
-            <td>vitin@gmail.com</td>
-            <td>18</td>
-            <td>rua das Ostras</td>
-            <td>rua das Ostras</td>
-            <td>
-              <a href="gerenciarParcela">Ver mais</a>
-            </td>
-          </tr>
-
-          <tr>
-            <td>Victor Salles</td>
-            <td>vitin@gmail.com</td>
-            <td>18</td>
-            <td>rua das Ostras</td>
-            <td>rua das Ostras</td>
-            <td>
-              <a href="gerenciarParcela">Ver mais</a>
-            </td>
-          </tr>
-          <tr>
-            <td>Victor Salles</td>
-            <td>vitin@gmail.com</td>
-            <td>18</td>
-            <td>rua das Ostras</td>
-            <td>rua das Ostras</td>
-            <td>
-              <a href="gerenciarParcela">Ver mais</a>
-            </td>
-          </tr>
+          {data.map((item, index) => (
+            <tr key={index}>
+              <td>{item.cpf}</td>
+              <td>{item.nomeCliente}</td>
+              <td>{item.id_titulo}</td>
+              <td>{item.valor}</td>
+              <td>{item.parcelas}</td>
+              <td>
+                <a href="gerenciarParcela">Ver mais</a>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
