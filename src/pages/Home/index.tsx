@@ -23,10 +23,10 @@ const  Home = () => {
   return (
     <>
       <Navbar />
-      <div className="main">
+      <main>
         <AnalyticBox />
         <Table />
-      </div>
+      </main>
     </>
   );
 };

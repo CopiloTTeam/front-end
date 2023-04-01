@@ -8,7 +8,7 @@ const Analytics = () => {
   return (
     <>
       <Navbar />
-      <main>
+      <div className='main'>
         <div className="top-box">
           <h3>Gerenciamento de Parcelas</h3>
           <div className="select-box">
@@ -38,7 +38,7 @@ const Analytics = () => {
           </div>
         </div>
         <Graphic />
-      </main>
+      </div>
     </>
   );
 };

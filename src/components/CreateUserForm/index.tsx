@@ -56,7 +56,7 @@ const UserForm = () => {
     <>
       <div>
         <form onSubmit={onSubmit}>
-          <div style={{display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "5rem"}}>
+          <div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
             <h2>Cadastro de Clientes</h2>
             {currentStepIndex + 1} / {steps.length}
           </div>
