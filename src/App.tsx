@@ -10,6 +10,7 @@ import EmployeeForm from "./pages/EmployeeCreate";
 import PlotManagement from "./pages/PlotManagement";
 import Home from "./pages/Home";
 import EmployeeManagement from "./pages/EmployeeManagement";
+import Payout from "./pages/Payout";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/perfil" element={<Profile />} />
         <Route path="/gerenciarParcela" element={<PlotManagement />} />
         <Route path="/gerenciarfunc" element={<EmployeeManagement />} />
+        <Route path="/payout" element={<Payout/>} />
       </Routes>
     </BrowserRouter>
   );
