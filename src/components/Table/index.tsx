@@ -23,8 +23,8 @@ const Table = ({ data }: TableProps) => {
           </tr>
         </thead>
         <tbody>
-          {data.map((item, index) => (
-            <tr key={index}>
+          {data && data.map((item) => (
+            <tr key={item.id_titulo}>
               <td>{item.cpf}</td>
               <td>{item.nomeCliente}</td>
               <td>{item.id_titulo}</td>
