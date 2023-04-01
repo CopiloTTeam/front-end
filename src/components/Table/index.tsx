@@ -1,11 +1,19 @@
 import React from 'react'
 import './style.css'
+import { Link } from 'react-router-dom';
 
 interface TableProps {
   data: any[];
+<<<<<<< Updated upstream
 }
 
 const Table = ({ data }: TableProps) => {
+=======
+  client: any[];
+}
+
+const Table = ({ data, client }: TableProps) => {
+>>>>>>> Stashed changes
   return (
     <div className='table-box'>
       <div className='table-title'>
@@ -23,6 +31,7 @@ const Table = ({ data }: TableProps) => {
           </tr>
         </thead>
         <tbody>
+<<<<<<< Updated upstream
           {data && data.map((item) => (
             <tr key={item.id_titulo}>
               <td>{item.cpf}</td>
@@ -35,6 +44,26 @@ const Table = ({ data }: TableProps) => {
               </td>
             </tr>
           ))}
+=======
+          {data && data.map((item) => {
+            // Look up client information based on the cpf value
+            const clientInfo = client.find((c) => c.id_cliente === item.id_cliente);
+            const nomeCliente = clientInfo?.nome;
+            const cpf = clientInfo?.cpf;
+            return (
+              <tr key={item.id_titulo}>
+                <td>{cpf}</td>
+                <td>{nomeCliente}</td>
+                <td>{item.id_titulo}</td>
+                <td align="right">R${item.valor}</td>
+                <td>{item.parcelas}</td>
+                <td>
+                  <Link to={`/gerenciarparcelas/${item.id_titulo}`}>Ver mais</Link>
+                </td>
+              </tr>
+            )
+          })}
+>>>>>>> Stashed changes
         </tbody>
       </table>
     </div>
