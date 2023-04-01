@@ -20,3 +20,21 @@ export const dadosUsuario = async (id:any) => {
         console.error(error);
     }
 }
+
+export const dadosTitulos = async () => {
+  try {
+      const response = await api.get(`/listar/titulo`);
+      return response;
+  } catch (error){
+      console.error(error);
+  }
+}
+
+export const dadosClientes = async () => {
+  try {
+      const response = await api.get(`/listar/cliente`);
+      return response;
+  } catch (error){
+      console.error(error);
+  }
+}
