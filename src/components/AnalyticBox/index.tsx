@@ -1,7 +1,7 @@
-import React from "react";
 import "./style.css";
 
 const AnalyticBox = () => {
+  
   return (
     <>
       <div className="bg">
@@ -11,7 +11,7 @@ const AnalyticBox = () => {
             <h1>999</h1>
           </div>
           <div className="box">
-            <p>Expectatviva de Crédito:</p>
+            <p>Expectaviva de Crédito:</p>
             <h1>R$999.999,99</h1>
           </div>
           <div className="box">

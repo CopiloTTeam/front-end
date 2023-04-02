@@ -1,5 +1,6 @@
 import React from 'react'
 import './style.css'
+import { Link } from 'react-router-dom';
 
 interface TableProps {
   data: any[];
@@ -7,7 +8,6 @@ interface TableProps {
 }
 
 const Table = ({ data, client }: TableProps) => {
-  console.log(data)
   return (
     <div className='table-box'>
       <div className='table-title'>
@@ -25,7 +25,7 @@ const Table = ({ data, client }: TableProps) => {
           </tr>
         </thead>
         <tbody>
-          { data && data.map((item) => {
+          {data && data.map((item) => {
             // Look up client information based on the cpf value
             const clientInfo = client.find((c) => c.id_cliente === item.id_cliente);
             const nomeCliente = clientInfo?.nome;
@@ -35,10 +35,10 @@ const Table = ({ data, client }: TableProps) => {
                 <td>{cpf}</td>
                 <td>{nomeCliente}</td>
                 <td>{item.id_titulo}</td>
-                <td>{item.valor}</td>
+                <td align="right">R${item.valor}</td>
                 <td>{item.parcelas}</td>
                 <td>
-                  <a href="gerenciarParcela">Ver mais</a>
+                  <Link to={`/gerenciarparcelas/${item.id_titulo}`}>Ver mais</Link>
                 </td>
               </tr>
             )

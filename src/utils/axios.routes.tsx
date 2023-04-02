@@ -32,7 +32,20 @@ export const dadosTitulos = async () => {
 
 export const dadosClientes = async () => {
   try {
-      const response = await api.get(`/listar/cliente`);
+      const response = await api.get(`/listar/cliente`,  {
+        timeout: 5000
+      });
+      return response;
+  } catch (error){
+      console.error(error);
+  }
+}
+
+export const gerenciarTitulo = async (id:any) => {
+  try {
+      const response = await api.get(`/listar/titulo/${id}`,  {
+        timeout: 5000
+      });
       return response;
   } catch (error){
       console.error(error);
