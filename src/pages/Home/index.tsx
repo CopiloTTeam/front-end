@@ -33,10 +33,10 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <div className="main">
+      <main>
         <AnalyticBox />
         <Table data={data} client={client} />
-      </div>
+      </main>
     </>
   );
 };

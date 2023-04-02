@@ -95,6 +95,9 @@
   .header {
     padding: 0 1.5rem;
   }
+  .navname {
+    display: none;
+  }
   .navmenu {
     position: fixed;
     bottom: 0;
@@ -109,7 +112,7 @@
   }
   .navlist {
     justify-content: center;
-    column-gap: 3rem;
+    column-gap: 4rem;
   }
 }
 

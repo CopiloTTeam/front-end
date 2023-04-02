@@ -52,7 +52,7 @@ const PaymentForm = () => {
           </div>
           {step}
         </form>
-        <div>
+        <div className='btn-form'>
           {!isFirstStep && <button className="red" type="button" onClick={back}>Voltar</button>}
           <button className="green" type="submit" onClick={next}>
             {isLastStep ? "Concluir" : "Avançar"}

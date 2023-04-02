@@ -56,13 +56,13 @@ const UserForm = () => {
     <>
       <div>
         <form onSubmit={onSubmit}>
-          <div style={{display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "5rem"}}>
+          <div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
             <h2>Cadastro de Clientes</h2>
             {currentStepIndex + 1} / {steps.length}
           </div>
           {step}
         </form>
-        <div>
+        <div className='btn-form'>
           {!isFirstStep && <button className='red' type="button" onClick={back}>Voltar</button>}
           <button className='green' type="submit" onClick={next}>
             {isLastStep ? "Concluir" : "Avançar"}

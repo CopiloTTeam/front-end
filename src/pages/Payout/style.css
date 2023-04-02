@@ -64,6 +64,10 @@
 }
 
 @media(max-width:910px){
+  .payout-container {
+    margin: 7rem 10%;
+  }
+  
     .box-date{
         display: flex;
         flex-direction: column;
