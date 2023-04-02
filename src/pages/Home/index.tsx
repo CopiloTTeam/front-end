@@ -2,12 +2,11 @@ import React, { useEffect, useState } from 'react'
 import AnalyticBox from '../../components/AnalyticBox'
 import Navbar from '../../components/Navbar'
 import Table from '../../components/Table'
-import { dadosClientes, dadosTitulos, dadosUsuario } from '../../utils/axios.routes'
+import { dadosClientes, dadosTitulos } from '../../utils/axios.routes'
 
 const Home = () => {
   const [data, setData] = useState([]);
-  const [client, setClient]= useState([]);
-
+  const [client, setClient] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -19,8 +18,7 @@ const Home = () => {
       }
     };
     fetchData();
-
-    const fetchValor = async () => {
+    const FetchClient = async () => {
       try {
         const response = await dadosClientes();
         const client = await response?.data;
@@ -29,7 +27,7 @@ const Home = () => {
         console.error(error);
       }
     };
-    fetchValor();
+    FetchClient();
   }, []);
 
   return (
@@ -37,7 +35,7 @@ const Home = () => {
       <Navbar />
       <div className="main">
         <AnalyticBox />
-        <Table data={data}  />
+        <Table data={data} client={client} />
       </div>
     </>
   );

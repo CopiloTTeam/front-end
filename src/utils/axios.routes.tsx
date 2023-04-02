@@ -10,8 +10,6 @@ export const login = async (data:any) => {
   }
 };
 
-
-
 export const dadosUsuario = async (id:any) => {
     try {
         const response = await api.get(`listar/funcionario/${id}`);
@@ -23,7 +21,9 @@ export const dadosUsuario = async (id:any) => {
 
 export const dadosTitulos = async () => {
   try {
-      const response = await api.get(`/listar/titulo`);
+      const response = await api.get(`/listar/titulo`,  {
+        timeout: 5000
+      });
       return response;
   } catch (error){
       console.error(error);
