@@ -4,16 +4,10 @@ import { Link } from 'react-router-dom';
 
 interface TableProps {
   data: any[];
-<<<<<<< Updated upstream
-}
-
-const Table = ({ data }: TableProps) => {
-=======
   client: any[];
 }
 
 const Table = ({ data, client }: TableProps) => {
->>>>>>> Stashed changes
   return (
     <div className='table-box'>
       <div className='table-title'>
@@ -31,20 +25,6 @@ const Table = ({ data, client }: TableProps) => {
           </tr>
         </thead>
         <tbody>
-<<<<<<< Updated upstream
-          {data && data.map((item) => (
-            <tr key={item.id_titulo}>
-              <td>{item.cpf}</td>
-              <td>{item.nomeCliente}</td>
-              <td>{item.id_titulo}</td>
-              <td>{item.valor}</td>
-              <td>{item.parcelas}</td>
-              <td>
-                <a href="gerenciarParcela">Ver mais</a>
-              </td>
-            </tr>
-          ))}
-=======
           {data && data.map((item) => {
             // Look up client information based on the cpf value
             const clientInfo = client.find((c) => c.id_cliente === item.id_cliente);
@@ -63,7 +43,6 @@ const Table = ({ data, client }: TableProps) => {
               </tr>
             )
           })}
->>>>>>> Stashed changes
         </tbody>
       </table>
     </div>
