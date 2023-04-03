@@ -1,14 +1,30 @@
-import React from "react";
+import { dadosUsuario } from '../../utils/axios.routes';
+import React, { useEffect, useState } from 'react'
 import EmployeeWait from "../../components/Card/EmployeeWait";
 import EmployeeFixed from "../../components/Card/EmployeeFixed";
 import Navbar from "../../components/Navbar";
 import "./style.css";
 
 const EmployeeManagement = () => {
+  const [data, setData] = useState<any>();
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await dadosUsuario(3);
+                const data = await response?.data
+                setData(data);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchData();
+    }, []);
   return (
     <>
     <div className="conteiner-employee-management">
-      <Navbar/>
+      <Navbar data={data}/>
       <h1 className="title-primary">Usuário do Sistema</h1>
       <h2 className="title-secundary">Solicitações Pendentes</h2>
       <EmployeeWait/>

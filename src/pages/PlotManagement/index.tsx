@@ -8,8 +8,19 @@ const PlotManagement = () => {
   const { id } = useParams<{ id: string }>();
   const [data, setData] = useState<any>(null);
   const [client, setClient] = useState<any>();
+  const [user, setUser] = useState([]);
 
   useEffect(() => {
+    const FetchUsuario = async () => {
+      try {
+        const response = await dadosUsuario(3);
+        const user = await response?.data;
+        setUser(user);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    FetchUsuario();
     const fetchData = async () => {
       try {
         const response = await gerenciarTitulo(id);
@@ -66,7 +77,7 @@ const PlotManagement = () => {
 
   return (
     <>
-      <Navbar />
+      <Navbar data={user}/>
       <main>
         <div className="plot-container">
           <div className="plot-info">

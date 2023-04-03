@@ -23,7 +23,7 @@ export function PersonalInformation({ nome, cpf, email, updateFields }: UserForm
           <h1>Nome</h1>
           <input
             required
-            type="number"
+            type="text"
             placeholder="nome"
             value={nome}
             onChange={e => updateFields({ nome: e.target.value })}

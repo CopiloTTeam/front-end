@@ -22,7 +22,7 @@ function App() {
         <Route path="/estatisticas" element={<Analytics />} />
         <Route path="/cadastrousuario" element={<CustomerForm />} />
         <Route path="/criarboleto" element={<PayForm />} />
-        <Route path="/perfil" element={<Profile />} />
+        <Route path="/perfil/:id" element={<Profile />} />
         <Route path="/gerenciarparcelas/:id" element={<PlotManagement />} />
         <Route path="/gerenciarfuncionario" element={<EmployeeManagement />} />
         <Route path="/payout" element={<Payout/>} />

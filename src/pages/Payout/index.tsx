@@ -1,11 +1,28 @@
-import React from "react";
 import "./style.css";
 import Navbar from "../../components/Navbar";
+import React, { useEffect, useState } from 'react'
+import { dadosUsuario } from '../../utils/axios.routes';
+
 
 const Payout = () => {
+  const [data, setData] = useState<any>();
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await dadosUsuario(3);
+                const data = await response?.data
+                setData(data);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchData();
+    }, []);
   return (
     <>
-      <Navbar />
+      <Navbar data={data}/>
       <div className="payout-container">
         <div className="title">
           <h1> Confirmação de Pagamento</h1>

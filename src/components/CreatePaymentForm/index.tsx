@@ -3,9 +3,13 @@ import { useMultistepForm } from '../../utils/function'
 import { BilingInformation } from './BilingInformation'
 import { PersonalInformation } from './PersonalInformation'
 import '../../styles/global.css'
+import { criarTitulo } from '../../utils/axios.routes'
+import { useNavigate } from 'react-router-dom';
+
 // import Validation from './Validation'
 
 const PaymentForm = () => {
+  const navigate = useNavigate();
   type FormData = {
     nome: string,
     cpf: string,
@@ -38,8 +42,17 @@ const PaymentForm = () => {
       // <Validation {...data} updateFields={updateFields}/>,
     ])
 
+    async function submitData(data: any) {
+      var resp = await criarTitulo(data)
+      return resp;
+    }
   function onSubmit(e: FormEvent) {
     e.preventDefault()
+    if (isLastStep){
+      submitData(data)
+      navigate('/home');
+      
+    }
     next()
   }
   return (
@@ -54,7 +67,7 @@ const PaymentForm = () => {
         </form>
         <div className='btn-form'>
           {!isFirstStep && <button className="red" type="button" onClick={back}>Voltar</button>}
-          <button className="green" type="submit" onClick={next}>
+          <button className="green" type="submit" onClick={onSubmit}>
             {isLastStep ? "Concluir" : "Avançar"}
           </button>
         </div>

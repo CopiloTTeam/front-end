@@ -25,7 +25,7 @@ export function BilingInformation({ nome, cpf, email, nomeProduto, valorTotal, n
           <h1>Nome do Produto</h1>
           <input
             required
-            type="date"
+            type="text"
             placeholder="Nome do Produto"
             value={nomeProduto} onChange={e => updateFields({ nomeProduto: e.target.value })}
           />
@@ -58,7 +58,7 @@ export function BilingInformation({ nome, cpf, email, nomeProduto, valorTotal, n
           <h1>Data de Vencimento</h1>
           <input
             required
-            type="text"
+            type="date"
             placeholder="Data de Vencimento"
             value={dataVencimento} onChange={e => updateFields({ dataVencimento: e.target.value })}
           />

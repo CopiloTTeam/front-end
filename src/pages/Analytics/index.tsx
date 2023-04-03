@@ -1,13 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Graphic from '../../components/Grafic'
 import Navbar from '../../components/Navbar'
 import './style.css'
+import { dadosUsuario } from '../../utils/axios.routes';
 
 const Analytics = () => {
+  const [data, setData] = useState<any>();
 
+  useEffect(() => {
+      const fetchData = async () => {
+          try {
+              const response = await dadosUsuario(3);
+              const data = await response?.data
+              setData(data);
+          } catch (error) {
+              console.error(error);
+          }
+      };
+
+      fetchData();
+  }, []);
   return (
     <>
-      <Navbar />
+      <Navbar data={data} />
       <div className='main'>
         <div className="top-box">
           <h3>Gerenciamento de Parcelas</h3>

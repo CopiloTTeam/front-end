@@ -71,3 +71,17 @@
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
       monospace;
   }
+
+
+
+  .loading{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: red;
+    align-content: center;
+    flex-wrap: nowrap;
+    font-size: 5rem;
+  }

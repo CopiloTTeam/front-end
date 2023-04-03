@@ -9,7 +9,7 @@ const Profile = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await dadosUsuario(1);
+                const response = await dadosUsuario(3);
                 const data = await response?.data
                 setData(data);
             } catch (error) {
@@ -22,7 +22,7 @@ const Profile = () => {
 
     return (
         <>
-            <Navbar />
+            <Navbar data={data} />
             <main>
                 <div className='profile-container'>
                     <div className='title'>
