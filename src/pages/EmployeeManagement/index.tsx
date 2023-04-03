@@ -1,7 +1,7 @@
 import React from "react";
 import EmployeeWait from "../../components/Card/EmployeeWait";
 import EmployeeFixed from "../../components/Card/EmployeeFixed";
-import Navbar from "../../components/Navbar";
+import Navbar from "../../components/navbar";
 import "./style.css";
 
 const EmployeeManagement = () => {

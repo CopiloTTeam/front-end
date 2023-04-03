@@ -9,30 +9,24 @@ const UserForm = () => {
     cpf: string,
     email: string,
     data: string,
-    telefone: string,
-    celular: string,
     cep: string,
     rua: string,
     bairro: string,
     cidade: string,
     estado: string,
-    numero: string,
-    complemento: string,
+    logradouro: string;
   }
   const INITIAL_DATA: FormData = {
     nome: "",
     cpf: "",
     email: "",
     data: "",
-    telefone: "",
-    celular: "",
     cep: "",
     rua: "",
     bairro: "",
     cidade: "",
     estado: "",
-    numero: "",
-    complemento: "",
+    logradouro: "",
   }
   const [data, setData] = useState(INITIAL_DATA)
   function updateFields(fields: Partial<FormData>) {

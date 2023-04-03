@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import AnalyticBox from '../../components/AnalyticBox'
-import Navbar from '../../components/Navbar'
+import Navbar from '../../components/navbar'
 import Table from '../../components/Table'
 import { dadosUsuario } from '../../utils/axios.routes'
 

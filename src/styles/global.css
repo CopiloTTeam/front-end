@@ -37,7 +37,8 @@
     cursor: pointer;
   } 
   .red{
-    background: red;
+    background: red;margin: 0 5px 0 0;
+    padding: 8px 10px;
     color: #fff;
     border-radius: 5px;
   }.red:hover{
@@ -45,6 +46,8 @@
   }
   .green{
     background: green;
+    padding: 8px 10px;
+    margin:0 0 0 5px;
     color: #fff;
      border-radius: 5px;
   }

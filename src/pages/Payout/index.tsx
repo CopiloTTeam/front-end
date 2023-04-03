@@ -1,6 +1,6 @@
 import React from 'react'
 import './style.css'
-import Navbar from '../../components/Navbar';
+import Navbar from '../../components/navbar';
 
 const Payout = () => {
 

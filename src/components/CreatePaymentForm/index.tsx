@@ -7,22 +7,26 @@ import '../../styles/global.css'
 
 const PaymentForm = () => {
   type FormData = {
-    nome: string,
-    cpf: string,
-    email: string,
-    nomeProduto: string,
-    valorTotal: string,
-    numeroParcelas: string,
-    dataVencimento: string,
+    id_titulo: string;
+    id_cliente: string,
+    id_funcionario: string
+    data_geracao: string,
+    valor:string,
+    codigo_barra:string,
+    qr_code:string,
+    numero_boleto:string,
+    nome_produto:string,  
   }
   const INITIAL_DATA: FormData = {
-    nome: "",
-    cpf: "",
-    email: "",
-    nomeProduto: "",
-    valorTotal: "",
-    numeroParcelas: "",
-    dataVencimento: "",
+    id_titulo: "",
+    id_cliente: "",
+    id_funcionario: "",
+    data_geracao: "",
+    valor:"",
+    codigo_barra:"",
+    qr_code:"",
+    numero_boleto:"",
+    nome_produto:"",  
   }
   const [data, setData] = useState(INITIAL_DATA)
   function updateFields(fields: Partial<FormData>) {

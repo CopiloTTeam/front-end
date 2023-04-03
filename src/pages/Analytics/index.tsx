@@ -1,6 +1,6 @@
 import React from 'react'
 import Graphic from '../../components/Grafic'
-import Navbar from '../../components/Navbar'
+import Navbar from '../../components/navbar'
 import './style.css'
 
 const Analytics = () => {
