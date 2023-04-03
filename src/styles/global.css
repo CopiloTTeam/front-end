@@ -41,7 +41,8 @@
     gap: 1rem;
   }
   .red{
-    background: red;
+    background: red;margin: 0 5px 0 0;
+    padding: 8px 10px;
     color: #fff;
     padding: 12px;
     border-radius: 5px;
@@ -50,6 +51,8 @@
   }
   .green{
     background: green;
+    padding: 8px 10px;
+    margin:0 0 0 5px;
     color: #fff;
     padding: 12px;
      border-radius: 5px;

@@ -6,8 +6,6 @@ type UserData = {
   cpf: string,
   email: string,
   data: string,
-  telefone: string,
-  celular: string,
 }
 
 type UserFormProps = UserData & {
@@ -15,7 +13,7 @@ type UserFormProps = UserData & {
 }
 
 
-export function LocalInformation({ nome, cpf, email, data, telefone, celular, updateFields }: UserFormProps) {
+export function LocalInformation({ nome, cpf, email, data, updateFields }: UserFormProps) {
 
   return (
     <div className="cont">
@@ -64,34 +62,7 @@ export function LocalInformation({ nome, cpf, email, data, telefone, celular, up
           />
         </div>
       </div>
-      <div className="row">
-        <div className="box-tel">
-          <h1>Telefone</h1>
-          <div className="tel-plus">
-            <input
-              required
-              type="number"
-              placeholder="Telefone"
-              value={telefone} 
-              onChange={e => updateFields({ telefone: e.target.value })}
-            />
-            <button>+</button>
-          </div>
-        </div>
-        <div className="box-cel">
-          <h1>Celular</h1>
-          <div className="tel-plus">
-            <input
-              required
-              type="number"
-              placeholder="Celular"
-              value={celular} 
-              onChange={e => updateFields({ celular: e.target.value })}
-            />
-            <button className="cel-plus">+</button>
-          </div>
-        </div>
-      </div>
+      
     </div>
   )
 }

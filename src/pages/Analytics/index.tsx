@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Graphic from '../../components/Grafic'
-import Navbar from '../../components/Navbar'
+import Navbar from '../../components/navbar'
 import './style.css'
 import { dadosUsuario } from '../../utils/axios.routes';
 
