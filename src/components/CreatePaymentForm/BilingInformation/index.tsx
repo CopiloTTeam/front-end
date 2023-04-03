@@ -24,7 +24,7 @@ export function BilingInformation({ id_titulo, id_cliente, id_funcionario, data_
           <input
             required
             type="text"
-            placeholder="id do titulo"
+            placeholder="Nome do Produto"
             value={id_titulo} onChange={e => updateFields({ id_titulo: e.target.value })}
           />
         </div>
@@ -57,18 +57,19 @@ export function BilingInformation({ id_titulo, id_cliente, id_funcionario, data_
           <input
             required
             type="date"
-            placeholder="Data de Geração"
+            placeholder="Data de Vencimento"
             value={data_geracao} onChange={e => updateFields({ data_geracao: e.target.value })}
           />
         </div>
       </div>
-      <div className="row">
+       <div className="row">
+        
         <div className="full-box">
-          <h1>valor</h1>
+          <h1>Valor</h1>
           <input
             required
-            type="number"
-            placeholder="valor"
+            type="text"
+            placeholder="Valor"
             value={valor} onChange={e => updateFields({ valor: e.target.value })}
           />
         </div>

@@ -6,23 +6,11 @@ import Perfil from '../../assets/perfil.png'
 import { dadosUsuario } from '../../utils/axios.routes'
 import './style.css'
 
-const Navbar = () => {
-    const [data, setData] = useState<any>();
+interface navbarProps {
+    data:any
+}
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await dadosUsuario(1);
-                const data = await response?.data
-                setData(data);
-            } catch (error) {
-                console.error(error);
-            }
-        };
-
-        fetchData();
-    }, []);
-
+const Navbar = ({ data }: navbarProps) => {
     return (
         <div className='header'>
             <div className='nav container'>
@@ -30,7 +18,7 @@ const Navbar = () => {
                     <img src={Perfil} alt='Perfil' />
                     <div className="logoText">
                         <h3>Olá, {data?.nome}</h3>
-                        <p>administrador</p>
+                        <p>{data?.cargo}</p>
                     </div>
                 </a>
                 <div className='navmenu'>
@@ -68,18 +56,18 @@ const Navbar = () => {
                             </li></a>
 
                         <a href='/gerenciarfunc' className='navlink'>
-                        <li className='navitem'>
+                            <li className='navitem'>
 
-                            <img src={Boleto} alt='Gerenciar Funcionário' />
-                            <span className='navname'>Gerenciar Funcionários</span>
+                                <img src={Boleto} alt='Gerenciar Funcionário' />
+                                <span className='navname'>Gerenciar Funcionários</span>
 
-                        </li></a>
+                            </li></a>
 
                     </ul>
                 </div>
             </div>
         </div>
-  );
+    );
 };
 
 export default Navbar;

@@ -1,9 +1,27 @@
 /* Nome, Email, senha, cpf, cargo */
 
-import React from "react";
-import "./style.css";
+import { criarFuncionario, dadosUsuario } from '../../utils/axios.routes';
+import React, { useEffect, useState, FormEvent } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
+  const navigate = useNavigate();
+
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [cpf, setCpf] = useState("");
+
+
+  async function submitdata(nome: String, email: String, cpf: String, senha: String) {
+    await criarFuncionario(nome, email, cpf, senha);
+    navigate('/');
+  }
+
+  function onsubmit(e: FormEvent){
+    e.preventDefault()
+    submitdata(nome, email, cpf, senha)
+  }
   return (
     <div
       className="
@@ -17,30 +35,32 @@ const Register = () => {
           sistema após a aprovação do administrador
         </h2>
       </div>
+      <form onSubmit={onsubmit}>
       <div className="name-box">
         <h3>Nome</h3>
-        <input required type="text" placeholder="Digite seu Nome" />
+        <input required type="text" placeholder="Digite seu Nome"  value={nome} onChange={e => setNome(e.target.value)}/>
       </div>
 
       <div className="cpf-box">
         <h3>CPF</h3>
-        <input required type="text" placeholder="Digite seu CPF" />
+        <input required type="text" placeholder="Digite seu CPF" value={cpf} onChange={e => setCpf(e.target.value)}/>
       </div>
 
       <div className="email-box">
         <h3>Email</h3>
-        <input required type="text" placeholder="Digite seu Email" />
+        <input required type="text" placeholder="Digite seu Email" value={email} onChange={e => setEmail(e.target.value)}/>
       </div>
 
       <div className="pass-box">
         <h3>Senha</h3>
-        <input required type="text" placeholder="Digite sua Senha" />
+        <input required type="text" placeholder="Digite sua Senha" value={senha} onChange={e => setSenha(e.target.value)}/>
       </div>
 
       <div className="button-box">
-        <button className="enter-button"> Cadastrar </button>
+        <button className="enter-button" type='submit'> Cadastrar </button>
         <p> Ao clicar em "cadastrar" você aceita os termos de uso</p>
       </div>
+    </form>
     </div>
   );
 };

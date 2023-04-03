@@ -14,14 +14,14 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    height: 90vh;
   }
   .main{
     padding: 6rem 2rem 6rem 2rem;
     display: flex;
+    justify-content: center;
     flex-direction: column;
     align-items: center;
-    height: 90vh;
+    height: 100vh;
   }
   input {
     color: #1e1e1e;
@@ -36,10 +36,15 @@
     border: none;
     cursor: pointer;
   } 
+  .btn-form{
+    display: flex;
+    gap: 1rem;
+  }
   .red{
     background: red;margin: 0 5px 0 0;
     padding: 8px 10px;
     color: #fff;
+    padding: 12px;
     border-radius: 5px;
   }.red:hover{
     background: rgb(167, 0, 0);
@@ -49,6 +54,7 @@
     padding: 8px 10px;
     margin:0 0 0 5px;
     color: #fff;
+    padding: 12px;
      border-radius: 5px;
   }
   .green:hover{
@@ -67,4 +73,18 @@
   code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
       monospace;
+  }
+
+
+
+  .loading{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: red;
+    align-content: center;
+    flex-wrap: nowrap;
+    font-size: 5rem;
   }

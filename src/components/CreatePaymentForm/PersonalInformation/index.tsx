@@ -20,8 +20,8 @@ export function PersonalInformation({ codigo_barra, qr_code, numero_boleto,nome_
           <h1>Codigo de barras</h1>
           <input
             required
-            type="number"
-            placeholder="Codigo de barras"
+            type="text"
+            placeholder="codigo de barra"
             value={codigo_barra}
             onChange={e => updateFields({ codigo_barra: e.target.value })}
           />

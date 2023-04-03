@@ -8,13 +8,14 @@ type UserData = {
   cidade: string,
   estado: string,
   logradouro: string,
+  complemento: string,
 }
 
 type UserFormProps = UserData & {
   updateFields: (fields: Partial<UserData>) => void
 }
 
-export function PersonalInformation({ cep, rua, bairro, cidade, estado,logradouro, updateFields }: UserFormProps) {
+export function PersonalInformation({ cep, rua, bairro, cidade, estado, logradouro, complemento, updateFields }: UserFormProps) {
   return (
     <div className="cont">
       <div className="row">
@@ -78,8 +79,19 @@ export function PersonalInformation({ cep, rua, bairro, cidade, estado,logradour
           <input
             required
             type="number"
-            placeholder="Logradouro"
-            value={logradouro} onChange={e => updateFields({ logradouro: e.target.value })}
+            placeholder="Numero"
+            value={logradouro}
+            onChange={e => updateFields({ logradouro: e.target.value })}
+          />
+        </div>
+        <div className="seventh-box">
+          <h1>Complemento</h1>
+          <input
+            required
+            type="text"
+            placeholder="Complemento"
+            value={complemento}
+            onChange={e => updateFields({ complemento: e.target.value })}
           />
         </div>
       </div>
