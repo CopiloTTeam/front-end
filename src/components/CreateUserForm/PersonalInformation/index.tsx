@@ -73,10 +73,9 @@ export function PersonalInformation({ cep, rua, bairro, cidade, estado, logradou
           />
         </div>
       </div>
-
       <div className="row">
-        <div className="sixth-box">
-          <h1>Numero</h1>
+        <div className="full-box">
+          <h1>Logradouro</h1>
           <input
             required
             type="number"

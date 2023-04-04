@@ -116,3 +116,41 @@ export const criarFuncionario = async (nome: String, email: String, cpf: String,
       console.error(error);
   }
 }
+
+export const dadosFuncionarios = async () => {
+  try {
+    const response = await api.get(`/listar/funcionario`, {
+      timeout: 5000,
+    });
+
+    return response;
+  } catch (error){
+    console.error(error);
+  }
+}
+
+export const excludeFuncionario = async (cpf : any) => {
+  try {
+    const response = await api.delete(`/deletar/funcionario/${cpf}`, {
+      timeout: 5000,
+    });
+
+    return response;
+  } catch (error){
+    console.error(error);
+  }
+}
+
+export const updateFuncionario = async (cpf : any, value : any) => {
+  try {
+    const response = await api.put(`/atualizar/funcionarioc/${cpf}`, {
+      cargo: value
+    } ,{
+      timeout: 5000,
+    });
+
+    return response;
+  } catch (error){
+    console.error(error);
+  }
+}

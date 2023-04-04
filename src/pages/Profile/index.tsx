@@ -9,9 +9,10 @@ const Profile = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await dadosUsuario(3);
+                const response = await dadosUsuario(2);
                 const data = await response?.data
                 setData(data);
+                console.log(data)
             } catch (error) {
                 console.error(error);
             }

@@ -13,8 +13,6 @@ const UserForm = () => {
     cpf: string,
     email: string,
     data: string,
-    telefone: string,
-    celular: string,
     cep: string,
     rua: string,
     bairro: string,
@@ -28,8 +26,6 @@ const UserForm = () => {
     cpf: "",
     email: "",
     data: "",
-    telefone: "",
-    celular: "",
     cep: "",
     rua: "",
     bairro: "",
@@ -52,13 +48,11 @@ const UserForm = () => {
       // <Validation {...data} updateFields={updateFields}/>,
     ])
   async function submitData(data: any) {
-    var resp = await criarCliente(data)
+    let resp = await criarCliente(data)
     return resp;
   }
-  var count = 0
   function onSubmit(e: FormEvent) {
     e.preventDefault()
-    count++;
     if (isLastStep) {
       submitData(data)
       navigate('/home');
