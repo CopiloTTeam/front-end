@@ -1,14 +1,8 @@
-<<<<<<< HEAD
-import React from 'react'
-import Navbar from '../../components/navbar'
-import './style.css'
-=======
 import { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
 import { dadosUsuario, gerenciarTitulo } from "../../utils/axios.routes";
 import { useParams } from "react-router-dom";
 import "./style.css";
->>>>>>> 3e3f663ba1d78779796f94d1c627ab80d61d87c7
 
 const PlotManagement = () => {
   const { id } = useParams<{ id: string }>();

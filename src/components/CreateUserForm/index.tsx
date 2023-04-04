@@ -51,10 +51,8 @@ const UserForm = () => {
     var resp = await criarCliente(data)
     return resp;
   }
-  var count = 0
   function onSubmit(e: FormEvent) {
     e.preventDefault()
-    count++;
     if (isLastStep) {
       submitData(data)
       navigate('/home');

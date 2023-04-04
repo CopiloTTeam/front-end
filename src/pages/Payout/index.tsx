@@ -1,14 +1,8 @@
-<<<<<<< HEAD
-import React from 'react'
-import './style.css'
-import Navbar from '../../components/navbar';
-=======
 import "./style.css";
 import Navbar from "../../components/Navbar";
 import React, { useEffect, useState } from 'react'
 import { dadosUsuario } from '../../utils/axios.routes';
 
->>>>>>> 3e3f663ba1d78779796f94d1c627ab80d61d87c7
 
 const Payout = () => {
   const [data, setData] = useState<any>();

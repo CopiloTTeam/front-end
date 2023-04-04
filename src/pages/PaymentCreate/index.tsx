@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { dadosUsuario } from '../../utils/axios.routes';
 import PaymentForm from '../../components/CreatePaymentForm'
-import Navbar from '../../components/navbar'
+import Navbar from '../../components/Navbar'
 
 const PayForm = () => {
   const [data, setData] = useState<any>();

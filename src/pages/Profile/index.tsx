@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Navbar from '../../components/navbar'
+import Navbar from '../../components/Navbar'
 import { dadosUsuario } from '../../utils/axios.routes';
 import './style.css'
 
