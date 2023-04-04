@@ -12,7 +12,7 @@ export const login = async (data:any) => {
 
 export const dadosUsuario = async (id:any) => {
     try {
-        const response = await api.get(`listar/funcionario/${id}`, {
+        const response = await api.get(`listar/cliente/${id}`, {
           timeout: 5000
         });
         return response;
@@ -69,12 +69,29 @@ export const criarTitulo = async (titulo: any) => {
   try {
     // const cliente = await api.get(`/listar/clientecpf/${titulo.cpf}`)
       const response = await api.post(`/cadastrar/titulo`, {
-        parcelas: titulo.numeroParcelas,
-        id_funcionario: 2,
-        // id_cliente: cliente,
-        data_vencimento: titulo.dataVencimento,
+        // id_cliente: 2, 
+        // id_funcionario: 1,
+        // codigo_barras: "3213.32131.312312",
+        // data_geracao: "2021-05-01",
+        // data_vencimento: "2021-05-01",
+        // nome_produto: "teste",
+        // numero_boleto: "123123",
+        // parcelas: 10,
+        // qr_code: "123123",
+        // valor: 1000,
+
+        nome_produto: titulo.nomeProduto,
         valor: titulo.valorTotal,
-        nome_produto: titulo.nomeProduto
+        parcelas: titulo.numeroParcelas,
+        dataVencimento: titulo.dataVencimento,
+        id_funcionario: 1,
+        data_vencimento: titulo.dataVencimento,
+        // Date of client
+        nome: "",
+        cpf: titulo.cpf,
+        email: "",
+        // qr_code: "teste",
+
       }, {
         timeout: 5000
       });

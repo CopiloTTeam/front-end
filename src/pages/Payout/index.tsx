@@ -10,7 +10,7 @@ const Payout = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await dadosUsuario(3);
+                const response = await dadosUsuario(1);
                 const data = await response?.data
                 setData(data);
             } catch (error) {

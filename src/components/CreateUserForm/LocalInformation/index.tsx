@@ -14,7 +14,6 @@ type UserFormProps = UserData & {
   updateFields: (fields: Partial<UserData>) => void
 }
 
-
 export function LocalInformation({ nome, cpf, email, data, telefone, celular, updateFields }: UserFormProps) {
 
   return (

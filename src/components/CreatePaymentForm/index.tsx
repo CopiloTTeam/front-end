@@ -50,7 +50,10 @@ const PaymentForm = () => {
     e.preventDefault()
     if (isLastStep){
       submitData(data)
+      console.log(data);
+      
       navigate('/home');
+
       
     }
     next()

@@ -3,6 +3,7 @@ import Navbar from "../../components/Navbar";
 import { dadosUsuario, gerenciarTitulo } from "../../utils/axios.routes";
 import { useParams } from "react-router-dom";
 import "./style.css";
+import { log } from "console";
 
 const PlotManagement = () => {
   const { id } = useParams<{ id: string }>();
@@ -11,21 +12,25 @@ const PlotManagement = () => {
   const [user, setUser] = useState([]);
 
   useEffect(() => {
-    const FetchUsuario = async () => {
-      try {
-        const response = await dadosUsuario(3);
-        const user = await response?.data;
-        setUser(user);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    FetchUsuario();
+    // const FetchUsuario = async () => {
+    //   try {
+    //     const response = await dadosUsuario(3);
+    //     const user = await response?.data;
+    //     setUser(user);
+    //   } catch (error) {
+    //     console.error(error);
+    //   }
+    // };
+    // FetchUsuario();
     const fetchData = async () => {
       try {
         const response = await gerenciarTitulo(id);
         const data = await response?.data;
+ 
+        
         setData(data);
+        console.log(data);
+        
       } catch (error) {
         console.error(error);
       }
@@ -40,6 +45,7 @@ const PlotManagement = () => {
           const response = await dadosUsuario(data.id_cliente);
           const dataCliente = await response?.data;
           setClient(dataCliente);
+          
         } catch (error) {
           console.error(error);
         }
@@ -66,9 +72,9 @@ const PlotManagement = () => {
     return months[month];
   };
 
-  const getDueMonth = () => {
-    if (data?.data_vencimento) {
-      const dueDate = new Date(data.data_vencimento);
+  const getDueMonth = (any: any) => {
+    if (data?.data_geracao) {
+      const dueDate = new Date(data.data_geracao);
       return getMonthName(dueDate.getMonth());
     } else {
       return '';
@@ -88,8 +94,8 @@ const PlotManagement = () => {
           </div>
           <details>
             <summary>
-              <h3>Parcela/{getDueMonth()}</h3>
-              <p>Status</p>
+              <h3>Parcela/{getDueMonth(data?.data_geracao)}</h3>
+              <p>Status: Pendente</p>
               <a href="/payout">Ver mais</a>
             </summary>
             <div className="card-completo">
