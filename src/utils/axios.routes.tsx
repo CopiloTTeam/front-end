@@ -99,3 +99,15 @@ export const criarFuncionario = async (nome: String, email: String, cpf: String,
       console.error(error);
   }
 }
+
+export const dadosFuncionarios = async () => {
+  try {
+    const response = await api.get(`/listar/funcionario`, {
+      timeout: 5000,
+    });
+
+    return response;
+  } catch (error){
+    console.error(error);
+  }
+}

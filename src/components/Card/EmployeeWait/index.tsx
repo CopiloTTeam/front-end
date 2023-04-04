@@ -1,12 +1,16 @@
 import React from "react";
 import "./style.css";
-
-const EmployeeWait = () => {
+interface employeeProps {
+  nome: any;
+  email: any;
+  cpf: any;
+}
+const EmployeeWait = ({nome, email, cpf} : employeeProps) => {
   return (
     <>
       <details className="card-wait">
         <summary className="outside-wait">
-          <h1>Nome do carinha</h1>
+          <h1>{nome}</h1>
           <img
             src="https://img.icons8.com/ios/50/000000/expand-arrow.png"
             alt="expand-arrow"
@@ -15,17 +19,17 @@ const EmployeeWait = () => {
         <div className="inside-box">
           <div className="information-wait-box">
             <h2>
-              <b> Email:</b>emaildocarinha@gmail.com
+              <b> Email:</b>{email}
             </h2>
             <h2>
-              <b> CPF: </b>111.111.111.00
+              <b> CPF: </b>{cpf}
             </h2>
             <div className="select-function">
               <label> Definir um cargo:</label>
               <select name="select">
-                <option value="finance">Financeiro</option>
-                <option value="comercial">Comercial</option>
-                <option value="adm">Administrador</option>
+                <option value="Financeiro">Financeiro</option>
+                <option value="Comercial">Comercial</option>
+                <option value="Administrador">Administrador</option>
               </select>
             </div>
           </div>
