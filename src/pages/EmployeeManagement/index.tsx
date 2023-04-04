@@ -45,7 +45,7 @@ const EmployeeManagement = () => {
                 <EmployeeWait nome={item.nome} email={item.email} cpf={item.cpf} />
               </React.Fragment>
             )
-          } else {
+          } else if (item.cargo != null && item.cargo != 'Administrador' && item.cargo != 'Financeiro' && item.cargo != 'Comercial') {
             return(
               <>
                 <h2>Sem Funcionarios para aprovar</h2>

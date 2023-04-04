@@ -1,5 +1,6 @@
 import React from "react";
 import "./style.css";
+import { excludeFuncionario, updateFuncionario } from "../../../utils/axios.routes";
 interface employeeProps{
   nome: any;
   email: any;
@@ -7,6 +8,24 @@ interface employeeProps{
   cargo: any;
 }
 const EmployeeFixed = ({nome, email, cpf, cargo}: employeeProps) => {
+  async function onExclude(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    e.preventDefault();
+    await excludeFuncionario(cpf)
+    // continua a execução da função normalmente
+    console.log('Employee excluded!');
+    window.location.reload();
+  }
+
+  async function onUpdate(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    e.preventDefault();
+    // faz alguma operação assíncrona
+    const selectElement = document.querySelector('select[name="select"]') as HTMLSelectElement;
+    const selectedValue = selectElement.value;
+    await updateFuncionario(cpf, selectedValue)
+    // continua a execução da função normalmente
+    console.log('Employee updated!');
+    window.location.reload();
+  }
   return (
     <>
    <details className="card-wait">
@@ -57,8 +76,8 @@ const EmployeeFixed = ({nome, email, cpf, cargo}: employeeProps) => {
           </div>
         </div>
         <div className="box-confirm">
-          <button className="deny">Excluir</button>
-          <button className="approve">Alterar</button>
+        <button className="deny" onClick={e => onExclude(e)}>Excluir</button>
+            <button className="approve" onClick={e => onUpdate(e)}>Alterar</button>
         </div>
         </div>
       </details>
