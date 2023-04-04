@@ -48,7 +48,7 @@ const UserForm = () => {
       // <Validation {...data} updateFields={updateFields}/>,
     ])
   async function submitData(data: any) {
-    var resp = await criarCliente(data)
+    let resp = await criarCliente(data)
     return resp;
   }
   function onSubmit(e: FormEvent) {
