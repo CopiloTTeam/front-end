@@ -1,24 +1,47 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import Boleto from '../../assets/adicionarBoleto.png'
 import User from '../../assets/adicionarUser.png'
 import Estatisticas from '../../assets/estatistica.png'
 import Perfil from '../../assets/perfil.png'
-import { dadosUsuario } from '../../utils/axios.routes'
+import { dadosUsuario, dadosFuncionarioc } from '../../utils/axios.routes'
 import './style.css'
+import { AuthContext } from '../../contexts/AuthContext'
 
-interface navbarProps {
-    data:any
-}
+const Navbar = () => {
+    const [funcionario, setFuncionario] = useState<any>(null);
+    const { cpf } = useContext(AuthContext);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                if (cpf != 'inicio') {
+                    const funcs = await dadosFuncionarioc(cpf);
+                    const resp = await funcs?.data;
+                    setFuncionario(resp);
+                }
+            } catch (error) {
+                console.error(error);
 
-const Navbar = ({ data }: navbarProps) => {
+            }
+        };
+
+        fetchData();
+    }, [cpf]);
+
+    console.log(funcionario);
     return (
         <div className='header'>
             <div className='nav container'>
                 <a href='/perfil' className='navlogo'>
                     <img src={Perfil} alt='Perfil' />
                     <div className="logoText">
-                        <h3>Olá, {data?.nome}</h3>
-                        <p>{data?.cargo}</p>
+                        {cpf != 'inicio' && funcionario != null && 'nome' in funcionario ? 
+                        <>
+                        <h3>Olá, {funcionario.nome}</h3>
+                        <p>{funcionario.cargo}</p>
+                        </>
+                            :
+                            ''
+                        }
                     </div>
                 </a>
                 <div className='navmenu'>
@@ -51,7 +74,7 @@ const Navbar = ({ data }: navbarProps) => {
                             <li className='navitem'>
 
                                 <img src={Boleto} alt='Boleto' />
-                                <span className='navname'>Criar Boleto</span>
+                                <span className='navname'>Emitir Título</span>
 
                             </li></a>
 

@@ -27,9 +27,10 @@ const Table = ({ data, client }: TableProps) => {
         <tbody>
           {data && data.map((item) => {
             // Look up client information based on the cpf value
-            const clientInfo = client.find((c) => c.id_cliente === item.id_cliente);
+            const clientInfo = client.find((c) => c.cpf === item.cpf);
             const nomeCliente = clientInfo?.nome;
             const cpf = clientInfo?.cpf;
+      
             return (
               <tr key={item.id_titulo}>
                 <td>{cpf}</td>

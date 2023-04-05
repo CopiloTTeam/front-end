@@ -12,7 +12,7 @@ const Profile = () => {
                 const response = await dadosUsuario(2);
                 const data = await response?.data
                 setData(data);
-                console.log(data)
+                // console.log(data)
             } catch (error) {
                 console.error(error);
             }
@@ -23,7 +23,7 @@ const Profile = () => {
 
     return (
         <>
-            <Navbar data={data} />
+            <Navbar/>
             <main>
                 <div className='profile-container'>
                     <div className='title'>
@@ -50,9 +50,9 @@ const Profile = () => {
                             <p>{data?.cpf}</p>
                         </div>
                     </div>
-                    <div className='btn'>
+                    {/* <div className='btn'>
                         <button className='green'>Confirmar Alteração</button>
-                    </div>
+                    </div> */}
                 </div>
             </main>
         </>

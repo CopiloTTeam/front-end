@@ -6,31 +6,26 @@ import '../../styles/global.css'
 import { criarTitulo } from '../../utils/axios.routes'
 import { useNavigate } from 'react-router-dom';
 
-// import Validation from './Validation'
 
 const PaymentForm = () => {
   const navigate = useNavigate();
   type FormData = {
-    id_titulo: string;
-    id_cliente: string,
-    id_funcionario: string
-    data_geracao: string,
-    valor:string,
+    cpf: string,
+    id_funcionario: string,
     codigo_barra:string,
-    qr_code:string,
-    numero_boleto:string,
-    nome_produto:string,  
+    data_geracao: string,
+    nome_produto:string,
+    parcelas:string,  
+    valor:string,
   }
   const INITIAL_DATA: FormData = {
-    id_titulo: "",
-    id_cliente: "",
+    cpf: "",
     id_funcionario: "",
-    data_geracao: "",
-    valor:"",
     codigo_barra:"",
-    qr_code:"",
-    numero_boleto:"",
-    nome_produto:"",  
+    data_geracao: "",
+    nome_produto:"",
+    parcelas:"",  
+    valor:"",
   }
   const [data, setData] = useState(INITIAL_DATA)
   function updateFields(fields: Partial<FormData>) {
@@ -54,9 +49,10 @@ const PaymentForm = () => {
     e.preventDefault()
     if (isLastStep){
       submitData(data)
-      console.log(data);
+ 
       
       navigate('/home');
+      window.location.reload();
 
       
     }
@@ -67,7 +63,7 @@ const PaymentForm = () => {
       <div>
         <form onSubmit={onSubmit}>
           <div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
-            <h2>Criar Boleto</h2>
+            <h2>Emitir Título</h2>
             {currentStepIndex + 1} / {steps.length}
           </div>
           {step}

@@ -10,7 +10,7 @@ const CustomerForm = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await dadosUsuario(3);
+                const response = await dadosUsuario(2);
                 const data = await response?.data
                 setData(data);
             } catch (error) {
@@ -22,7 +22,7 @@ const CustomerForm = () => {
     }, []);
   return (
     <>
-      <Navbar data={data} />
+      <Navbar/>
       <main>
         <UserForm />
       </main>

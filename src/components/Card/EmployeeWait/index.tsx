@@ -13,6 +13,7 @@ const EmployeeWait = ({ nome, email, cpf }: employeeProps) => {
     await excludeFuncionario(cpf)
     // continua a execução da função normalmente
     console.log('Employee excluded!');
+    window.location.reload();
   }
 
   async function onUpdate(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
@@ -23,6 +24,7 @@ const EmployeeWait = ({ nome, email, cpf }: employeeProps) => {
     await updateFuncionario(cpf, selectedValue)
     // continua a execução da função normalmente
     console.log('Employee updated!');
+    window.location.reload();
   }
   return (
     <>
@@ -54,7 +56,7 @@ const EmployeeWait = ({ nome, email, cpf }: employeeProps) => {
           <div className="box-confirm">
             <button className="deny" onClick={e => onExclude(e)}>Recusar</button>
             <button className="approve" onClick={e => onUpdate(e)}>Confirmar</button>
-
+            
           </div>
         </div>
       </details>

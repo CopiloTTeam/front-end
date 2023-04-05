@@ -3,8 +3,8 @@ import './style.css'
 
 type UserData = {
   codigo_barra: string,
-  qr_code: string,
-  numero_boleto: string,
+  // qr_code: string,
+  parcelas: string,
   nome_produto: string,
 }
 
@@ -12,28 +12,27 @@ type UserFormProps = UserData & {
   updateFields: (fields: Partial<UserData>) => void
 }
 
-export function PersonalInformation({ codigo_barra, qr_code, numero_boleto,nome_produto, updateFields }: UserFormProps) {
+export function PersonalInformation({ codigo_barra, nome_produto, updateFields }: UserFormProps) {
   return (
     <div className="cont">
       <div className="row">
         <div className="first-box">
-          <h1>Codigo de barras</h1>
+          <h1>Código de barras</h1>
           <input
             required
             type="text"
-            placeholder="codigo de barra"
+            placeholder="Código de barra"
             value={codigo_barra}
             onChange={e => updateFields({ codigo_barra: e.target.value })}
           />
         </div>
         <div className="second-box">
-          <h1>Numero do Boleto</h1>
+          <h1>Número de Parcelas</h1>
           <input
             required
             type="text"
-            placeholder="Numero do Boleto"
-            value={numero_boleto}
-            onChange={e => updateFields({ numero_boleto: e.target.value })}
+            placeholder="Número de Parcelas"
+            readOnly value="12"
           />
         </div>
       </div>

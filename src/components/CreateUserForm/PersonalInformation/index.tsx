@@ -79,7 +79,7 @@ export function PersonalInformation({ cep, rua, bairro, cidade, estado, logradou
           <input
             required
             type="number"
-            placeholder="Numero"
+            placeholder="Número"
             value={logradouro}
             onChange={e => updateFields({ logradouro: e.target.value })}
           />

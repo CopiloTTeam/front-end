@@ -1,16 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import './style.css'
 import Rocket from '../../assets/rocket.png'
 import { login } from '../../utils/axios.routes';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthContext';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
   const navigate = useNavigate();
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => setEmail(event.target.value);
   const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => setPassword(event.target.value);
+  // console.log(email, password)
+
+  const {setCpf} = useContext(AuthContext);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>): Promise<void> {
     event.preventDefault();
@@ -20,10 +23,12 @@ const Login = () => {
     };
     try {
       let resp = await login(data)
-      if (resp?.data && resp?.status === 200) {
+      if (resp?.data && resp?.status === 200 ) {
+        setCpf(resp.data);
+        // console.log(resp.data);
         navigate('/home');
       } else {
-        console.log(resp?.status, resp?.data)
+        // console.log(resp?.status, resp?.data)
       }
     } catch (error) {
     }

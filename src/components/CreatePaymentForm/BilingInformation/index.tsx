@@ -1,9 +1,7 @@
-
 import "./style.css";
 
 type UserData = {
-    id_titulo: string;
-    id_cliente: string,
+    cpf: string,
     id_funcionario: string
     data_geracao: string,
     valor:string,
@@ -13,13 +11,13 @@ type UserFormProps = UserData & {
 }
 
 
-export function BilingInformation({ id_titulo, id_cliente, id_funcionario, data_geracao, valor, updateFields }: UserFormProps) {
+export function BilingInformation({ cpf, id_funcionario, data_geracao, valor, updateFields }: UserFormProps) {
 
   return (
     <div className="cont">
         <div className="row">
         
-        <div className="full-box">
+        {/* <div className="full-box">
           <h1>ID do titulo</h1>
           <input
             required
@@ -27,17 +25,17 @@ export function BilingInformation({ id_titulo, id_cliente, id_funcionario, data_
             placeholder="Nome do Produto"
             value={id_titulo} onChange={e => updateFields({ id_titulo: e.target.value })}
           />
-        </div>
+        </div> */}
       </div>
       <div className="row">
         <div className="third-box">
-          <h1>ID do cliente</h1>
+          <h1>CPF do cliente</h1>
           <div className="tel-plus">
             <input
               required
-              type="number"
-              placeholder="ID do cliente"
-              value={id_cliente} onChange={e => updateFields({ id_cliente: e.target.value })}
+              type="text"
+              placeholder="CPF do cliente"
+              value={cpf} onChange={e => updateFields({ cpf: e.target.value })}
             />
           </div>
         </div>
@@ -46,7 +44,7 @@ export function BilingInformation({ id_titulo, id_cliente, id_funcionario, data_
           <div className="tel-plus">
             <input
               required
-              type="number"
+              type="text"
               placeholder="ID do funcionario"
               value={id_funcionario} onChange={e => updateFields({ id_funcionario: e.target.value })}
             />

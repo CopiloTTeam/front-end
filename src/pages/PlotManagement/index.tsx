@@ -1,60 +1,26 @@
 import { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
-import { dadosUsuario, gerenciarTitulo } from "../../utils/axios.routes";
-import { useParams } from "react-router-dom";
+import { dadosUsuario, gerenciarParcelaTitulo, gerenciarTitulo } from "../../utils/axios.routes";
+import { Link, useParams } from "react-router-dom";
 import "./style.css";
-import { log } from "console";
+
+interface Parcela {
+  data_vencimento: string;
+  cpf: string;
+  nome_produto: string;
+  id_parcela: string;
+  data_pagamento: string;
+  status: string;
+}
 
 const PlotManagement = () => {
   const { id } = useParams<{ id: string }>();
   const [data, setData] = useState<any>(null);
   const [client, setClient] = useState<any>();
-  const [user, setUser] = useState([]);
-
-  useEffect(() => {
-    // const FetchUsuario = async () => {
-    //   try {
-    //     const response = await dadosUsuario(3);
-    //     const user = await response?.data;
-    //     setUser(user);
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // };
-    // FetchUsuario();
-    const fetchData = async () => {
-      try {
-        const response = await gerenciarTitulo(id);
-        const data = await response?.data;
- 
-        
-        setData(data);
-        console.log(data);
-        
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchData();
-  }, [id]);
-
-  useEffect(() => {
-    if (data) {
-      const fetchClient = async () => {
-        try {
-          const response = await dadosUsuario(data.id_cliente);
-          const dataCliente = await response?.data;
-          setClient(dataCliente);
-          
-        } catch (error) {
-          console.error(error);
-        }
-      };
-      fetchClient();
-    }
-  }, [data]);
+  const [parcela, setParcela] = useState<any>(null);
 
   const getMonthName = (month: number) => {
+   
     const months = [
       'Janeiro',
       'Fevereiro',
@@ -72,41 +38,89 @@ const PlotManagement = () => {
     return months[month];
   };
 
-  const getDueMonth = (any: any) => {
-    if (data?.data_geracao) {
-      const dueDate = new Date(data.data_geracao);
+  const getDueMonth = (dataVencimento: any) => {
+    if (dataVencimento) {
+      const dueDate = new Date(dataVencimento);
       return getMonthName(dueDate.getMonth());
     } else {
       return '';
     }
   };
+  
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await gerenciarTitulo(id);
+        const data = await response?.data;
+        setData(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    const fetchClient = async () => {
+      try {
+        const responseTeste = await gerenciarTitulo(id);
+        const dadosTeste = await responseTeste?.data;
+        const cpf = dadosTeste?.cpf;
+        const response = await dadosUsuario(cpf);
+        const Cliente = await response?.data;
+        setClient(Cliente);
+        
+        
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    const fetchParcela = async () => {
+      try {
+        const response = await gerenciarParcelaTitulo(id);
+        const data = await response?.data;
+        setParcela(data);
+        // console.log(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+    fetchParcela();
+    fetchClient();
+  }, [id]);
 
   return (
     <>
-      <Navbar data={user}/>
+      <Navbar />
       <main>
         <div className="plot-container">
           <div className="plot-info">
             <h3>Nome: </h3>
             <p>{client?.nome}</p>
             <h3>Titulo:</h3>
-            <p> {data?.nome_produto}</p>
+            <p>{data?.nome_produto}</p>
           </div>
-          <details>
-            <summary>
-              <h3>Parcela/{getDueMonth(data?.data_geracao)}</h3>
-              <p>Status: Pendente</p>
-              <a href="/payout">Ver mais</a>
-            </summary>
-            <div className="card-completo">
-              <div className="conteudo"></div>
-            </div>
-          </details>
+          {parcela && parcela.map((item: Parcela) => {
+            return (
+              <details key={item.id_parcela}>
+                <summary>
+                  {/* {getDueMonth(item.data_vencimento)} */}
+                  <h3>Parcela / {item.data_vencimento }</h3>
+                  <p>Status: {item?.status=='1'? 'Pago': 'Pendente'}</p>
+                  { item.status == "0" ? <Link to={`/payout/${item.id_parcela}`}>Ver mais</Link>: null}
+                  
+                </summary>
+                <div className="card-completo">
+                  <div className="conteudo"></div>
+                </div>
+              </details>
+            );
+          })}
         </div>
       </main>
     </>
   );
 };
-
 
 export default PlotManagement;

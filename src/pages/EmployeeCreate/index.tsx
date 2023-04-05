@@ -1,7 +1,7 @@
 /* Nome, Email, senha, cpf, cargo */
-
+import "./style.css";
 import { criarFuncionario, dadosUsuario } from '../../utils/axios.routes';
-import React, { useEffect, useState, FormEvent } from 'react'
+import React, {  useState, FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 const Register = () => {

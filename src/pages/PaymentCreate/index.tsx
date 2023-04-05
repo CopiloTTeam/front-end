@@ -21,7 +21,7 @@ const PayForm = () => {
     }, []);
   return (
     <>
-      <Navbar data={data} />
+      <Navbar/>
       <main>
         <PaymentForm />
       </main>
