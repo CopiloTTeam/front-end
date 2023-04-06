@@ -1,15 +1,22 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Navbar from '../../components/Navbar'
-import { dadosUsuario } from '../../utils/axios.routes';
+import { dadosFuncionarioc, dadosUsuario } from '../../utils/axios.routes';
 import './style.css'
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthContext';
 
 const Profile = () => {
+    const navigate = useNavigate();
+    const { isLogged, funcionario } = useContext(AuthContext)
     const [data, setData] = useState<any>();
 
     useEffect(() => {
+        if(!isLogged){
+            navigate('/')
+          }
         const fetchData = async () => {
             try {
-                const response = await dadosUsuario(2);
+                const response = await dadosFuncionarioc(funcionario.cpf);
                 const data = await response?.data
                 setData(data);
                 // console.log(data)
@@ -20,6 +27,7 @@ const Profile = () => {
 
         fetchData();
     }, []);
+if (isLogged){
 
     return (
         <>
@@ -57,6 +65,11 @@ const Profile = () => {
             </main>
         </>
     )
+} else {
+    return(
+        <></>
+    )
+}
 }
 
 export default Profile;

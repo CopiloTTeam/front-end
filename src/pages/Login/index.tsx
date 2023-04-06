@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react'
 import './style.css'
 import Rocket from '../../assets/rocket.png'
-import { login } from '../../utils/axios.routes';
+import { dadosFuncionarioc, login } from '../../utils/axios.routes';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../contexts/AuthContext';
+import { AuthContext, FuncionarioInicio } from '../../contexts/AuthContext';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -13,7 +13,25 @@ const Login = () => {
   const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => setPassword(event.target.value);
   // console.log(email, password)
 
-  const {setCpf} = useContext(AuthContext);
+  const { setFuncionario, setIsLogged } = useContext(AuthContext);
+  let funcionarioo = FuncionarioInicio;
+  async function procuraFuncionario(cpf: string){
+    try{
+      let funcionario = await dadosFuncionarioc(cpf)
+      if (funcionario != undefined && funcionario != null && funcionario.status == 200){
+        funcionarioo.id = funcionario?.data.id;
+        funcionarioo.cargo = funcionario?.data.cargo;
+        funcionarioo.cpf = funcionario?.data.cpf;
+        funcionarioo.email = funcionario?.data.email;
+        funcionarioo.nome = funcionario?.data.nome;
+        funcionarioo.senha = funcionario?.data.senha;   
+        setFuncionario(funcionarioo)
+        setIsLogged(true)
+      }  
+    } catch(error){
+      console.error(error);
+    }
+  }
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>): Promise<void> {
     event.preventDefault();
@@ -24,11 +42,13 @@ const Login = () => {
     try {
       let resp = await login(data)
       if (resp?.data && resp?.status === 200 ) {
-        setCpf(resp.data);
-        // console.log(resp.data);
+        const cpf = resp.data;
+        if(cpf){
+          procuraFuncionario(cpf)
+        }
         navigate('/home');
       } else {
-        // console.log(resp?.status, resp?.data)
+        console.log(resp?.status, resp?.data)
       }
     } catch (error) {
     }

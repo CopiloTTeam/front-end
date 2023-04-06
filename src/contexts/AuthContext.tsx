@@ -1,23 +1,46 @@
-import { createContext, useState } from 'react';
-
-interface AuthContextProps {
-  cpf: string;
-  setCpf: (cpf: string) => void;
-  children?: React.ReactNode;
+import { ReactNode, createContext, useState } from "react";
+type AuthContextProps = {
+  children: ReactNode
 }
+type funcionario = {
+  id: number;
+  cargo: string;
+  cpf: string;
+  email: string;
+  nome: string;
+  senha: string;
 
-export const AuthContext = createContext<AuthContextProps>({
+}
+export const FuncionarioInicio = {
+  id: -1,
+  cargo: '',
   cpf: '',
-  setCpf: () => {},
-});
+  email: '',
+  nome: '',
+  senha: '',
+}
+type AuthContextType = {
+  isLogged: boolean;
+  setIsLogged: (newState: boolean) => void;
+  funcionario: funcionario;
+  setFuncionario: (newState: funcionario) => void
+}
+const InicialValue = {
+  isLogged: false,
+  setIsLogged: () => {},
+  funcionario: FuncionarioInicio,
+  setFuncionario: () => {}
+};
 
-interface AuthProviderProps extends React.PropsWithChildren<{}> {}
-export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [cpf, setCpf] = useState('');
+export const AuthContext = createContext<AuthContextType>(InicialValue);
 
-  return (
-    <AuthContext.Provider value={{ cpf, setCpf }}>
+export const AuthContextProvider = ({children} : AuthContextProps) => {
+  const [isLogged, setIsLogged] = useState(InicialValue.isLogged);
+  const [funcionario, setFuncionario] = useState(InicialValue.funcionario);
+
+  return(
+    <AuthContext.Provider value={{ isLogged, setIsLogged, funcionario, setFuncionario }}>
       {children}
     </AuthContext.Provider>
-  );
-};
+  )
+}

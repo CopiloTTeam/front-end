@@ -1,13 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Graphic from '../../components/Grafic'
 import Navbar from '../../components/Navbar'
 import './style.css'
 import { dadosUsuario } from '../../utils/axios.routes';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthContext';
 
 const Analytics = () => {
+  const navigate = useNavigate();
+  const { isLogged } = useContext(AuthContext)
+
   const [data, setData] = useState<any>();
 
   useEffect(() => {
+    if(!isLogged){
+      navigate('/')
+    }
       const fetchData = async () => {
           try {
               const response = await dadosUsuario(2);
@@ -20,8 +28,10 @@ const Analytics = () => {
 
       fetchData();
   }, []);
-  return (
-    <>
+  if(isLogged){
+
+    return (
+      <>
       <Navbar/>
       <div className='main'>
         <div className="top-box">
@@ -56,6 +66,11 @@ const Analytics = () => {
       </div>
     </>
   );
+} else{
+  return(
+    <></>
+  )
 };
 
+}
 export default Analytics;

@@ -1,13 +1,20 @@
+import { useNavigate } from 'react-router-dom';
 import UserForm from '../../components/CreateUserForm'
 import Navbar from '../../components/Navbar'
 import { dadosUsuario } from '../../utils/axios.routes';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { AuthContext } from '../../contexts/AuthContext';
 
 
 const CustomerForm = () => {
+  const navigate = useNavigate();
+  const { isLogged } = useContext(AuthContext)
   const [data, setData] = useState<any>();
 
     useEffect(() => {
+      if(!isLogged){
+        navigate('/')
+      }
         const fetchData = async () => {
             try {
                 const response = await dadosUsuario(2);
@@ -20,14 +27,21 @@ const CustomerForm = () => {
 
         fetchData();
     }, []);
-  return (
-    <>
+    if (isLogged){
+
+      return (
+        <>
       <Navbar/>
       <main>
         <UserForm />
       </main>
     </>
   );
+} else {
+  return(
+    <></>
+  )
+}
 };
 
 export default CustomerForm;

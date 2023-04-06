@@ -1,52 +1,32 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useContext } from 'react'
+import { Link } from 'react-router-dom';
 import Boleto from '../../assets/adicionarBoleto.png'
 import User from '../../assets/adicionarUser.png'
 import Estatisticas from '../../assets/estatistica.png'
 import Perfil from '../../assets/perfil.png'
-import { dadosUsuario, dadosFuncionarioc } from '../../utils/axios.routes'
 import './style.css'
 import { AuthContext } from '../../contexts/AuthContext'
 
 const Navbar = () => {
-    const [funcionario, setFuncionario] = useState<any>(null);
-    const { cpf } = useContext(AuthContext);
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                if (cpf != 'inicio') {
-                    const funcs = await dadosFuncionarioc(cpf);
-                    const resp = await funcs?.data;
-                    setFuncionario(resp);
-                }
-            } catch (error) {
-                console.error(error);
-
-            }
-        };
-
-        fetchData();
-    }, [cpf]);
+    const { funcionario } = useContext(AuthContext);
 
     console.log(funcionario);
     return (
         <div className='header'>
             <div className='nav container'>
-                <a href='/perfil' className='navlogo'>
+                <Link to="/perfil">
+                <a className='navlogo'>
                     <img src={Perfil} alt='Perfil' />
                     <div className="logoText">
-                        {cpf != 'inicio' && funcionario != null && 'nome' in funcionario ? 
-                        <>
                         <h3>Olá, {funcionario.nome}</h3>
                         <p>{funcionario.cargo}</p>
-                        </>
-                            :
-                            ''
-                        }
                     </div>
                 </a>
+                </Link>
                 <div className='navmenu'>
                     <ul className='navlist'>
-                        <a href='/home' className='navlink'>
+                        <Link to="/home">
+                        <a className='navlink'>
                             <li className='navitem'>
 
                                 <img src={Estatisticas} alt='Home' />
@@ -54,7 +34,9 @@ const Navbar = () => {
 
                             </li>
                         </a>
-                        <a href='/estatisticas' className='navlink'>
+                        </Link>
+                        <Link to="/estatisticas">
+                        <a className='navlink'>
                             <li className='navitem'>
 
                                 <img src={Estatisticas} alt='Estatisticas' />
@@ -62,7 +44,9 @@ const Navbar = () => {
 
                             </li>
                         </a>
-                        <a href='/cadastrousuario' className='navlink'>
+                        </Link>
+                        <Link to="/cadastrousuario">
+                        <a className='navlink'>
                             <li className='navitem'>
 
                                 <img src={User} alt='User' />
@@ -70,14 +54,17 @@ const Navbar = () => {
 
                             </li>
                         </a>
-                        <a href='/criarboleto' className='navlink'>
+                        </Link>
+                        <Link to="/criarboleto">
+                        <a className='navlink'>
                             <li className='navitem'>
 
                                 <img src={Boleto} alt='Boleto' />
                                 <span className='navname'>Emitir Título</span>
 
                             </li></a>
-
+                        </Link>
+                        <Link to="/gerenciarfunc">
                         <a href='/gerenciarfunc' className='navlink'>
                             <li className='navitem'>
 
@@ -85,6 +72,7 @@ const Navbar = () => {
                                 <span className='navname'>Gerenciar Funcionários</span>
 
                             </li></a>
+                        </Link>
 
                     </ul>
                 </div>

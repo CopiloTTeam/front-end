@@ -11,11 +11,9 @@ import PlotManagement from './pages/PlotManagement';
 import Home from './pages/Home';
 import EmployeeManagement from './pages/EmployeeManagement';
 import Payout from './pages/Payout';
-import { AuthProvider } from './contexts/AuthContext';
 
 function App() {
   return (
-    <AuthProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login />} />
@@ -30,7 +28,6 @@ function App() {
           <Route path="/payout/:id" element={<Payout/>} />
         </Routes>
       </BrowserRouter>
-    </AuthProvider>
   );
 }
 

@@ -1,9 +1,11 @@
 import { dadosFuncionarios, dadosUsuario } from '../../utils/axios.routes';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import EmployeeWait from "../../components/Card/EmployeeWait";
 import EmployeeFixed from "../../components/Card/EmployeeFixed";
 import Navbar from "../../components/Navbar";
 import "./style.css";
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthContext';
 
 interface Funcionario {
   nome: string;
@@ -13,10 +15,15 @@ interface Funcionario {
 }
 
 const EmployeeManagement = () => {
+  const navigate = useNavigate();
+  const { isLogged } = useContext(AuthContext)
   const [data, setData] = useState<any>();
   const [funcionario, setFuncionario] = useState<any>();
 
   useEffect(() => {
+    if(!isLogged){
+      navigate('/')
+    }
     const fetchData = async () => {
       try {
         const response = await dadosUsuario(2);
@@ -33,9 +40,10 @@ const EmployeeManagement = () => {
 
     fetchData();
   }, []);
-  
-  return (
-    <>
+  if (isLogged){
+
+    return (
+      <>
       <div className="conteiner-employee-management">
         <Navbar />
         <h1 className="title-primary">Usuário do Sistema</h1>
@@ -54,15 +62,15 @@ const EmployeeManagement = () => {
                 item.cargo != "admin" &&
                 item.cargo != "Financeiro" &&
                 item.cargo != "Comercial"
-              ) {
-                return null; // ignora funcionários com cargos específicos
-              } 
-            })}
+                ) {
+                  return null; // ignora funcionários com cargos específicos
+                } 
+              })}
             
           </>
         ) : (
           <h2>SEM SOLICITACOES</h2>
-        )}
+          )}
         
         <h2 className="title-secundary">Funcionários do Sistema</h2>
         {funcionario && funcionario.map((item: Funcionario) => {
@@ -83,6 +91,11 @@ const EmployeeManagement = () => {
       </div>
     </>
   );
+} else {
+  return (
+    <></>
+  )
+}
 };
 
 export default EmployeeManagement;

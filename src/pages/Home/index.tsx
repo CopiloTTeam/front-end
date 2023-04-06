@@ -1,10 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import AnalyticBox from '../../components/AnalyticBox'
 import Navbar from '../../components/Navbar'
 import Table from '../../components/Table'
 import { dadosClientes, dadosFuncionario, dadosTitulos } from '../../utils/axios.routes'
+import { AuthContext } from '../../contexts/AuthContext'
+import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
+  const navigate = useNavigate();
+  const { isLogged } = useContext(AuthContext)
+  if(!isLogged){
+    navigate('/')
+  }
   const [data, setData] = useState([]);
   const [client, setClient] = useState([]);
   const [user, setUser] = useState([]);
@@ -29,6 +36,9 @@ const Home = () => {
     };
     fetchData();
   }, []);
+
+if(isLogged){
+
   if (!loading) {
     return (
       <>
@@ -42,9 +52,14 @@ const Home = () => {
   } else {
     return(
       <div className='loading'><p>Carregando...</p></div>
+      )
+    }
+    
+  } else{
+    return(
+      <></>
     )
   }
-
-};
-
-export default Home;
+  };
+  
+  export default Home;

@@ -1,12 +1,16 @@
 /* Nome, Email, senha, cpf, cargo */
 import "./style.css";
 import { criarFuncionario, dadosUsuario } from '../../utils/axios.routes';
-import React, {  useState, FormEvent } from 'react'
+import React, {  useState, FormEvent, useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from "../../contexts/AuthContext";
 
 const Register = () => {
   const navigate = useNavigate();
-
+  const { isLogged } = useContext(AuthContext)
+  if(!isLogged){
+    navigate('/')
+  }
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
@@ -22,8 +26,10 @@ const Register = () => {
     e.preventDefault()
     submitdata(nome, email, cpf, senha)
   }
-  return (
-    <div
+  if (isLogged){
+
+    return (
+      <div
       className="
     register-container"
     >
@@ -63,6 +69,11 @@ const Register = () => {
     </form>
     </div>
   );
+} else {
+  return(
+    <></>
+  )
+}
 };
 
 export default Register;

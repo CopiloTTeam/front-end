@@ -1,12 +1,14 @@
 import "./style.css";
 import Navbar from "../../components/Navbar";
-import React, { FormEvent, useEffect, useState } from 'react'
+import React, { FormEvent, useEffect, useState, useContext } from 'react'
 import { baixaParcela, dadosUsuario, updateParcela } from '../../utils/axios.routes';
 import { useParams } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from "../../contexts/AuthContext";
 
 const Payout = () => {
   const navigate = useNavigate();
+  const { isLogged } = useContext(AuthContext);
   const [data, setData] = useState<any>();
   const [parcela, setParcela] = useState<any>();
   const [usuario, setUsuario] = useState<any>();
@@ -26,6 +28,9 @@ const Payout = () => {
 
   }
     useEffect(() => {   
+      if(!isLogged){
+        navigate('/')
+      }
         const fetchParcela = async () => {
             try {
                 const response = await baixaParcela(id);
@@ -43,8 +48,10 @@ const Payout = () => {
         fetchParcela();
       }, [id]);
       // console.log(parcela)
-  return (
-    <>
+      if (isLogged){
+
+        return (
+          <>
       <Navbar/>
       <div className="payout-container">
         <div className="title">
@@ -95,6 +102,11 @@ const Payout = () => {
       </div>
     </>
   );
+} else {
+  return(
+    <></>
+  )
+}
 };
 
 export default Payout;

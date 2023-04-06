@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
 import { dadosUsuario, gerenciarParcelaTitulo, gerenciarTitulo } from "../../utils/axios.routes";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import "./style.css";
+import { AuthContext } from "../../contexts/AuthContext";
 
 interface Parcela {
   data_vencimento: string;
@@ -14,6 +15,8 @@ interface Parcela {
 }
 
 const PlotManagement = () => {
+  const navigate = useNavigate();
+  const { isLogged } = useContext(AuthContext)
   const { id } = useParams<{ id: string }>();
   const [data, setData] = useState<any>(null);
   const [client, setClient] = useState<any>();
@@ -49,6 +52,9 @@ const PlotManagement = () => {
   
 
   useEffect(() => {
+    if(!isLogged){
+      navigate('/')
+    }
     const fetchData = async () => {
       try {
         const response = await gerenciarTitulo(id);
@@ -89,6 +95,7 @@ const PlotManagement = () => {
     fetchParcela();
     fetchClient();
   }, [id]);
+if (isLogged){
 
   return (
     <>
@@ -121,6 +128,11 @@ const PlotManagement = () => {
       </main>
     </>
   );
+} else {
+  return(
+    <></>
+  )
+}
 };
 
 export default PlotManagement;
