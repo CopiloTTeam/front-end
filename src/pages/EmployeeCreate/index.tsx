@@ -8,9 +8,9 @@ import { AuthContext } from "../../contexts/AuthContext";
 const Register = () => {
   const navigate = useNavigate();
   const { isLogged } = useContext(AuthContext)
-  if(!isLogged){
-    navigate('/')
-  }
+  // if(!isLogged){
+  //   navigate('/')
+  // }
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
@@ -26,7 +26,7 @@ const Register = () => {
     e.preventDefault()
     submitdata(nome, email, cpf, senha)
   }
-  if (isLogged){
+  // if (isLogged){
 
     return (
       <div
@@ -69,11 +69,11 @@ const Register = () => {
     </form>
     </div>
   );
-} else {
-  return(
-    <></>
-  )
-}
+// } else {
+//   return(
+//     <></>
+//   )
+// }
 };
 
 export default Register;
