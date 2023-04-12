@@ -65,7 +65,7 @@ const Navbar = () => {
                             </li></a>
                         </Link>
                         <Link to="/gerenciarfunc">
-                        <a href='/gerenciarfunc' className='navlink'>
+                        <a className='navlink'>
                             <li className='navitem'>
 
                                 <img src={Boleto} alt='Gerenciar Funcionário' />
