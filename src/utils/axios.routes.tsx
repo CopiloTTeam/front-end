@@ -187,6 +187,30 @@ export const updateFuncionario = async (cpf: any, value: any) => {
     console.error(error);
   }
 }
+export const updateFuncionarioId = async (
+   id: any,
+   nome: any , 
+   email: any ,
+   senha: any , 
+   cpf: any ) => {
+  try {
+
+    const response = await api.put(`/atualizar/funcionario/${id}`, {
+      nome: nome,
+      email: email,
+      cpf: cpf,
+      senha: senha
+    }, {
+      timeout: 5000,
+    });
+
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+
 
 export const updateCliente = async (cpf: any, value: any) => {
   try {

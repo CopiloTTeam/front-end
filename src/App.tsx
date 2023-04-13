@@ -12,6 +12,7 @@ import Home from './pages/Home';
 import EmployeeManagement from './pages/EmployeeManagement';
 import Payout from './pages/Payout';
 import ClienteManagement from './pages/ClientManagement';
+import Error from './pages/NotFound';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/gerenciarfunc" element={<EmployeeManagement />} />
           <Route path="/gerenciarcliente" element={<ClienteManagement />} />
           <Route path="/payout/:id" element={<Payout/>} />
+          <Route path="/error/" element={<Error/>} />
         </Routes>
       </BrowserRouter>
   );
