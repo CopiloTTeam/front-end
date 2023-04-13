@@ -1,5 +1,6 @@
 import React from 'react'
 import './style.css'
+import axios from 'axios';
 
 type UserData = {
   cep: string,
@@ -16,6 +17,43 @@ type UserFormProps = UserData & {
 }
 
 export function PersonalInformation({ cep, rua, bairro, cidade, estado, logradouro, complemento, updateFields }: UserFormProps) {
+
+  const [cepError, setCepError] = React.useState(false);
+
+  const handleCepChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.replace(/\D/g, '');
+    const isValidCep = value.length === 8;
+    updateFields({ cep: value });
+
+    if (isValidCep) {
+      try {
+        const response = await axios.get(`https://viacep.com.br/ws/${value}/json/`);
+        const { data } = response;
+
+        updateFields({
+          rua: data.logradouro,
+          bairro: data.bairro,
+          cidade: data.localidade,
+          estado: data.uf,
+          complemento: data.complemento,
+        });
+        setCepError(false);
+      } catch (error) {
+        setCepError(true);
+      }
+    } else {
+      updateFields({
+        rua: '',
+        bairro: '',
+        cidade: '',
+        estado: '',
+        complemento: '',
+      });
+      setCepError(false);
+    }
+  };
+
+
   return (
     <div className="cont">
       <div className="row">
@@ -23,10 +61,11 @@ export function PersonalInformation({ cep, rua, bairro, cidade, estado, logradou
           <h1>CEP</h1>
           <input
             required
-            type="number"
+            type="text"
             placeholder="CEP"
             value={cep}
-            onChange={e => updateFields({ cep: e.target.value })}
+            onChange={handleCepChange}
+            className={cepError ? 'error' : ''}
           />
         </div>
         <div className="second-box">
@@ -75,7 +114,7 @@ export function PersonalInformation({ cep, rua, bairro, cidade, estado, logradou
       </div>
       <div className="row">
         <div className="full-box">
-          <h1>Logradouro</h1>
+          <h1>Número</h1>
           <input
             required
             type="number"
