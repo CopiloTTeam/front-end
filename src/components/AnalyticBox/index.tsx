@@ -1,7 +1,21 @@
 import "./style.css";
+import React, {useEffect, useState} from 'react'
+import { ListarParcela } from "../../utils/axios.routes"
 
 const AnalyticBox = () => {
-  
+  const [dados, setDados]= useState<any>();
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const resp = await ListarParcela ();
+        setDados(resp);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
     <>
       <div className="bg">
@@ -16,7 +30,7 @@ const AnalyticBox = () => {
           </div>
           <div className="box">
             <p>Boletos Gerados:</p>
-            <h1>999</h1>
+            <h1>{}</h1>
           </div>
         </div>
       </div>

@@ -77,7 +77,7 @@ const EmployeeManagement = () => {
           if (item.cargo != null) {
             return (
               <React.Fragment key={item.cpf}>
-                <EmployeeFixed nome={item.nome} email={item.email} cargo={item.cargo} cpf={item.cpf}/>
+                <EmployeeFixed nome={item.nome} email={item.email} cargo={item.cargo} cpf={item.cpf} tipo={"f"}/>
               </React.Fragment>
             );
           } else if (item.cargo != null && item.cargo != 'Administrador' && item.cargo != 'Financeiro' && item.cargo != 'Comercial') {

@@ -1,16 +1,21 @@
 import React from "react";
 import "./style.css";
-import { excludeFuncionario, updateFuncionario } from "../../../utils/axios.routes";
+import { excludeCliente, excludeFuncionario, updateFuncionario } from "../../../utils/axios.routes";
 interface employeeProps{
   nome: any;
   email: any;
   cpf: any;
   cargo: any;
+  tipo: any;
 }
-const EmployeeFixed = ({nome, email, cpf, cargo}: employeeProps) => {
+const EmployeeFixed = ({nome, email, cpf, cargo, tipo}: employeeProps) => {
   async function onExclude(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
-    await excludeFuncionario(cpf)
+    if(tipo = "f"){
+      await excludeFuncionario(cpf)
+    } else {
+      await excludeCliente(cpf)
+    }
     // continua a execução da função normalmente
     console.log('Employee excluded!');
     window.location.reload();
@@ -26,15 +31,18 @@ const EmployeeFixed = ({nome, email, cpf, cargo}: employeeProps) => {
     console.log('Employee updated!');
     window.location.reload();
   }
-  return (
-    <>
+
+  if (tipo == "f"){
+
+    return (
+      <>
    <details className="card-wait">
         <summary className="outside-wait">
           <h1> <b> {cargo}  - </b>{nome}</h1>
           <img
             src="https://img.icons8.com/ios/50/000000/expand-arrow.png"
             alt="expand-arrow"
-          />
+            />
         </summary>
         <div className="inside-box">
         <div className="information-wait-box">
@@ -83,6 +91,35 @@ const EmployeeFixed = ({nome, email, cpf, cargo}: employeeProps) => {
       </details>
     </>
   );
+} else {
+  return (
+    <>
+ <details className="card-wait">
+      <summary className="outside-wait">
+        <h1>{nome}</h1>
+        <img
+          src="https://img.icons8.com/ios/50/000000/expand-arrow.png"
+          alt="expand-arrow"
+          />
+      </summary>
+      <div className="inside-box">
+      <div className="information-wait-box">
+        <h2>
+          <b> Email:</b>{email}
+        </h2>
+        <h2>
+          <b> CPF: </b>{cpf}
+        </h2>
+      </div>
+      <div className="box-confirm">
+      <button className="deny" onClick={e => onExclude(e)}>Excluir</button>
+          <button className="approve" onClick={e => onUpdate(e)}>Alterar</button>
+      </div>
+      </div>
+    </details>
+  </>
+);
+}
 };
 
 export default EmployeeFixed;

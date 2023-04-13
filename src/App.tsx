@@ -11,6 +11,7 @@ import PlotManagement from './pages/PlotManagement';
 import Home from './pages/Home';
 import EmployeeManagement from './pages/EmployeeManagement';
 import Payout from './pages/Payout';
+import ClienteManagement from './pages/ClientManagement';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/perfil/" element={<Profile />} />
           <Route path="/gerenciarparcelas/:id" element={<PlotManagement/>} />
           <Route path="/gerenciarfunc" element={<EmployeeManagement />} />
+          <Route path="/gerenciarcliente" element={<ClienteManagement />} />
           <Route path="/payout/:id" element={<Payout/>} />
         </Routes>
       </BrowserRouter>

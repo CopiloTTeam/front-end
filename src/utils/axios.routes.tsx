@@ -162,7 +162,33 @@ export const excludeFuncionario = async (cpf: any) => {
   }
 }
 
+export const excludeCliente = async (cpf: any) => {
+  try {
+    const response = await api.delete(`/deletar/cliente/${cpf}`, {
+      timeout: 5000,
+    });
+
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export const updateFuncionario = async (cpf: any, value: any) => {
+  try {
+    const response = await api.put(`/atualizar/funcionarioc/${cpf}`, {
+      cargo: value
+    }, {
+      timeout: 5000,
+    });
+
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export const updateCliente = async (cpf: any, value: any) => {
   try {
     const response = await api.put(`/atualizar/funcionarioc/${cpf}`, {
       cargo: value
@@ -193,6 +219,30 @@ export const updateParcela = async(id:any , valorPago:any) => {
 export const baixaParcela = async (id: any) => {
   try {
     const response = await api.get(`/listar/parcela/${id}`, {
+      timeout: 5000,
+    });
+
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export const ListarCliente = async () => {
+  try {
+    const response = await api.get(`/listar/cliente`, {
+      timeout: 5000,
+    });
+
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export const ListarParcela = async () => {
+  try {
+    const response = await api.get(`/listar/parcela`, {
       timeout: 5000,
     });
 
