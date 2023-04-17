@@ -12,6 +12,18 @@ export const login = async (data: any) => {
   }
 };
 
+export const AllUsers = async () => {
+  try {
+    const response = await api.get('/listar/cliente', {
+      timeout: 5000
+    });
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+
 export const dadosUsuario = async (id: any) => {
   try {
     const response = await api.get(`listar/cliente/${id}`, {

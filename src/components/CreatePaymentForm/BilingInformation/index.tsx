@@ -1,31 +1,57 @@
+import { AllUsers } from "../../../utils/axios.routes";
 import "./style.css";
+import React, { useEffect, useState} from 'react'
 
 type UserData = {
-    cpf: string,
-    id_funcionario: string
-    data_geracao: string,
-    valor:string,
+  cpf: string,
+  id_funcionario: string
+  data_geracao: string,
+  valor:string,
 }
+
 type UserFormProps = UserData & {
   updateFields: (fields: Partial<UserData>) => void
 }
 
-
 export function BilingInformation({ cpf, id_funcionario, data_geracao, valor, updateFields }: UserFormProps) {
+  const [Usuarios, setUsuarios] = useState<any>();
+  const [nomeUsuario, setNomeUsuario] = useState<any>();
+  
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const titulos = await AllUsers();
+        const data = titulos?.data;
+        setUsuarios(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, []);
+  
+  useEffect(() => {
+    if (Usuarios && cpf) {
+      const usuarioEncontrado = Usuarios.find((usuario: any) => usuario.cpf === cpf);
+      if (usuarioEncontrado) {
+        setNomeUsuario(usuarioEncontrado.nome);
+      }
+    }
+  }, [cpf, Usuarios]);
 
   return (
     <div className="cont">
-        <div className="row">
-        
-        {/* <div className="full-box">
-          <h1>ID do titulo</h1>
+      <div className="row">
+        <div className="full-box">
+          <h1>Nome do Cliente</h1>
           <input
             required
             type="text"
-            placeholder="Nome do Produto"
-            value={id_titulo} onChange={e => updateFields({ id_titulo: e.target.value })}
+            value={nomeUsuario || ""}
+            readOnly
           />
-        </div> */}
+        </div>
       </div>
       <div className="row">
         <div className="third-box">
@@ -60,8 +86,7 @@ export function BilingInformation({ cpf, id_funcionario, data_geracao, valor, up
           />
         </div>
       </div>
-       <div className="row">
-        
+      <div className="row">
         <div className="full-box">
           <h1>Valor</h1>
           <input
@@ -75,3 +100,4 @@ export function BilingInformation({ cpf, id_funcionario, data_geracao, valor, up
     </div>
   )
 }
+
