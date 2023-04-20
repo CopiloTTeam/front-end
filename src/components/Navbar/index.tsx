@@ -10,7 +10,7 @@ import { AuthContext } from '../../contexts/AuthContext'
 const Navbar = () => {
     const { funcionario } = useContext(AuthContext);
 
-    console.log(funcionario);
+
     return (
         <div className='header'>
             <div className='nav container'>
@@ -70,6 +70,15 @@ const Navbar = () => {
 
                                 <img src={Boleto} alt='Gerenciar Funcionário' />
                                 <span className='navname'>Gerenciar Funcionários</span>
+
+                            </li></a>
+                        </Link>
+                        <Link to="/gerenciarcliente">
+                        <a className='navlink'>
+                            <li className='navitem'>
+
+                                <img src={Boleto} alt='Gerenciar Cliente' />
+                                <span className='navname'>Gerenciar Cliente</span>
 
                             </li></a>
                         </Link>

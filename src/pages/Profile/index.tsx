@@ -24,7 +24,7 @@ const Profile = () => {
                 const response = await dadosFuncionarioc(funcionario.cpf);
                 const data = await response?.data
                 setData(data);
-                // console.log(data)
+            
             } catch (error) {
                 console.error(error);
             }

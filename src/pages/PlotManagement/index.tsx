@@ -85,7 +85,7 @@ const PlotManagement = () => {
         const response = await gerenciarParcelaTitulo(id);
         const data = await response?.data;
         setParcela(data);
-        // console.log(data);
+    
       } catch (error) {
         console.error(error);
       }

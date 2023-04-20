@@ -41,9 +41,8 @@ const ClienteManagement = () => {
       <>
         <div className="conteiner-employee-management">
           <Navbar />
-          <h1 className="title-primary">Usuário do Sistema</h1>
+          <h1 className="title-primary">Clientes do Sistema</h1>
           {cliente && cliente.map((item: Cliente) => {
-            console.log(item)
             return (
               <React.Fragment key={item.cpf}>
                 <EmployeeFixed nome={item.nome} email={item.email} cargo={item.cpf} cpf={item.cpf} tipo={null} />
@@ -51,9 +50,10 @@ const ClienteManagement = () => {
             )
           }
           )}
+          {!cliente && <EmployeeFixed nome="" email="" cargo="" cpf={null} tipo={null} />}
         </div>
       </>
-    );
+    );    
   } else {
     return (
       <></>

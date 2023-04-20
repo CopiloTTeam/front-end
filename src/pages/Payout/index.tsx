@@ -38,7 +38,7 @@ const Payout = () => {
                 const UsuarioDados = await dadosUsuario(data.cpf);
                 const dataUsuario = await UsuarioDados?.data;
                 
-                // console.log(data);
+              
                 setUsuario(dataUsuario);
                 setParcela(data);
             } catch (error) {
@@ -47,7 +47,7 @@ const Payout = () => {
         };
         fetchParcela();
       }, [id]);
-      // console.log(parcela)
+   
       if (isLogged){
 
         return (

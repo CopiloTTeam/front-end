@@ -17,7 +17,7 @@ const Login = () => {
     setEmail(event.target.value);
   const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     setPassword(event.target.value);
-  // console.log(email, password)
+
 
   const { setFuncionario, setIsLogged } = useContext(AuthContext);
   let funcionarioo = FuncionarioInicio;
@@ -60,7 +60,7 @@ const Login = () => {
         }
         navigate("/home");
       } else {
-        console.log(resp?.status, resp?.data);
+     
         toast.error("Credenciais inválidas. Verifique seu email e senha!");
       }
     } catch (error) {
