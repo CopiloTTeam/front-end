@@ -5,6 +5,7 @@ import Table from '../../components/Table'
 import { dadosClientes, dadosFuncionario, dadosTitulos } from '../../utils/axios.routes'
 import { AuthContext } from '../../contexts/AuthContext'
 import { useNavigate } from 'react-router-dom'
+import Loading from '../../components/Loading'
 
 const Home = () => {
   const navigate = useNavigate();
@@ -51,7 +52,7 @@ if(isLogged){
     );
   } else {
     return(
-      <div className='loading'><p>Carregando...</p></div>
+      <Loading/> 
       )
     }
     

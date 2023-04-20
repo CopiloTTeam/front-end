@@ -17,7 +17,7 @@ export function LocalInformation({ nome, cpf, email, data, updateFields }: UserF
 
   return (
     <div className="cont">
-      <div className="row">git
+      <div className="row">
         <div className="first-box">
           <h1>Nome Completo</h1>
           <input

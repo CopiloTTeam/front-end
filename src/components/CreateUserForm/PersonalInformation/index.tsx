@@ -57,7 +57,7 @@ export function PersonalInformation({ cep, rua, bairro, cidade, estado, logradou
   return (
     <div className="cont">
       <div className="row">
-        <div className="first-box">
+        <div className="first-box-local">
           <h1>CEP</h1>
           <input
             required
@@ -68,7 +68,7 @@ export function PersonalInformation({ cep, rua, bairro, cidade, estado, logradou
             className={cepError ? 'error' : ''}
           />
         </div>
-        <div className="second-box">
+        <div className="second-box-local">
           <h1>Rua</h1>
           <input
             required
@@ -113,7 +113,7 @@ export function PersonalInformation({ cep, rua, bairro, cidade, estado, logradou
         </div>
       </div>
       <div className="row">
-        <div className="full-box">
+        <div className="sixth-box">
           <h1>Número</h1>
           <input
             required

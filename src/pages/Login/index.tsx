@@ -5,6 +5,9 @@ import { dadosFuncionarioc, login } from "../../utils/axios.routes";
 import { useNavigate, Link } from "react-router-dom";
 import { AuthContext, FuncionarioInicio } from "../../contexts/AuthContext";
 
+import "react-toastify/dist/ReactToastify.min.css";
+import { toast } from "react-toastify";
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -62,10 +65,12 @@ const Login = () => {
         navigate("/home");
       } else {
         console.log(resp?.status, resp?.data);
+        toast.error("Credenciais inválidas. Verifique seu email e senha!");
       }
-    } catch (error) {}
+    } catch (error) {
+      toast.error("Erro ao efetuar login. Tente novamente mais tarde.");
+    }
   }
-
   return (
     <div className="login-container">
       <div className="image-left">

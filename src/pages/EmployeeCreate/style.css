@@ -19,7 +19,7 @@
 }
 
 .email-box h3,
-.pass-box h3,
+.pass-title h3,
 .name-box h3,
 .cpf-box h3 {
   font-size: 16px;
@@ -28,7 +28,6 @@
 }
 
 .email-box input,
-.pass-box input,
 .name-box input,
 .cpf-box input {
   width: 100%;
@@ -36,6 +35,21 @@
   border: 1px solid #6e6e6e;
   border-radius: 5px;
   margin-bottom: 16px;
+}
+
+.pass-box-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.pass-box-container input {
+  width: 90%;
+  height: 32px;
+  border: 1px solid #6e6e6e;
+  border-radius: 5px;
 }
 
 .button-box {
@@ -64,4 +78,10 @@
   color: #6e6e6e;
   font-size: 14px;
   text-decoration: underline;
+}
+
+.passwordImg{
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
 }

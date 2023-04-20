@@ -1,4 +1,7 @@
 import React from 'react';
+
+import { ToastContainer } from 'react-toastify';
+
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Analytics from './pages/Analytics';
 import CustomerForm from './pages/CustomerCreate';
@@ -31,6 +34,7 @@ function App() {
           <Route path="/payout/:id" element={<Payout/>} />
           <Route path="/error/" element={<Error/>} />
         </Routes>
+        <ToastContainer/>
       </BrowserRouter>
   );
 }
