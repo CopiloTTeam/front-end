@@ -41,7 +41,7 @@ const ClienteManagement = () => {
       <>
         <div className="conteiner-employee-management">
           <Navbar />
-          <h1 className="title-primary">Usuário do Sistema</h1>
+          <h1 className="title-primary">Clientes do Sistema</h1>
           {cliente && cliente.map((item: Cliente) => {
             console.log(item)
             return (

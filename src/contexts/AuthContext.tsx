@@ -25,10 +25,16 @@ type AuthContextType = {
   funcionario: funcionario;
   setFuncionario: (newState: funcionario) => void
 }
+const funcionarioStorage = localStorage.getItem("funcionario");
+let values = null
+if (funcionarioStorage !== null) {
+  values = JSON.parse(funcionarioStorage)
+} 
+
 const InicialValue = {
-  isLogged: false,
+  isLogged: (values == null)? false : values.isLogged,
   setIsLogged: () => {},
-  funcionario: FuncionarioInicio,
+  funcionario: (values == null)? FuncionarioInicio : values.funcionario,
   setFuncionario: () => {}
 };
 
