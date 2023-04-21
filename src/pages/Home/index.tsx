@@ -9,7 +9,7 @@ import Loading from '../../components/Loading'
 
 const Home = () => {
   const navigate = useNavigate();
-  const { isLogged } = useContext(AuthContext)
+  const { isLogged, funcionario } = useContext(AuthContext)
   if(!isLogged){
     navigate('/')
   }
@@ -36,7 +36,7 @@ const Home = () => {
 
 if(isLogged){
 
-  if (!loading) {
+  if (!loading && (funcionario.cargo == 'Administrador' || funcionario.cargo == 'Comercial' || funcionario.cargo == 'Financeiro')) {
     return (
       <>
         <Navbar/>
