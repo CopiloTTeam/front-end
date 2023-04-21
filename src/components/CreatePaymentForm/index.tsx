@@ -5,6 +5,7 @@ import { PersonalInformation } from './PersonalInformation'
 import '../../styles/global.css'
 import { criarTitulo } from '../../utils/axios.routes'
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify'
 
 
 const PaymentForm = () => {
@@ -42,22 +43,28 @@ const PaymentForm = () => {
     ])
 
     async function submitData(data: any) {
-      var resp = await criarTitulo(data)
-      return resp;
+      try {
+        var resp = await criarTitulo(data);
+        toast.success('Título criado com sucesso!');
+        return true;
+      } catch (error) {
+        toast.error('Não foi possível criar o título. Por favor, tente novamente mais tarde.');
+        console.error(error);
+        return false;
+      }
     }
-  function onSubmit(e: FormEvent) {
-    e.preventDefault()
-    if (isLastStep){
-      submitData(data)
- 
-      
-      navigate('/home');
-      window.location.reload();
-
-      
+    
+    function onSubmit(e: FormEvent) {
+      e.preventDefault();
+      if (isLastStep) {
+        submitData(data).then((success) => {
+          if (success) {
+            navigate('/home');
+          }
+        });
+      }
+      next();
     }
-    next()
-  }
   return (
     <>
       <div>

@@ -2,6 +2,8 @@ import React from "react";
 import "./style.css";
 import { excludeCliente, excludeFuncionario, updateFuncionario } from "../../../utils/axios.routes";
 import { useNavigate } from 'react-router-dom';
+import { toast } from "react-toastify";
+
 interface employeeProps{
   nome: any;
   email: any;
@@ -16,25 +18,17 @@ const EmployeeFixed = ({nome, email, cpf, cargo, tipo}: employeeProps) => {
     e.preventDefault();
     await excludeCliente(cpf)
     navigate('/gerenciarcliente')
-    // if(tipo = "f"){
-    //   await excludeFuncionario(cpf)
-    // } else {
-    //   await excludeCliente(cpf)
-    // }
-    // continua a execução da função normalmente
-    console.log('Employee excluded!');
-    
+    toast.success('Funcionário excluído com sucesso!');
   }
 
   async function onUpdate(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
-    // faz alguma operação assíncrona
     const selectElement = document.querySelector('select[name="select"]') as HTMLSelectElement;
     const selectedValue = selectElement.value;
     await updateFuncionario(cpf, selectedValue)
-    // continua a execução da função normalmente
     console.log('Employee updated!');
-    window.location.reload();
+    // window.location.reload();
+    toast.success('Cargo alterado com sucesso!');
   }
 
   if (tipo == "f"){
