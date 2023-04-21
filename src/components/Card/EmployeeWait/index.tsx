@@ -3,11 +3,12 @@ import "./style.css";
 import { excludeFuncionario, updateFuncionario } from "../../../utils/axios.routes";
 import { toast } from "react-toastify";
 interface employeeProps {
+  id_funcionario: any;
   nome: any;
   email: any;
   cpf: any;
 }
-const EmployeeWait = ({ nome, email, cpf }: employeeProps) => {
+const EmployeeWait = ({ id_funcionario, nome, email, cpf }: employeeProps) => {
 
   async function onExclude(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
@@ -36,6 +37,9 @@ const EmployeeWait = ({ nome, email, cpf }: employeeProps) => {
         </summary>
         <div className="inside-box">
           <div className="information-wait-box">
+            <h2>
+              <b> Id:</b>{id_funcionario}
+            </h2>
             <h2>
               <b> Email:</b>{email}
             </h2>
