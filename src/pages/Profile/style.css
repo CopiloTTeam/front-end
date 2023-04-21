@@ -17,6 +17,7 @@
     justify-content: space-around;
     align-items: center;
     width: 100%;
+    gap: 2rem;
     margin: 1rem 0 1rem 0;
 }
 .profile-container .btn{
@@ -27,9 +28,16 @@
     
 }
 .profile-container .profile-content .profile-box{
+    width: 90%;
+}
+.profile-container .profile-content .profile-box input{
     width: 100%;
+    padding: 0.5rem 0.4rem;
+    border-radius: 10px;
+    border: 1px solid #000;
 }
 .profile-container .profile-content .profile-box h1{
+    margin-bottom: 0.7rem;
     font-size: 1.3rem;
 }
 @media(max-width:592px){
