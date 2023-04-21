@@ -44,18 +44,7 @@ export function BilingInformation({ cpf, id_funcionario, data_geracao, valor, up
     <div className="cont">
       <div className="row">
         <div className="full-box">
-          <h1>Nome do Cliente</h1>
-          <input
-            required
-            type="text"
-            value={nomeUsuario || ""}
-            readOnly
-          />
-        </div>
-      </div>
-      <div className="row">
-        <div className="third-box">
-          <h1>CPF do cliente</h1>
+           <h1>CPF do cliente</h1>
           <div className="tel-plus">
             <input
               required
@@ -65,7 +54,20 @@ export function BilingInformation({ cpf, id_funcionario, data_geracao, valor, up
             />
           </div>
         </div>
-        <div className="third-box">
+        <div className="full-box">
+         
+         <h1>Nome do Cliente</h1>
+         <input
+           required
+           type="text"
+           value={nomeUsuario || ""}
+           placeholder="Nome do Cliente"
+           readOnly
+         />
+       </div>
+      </div>
+      <div className="row">
+        <div className="full-box">
           <h1>ID do funcionario</h1>
           <div className="tel-plus">
             <input
@@ -76,7 +78,7 @@ export function BilingInformation({ cpf, id_funcionario, data_geracao, valor, up
             />
           </div>
         </div>
-        <div className="third-box">
+        <div className="full-box">
           <h1>Data de Geração</h1>
           <input
             required
