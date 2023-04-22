@@ -17,7 +17,7 @@ interface Cliente {
 
 const ClienteManagement = () => {
   const navigate = useNavigate();
-  const { isLogged } = useContext(AuthContext)
+  const { isLogged, funcionario } = useContext(AuthContext)
   const [cliente, setCliente] = useState<any>();
 
   useEffect(() => {
@@ -36,7 +36,7 @@ const ClienteManagement = () => {
 
     fetchData();
   }, []);
-  if (isLogged) {
+  if (isLogged && (funcionario.cargo == 'Administrador' || funcionario.cargo == 'Comercial')) {
 
     return (
       <>

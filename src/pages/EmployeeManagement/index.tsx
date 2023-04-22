@@ -17,9 +17,9 @@ interface Funcionario {
 
 const EmployeeManagement = () => {
   const navigate = useNavigate();
-  const { isLogged } = useContext(AuthContext)
+  const { isLogged, funcionario } = useContext(AuthContext)
   const [data, setData] = useState<any>();
-  const [funcionario, setFuncionario] = useState<any>();
+  const [funcionarioo, setFuncionario] = useState<any>();
 
   useEffect(() => {
     if (!isLogged) {
@@ -41,7 +41,7 @@ const EmployeeManagement = () => {
 
     fetchData();
   }, []);
-  if (isLogged) {
+  if (isLogged && funcionario.cargo == 'Administrador') {
 
     return (
       <>
@@ -49,9 +49,9 @@ const EmployeeManagement = () => {
           <Navbar />
           <h1 className="title-primary">Usuário do Sistema</h1>
           <h2 className="title-secundary">Solicitações Pendentes</h2>
-          {funcionario && funcionario.length > 0 ? (
+          {funcionarioo && funcionarioo.length > 0 ? (
             <>
-              {funcionario.map((item: Funcionario) => {
+              {funcionarioo.map((item: Funcionario) => {
                 if (item.cargo == null || item.cargo == undefined) {
                   return (
                     <React.Fragment key={item.cpf}>
@@ -74,7 +74,7 @@ const EmployeeManagement = () => {
           )}
 
           <h2 className="title-secundary">Funcionários do Sistema</h2>
-          {funcionario && funcionario.map((item: Funcionario) => {
+          {funcionarioo && funcionarioo.map((item: Funcionario) => {
             if (item.cargo != null) {
               return (
                 <React.Fragment key={item.cpf}>

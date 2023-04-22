@@ -8,7 +8,7 @@ import { AuthContext } from '../../contexts/AuthContext';
 
 const CustomerForm = () => {
   const navigate = useNavigate();
-  const { isLogged } = useContext(AuthContext)
+  const { isLogged, funcionario } = useContext(AuthContext)
   const [data, setData] = useState<any>();
 
     useEffect(() => {
@@ -27,7 +27,7 @@ const CustomerForm = () => {
 
         fetchData();
     }, []);
-    if (isLogged){
+    if (isLogged && (funcionario.cargo = 'Administrador' || funcionario.cargo == 'Comercial')){
 
       return (
         <>

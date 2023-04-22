@@ -2,15 +2,12 @@ import React, { useState, useContext } from "react";
 import "./style.css";
 import Rocket from "../../assets/rocket.png";
 import { dadosFuncionarioc, login } from "../../utils/axios.routes";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { AuthContext, FuncionarioInicio } from "../../contexts/AuthContext";
-import { Link } from "react-router-dom";
 import EyeOff from "../../assets/eyeOff.png";
 import EyeOn from "../../assets/eyeOn.png";
-
-
-import "react-toastify/dist/ReactToastify.min.css";
 import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -45,6 +42,11 @@ const Login = () => {
         funcionarioo.senha = funcionario?.data.senha;
         setFuncionario(funcionarioo);
         setIsLogged(true);
+        let infos = {
+          "funcionario": funcionarioo,
+          "isLogged": true
+        }
+        localStorage.setItem("funcionario", JSON.stringify(infos))
       }
     } catch (error) {
       console.error(error);

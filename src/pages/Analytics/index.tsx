@@ -8,7 +8,7 @@ import { AuthContext } from '../../contexts/AuthContext';
 
 const Analytics = () => {
   const navigate = useNavigate();
-  const { isLogged } = useContext(AuthContext)
+  const { isLogged, funcionario } = useContext(AuthContext)
 
   const [data, setData] = useState<any>();
 
@@ -28,14 +28,13 @@ const Analytics = () => {
 
       fetchData();
   }, []);
-  if(isLogged){
-
+  if(isLogged && (funcionario.cargo == 'Administrador' || funcionario.cargo == 'Financeiro')){
     return (
       <>
       <Navbar/>
       <div className='main'>
         <div className="top-box">
-          <h3>Gerenciamento de Parcelas</h3>
+          <h3>Clientes Adimpletes e Inadimplentes</h3>
           <div className="select-box">
             <div className="select-input">
               <h3>Data de Inicio</h3>
@@ -55,9 +54,9 @@ const Analytics = () => {
               <h3>Status</h3>
             <select name="choice">
               <option value="first">---- Selecione ----</option>
-              <option value="first">Adiantado</option>
-              <option value="second">Pendente</option>
-              <option value="third">Atrasado</option>
+              <option value="first">Data de Crédito</option>
+              <option value="second">Data de Pagamento</option>
+              <option value="third">Data de Vencimento</option>
             </select>
             </div>
           </div>
@@ -66,6 +65,40 @@ const Analytics = () => {
       </div>
     </>
   );
+} else if(isLogged && funcionario.cargo == 'Comercial'){
+  return(
+    <>
+      <Navbar/>
+      <div className='main'>
+        <div className="top-box">
+          <h3>Clientes Atrasados com o pagamento</h3>
+          <div className="select-box">
+            <div className="select-input">
+              <h3>Data de Inicio</h3>
+              <input
+                required
+                type="date"
+              />
+            </div>
+            <div className="select-input">
+              <h3>Data de Fim</h3>
+              <input
+                required
+                type="date"
+              />
+            </div>
+            <div className='select-input'>
+              <h3>Status</h3>
+            <select name="choice">
+              <option value="third">Data de Vencimento</option>
+            </select>
+            </div>
+          </div>
+        </div>
+        <Graphic />
+      </div>
+    </>
+  )
 } else{
   return(
     <></>

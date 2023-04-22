@@ -16,7 +16,7 @@ interface Parcela {
 
 const PlotManagement = () => {
   const navigate = useNavigate();
-  const { isLogged } = useContext(AuthContext)
+  const { isLogged, funcionario } = useContext(AuthContext)
   const { id } = useParams<{ id: string }>();
   const [data, setData] = useState<any>(null);
   const [client, setClient] = useState<any>();
@@ -95,8 +95,7 @@ const PlotManagement = () => {
     fetchParcela();
     fetchClient();
   }, [id]);
-if (isLogged){
-
+if (isLogged && (funcionario.cargo == 'Administrador' || funcionario.cargo == 'Financeiro')){
   return (
     <>
       <Navbar />

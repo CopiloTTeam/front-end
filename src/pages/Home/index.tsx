@@ -2,20 +2,19 @@ import React, { useContext, useEffect, useState } from 'react'
 import AnalyticBox from '../../components/AnalyticBox'
 import Navbar from '../../components/Navbar'
 import Table from '../../components/Table'
-import { dadosClientes, dadosFuncionario, dadosTitulos } from '../../utils/axios.routes'
+import { dadosClientes, dadosTitulos } from '../../utils/axios.routes'
 import { AuthContext } from '../../contexts/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import Loading from '../../components/Loading'
 
 const Home = () => {
   const navigate = useNavigate();
-  const { isLogged } = useContext(AuthContext)
+  const { isLogged, funcionario } = useContext(AuthContext)
   if(!isLogged){
     navigate('/')
   }
   const [data, setData] = useState([]);
   const [client, setClient] = useState([]);
-  const [user, setUser] = useState([]);
   const [loading, setLoading] = useState(true)
   
   useEffect(() => {
@@ -24,9 +23,6 @@ const Home = () => {
         const titulos = await dadosTitulos();
         const data = titulos?.data;
         setData(data);
-        const usuario = await dadosFuncionario(1);
-        const user = usuario?.data;
-        setUser(user);
         const cliente = await dadosClientes();
         const client = cliente?.data;
         setClient(client);
@@ -40,7 +36,7 @@ const Home = () => {
 
 if(isLogged){
 
-  if (!loading) {
+  if (!loading && (funcionario.cargo == 'Administrador' || funcionario.cargo == 'Comercial' || funcionario.cargo == 'Financeiro')) {
     return (
       <>
         <Navbar/>

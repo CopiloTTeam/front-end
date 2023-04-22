@@ -2,14 +2,13 @@ import "./style.css";
 import Navbar from "../../components/Navbar";
 import React, { FormEvent, useEffect, useState, useContext } from 'react'
 import { baixaParcela, dadosUsuario, updateParcela } from '../../utils/axios.routes';
-import { useParams } from "react-router-dom";
-import { useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import { toast } from "react-toastify";
 
 const Payout = () => {
   const navigate = useNavigate();
-  const { isLogged } = useContext(AuthContext);
+  const { isLogged, funcionario } = useContext(AuthContext);
   const [data, setData] = useState<any>();
   const [parcela, setParcela] = useState<any>();
   const [usuario, setUsuario] = useState<any>();
@@ -51,7 +50,7 @@ const Payout = () => {
         fetchParcela();
       }, [id]);
    
-      if (isLogged){
+      if (isLogged && (funcionario.cargo == 'Administrador' || funcionario.cargo == 'Financeiro')){
 
         return (
           <>
