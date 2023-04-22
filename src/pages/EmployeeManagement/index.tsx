@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
 
 interface Funcionario {
+  id_funcionario: number;
   nome: string;
   email: string;
   cpf: string;
@@ -21,7 +22,7 @@ const EmployeeManagement = () => {
   const [funcionario, setFuncionario] = useState<any>();
 
   useEffect(() => {
-    if(!isLogged){
+    if (!isLogged) {
       navigate('/')
     }
     const fetchData = async () => {
@@ -40,62 +41,62 @@ const EmployeeManagement = () => {
 
     fetchData();
   }, []);
-  if (isLogged){
+  if (isLogged) {
 
     return (
       <>
-      <div className="conteiner-employee-management">
-        <Navbar />
-        <h1 className="title-primary">Usuário do Sistema</h1>
-        <h2 className="title-secundary">Solicitações Pendentes</h2>
-        {funcionario && funcionario.length > 0 ? (
-          <>
-            {funcionario.map((item: Funcionario) => {
-              if (item.cargo == null || item.cargo == undefined) {
-                return (
-                  <React.Fragment key={item.cpf}>
-                    <EmployeeWait nome={item.nome} email={item.email} cpf={item.cpf} />
-                  </React.Fragment>
-                );
-              } else if (
-                item.cargo != null &&
-                item.cargo != "admin" &&
-                item.cargo != "Financeiro" &&
-                item.cargo != "Comercial"
+        <div className="conteiner-employee-management">
+          <Navbar />
+          <h1 className="title-primary">Usuário do Sistema</h1>
+          <h2 className="title-secundary">Solicitações Pendentes</h2>
+          {funcionario && funcionario.length > 0 ? (
+            <>
+              {funcionario.map((item: Funcionario) => {
+                if (item.cargo == null || item.cargo == undefined) {
+                  return (
+                    <React.Fragment key={item.cpf}>
+                      <EmployeeWait id_funcionario={item.id_funcionario} nome={item.nome} email={item.email} cpf={item.cpf} />
+                    </React.Fragment>
+                  );
+                } else if (
+                  item.cargo != null &&
+                  item.cargo != "admin" &&
+                  item.cargo != "Financeiro" &&
+                  item.cargo != "Comercial"
                 ) {
                   return null; // ignora funcionários com cargos específicos
-                } 
+                }
               })}
-            
-          </>
-        ) : (
-          <h2>SEM SOLICITACOES</h2>
+
+            </>
+          ) : (
+            <h2>SEM SOLICITACOES</h2>
           )}
-        
-        <h2 className="title-secundary">Funcionários do Sistema</h2>
-        {funcionario && funcionario.map((item: Funcionario) => {
-          if (item.cargo != null) {
-            return (
-              <React.Fragment key={item.cpf}>
-                <EmployeeFixed nome={item.nome} email={item.email} cargo={item.cargo} cpf={item.cpf} tipo={"f"}/>
-              </React.Fragment>
-            );
-          } else if (item.cargo != null && item.cargo != 'Administrador' && item.cargo != 'Financeiro' && item.cargo != 'Comercial') {
-            return (
-              <>
-                <h2>Sem Funcionarios Cadastrados</h2>
-              </>
-            );
-          }
-        })}
-      </div>
-    </>
-  );
-} else {
-  return (
-    <></>
-  )
-}
+
+          <h2 className="title-secundary">Funcionários do Sistema</h2>
+          {funcionario && funcionario.map((item: Funcionario) => {
+            if (item.cargo != null) {
+              return (
+                <React.Fragment key={item.cpf}>
+                  <EmployeeFixed id_funcionario={item.id_funcionario} nome={item.nome} email={item.email} cargo={item.cargo} cpf={item.cpf} tipo={"f"} />
+                </React.Fragment>
+              );
+            } else if (item.cargo != null && item.cargo != 'Administrador' && item.cargo != 'Financeiro' && item.cargo != 'Comercial') {
+              return (
+                <>
+                  <h2>Sem Funcionarios Cadastrados</h2>
+                </>
+              );
+            }
+          })}
+        </div>
+      </>
+    );
+  } else {
+    return (
+      <></>
+    )
+  }
 };
 
 export default EmployeeManagement;

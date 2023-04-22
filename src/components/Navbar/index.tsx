@@ -72,6 +72,15 @@ const Navbar = () => {
 
                                     </li></a>
                             </Link>
+                            <Link to="/gerenciarcliente">
+                        <a className='navlink'>
+                            <li className='navitem'>
+
+                                <img src={Boleto} alt='Gerenciar Cliente' />
+                                <span className='navname'>Gerenciar Cliente</span>
+
+                            </li></a>
+                        </Link>
 
                         </ul>
                     </div>
@@ -132,6 +141,15 @@ const Navbar = () => {
 
                                     </li></a>
                             </Link>
+                            <Link to="/gerenciarcliente">
+                        <a className='navlink'>
+                            <li className='navitem'>
+
+                                <img src={Boleto} alt='Gerenciar Cliente' />
+                                <span className='navname'>Gerenciar Cliente</span>
+
+                            </li></a>
+                        </Link>
                         </ul>
                     </div>
                 </div>

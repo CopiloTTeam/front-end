@@ -5,6 +5,7 @@ import { baixaParcela, dadosUsuario, updateParcela } from '../../utils/axios.rou
 import { useParams } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from "../../contexts/AuthContext";
+import { toast } from "react-toastify";
 
 const Payout = () => {
   const navigate = useNavigate();
@@ -17,11 +18,15 @@ const Payout = () => {
   const [titulo, setTitulo] = useState("");
 
   async function submitdata(valorPago: String) {
-    await updateParcela(id, valorPago);
-    navigate('/gerenciarparcelas/'+parcela?.id_titulo);
-    
+    try {
+      await updateParcela(id, valorPago);
+      toast.success('Parcela paga com sucesso!');
+      navigate('/gerenciarparcelas/'+parcela?.id_titulo);
+    } catch (error) {
+      console.error(error);
+      toast.error('Erro ao pagar a parcela. Por favor, tente novamente.');
+    }
   }
-
   function onsubmit(e: FormEvent){
     e.preventDefault()    
     submitdata(valorPago)
@@ -37,8 +42,6 @@ const Payout = () => {
                 const data = await response?.data;
                 const UsuarioDados = await dadosUsuario(data.cpf);
                 const dataUsuario = await UsuarioDados?.data;
-                
-                // console.log(data);
                 setUsuario(dataUsuario);
                 setParcela(data);
             } catch (error) {
@@ -47,7 +50,7 @@ const Payout = () => {
         };
         fetchParcela();
       }, [id]);
-      // console.log(parcela)
+   
       if (isLogged){
 
         return (

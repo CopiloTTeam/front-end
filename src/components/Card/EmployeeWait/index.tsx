@@ -1,30 +1,29 @@
 import React from "react";
 import "./style.css";
 import { excludeFuncionario, updateFuncionario } from "../../../utils/axios.routes";
+import { toast } from "react-toastify";
 interface employeeProps {
+  id_funcionario: any;
   nome: any;
   email: any;
   cpf: any;
 }
-const EmployeeWait = ({ nome, email, cpf }: employeeProps) => {
+const EmployeeWait = ({ id_funcionario, nome, email, cpf }: employeeProps) => {
 
   async function onExclude(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
     await excludeFuncionario(cpf)
-    // continua a execução da função normalmente
-    console.log('Employee excluded!');
-    window.location.reload();
+    toast.success('Funcionário recusado com sucesso!');
+    // window.location.reload();
   }
 
   async function onUpdate(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
-    // faz alguma operação assíncrona
     const selectElement = document.querySelector('select[name="select"]') as HTMLSelectElement;
     const selectedValue = selectElement.value;
     await updateFuncionario(cpf, selectedValue)
-    // continua a execução da função normalmente
-    console.log('Employee updated!');
-    window.location.reload();
+    toast.success('Funcionário aprovado com sucesso!');
+    // window.location.reload();
   }
   return (
     <>
@@ -38,6 +37,9 @@ const EmployeeWait = ({ nome, email, cpf }: employeeProps) => {
         </summary>
         <div className="inside-box">
           <div className="information-wait-box">
+            <h2>
+              <b> Id:</b>{id_funcionario}
+            </h2>
             <h2>
               <b> Email:</b>{email}
             </h2>

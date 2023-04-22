@@ -4,6 +4,7 @@ import { LocalInformation } from './LocalInformation'
 import { PersonalInformation } from './PersonalInformation'
 import { criarCliente } from '../../utils/axios.routes'
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify'
 
 
 const UserForm = () => {
@@ -47,19 +48,30 @@ const UserForm = () => {
       <PersonalInformation {...data} updateFields={updateFields} />,
       // <Validation {...data} updateFields={updateFields}/>,
     ])
-  async function submitData(data: any) {
-    let resp = await criarCliente(data)
-    return resp;
-  }
-  function onSubmit(e: FormEvent) {
-    e.preventDefault()
-    if (isLastStep) {
-      submitData(data)
-      navigate('/home');
-
+    
+    async function submitData(data: any) {
+      try {
+        let resp = await criarCliente(data);
+        toast.success('Cliente criado com sucesso!');
+        return true;
+      } catch (error) {
+        toast.error('Não foi possível criar o cliente. Por favor, tente novamente mais tarde.');
+        console.error(error);
+        return false;
+      }
     }
-    next()
-  }
+    
+    function onSubmit(e: FormEvent) {
+      e.preventDefault();
+      if (isLastStep) {
+        submitData(data).then((success) => {
+          if (success) {
+            navigate('/home');
+          }
+        });
+      }
+      next();
+    }
   return (
     <>
       <div>

@@ -1,35 +1,35 @@
 import React from "react";
 import "./style.css";
 import { excludeCliente, excludeFuncionario, updateFuncionario } from "../../../utils/axios.routes";
+import { useNavigate } from 'react-router-dom';
+import { toast } from "react-toastify";
+
 interface employeeProps{
+  id_funcionario: any;
   nome: any;
   email: any;
   cpf: any;
   cargo: any;
   tipo: any;
 }
-const EmployeeFixed = ({nome, email, cpf, cargo, tipo}: employeeProps) => {
+const EmployeeFixed = ({id_funcionario, nome, email, cpf, cargo, tipo}: employeeProps) => {
+
+  const navigate = useNavigate();
   async function onExclude(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
-    if(tipo = "f"){
-      await excludeFuncionario(cpf)
-    } else {
-      await excludeCliente(cpf)
-    }
-    // continua a execução da função normalmente
-    console.log('Employee excluded!');
-    window.location.reload();
+    await excludeCliente(cpf)
+    navigate('/gerenciarcliente')
+    toast.success('Funcionário excluído com sucesso!');
   }
 
   async function onUpdate(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
-    // faz alguma operação assíncrona
     const selectElement = document.querySelector('select[name="select"]') as HTMLSelectElement;
     const selectedValue = selectElement.value;
     await updateFuncionario(cpf, selectedValue)
-    // continua a execução da função normalmente
     console.log('Employee updated!');
-    window.location.reload();
+    // window.location.reload();
+    toast.success('Cargo alterado com sucesso!');
   }
 
   if (tipo == "f"){
@@ -46,6 +46,9 @@ const EmployeeFixed = ({nome, email, cpf, cargo, tipo}: employeeProps) => {
         </summary>
         <div className="inside-box">
         <div className="information-wait-box">
+          <h2>
+            <b> Id:</b>{id_funcionario}
+          </h2>
           <h2>
             <b> Email:</b>{email}
           </h2>
@@ -84,15 +87,24 @@ const EmployeeFixed = ({nome, email, cpf, cargo, tipo}: employeeProps) => {
           </div>
         </div>
         <div className="box-confirm">
-        <button className="deny" onClick={e => onExclude(e)}>Excluir</button>
+        <button className="deny" onClick={e => onExclude(cpf)}>Excluir</button>
             <button className="approve" onClick={e => onUpdate(e)}>Alterar</button>
         </div>
         </div>
       </details>
     </>
   );
+}else if(cpf == null ) {  
+return (
+  <div className="information-wait-box">
+  <h2>
+    <b> Sem clientes Cadastrados</b>
+  </h2>
+</div>
+);
 } else {
   return (
+  
     <>
  <details className="card-wait">
       <summary className="outside-wait">
@@ -110,6 +122,7 @@ const EmployeeFixed = ({nome, email, cpf, cargo, tipo}: employeeProps) => {
         <h2>
           <b> CPF: </b>{cpf}
         </h2>
+
       </div>
       <div className="box-confirm">
       <button className="deny" onClick={e => onExclude(e)}>Excluir</button>

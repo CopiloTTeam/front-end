@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
 
 interface Cliente {
+  id_funcionario: number;
   nome: string;
   email: string;
   cpf: string;
@@ -43,17 +44,17 @@ const ClienteManagement = () => {
           <Navbar />
           <h1 className="title-primary">Clientes do Sistema</h1>
           {cliente && cliente.map((item: Cliente) => {
-            console.log(item)
             return (
               <React.Fragment key={item.cpf}>
-                <EmployeeFixed nome={item.nome} email={item.email} cargo={item.cpf} cpf={item.cpf} tipo={null} />
+                <EmployeeFixed id_funcionario={item.id_funcionario} nome={item.nome} email={item.email} cargo={item.cpf} cpf={item.cpf} tipo={null} />
               </React.Fragment>
             )
           }
           )}
+          {!cliente && <EmployeeFixed id_funcionario="" nome="" email="" cargo="" cpf={null} tipo={null} />}
         </div>
       </>
-    );
+    );    
   } else {
     return (
       <></>

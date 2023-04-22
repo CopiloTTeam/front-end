@@ -4,19 +4,25 @@ import Rocket from "../../assets/rocket.png";
 import { dadosFuncionarioc, login } from "../../utils/axios.routes";
 import { useNavigate, Link } from "react-router-dom";
 import { AuthContext, FuncionarioInicio } from "../../contexts/AuthContext";
-
-import "react-toastify/dist/ReactToastify.min.css";
+import EyeOff from "../../assets/eyeOff.png";
+import EyeOn from "../../assets/eyeOn.png";
 import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showSenha, setShowSenha] = useState(false);
+
+  const handleShowSenha = () => {
+    setShowSenha(!showSenha);
+  };
   const navigate = useNavigate();
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     setEmail(event.target.value);
   const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     setPassword(event.target.value);
-  // console.log(email, password)
+
 
   const { setFuncionario, setIsLogged } = useContext(AuthContext);
   let funcionarioo = FuncionarioInicio;
@@ -64,7 +70,7 @@ const Login = () => {
         }
         navigate("/home");
       } else {
-        console.log(resp?.status, resp?.data);
+     
         toast.error("Credenciais inválidas. Verifique seu email e senha!");
       }
     } catch (error) {
@@ -93,17 +99,23 @@ const Login = () => {
                 onChange={handleEmailChange}
               />
             </div>
+            <div className="pass-title">
+          <h3>Senha</h3>
+          <div className="pass-box-container">
+            <input
+              required
+              type={showSenha ? "text" : "password"}
+              placeholder="Digite sua Senha"
+              value={password}
+              onChange={handlePasswordChange}
+            />
+            <a className="button-password" onClick={handleShowSenha}>
+              {showSenha ? <img className="passwordImg" src={EyeOff}/> : <img className="passwordImg" src={EyeOn}/>}
+            </a>
+          </div>
+        </div>
 
-            <div className="pass-box">
-              <h3>Senha</h3>
-              <input
-                required
-                type="password"
-                placeholder="Digite sua Senha"
-                value={password}
-                onChange={handlePasswordChange}
-              />
-            </div>
+            
             <div className="button-box">
               <button type="submit" className="enter-button">
                 {" "}
