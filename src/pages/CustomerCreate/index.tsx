@@ -27,7 +27,7 @@ const CustomerForm = () => {
 
         fetchData();
     }, []);
-    if (isLogged && (funcionario.cargo = 'Administrador' || funcionario.cargo == 'Comercial')){
+    if (isLogged && (funcionario.cargo == 'Administrador' || funcionario.cargo == 'Comercial')){
 
       return (
         <>
