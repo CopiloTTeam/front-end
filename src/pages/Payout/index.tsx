@@ -9,12 +9,10 @@ import { toast } from "react-toastify";
 const Payout = () => {
   const navigate = useNavigate();
   const { isLogged, funcionario } = useContext(AuthContext);
-  const [data, setData] = useState<any>();
   const [parcela, setParcela] = useState<any>();
   const [usuario, setUsuario] = useState<any>();
   const { id } = useParams<{ id: string }>();
   const [valorPago , setValorPago] = useState("");
-  const [titulo, setTitulo] = useState("");
 
   async function submitdata(valorPago: String) {
     try {
@@ -66,13 +64,10 @@ const Payout = () => {
               {" "}
               <b>Nome: {usuario?.nome}</b>
             </h2>
-            {/* <h2>
-              {" "}
-              <b>Titulo:</b> Nome do titulo
-            </h2> */}
+
             <h2>
               {" "}
-              <b>Valor da Parcela: {parcela?.valor.toFixed(2)}</b>
+              <b>Valor da Parcela: R$ {parcela?.valor.toFixed(2)}</b>
             </h2>
             <h2>
               {" "}
@@ -81,14 +76,6 @@ const Payout = () => {
           </div>
           <hr></hr>
           <div className="box-date">
-            {/* <div className="input-date">
-              <h1>Data de Pagamento</h1>
-              <input value={dataPagamento} onChange={e => setDataPagamento(e.target.value)} required type="date"  />
-            </div> */}
-            {/* <div className="input-date">
-              <h1>Data de Crédito</h1>
-              <input required type="date" />
-            </div> */}
           
             <div className="input-date">
               <h1>Valor do Pagamento</h1>

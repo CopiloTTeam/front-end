@@ -3,8 +3,8 @@ import "./style.css";
 import React, { useEffect, useState} from 'react'
 
 type UserData = {
-  cpf: string,
-  id_funcionario: string
+  cpf_cliente: string,
+  cpf_funcionario: string
   data_geracao: string,
   valor:string,
 }
@@ -13,7 +13,7 @@ type UserFormProps = UserData & {
   updateFields: (fields: Partial<UserData>) => void
 }
 
-export function BilingInformation({ cpf, id_funcionario, data_geracao, valor, updateFields }: UserFormProps) {
+export function BilingInformation({ cpf_cliente, cpf_funcionario, data_geracao, valor, updateFields }: UserFormProps) {
   const [Usuarios, setUsuarios] = useState<any>();
   const [nomeUsuario, setNomeUsuario] = useState<any>();
   
@@ -32,13 +32,13 @@ export function BilingInformation({ cpf, id_funcionario, data_geracao, valor, up
   }, []);
   
   useEffect(() => {
-    if (Usuarios && cpf) {
-      const usuarioEncontrado = Usuarios.find((usuario: any) => usuario.cpf === cpf);
+    if (Usuarios && cpf_cliente) {
+      const usuarioEncontrado = Usuarios.find((usuario: any) => usuario.cpf === cpf_cliente);
       if (usuarioEncontrado) {
         setNomeUsuario(usuarioEncontrado.nome);
       }
     }
-  }, [cpf, Usuarios]);
+  }, [cpf_cliente, Usuarios]);
 
   return (
     <div className="cont">
@@ -50,7 +50,7 @@ export function BilingInformation({ cpf, id_funcionario, data_geracao, valor, up
               required
               type="text"
               placeholder="CPF do cliente"
-              value={cpf} onChange={e => updateFields({ cpf: e.target.value })}
+              value={cpf_cliente} onChange={e => updateFields({ cpf_cliente: e.target.value })}
             />
           </div>
         </div>
@@ -68,13 +68,13 @@ export function BilingInformation({ cpf, id_funcionario, data_geracao, valor, up
       </div>
       <div className="row">
         <div className="full-box">
-          <h1>ID do funcionario</h1>
+          <h1>CPF do funcionario</h1>
           <div className="tel-plus">
             <input
               required
               type="text"
-              placeholder="ID do funcionario"
-              value={id_funcionario} onChange={e => updateFields({ id_funcionario: e.target.value })}
+              placeholder="CPF do funcionario"
+              value={cpf_funcionario} onChange={e => updateFields({ cpf_funcionario: e.target.value })}
             />
           </div>
         </div>

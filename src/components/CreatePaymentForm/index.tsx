@@ -11,8 +11,8 @@ import { toast } from 'react-toastify'
 const PaymentForm = () => {
   const navigate = useNavigate();
   type FormData = {
-    cpf: string,
-    id_funcionario: string,
+    cpf_cliente: string,
+    cpf_funcionario: string,
     codigo_barra:string,
     data_geracao: string,
     nome_produto:string,
@@ -20,8 +20,8 @@ const PaymentForm = () => {
     valor:string,
   }
   const INITIAL_DATA: FormData = {
-    cpf: "",
-    id_funcionario: "",
+    cpf_cliente: "",
+    cpf_funcionario: "",
     codigo_barra:"",
     data_geracao: "",
     nome_produto:"",

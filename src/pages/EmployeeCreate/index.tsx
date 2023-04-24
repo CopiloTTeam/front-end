@@ -3,20 +3,14 @@ import "react-toastify/dist/ReactToastify.min.css";
 import { toast } from "react-toastify";
 
 import "./style.css";
-import { criarFuncionario, dadosUsuario } from "../../utils/axios.routes";
-import React, { useState, FormEvent, useContext } from "react";
+import { criarFuncionario } from "../../utils/axios.routes";
+import { useState, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../contexts/AuthContext";
 import EyeOff from "../../assets/eyeOff.png";
 import EyeOn from "../../assets/eyeOn.png";
 
 const Register = () => {
   const navigate = useNavigate();
-  const { isLogged } = useContext(AuthContext);
-  // if(!isLogged){
-  //   navigate('/')
-  // }
-
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
@@ -127,11 +121,6 @@ const Register = () => {
       </form>
     </div>
   );
-  // } else {
-  //   return(
-  //     <></>
-  //   )
-  // }
 };
 
 export default Register;

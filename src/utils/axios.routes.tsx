@@ -114,10 +114,9 @@ export const criarCliente = async (cliente: any) => {
 
 export const criarTitulo = async (titulo: any) => {
   try {
-    // const cliente = await api.get(`/listar/clientecpf/${titulo.cpf}`)
     const response = await api.post(`/cadastrar/titulo`, {
-      cpf: titulo.cpf,
-      id_funcionario: titulo.id_funcionario,
+      cpf_cliente: titulo.cpf_cliente,
+      cpf_funcionario: titulo.cpf_funcionario,
       codigo_barra: titulo.codigo_barra,
       data_geracao: titulo.data_geracao,
       nome_produto: titulo.nome_produto,

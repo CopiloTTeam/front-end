@@ -22,35 +22,6 @@ const PlotManagement = () => {
   const [client, setClient] = useState<any>();
   const [parcela, setParcela] = useState<any>(null);
 
-  const getMonthName = (month: number) => {
-   
-    const months = [
-      'Janeiro',
-      'Fevereiro',
-      'Março',
-      'Abril',
-      'Maio',
-      'Junho',
-      'Julho',
-      'Agosto',
-      'Setembro',
-      'Outubro',
-      'Novembro',
-      'Dezembro',
-    ];
-    return months[month];
-  };
-
-  const getDueMonth = (dataVencimento: any) => {
-    if (dataVencimento) {
-      const dueDate = new Date(dataVencimento);
-      return getMonthName(dueDate.getMonth());
-    } else {
-      return '';
-    }
-  };
-  
-
   useEffect(() => {
     if(!isLogged){
       navigate('/')
@@ -107,14 +78,16 @@ if (isLogged && (funcionario.cargo == 'Administrador' || funcionario.cargo == 'F
             <h3>Titulo:</h3>
             <p>{data?.nome_produto}</p>
           </div>
-          {parcela && parcela.map((item: Parcela) => {
+          {parcela && parcela.map((item: Parcela, index: number) => {
             return (
               <details key={item.id_parcela}>
                 <summary>
-                  {/* {getDueMonth(item.data_vencimento)} */}
-                  <h3>Parcela / {item.data_vencimento }</h3>
+                  <p>{index + 1}ª Parcela </p>
+                  <p>Vencimento: {item.data_vencimento}</p>
                   <p>Status: {item?.status=='1'? 'Pago': 'Pendente'}</p>
-                  { item.status == "0" ? <Link to={`/payout/${item.id_parcela}`}>Ver mais</Link>: null}
+                  {item.data_pagamento ? <p>Data de pagamento: {item.data_pagamento}</p> : null}
+                  {/* <p>Data de pagamento: {item.data_pagamento?  }</p> */}
+                  { item.status == "0" ? <Link className="link" to={`/payout/${item.id_parcela}`}>Ver mais</Link>: null}
                   
                 </summary>
                 <div className="card-completo">

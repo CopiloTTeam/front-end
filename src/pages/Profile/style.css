@@ -27,8 +27,16 @@
     justify-content: end;
     
 }
+
+.aaa{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
 .profile-container .profile-content .profile-box{
-    width: 90%;
+    width: 100%;
 }
 .profile-container .profile-content .profile-box input{
     width: 100%;
