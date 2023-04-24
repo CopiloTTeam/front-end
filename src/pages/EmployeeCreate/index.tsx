@@ -8,6 +8,8 @@ import { useState, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import EyeOff from "../../assets/eyeOff.png";
 import EyeOn from "../../assets/eyeOn.png";
+import ReactInputMask from "react-input-mask";
+
 
 const Register = () => {
   const navigate = useNavigate();
@@ -75,8 +77,9 @@ const Register = () => {
 
         <div className="cpf-box">
           <h3>CPF</h3>
-          <input
+          <ReactInputMask
             required
+            mask="999.999.999-99"
             type="text"
             placeholder="Digite seu CPF"
             value={cpf}

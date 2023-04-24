@@ -1,6 +1,7 @@
 import React from 'react'
 import './style.css'
 import axios from 'axios';
+import ReactInputMask from "react-input-mask";
 
 type UserData = {
   cep: string,
@@ -59,8 +60,9 @@ export function PersonalInformation({ cep, rua, bairro, cidade, estado, logradou
       <div className="row">
         <div className="first-box-local">
           <h1>CEP</h1>
-          <input
+          <ReactInputMask
             required
+            mask="99999-999"
             type="text"
             placeholder="CEP"
             value={cep}
