@@ -1,12 +1,16 @@
 import { AllUsers } from "../../../utils/axios.routes";
 import "./style.css";
-import React, { useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
+import ReactInputMask from "react-input-mask";
+import CurrencyInput from "react-currency-input-field";
+
+
 
 type UserData = {
   cpf: string,
   id_funcionario: string
   data_geracao: string,
-  valor:string,
+  valor: string
 }
 
 type UserFormProps = UserData & {
@@ -16,8 +20,7 @@ type UserFormProps = UserData & {
 export function BilingInformation({ cpf, id_funcionario, data_geracao, valor, updateFields }: UserFormProps) {
   const [Usuarios, setUsuarios] = useState<any>();
   const [nomeUsuario, setNomeUsuario] = useState<any>();
-  
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -30,7 +33,7 @@ export function BilingInformation({ cpf, id_funcionario, data_geracao, valor, up
     };
     fetchData();
   }, []);
-  
+
   useEffect(() => {
     if (Usuarios && cpf) {
       const usuarioEncontrado = Usuarios.find((usuario: any) => usuario.cpf === cpf);
@@ -44,10 +47,11 @@ export function BilingInformation({ cpf, id_funcionario, data_geracao, valor, up
     <div className="cont">
       <div className="row">
         <div className="full-box">
-           <h1>CPF do cliente</h1>
+          <h1>CPF do cliente</h1>
           <div className="tel-plus">
-            <input
+            <ReactInputMask
               required
+              mask="999.999.999-99"
               type="text"
               placeholder="CPF do cliente"
               value={cpf} onChange={e => updateFields({ cpf: e.target.value })}
@@ -55,16 +59,16 @@ export function BilingInformation({ cpf, id_funcionario, data_geracao, valor, up
           </div>
         </div>
         <div className="full-box">
-         
-         <h1>Nome do Cliente</h1>
-         <input
-           required
-           type="text"
-           value={nomeUsuario || ""}
-           placeholder="Nome do Cliente"
-           readOnly
-         />
-       </div>
+
+          <h1>Nome do Cliente</h1>
+          <input
+            required
+            type="text"
+            value={nomeUsuario || ""}
+            placeholder="Nome do Cliente"
+            readOnly
+          />
+        </div>
       </div>
       <div className="row">
         <div className="full-box">
@@ -91,11 +95,17 @@ export function BilingInformation({ cpf, id_funcionario, data_geracao, valor, up
       <div className="row">
         <div className="full-box">
           <h1>Valor</h1>
-          <input
+          <CurrencyInput
             required
-            type="text"
             placeholder="Valor"
-            value={valor} onChange={e => updateFields({ valor: e.target.value })}
+            prefix="R$"
+            decimalSeparator=","
+            groupSeparator="."
+            value={valor} 
+            onValueChange={(value) => updateFields({ valor: value })}
+            decimalScale={2}
+            fixedDecimalLength={2}
+            allowNegativeValue={false}
           />
         </div>
       </div>

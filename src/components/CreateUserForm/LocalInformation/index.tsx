@@ -1,5 +1,6 @@
 
 import "./style.css";
+import ReactInputMask from "react-input-mask";
 
 type UserData = {
   nome: string,
@@ -30,8 +31,9 @@ export function LocalInformation({ nome, cpf, email, data, updateFields }: UserF
         </div>
         <div className="second-box">
           <h1>CPF</h1>
-          <input
+          <ReactInputMask
             required
+            mask="999.999.999-99"
             type="text"
             placeholder="CPF"
             value={cpf} 
