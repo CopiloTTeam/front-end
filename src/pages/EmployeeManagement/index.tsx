@@ -27,9 +27,9 @@ const EmployeeManagement = () => {
     }
     const fetchData = async () => {
       try {
-        const response = await dadosUsuario(2);
-        const data = await response?.data;
-        setData(data);
+        // const response = await dadosUsuario(2);
+        // const data = await response?.data;
+        // setData(data);
 
         const funcs = await dadosFuncionarios();
         const resp = await funcs?.data;

@@ -3,16 +3,20 @@ import "react-toastify/dist/ReactToastify.min.css";
 import { toast } from "react-toastify";
 
 import "./style.css";
-import { criarFuncionario } from "../../utils/axios.routes";
-import { useState, FormEvent } from "react";
+import { criarFuncionario, dadosUsuario } from "../../utils/axios.routes";
+import React, { useState, FormEvent, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthContext";
 import EyeOff from "../../assets/eyeOff.png";
 import EyeOn from "../../assets/eyeOn.png";
-import ReactInputMask from "react-input-mask";
-
 
 const Register = () => {
   const navigate = useNavigate();
+  const { isLogged } = useContext(AuthContext);
+  // if(!isLogged){
+  //   navigate('/')
+  // }
+
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
@@ -77,9 +81,8 @@ const Register = () => {
 
         <div className="cpf-box">
           <h3>CPF</h3>
-          <ReactInputMask
+          <input
             required
-            mask="999.999.999-99"
             type="text"
             placeholder="Digite seu CPF"
             value={cpf}
@@ -124,6 +127,11 @@ const Register = () => {
       </form>
     </div>
   );
+  // } else {
+  //   return(
+  //     <></>
+  //   )
+  // }
 };
 
 export default Register;

@@ -15,19 +15,19 @@ const CustomerForm = () => {
       if(!isLogged){
         navigate('/')
       }
-        const fetchData = async () => {
-            try {
-                const response = await dadosUsuario(2);
-                const data = await response?.data
-                setData(data);
-            } catch (error) {
-                console.error(error);
-            }
-        };
+        // const fetchData = async () => {
+        //     try {
+        //         const response = await dadosUsuario(2);
+        //         const data = await response?.data
+        //         setData(data);
+        //     } catch (error) {
+        //         console.error(error);
+        //     }
+        // };
 
-        fetchData();
+        // fetchData();
     }, []);
-    if (isLogged && (funcionario.cargo == 'Administrador' || funcionario.cargo == 'Comercial')){
+    if (isLogged && (funcionario.cargo = 'Administrador' || funcionario.cargo == 'Comercial')){
 
       return (
         <>

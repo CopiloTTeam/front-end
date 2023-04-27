@@ -32,7 +32,7 @@ function App() {
           <Route path="/gerenciarfunc" element={<EmployeeManagement />} />
           <Route path="/gerenciarcliente" element={<ClienteManagement />} />
           <Route path="/payout/:id" element={<Payout/>} />
-          <Route path="*" element={<Error/>} />
+          <Route path="/error/" element={<Error/>} />
         </Routes>
         <ToastContainer/>
       </BrowserRouter>

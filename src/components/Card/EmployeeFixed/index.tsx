@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import "./style.css";
 import { excludeCliente, excludeFuncionario, updateFuncionario } from "../../../utils/axios.routes";
+import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
 
 interface employeeProps{
@@ -11,36 +12,28 @@ interface employeeProps{
   cargo: any;
   tipo: any;
 }
-
 const EmployeeFixed = ({id_funcionario, nome, email, cpf, cargo, tipo}: employeeProps) => {
 
-  const [selectedCargo, setSelectedCargo] = useState(cargo);
-
-  async function onExcludecli(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-    e.preventDefault();
-    await excludeCliente(cpf)
-    window.location.reload();
-    toast.success('Cliente excluído com sucesso!');
-  }
-
+  const navigate = useNavigate();
   async function onExclude(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
-    await excludeFuncionario(cpf)
-    window.location.reload();
+    await excludeCliente(cpf)
+    navigate('/gerenciarcliente')
     toast.success('Funcionário excluído com sucesso!');
   }
 
-  async function onUpdate() {
-    await updateFuncionario(cpf, selectedCargo);    
-    window.location.reload();
+  async function onUpdate(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    e.preventDefault();
+    const selectElement = document.querySelector('select[name="select"]') as HTMLSelectElement;
+    const selectedValue = selectElement.value;
+    await updateFuncionario(cpf, selectedValue)
+    console.log('Employee updated!');
+    // window.location.reload();
     toast.success('Cargo alterado com sucesso!');
   }
 
-  function handleCargoChange(e: React.ChangeEvent<HTMLSelectElement>) {
-    setSelectedCargo(e.target.value);
-  }
-
   if (tipo == "f"){
+
     return (
       <>
    <details className="card-wait">
@@ -54,7 +47,7 @@ const EmployeeFixed = ({id_funcionario, nome, email, cpf, cargo, tipo}: employee
         <div className="inside-box">
         <div className="information-wait-box">
           <h2>
-            <b> Id :</b>{id_funcionario}
+            <b> Id:</b>{id_funcionario}
           </h2>
           <h2>
             <b> Email:</b>{email}
@@ -64,30 +57,52 @@ const EmployeeFixed = ({id_funcionario, nome, email, cpf, cargo, tipo}: employee
           </h2>
           <div className="select-function">
             <label> Definir um cargo:</label>
-            <select name="CARGO" value={selectedCargo} onChange={handleCargoChange}>
-              <option value="Financeiro">Financeiro</option>
+            {cargo == 'Financeiro'? 
+            <select name="select">
+              <option value="Financeiro" selected>Financeiro</option>
               <option value="Comercial">Comercial</option>
               <option value="Administrador">Administrador</option>
             </select>
+            :
+            ''
+            }
+            {cargo == 'Comercial'? 
+            <select name="select">
+              <option value="Financeiro">Financeiro</option>
+              <option value="Comercial" selected>Comercial</option>
+              <option value="Administrador">Administrador</option>
+            </select>
+            :
+            ''
+            }
+            {cargo == 'Administrador'? 
+            <select name="select">
+              <option value="Financeiro">Financeiro</option>
+              <option value="Comercial">Comercial</option>
+              <option value="Administrador" selected>Administrador</option>
+            </select>
+            :
+            ''
+            }
           </div>
         </div>
         <div className="box-confirm">
-        <button className="deny" onClick={e => onExclude(e)}>Excluir</button>
-        <button className="approve" onClick={onUpdate}>Alterar</button>
+        <button className="deny" onClick={e => onExclude(cpf)}>Excluir</button>
+            <button className="approve" onClick={e => onUpdate(e)}>Alterar</button>
         </div>
         </div>
       </details>
     </>
   );
-  } else if(cpf == null ) {  
-    return (
-      <div className="information-wait-box">
-        <h2>
-          <b> Sem clientes Cadastrados</b>
-        </h2>
-      </div>
-    );
-  }else {
+}else if(cpf == null ) {  
+return (
+  <div className="information-wait-box">
+  <h2>
+    <b> Sem clientes Cadastrados</b>
+  </h2>
+</div>
+);
+} else {
   return (
   
     <>
@@ -110,7 +125,8 @@ const EmployeeFixed = ({id_funcionario, nome, email, cpf, cargo, tipo}: employee
 
       </div>
       <div className="box-confirm">
-      <button className="deny" onClick={e => onExcludecli(e)}>Excluir</button>
+      <button className="deny" onClick={e => onExclude(e)}>Excluir</button>
+          <button className="approve" onClick={e => onUpdate(e)}>Alterar</button>
       </div>
       </div>
     </details>

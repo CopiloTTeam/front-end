@@ -5,8 +5,6 @@ import './style.css'
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
 import { updateFuncionarioId } from '../../utils/axios.routes';
-import EyeOff from "../../assets/eyeOff.png";
-import EyeOn from "../../assets/eyeOn.png";
 
 const Profile = () => {
     const navigate = useNavigate();
@@ -17,11 +15,6 @@ const Profile = () => {
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
     const [cpf, setCpf] = useState("");
-    const [showSenha, setShowSenha] = useState(false);
-
-    const handleShowSenha = () => {
-      setShowSenha(!showSenha);
-    };
     useEffect(() => {
         if(!isLogged){
             navigate('/')
@@ -78,20 +71,11 @@ if (isLogged){
                     </div>
                     <div className='profile-content'>
                         <div className='profile-box'>
-                        <h1>Senha</h1>
-                        <div className="aaa">
-                        <input
-                        required
-                        type={showSenha ? "text" : "password"}
-                        placeholder="Digite sua Senha"
-                        value={senha}
-                        onChange={e => setSenha(e.target.value)}
-                        />
-                        <a className="button-password" onClick={handleShowSenha}>
-                        {showSenha ? <img className="passwordImg" src={EyeOff}/> : <img className="passwordImg" src={EyeOn}/>}
-                        </a>
+                            <h1>Senha</h1>
+                            <input required type="text" placeholder='*************' value={senha} onChange={e => setSenha(e.target.value)}/>
+                            {/* <p>******************</p> */}
+                        
                         </div>
-                    </div>
                         <div className='profile-box'>
                             <h1>CPF</h1>
                             <input required type="text" placeholder={data?.cpf} value={cpf} onChange={e => setCpf(e.target.value)}/>
