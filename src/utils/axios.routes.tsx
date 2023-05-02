@@ -15,7 +15,7 @@ export const login = async (data: any) => {
   }
       // Define que apenas status 200 é válido
     });
-    // console.log(response);
+ 
     
     return response.data
   } catch (error) {
@@ -363,7 +363,7 @@ export const updateFuncionario = async (cpf: any, value: any) => {
           ]
       }
         }
-        console.log(funcionario)
+   
     const response = await api.put(`/atualizar/funcionario`, {
       data: funcionario,
     }, {

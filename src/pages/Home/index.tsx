@@ -36,6 +36,8 @@ const Home = () => {
 
 if(isLogged){
 
+  
+
   if (!loading && (funcionario.cargo == 'Administrador' || funcionario.cargo == 'Comercial' || funcionario.cargo == 'Financeiro')) {
     return (
       <>

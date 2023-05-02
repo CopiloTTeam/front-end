@@ -9,6 +9,8 @@ import { AuthContext } from '../../contexts/AuthContext'
 
 const Navbar = () => {
     const { funcionario , logout} = useContext(AuthContext);
+   
+    
     if (funcionario.cargo == 'Administrador') {
         return (
             <div className='header'>

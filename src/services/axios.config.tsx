@@ -16,7 +16,7 @@ export const addAuthToken = (token: string) => {
   if (token) {
     api.defaults.headers.common['Authorization'] = `${token}`;
     // printe alguma resposta 
-    console.log(api.defaults.headers.common['Authorization']);
+    // console.log(api.defaults.headers.common['Authorization']);
   } else {
     delete api.defaults.headers.common['Authorization'];
   }

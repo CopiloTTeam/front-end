@@ -32,14 +32,15 @@ const Login = () => {
     localStorage.setItem("token", token);
     try {
       let funcionario = await dadosFuncionarioc(cpf);
- 
+
+      
       
       if (
-        funcionario != undefined &&
+        funcionario !== undefined &&
         funcionario != null
       ) {
-        funcionarioo.id = funcionario?.data.credential.id[0];
-        funcionarioo.cargo = funcionario?.data.credential.roles[0];
+        funcionarioo.id = funcionario?.data.credential.id;
+        funcionarioo.cargo = funcionario?.data.credential.role;
         funcionarioo.cpf = funcionario?.data.cpf;
         funcionarioo.email = funcionario?.data.email;
         funcionarioo.nome = funcionario?.data.nome;
