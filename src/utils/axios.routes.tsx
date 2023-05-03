@@ -5,9 +5,6 @@ const statuss = ['202','302','200','201']
 export const login = async (data: any) => {
   try {
     const response = await api.post('/login', data, {
-      headers: {
-        'Authorization': `${localStorage.getItem('token')}`
-      },
       timeout: 5000,
       validateStatus: function (status) {
         return statuss.includes(status.toString()) ; // Define que apenas status 200 é válido

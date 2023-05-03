@@ -3,20 +3,14 @@ import "react-toastify/dist/ReactToastify.min.css";
 import { toast } from "react-toastify";
 
 import "./style.css";
-import { criarFuncionario, dadosUsuario } from "../../utils/axios.routes";
-import React, { useState, FormEvent, useContext } from "react";
+import { criarFuncionario } from "../../utils/axios.routes";
+import React, { useState, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../contexts/AuthContext";
 import EyeOff from "../../assets/eyeOff.png";
 import EyeOn from "../../assets/eyeOn.png";
 
 const Register = () => {
   const navigate = useNavigate();
-  const { isLogged } = useContext(AuthContext);
-  // if(!isLogged){
-  //   navigate('/')
-  // }
-
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
@@ -34,8 +28,22 @@ const Register = () => {
     senha: String
   ) {
     try {
-      const response = await criarFuncionario(nome, email, cpf, senha);
-      return response?.status === 201;
+      if (nome == null || !nome) {
+        toast.error(`O campo de nome está Vazio!`);
+      }
+      if (!email || email == null) {
+        toast.error(`O campo email está vazio!`)
+      }
+      if (cpf == null || !cpf) {
+        toast.error(`O campo de cpf está Vazio!`);
+      }
+      if (!senha || senha == null) {
+        toast.error(`O campo senha está vazio!`)
+      }
+      if (nome && email && senha && cpf) {
+        const response = await criarFuncionario(nome, email, cpf, senha);
+        return response?.status === 201;
+      }
     } catch (error) {
       return false;
     }
@@ -52,7 +60,6 @@ const Register = () => {
       toast.error(`Erro ao cadastrar`);
     }
   }
-  // if (isLogged){
 
   return (
     <div
@@ -71,7 +78,6 @@ const Register = () => {
         <div className="name-box">
           <h3>Nome</h3>
           <input
-            required
             type="text"
             placeholder="Digite seu Nome"
             value={nome}
@@ -82,7 +88,6 @@ const Register = () => {
         <div className="cpf-box">
           <h3>CPF</h3>
           <input
-            required
             type="text"
             placeholder="Digite seu CPF"
             value={cpf}
@@ -93,7 +98,6 @@ const Register = () => {
         <div className="email-box">
           <h3>Email</h3>
           <input
-            required
             type="email"
             placeholder="Digite seu Email"
             value={email}
@@ -105,14 +109,13 @@ const Register = () => {
           <h3>Senha</h3>
           <div className="pass-box-container">
             <input
-              required
               type={showSenha ? "text" : "password"}
               placeholder="Digite sua Senha"
               value={senha}
               onChange={(e) => setSenha(e.target.value)}
             />
             <a className="button-password" onClick={handleShowSenha}>
-              {showSenha ? <img className="passwordImg" src={EyeOff}/> : <img className="passwordImg" src={EyeOn}/>}
+              {showSenha ? <img className="passwordImg" src={EyeOff} /> : <img className="passwordImg" src={EyeOn} />}
             </a>
           </div>
         </div>
@@ -127,11 +130,6 @@ const Register = () => {
       </form>
     </div>
   );
-  // } else {
-  //   return(
-  //     <></>
-  //   )
-  // }
 };
 
 export default Register;

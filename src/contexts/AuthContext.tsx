@@ -54,6 +54,7 @@ export const AuthContextProvider = ({children} : AuthContextProps) => {
     setIsLogged(false);
     setFuncionario(FuncionarioInicio);
     localStorage.removeItem("funcionario");
+    localStorage.removeItem("token");
   }
 
   return(

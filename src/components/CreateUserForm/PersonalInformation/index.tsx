@@ -10,13 +10,14 @@ type UserData = {
   estado: string,
   logradouro: string,
   complemento: string,
+  telefone: string
 }
 
 type UserFormProps = UserData & {
   updateFields: (fields: Partial<UserData>) => void
 }
 
-export function PersonalInformation({ cep, rua, bairro, cidade, estado, logradouro, complemento, updateFields }: UserFormProps) {
+export function PersonalInformation({ cep, rua, bairro, cidade, estado, logradouro, complemento, telefone, updateFields }: UserFormProps) {
 
   const [cepError, setCepError] = React.useState(false);
 
@@ -36,6 +37,7 @@ export function PersonalInformation({ cep, rua, bairro, cidade, estado, logradou
           cidade: data.localidade,
           estado: data.uf,
           complemento: data.complemento,
+          telefone: data.telefone
         });
         setCepError(false);
       } catch (error) {
@@ -48,6 +50,7 @@ export function PersonalInformation({ cep, rua, bairro, cidade, estado, logradou
         cidade: '',
         estado: '',
         complemento: '',
+        telefone: '',
       });
       setCepError(false);
     }
@@ -131,6 +134,16 @@ export function PersonalInformation({ cep, rua, bairro, cidade, estado, logradou
             placeholder="Complemento"
             value={complemento}
             onChange={e => updateFields({ complemento: e.target.value })}
+          />
+        </div>
+        <div className="seventh-box">
+          <h1>Telefone</h1>
+          <input
+            required
+            type="text"
+            placeholder="Telefone"
+            value={telefone}
+            onChange={e => updateFields({ telefone: e.target.value })}
           />
         </div>
       </div>

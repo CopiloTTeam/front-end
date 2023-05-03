@@ -67,13 +67,10 @@ const Login = () => {
       userName: email,
     };
     try {
-      let resp = await login(data);
-  
-      
-      
-      if (resp ) {
+      let resp = await login(data);     
+      console.log(data) 
+      if (resp) {
         const cpf = resp.funcionario.cpf;
-        
         if (cpf) {
           procuraFuncionario(cpf , resp.token);
         }
