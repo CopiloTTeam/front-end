@@ -65,64 +65,70 @@ const UserForm = () => {
     let complemento = data.complemento;
     let telefone = data.telefone;
 
+    var strCPF = cpf.replace(/[^\d]+/g, '');
+    var Soma;
+    Soma = 0;
+    var Resto;
+    let CPFvalido = true;
+    if (strCPF == "00000000000" || strCPF == "11111111111" || strCPF == "22222222222" || strCPF == "33333333333" || strCPF == "44444444444" || strCPF == "55555555555" || strCPF == "66666666666" || strCPF == "77777777777" || strCPF == "88888888888" || strCPF == "99999999999") {
+      CPFvalido = false;
+    }
+    for (let i: number = 1; i <= 9; i++) Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (11 - i);
+    Resto = (Soma * 10) % 11;
+
+    if ((Resto == 10) || (Resto == 11)) Resto = 0;
+    if (Resto != parseInt(strCPF.substring(9, 10))) CPFvalido = false;
+
+    Soma = 0;
+    for (let i: number = 1; i <= 10; i++) Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (12 - i);
+    Resto = (Soma * 10) % 11;
+
+    if ((Resto == 10) || (Resto == 11)) Resto = 0;
+    if (Resto != parseInt(strCPF.substring(10, 11))) CPFvalido = false;
+
     if (nome == null || !nome) {
       toast.warning(`Nome não está preenchido`);
-      errors = errors+1;
     }
-    if (cpf == null || !cpf) {
-      toast.warning(`CPF não está preenchido`);
-      errors = errors+1;
+    else if (strCPF == null || !strCPF) {
+      toast.warning(`O campo de cpf está Vazio!`);
     }
-    if (email == null || !email) {
+    else if (strCPF.length < 11) {
+      toast.warning(`O campo de cpf está incompleto!`);
+    }
+    else if (CPFvalido == false) {
+      toast.warning(`O campo de cpf está inválido!`);
+    }
+    else if (email == null || !email) {
       toast.warning(`Email não está preenchido`);
-      errors = errors+1;
     }
-    if (data_nascimento == null || !data_nascimento) {
+    else if (data_nascimento == null || !data_nascimento) {
       toast.warning(`Data Nascimento não está preenchido`);
-      errors = errors+1;
     }
-    if (cep == null || !cep) {
+    else if (cep == null || !cep) {
       toast.warning(`CEP não está preenchido`);
-      errors = errors+1;
     }
-    if (rua == null || !rua) {
+    else if (rua == null || !rua) {
       toast.warning(`Rua não está preenchido`);
-      errors = errors+1;
     }
-    if (bairro == null || !bairro) {
+    else if (bairro == null || !bairro) {
       toast.warning(`Bairro não está preenchido`);
-      errors = errors+1;
     }
-    if (cidade == null || !cidade) {
+    else if (cidade == null || !cidade) {
       toast.warning(`Cidade não está preenchido`);
-      errors = errors+1;
     }
-    if (estado == null || !estado) {
-      toast.warning(`Esrado não está preenchido`);
-      errors = errors+1;
+    else if (estado == null || !estado) {
+      toast.warning(`Estado não está preenchido`);
     }
-    if (logradouro == null || !logradouro) {
+    else if (logradouro == null || !logradouro) {
       toast.warning(`Logradouro não está preenchido`);
-      errors = errors+1;
     }
-    if (complemento == null || !complemento) {
+    else if (complemento == null || !complemento) {
       toast.warning(`Complemento não está preenchido`);
-      errors = errors+1;
-    } 
-    if (telefone == null || !telefone) {
+    }
+    else if (telefone == null || !telefone) {
       toast.warning(`Telefone não está preenchido`);
-      errors = errors+1;
-    } 
-    let dataAtual = new Date();
-    let dataComparação = new Date(data_nascimento);
-    if(dataComparação > dataAtual){
-      toast.error(`A data de Nascimento está maior do que a data atual seu imbecil`)
-      errors = errors+1
     }
-    if (nome && cpf && email && data_nascimento && cep && rua && bairro && cidade && estado && logradouro && complemento && telefone && (dataComparação < dataAtual)){
-      errors = 0;
-    }
-    if (errors == 0) {
+    else if (nome && cpf && email && data_nascimento && cep && rua && bairro && cidade && estado && logradouro && complemento && telefone) {
       return true
     }
     return false

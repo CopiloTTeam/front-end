@@ -1,3 +1,4 @@
+import ReactInputMask from "react-input-mask";
 
 import "./style.css";
 
@@ -31,12 +32,13 @@ export function LocalInformation({ nome, cpf, email, data, telefone, updateField
         </div>
         <div className="second-box">
           <h1>CPF</h1>
-          <input
-            required
+          <ReactInputMask
+            maskPlaceholder="_"
+            mask="999.999.999-99"
             type="text"
             placeholder="CPF"
-            value={cpf} 
-            onChange={e => updateFields({ cpf: e.target.value })}
+            value={cpf}
+            onChange={(e) => updateFields({cpf: e.target.value})}
           />
         </div>
       </div>
@@ -57,6 +59,8 @@ export function LocalInformation({ nome, cpf, email, data, telefone, updateField
           <input
             required
             type="date"
+            min={"1900-01-01"}
+            max={new Date(new Date().setFullYear(new Date().getFullYear() - 18)).toISOString().split("T")[0]}
             placeholder="Data de Nascimento"
             value={data} 
             onChange={e => updateFields({ data: e.target.value })}
