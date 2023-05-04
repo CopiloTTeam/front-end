@@ -55,7 +55,7 @@ const EmployeeManagement = () => {
           {funcionarioo && funcionarioo.length > 0 ? (
             <>
               {funcionarioo.map((item: Funcionario) => {
-                console.log(item.credential.role);
+                // console.log(item.credential.id);
                 
                 if (item.credential.role == null && item.credential.id != funcionario.id || item.cargo == undefined && item.credential.id != funcionario.id  ) {
                   // console.log(item.cpf);
@@ -63,7 +63,7 @@ const EmployeeManagement = () => {
                   return (
                     
                     <React.Fragment key={item.cpf}>
-                      <EmployeeWait id_funcionario={item.id_funcionario} nome={item.nome} email={item.email} cpf={item.cpf} />
+                      <EmployeeWait id_funcionario={item.credential.id} nome={item.nome} email={item.email} cpf={item.cpf} />
                     </React.Fragment>
                   );
                 } else if (

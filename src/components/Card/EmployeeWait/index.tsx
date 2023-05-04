@@ -14,7 +14,7 @@ const EmployeeWait = ({ id_funcionario, nome, email, cpf }: employeeProps) => {
     e.preventDefault();
     await excludeFuncionario(cpf)
     toast.success('Funcionário recusado com sucesso!');
-    // window.location.reload();
+    window.location.reload();
   }
 
   async function onUpdate(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
@@ -23,7 +23,7 @@ const EmployeeWait = ({ id_funcionario, nome, email, cpf }: employeeProps) => {
     const selectedValue = selectElement.value;
     await updateFuncionario(cpf, selectedValue)
     toast.success('Funcionário aprovado com sucessoaaaaaaaaaaaaaaaaaaaa!');
-    // window.location.reload();
+    window.location.reload();
   }
   return (
     <>

@@ -386,7 +386,7 @@ export const updateFuncionarioId = async (
    cpf: any ) => {
   try {
 
-    const response = await api.put(`/atualizar/funcionario/${id}`, {
+    const response = await api.put(`/atualizar/funcionario`, {
       nome: nome,
       email: email,
       cpf: cpf,

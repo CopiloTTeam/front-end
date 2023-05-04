@@ -52,20 +52,12 @@
   }
   
   .box-tel {
-    width: 50%;
+    width: 100%;
     font-size: 16px;
     margin-bottom: 6px;
   }
   
-  .box-cel {
-    width: 50%;
-    font-size: 16px;
-    margin-bottom: 6px;
-    margin-left: 24px;
-  }
-  
-  .box-tel h1,
-  .box-cel h1 {
+  .box-tel h1 {
     font-size: 16px;
     margin: 0px 0px 4px 0px;
   }
@@ -75,7 +67,6 @@
     flex-direction: row;
   }
   
-  .tel-plus input,
   .tel-plus input {
     width: 100%;
     height: 32px;
@@ -83,7 +74,7 @@
     border-radius: 5px;
   }
   
-  .tel-plus button {
+  .tel-plus a{
     width: 32px;
     height: 32px;
     border: 0px;
@@ -93,6 +84,10 @@
     font-size: 16px;
     cursor: pointer;
     margin-left: 8px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    padding-bottom: 3px;
   }
   
   @media (max-width: 925px) {

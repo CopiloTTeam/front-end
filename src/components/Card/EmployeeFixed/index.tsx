@@ -18,8 +18,9 @@ const EmployeeFixed = ({id_funcionario, nome, email, cpf, cargo, tipo}: employee
   async function onExclude(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
     await excludeCliente(cpf)
-    navigate('/gerenciarcliente')
+    window.location.reload();
     toast.success('Funcionário excluído com sucesso!');
+    
   }
 
   async function onUpdate(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
@@ -28,7 +29,7 @@ const EmployeeFixed = ({id_funcionario, nome, email, cpf, cargo, tipo}: employee
     const selectedValue = selectElement.value;
     await updateFuncionario(cpf, selectedValue)
     console.log('Employee updated!');
-    // window.location.reload();
+    window.location.reload();
     toast.success('Cargo alterado com sucesso!');
   }
 
@@ -95,6 +96,8 @@ const EmployeeFixed = ({id_funcionario, nome, email, cpf, cargo, tipo}: employee
     </>
   );
 }else if(cpf == null ) {  
+  console.log(cpf);
+  
 return (
   <div className="information-wait-box">
   <h2>

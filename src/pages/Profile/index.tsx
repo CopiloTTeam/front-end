@@ -54,7 +54,7 @@ if (isLogged){
                 <div className='profile-container'>
                     <div className='title'>
                         <h1>Perfil</h1>
-                        {/* <p>{data?.cargo}</p> */}
+                        <p>{data?.cargo}</p>
                     </div>
                     
                     <div className='profile-content'>
