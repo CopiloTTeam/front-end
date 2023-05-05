@@ -4,7 +4,6 @@ import React, { useEffect, useState} from 'react'
 
 type UserData = {
   cpf: string,
-  id_funcionario: string
   data_geracao: string,
   valor:string,
 }
@@ -13,7 +12,7 @@ type UserFormProps = UserData & {
   updateFields: (fields: Partial<UserData>) => void
 }
 
-export function BilingInformation({ cpf, id_funcionario, data_geracao, valor, updateFields }: UserFormProps) {
+export function BilingInformation({ cpf, data_geracao, valor, updateFields }: UserFormProps) {
   const [Usuarios, setUsuarios] = useState<any>();
   const [nomeUsuario, setNomeUsuario] = useState<any>();
   
@@ -67,17 +66,6 @@ export function BilingInformation({ cpf, id_funcionario, data_geracao, valor, up
        </div>
       </div>
       <div className="row">
-        <div className="full-box">
-          <h1>ID do funcionario</h1>
-          <div className="tel-plus">
-            <input
-              required
-              type="text"
-              placeholder="ID do funcionario"
-              value={id_funcionario} onChange={e => updateFields({ id_funcionario: e.target.value })}
-            />
-          </div>
-        </div>
         <div className="full-box">
           <h1>Data de Geração</h1>
           <input

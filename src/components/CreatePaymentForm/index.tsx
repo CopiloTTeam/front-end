@@ -12,21 +12,21 @@ const PaymentForm = () => {
   const navigate = useNavigate();
   type FormData = {
     cpf: string,
-    id_funcionario: string,
-    codigo_barra:string,
+    funcionario: string,
+    codigo_barra: string,
     data_geracao: string,
-    nome_produto:string,
-    parcelas:string,  
-    valor:string,
+    nome_produto: string,
+    parcelas: string,
+    valor: string,
   }
   const INITIAL_DATA: FormData = {
     cpf: "",
-    id_funcionario: "",
-    codigo_barra:"",
+    funcionario: "",
+    codigo_barra: "",
     data_geracao: "",
-    nome_produto:"",
-    parcelas:"",  
-    valor:"",
+    nome_produto: "",
+    parcelas: "",
+    valor: "",
   }
   const [data, setData] = useState(INITIAL_DATA)
   function updateFields(fields: Partial<FormData>) {
@@ -38,38 +38,81 @@ const PaymentForm = () => {
   const { steps, currentStepIndex, step, isFirstStep, isLastStep, next, back } =
     useMultistepForm([
       <PersonalInformation {...data} updateFields={updateFields} />,
-       <BilingInformation {...data} updateFields={updateFields} />,
-      // <Validation {...data} updateFields={updateFields}/>,
+      <BilingInformation {...data} updateFields={updateFields} />,
     ])
 
-    async function submitData(data: any) {
-      try {
+  async function submitData(data: any) {
+    try {
+      let cpf = data.cpf;
+      let storage = localStorage.getItem('funcionario');
+      let funcionario = '';
+      if (storage !== null){
+        let objFuncionario = JSON.parse(storage);
+        funcionario = objFuncionario.cpf;
+      }
+      data.funcionario = funcionario;
+      let codigo_barra = data.codigo_barra;
+      let data_geracao = data.data_geracao;
+      let nome_produto = data.nome_produto;
+      let parcelas = data.parcelas;
+      let valor = data.valor;
+
+      if (cpf == null || !cpf) {
+        toast.warning("O Campo CPF não está preenchido!");
+      }
+      if (funcionario == null || !funcionario || funcionario == '') {
+        toast.error("Estamos enfrentando problemas ao cadastrar titulos, tente novamente mais tarde!");
+        localStorage.removeItem('funcionario');
+        localStorage.removeItem('token');
+        navigate('/login');
+      }
+      if (codigo_barra == null || !codigo_barra) {
+        toast.warning("O Campo Código de Barra não está preenchido!");
+      }
+      if (data_geracao == null || !data_geracao) {
+        toast.warning("O Campo Data Geração não está preenchido!");
+      }
+      if (nome_produto == null || !nome_produto) {
+        toast.warning("O Campo Nome Do Produto não está preenchido!");
+      }
+      if (parcelas == null || !parcelas) {
+        toast.warning("O Campo Parcelas não está preenchido!");
+      }
+      if (valor == null || !valor) {
+        toast.warning("O Campo valor não está preenchido!");
+      }
+      if(cpf && funcionario != '' && funcionario != null && codigo_barra && data_geracao && nome_produto && parcelas && valor){
         var resp = await criarTitulo(data);
-        toast.success('Título criado com sucesso!');
-        return true;
-      } catch (error) {
-        toast.error('Não foi possível criar o título. Por favor, tente novamente mais tarde.');
-        console.error(error);
-        return false;
+        if(resp?.status == 201){
+          toast.success('Título criado com sucesso!');
+          return true;
+        }
+        toast.error('Erro ao criar titulo, tente novamente mais tarde!')
+        return false
       }
+    } catch (error) {
+      toast.error('Não foi possível criar o título. Por favor, tente novamente mais tarde.');
+      console.error(error);
+      return false;
     }
-    
-    function onSubmit(e: FormEvent) {
-      e.preventDefault();
-      if (isLastStep) {
-        submitData(data).then((success) => {
-          if (success) {
-            navigate('/home');
-          }
-        });
-      }
-      next();
+  }
+
+  function onSubmit(e: FormEvent) {
+    e.preventDefault();
+    if (isLastStep) {
+      submitData(data).then((success) => {
+        if (success) {
+          navigate('/home');
+        }
+      });
     }
+    next();
+  }
   return (
     <>
       <div>
         <form onSubmit={onSubmit}>
-          <div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <h2>Emitir Título</h2>
             {currentStepIndex + 1} / {steps.length}
           </div>
