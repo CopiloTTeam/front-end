@@ -12,7 +12,7 @@ type UserFormProps = UserData & {
   updateFields: (fields: Partial<UserData>) => void
 }
 
-export function PersonalInformation({ codigo_barra, nome_produto, updateFields }: UserFormProps) {
+export function PersonalInformation({ codigo_barra, nome_produto, parcelas, updateFields }: UserFormProps) {
   return (
     <div className="cont">
       <div className="row">
@@ -32,7 +32,7 @@ export function PersonalInformation({ codigo_barra, nome_produto, updateFields }
             required
             type="text"
             placeholder="Número de Parcelas"
-            readOnly value="12"
+            readOnly value={parcelas}
           />
         </div>
       </div>
