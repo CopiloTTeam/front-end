@@ -177,14 +177,15 @@ export const criarCliente = async (cliente: any) => {
 
 export const criarTitulo = async (titulo: any) => {
   try {
-    // const cliente = await api.get(`/listar/clientecpf/${titulo.cpf}`)
     const response = await api.post(`/cadastrar/titulo`, {
-      cpf: titulo.cpf,
-      id_funcionario: titulo.id_funcionario,
+      cliente_cpf: titulo.cpf,
+      funcionario_cpf: titulo.id_funcionario,
       codigo_barra: titulo.codigo_barra,
       data_geracao: titulo.data_geracao,
       nome_produto: titulo.nome_produto,
-      parcelas: 12,
+      qr_code: "https://example.com/qr_code",
+      numero_boleto: "numeroboleto",
+      // parcelas: 12,
       valor: titulo.valor,
       
 

@@ -6,6 +6,7 @@ import CurrencyInput from "react-currency-input-field";
 
 type UserData = {
   cpf: string,
+  id_funcionario: string
   data_geracao: string,
   valor: string
 }
@@ -14,7 +15,7 @@ type UserFormProps = UserData & {
   updateFields: (fields: Partial<UserData>) => void
 }
 
-export function BilingInformation({ cpf, data_geracao = new Date().toISOString().split('T')[0], valor, updateFields }: UserFormProps) {
+export function BilingInformation({ cpf, id_funcionario, data_geracao, valor, updateFields }: UserFormProps) {
   const [Usuarios, setUsuarios] = useState<any>();
   const [nomeUsuario, setNomeUsuario] = useState<any>();
 
@@ -41,7 +42,6 @@ export function BilingInformation({ cpf, data_geracao = new Date().toISOString()
     }
   }, [cpf, Usuarios]);
 
-
   return (
     <div className="cont">
       <div className="row">
@@ -49,6 +49,7 @@ export function BilingInformation({ cpf, data_geracao = new Date().toISOString()
           <h1>CPF do cliente</h1>
           <div className="tel-plus">
             <ReactInputMask
+
               type="text"
               mask="999.999.999-99"
               placeholder="CPF do cliente"
@@ -69,11 +70,21 @@ export function BilingInformation({ cpf, data_geracao = new Date().toISOString()
       </div>
       <div className="row">
         <div className="full-box">
+          <h1>ID do funcionario</h1>
+          <div className="tel-plus">
+            <input
+              type="text"
+              placeholder="ID do funcionario"
+              value={id_funcionario} onChange={e => updateFields({ id_funcionario: e.target.value })}
+            />
+          </div>
+        </div>
+        <div className="full-box">
           <h1>Data de Geração</h1>
           <input
             type="date"
             placeholder="Data de Vencimento"
-            value={data_geracao}
+            value={new Date().toISOString().split('T')[0]}
             readOnly
           />
         </div>
@@ -88,7 +99,7 @@ export function BilingInformation({ cpf, data_geracao = new Date().toISOString()
             decimalSeparator=","
             groupSeparator="."
             value={valor} 
-            onValueChange={(value) => updateFields({ valor: value })}
+            onValueChange={(value) => updateFields({ valor: value?.replace("R$", "").replace(".", "").replace(",", ".") })}
             decimalScale={2}
             allowNegativeValue={false}
           />
