@@ -8,6 +8,7 @@ import EyeOff from "../../assets/eyeOff.png";
 import EyeOn from "../../assets/eyeOn.png";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
+import { addAuthToken } from "../../services/axios.config";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -26,20 +27,24 @@ const Login = () => {
 
   const { setFuncionario, setIsLogged } = useContext(AuthContext);
   let funcionarioo = FuncionarioInicio;
-  async function procuraFuncionario(cpf: string) {
+  async function procuraFuncionario(cpf: string , token : string ) {
+    addAuthToken(token);
+    localStorage.setItem("token", token);
     try {
       let funcionario = await dadosFuncionarioc(cpf);
+
+      
+      
       if (
-        funcionario != undefined &&
-        funcionario != null &&
-        funcionario.status == 200
+        funcionario !== undefined &&
+        funcionario != null
       ) {
-        funcionarioo.id = funcionario?.data.id;
-        funcionarioo.cargo = funcionario?.data.cargo;
+        funcionarioo.id = funcionario?.data.credential.id;
+        funcionarioo.cargo = funcionario?.data.credential.role;
         funcionarioo.cpf = funcionario?.data.cpf;
         funcionarioo.email = funcionario?.data.email;
         funcionarioo.nome = funcionario?.data.nome;
-        funcionarioo.senha = funcionario?.data.senha;
+        funcionarioo.senha = funcionario?.data.credential.password;
         setFuncionario(funcionarioo);
         setIsLogged(true);
         let infos = {
@@ -58,19 +63,19 @@ const Login = () => {
   ): Promise<void> {
     event.preventDefault();
     const data = {
-      email: email,
-      senha: password,
+      password: password,
+      userName: email,
     };
     try {
-      let resp = await login(data);
-      if (resp?.data && resp?.status === 200) {
-        const cpf = resp.data;
+      let resp = await login(data);     
+      console.log(data) 
+      if (resp) {
+        const cpf = resp.funcionario.cpf;
         if (cpf) {
-          procuraFuncionario(cpf);
+          procuraFuncionario(cpf , resp.token);
         }
         navigate("/home");
       } else {
-     
         toast.error("Credenciais inválidas. Verifique seu email e senha!");
       }
     } catch (error) {

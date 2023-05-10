@@ -33,14 +33,6 @@
   width: 35px;
   height: 35px;
 }
-
-.navlogo .logoText {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
 .navlogo .logoText h3 {
   color: #fff;
   font-size: 0.8rem;
@@ -95,16 +87,6 @@
   background: #d919ff;
   border-radius: 50%;
 }
-
-.logout-button{
-  background-color:rgb(167, 0, 0);
-  color: white;
-  border: none;
-  padding: 10px;
-  margin-left: 16px;
-  border-radius: 5px;
-}
-
 @media (min-width: 1024px) {
   .container {
     margin: 0;
@@ -128,7 +110,6 @@
     display: grid;
     align-items: center;
     transition: 0.4s;
-    justify-content: center;
   }
   .navlist {
     justify-content: center;
@@ -151,4 +132,14 @@
   .navitem {
     padding: 5px;
   }
+}
+
+
+.logout-button{
+  background-color:rgb(167, 0, 0);
+  color: white;
+  border: none;
+  padding: 10px;
+  margin-left: 16px;
+  border-radius: 5px;
 }

@@ -4,29 +4,25 @@ import Boleto from '../../assets/adicionarBoleto.png'
 import User from '../../assets/adicionarUser.png'
 import Estatisticas from '../../assets/estatistica.png'
 import Perfil from '../../assets/perfil.png'
-import ConfigFunc from '../../assets/configFunc.png'
-import Home from '../../assets/home.png'
 import './style.css'
 import { AuthContext } from '../../contexts/AuthContext'
 
 const Navbar = () => {
-    // const { funcionario } = useContext(AuthContext);
     const { funcionario , logout} = useContext(AuthContext);
+   
+    
     if (funcionario.cargo == 'Administrador') {
         return (
-            
             <div className='header'>
                 <div className='nav container'>
                     <Link to="/perfil">
                         <a className='navlogo'>
                             <img src={Perfil} alt='Perfil' />
                             <div className="logoText">
-                                <div className="info-container">
                                 <h3>Olá, {funcionario.nome}</h3>
                                 <p>{funcionario.cargo}</p>
-                                </div>
-                                <button className="logout-button" onClick={logout}>Logout</button>
                             </div>
+                            <button className="logout-button" onClick={logout}>Logout</button>
                         </a>
                     </Link>
                     <div className='navmenu'>
@@ -35,7 +31,7 @@ const Navbar = () => {
                                 <a className='navlink'>
                                     <li className='navitem'>
 
-                                        <img src={Home} alt='Home' />
+                                        <img src={Estatisticas} alt='Home' />
                                         <span className='navname'>Home</span>
 
                                     </li>
@@ -74,7 +70,7 @@ const Navbar = () => {
                                 <a className='navlink'>
                                     <li className='navitem'>
 
-                                        <img src={ConfigFunc} alt='Gerenciar Funcionário' />
+                                        <img src={Boleto} alt='Gerenciar Funcionário' />
                                         <span className='navname'>Gerenciar Funcionários</span>
 
                                     </li></a>
@@ -83,7 +79,7 @@ const Navbar = () => {
                         <a className='navlink'>
                             <li className='navitem'>
 
-                                <img src={ConfigFunc} alt='Gerenciar Cliente' />
+                                <img src={Boleto} alt='Gerenciar Cliente' />
                                 <span className='navname'>Gerenciar Cliente</span>
 
                             </li></a>
@@ -95,22 +91,17 @@ const Navbar = () => {
             </div>
         );
     } else if (funcionario.cargo == 'Comercial') {
-
-        
         return (
             <div className='header'>
-            <div className='nav container'>
-                <Link to="/perfil">
-                    <a className='navlogo'>
-                        <img src={Perfil} alt='Perfil' />
-                        <div className="logoText">
-                            <div className="info-container">
-                            <h3>Olá, {funcionario.nome}</h3>
-                            <p>{funcionario.cargo}</p>
+                <div className='nav container'>
+                    <Link to="/perfil">
+                        <a className='navlogo'>
+                            <img src={Perfil} alt='Perfil' />
+                            <div className="logoText">
+                                <h3>Olá, {funcionario.nome}</h3>
+                                <p>{funcionario.cargo}</p>
                             </div>
-                            <button className="logout-button" onClick={logout}>Logout</button>
-                        </div>
-                    </a>
+                        </a>
                     </Link>
                     <div className='navmenu'>
                         <ul className='navlist'>
@@ -129,7 +120,7 @@ const Navbar = () => {
                                     <li className='navitem'>
 
                                         <img src={Estatisticas} alt='Estatisticas' />
-                                        <span className='navname'>Estatísticas</span>
+                                        <span className='navname'>Estatisticas</span>
 
                                     </li>
                                 </a>
@@ -138,7 +129,7 @@ const Navbar = () => {
                                 <a className='navlink'>
                                     <li className='navitem'>
 
-                                        <img src={Boleto} alt='User' />
+                                        <img src={User} alt='User' />
                                         <span className='navname'>Cadastro de Clientes</span>
 
                                     </li>
@@ -170,19 +161,16 @@ const Navbar = () => {
     } else if (funcionario.cargo == 'Financeiro') {
         return (
             <div className='header'>
-            <div className='nav container'>
-                <Link to="/perfil">
-                    <a className='navlogo'>
-                        <img src={Perfil} alt='Perfil' />
-                        <div className="logoText">
-                            <div className="info-container">
-                            <h3>Olá, {funcionario.nome}</h3>
-                            <p>{funcionario.cargo}</p>
+                <div className='nav container'>
+                    <Link to="/perfil">
+                        <a className='navlogo'>
+                            <img src={Perfil} alt='Perfil' />
+                            <div className="logoText">
+                                <h3>Olá, {funcionario.nome}</h3>
+                                <p>{funcionario.cargo}</p>
                             </div>
-                            <button className="logout-button" onClick={logout}>Logout</button>
-                        </div>
-                    </a>
-                </Link>
+                        </a>
+                    </Link>
                     <div className='navmenu'>
                         <ul className='navlist'>
                             <Link to="/home">
@@ -200,7 +188,7 @@ const Navbar = () => {
                                     <li className='navitem'>
 
                                         <img src={Estatisticas} alt='Estatisticas' />
-                                        <span className='navname'>Estatísticas</span>
+                                        <span className='navname'>Estatisticas</span>
 
                                     </li>
                                 </a>
