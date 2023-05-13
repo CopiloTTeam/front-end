@@ -34,31 +34,30 @@ const Home = () => {
     fetchData();
   }, []);
 
-if(isLogged){
-
-  
-
-  if (!loading && (funcionario.cargo == 'Administrador' || funcionario.cargo == 'Comercial' || funcionario.cargo == 'Financeiro')) {
-    return (
-      <>
-        <Navbar/>
-        <main>
-          <AnalyticBox />
-          <Table data={data} client={client} />
-        </main>
-      </>
-    );
-  } else {
-    return(
-      <Loading/> 
-      )
-    }
-    
-  } else{
-    return(
-      <></>
-    )
+  if (!isLogged) {
+    navigate('/');
+    return <div>Você precisa estar logado para acessar esta página.</div>
   }
-  };
+
+  if (loading) {
+    return <Loading/>;
+  }
+
+  const isAdmin = funcionario.cargo === 'Administrador';
+  const isComercial = funcionario.cargo === 'Comercial';
+  const isFinanceiro = funcionario.cargo === 'Financeiro';
+
+  const shouldRenderTable = isAdmin || isComercial || isFinanceiro;
+
+  return (
+    <>
+      <Navbar/>
+      <main>
+        <AnalyticBox />
+        {<Table data={data} client={client} />}
+      </main>
+    </>
+  );
+};
   
-  export default Home;
+export default Home;

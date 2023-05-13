@@ -9,8 +9,8 @@ const AnalyticBox = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const resp = await ListarParcela();
-        setDados(resp);
+        // const resp = await ListarParcela();
+        // setDados(resp);
       } catch (error) {
         console.error(error);
       }

@@ -23,7 +23,7 @@ const Table = ({ data, client }: TableProps) => {
                 <td>CPF</td>
                 <td>Nome Cliente</td>
                 <td>Titulo</td>
-                <td>Valor Total</td>
+                <td align="right">Valor Total</td>
                 <td>Nº Parcelas</td>
                 <td>Info.</td>
               </tr>
@@ -31,19 +31,22 @@ const Table = ({ data, client }: TableProps) => {
             <tbody>
               {data && data.map((item) => {
                 // Look up client information based on the cpf value
-                const clientInfo = client.find((c) => c.cpf === item.cpf);
+                const clientInfo = client.find((c) => c.cpf === item.cliente.cpf);
                 const nomeCliente = clientInfo?.nome;
                 const cpf = clientInfo?.cpf;
 
                 return (
-                  <tr key={item.id_titulo}>
+                  <tr key={item.id}>
                     <td>{cpf}</td>
                     <td>{nomeCliente}</td>
-                    <td>{item.id_titulo}</td>
+                    <td>{item.id}</td>
                     <td align="right">R${item.valor}</td>
-                    <td>{item.parcelas}</td>
+                    {/* {Object.values(item.map((valor: string) => (
+                    <td>{valor}</td>)))} */}
+                    <td>12</td>
+                    {/* <td>{item.parcelas}</td> */}
                     <td>
-                      <Link to={`/gerenciarparcelas/${item.id_titulo}`}>Ver mais</Link>
+                      <Link to={`/gerenciarparcelas/${item.id}`}>Ver mais</Link>
                     </td>
                   </tr>
                 )
@@ -77,15 +80,14 @@ const Table = ({ data, client }: TableProps) => {
                 const cpf = clientInfo?.cpf;
 
                 return (
-                  <tr key={item.id_titulo}>
+                  <tr key={item.id}>
                     <td>{cpf}</td>
                     <td>{nomeCliente}</td>
-                    <td>{item.id_titulo}</td>
+                    <td>{item.id}</td>
                     <td align="right">R${item.valor}</td>
-                    <td>{item.parcelas}</td>
-                    {/* <td>
-                    <Link to={`/gerenciarparcelas/${item.id_titulo}`}>Ver mais</Link>
-                  </td> */}
+                    {/* {Object.values(item.map((valor: string) => (
+                    <td>{valor}</td>)))} */}
+                    {/* <td><Link to={`/gerenciarparcelas/${item.id}`}>Ver mais</Link></td> */}
                   </tr>
                 )
               })}

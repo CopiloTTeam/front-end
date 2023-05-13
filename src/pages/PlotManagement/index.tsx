@@ -7,7 +7,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 
 interface Parcela {
   data_vencimento: string;
-  cpf: string;
+  // cpf: string;
   nome_produto: string;
   id_parcela: string;
   data_pagamento: string;
@@ -65,25 +65,27 @@ const PlotManagement = () => {
       }
     };
 
-    const fetchClient = async () => {
-      try {
-        const responseTeste = await gerenciarTitulo(id);
-        const dadosTeste = await responseTeste?.data;
-        const cpf = dadosTeste?.cpf;
-        const response = await dadosUsuario(cpf);
-        const Cliente = await response?.data;
-        setClient(Cliente);
+    // const fetchClient = async () => {
+    //   try {
+    //     const responseTeste = await gerenciarTitulo(id);
+    //     const dadosTeste = await responseTeste?.data;
+    //     const cpf = dadosTeste?.cpf;
+    //     const response = await dadosUsuario(cpf);
+    //     const Cliente = await response?.data;
+    //     setClient(Cliente);
         
         
-      } catch (error) {
-        console.error(error);
-      }
-    };
+    //   } catch (error) {
+    //     console.error(error);
+    //   }
+    // };
 
     const fetchParcela = async () => {
       try {
-        const response = await gerenciarParcelaTitulo(id);
-        const data = await response?.data;
+        const response = await gerenciarTitulo(id);
+        const data = await response?.data.parcelas;
+        console.log(data);
+        
         setParcela(data);
     
       } catch (error) {
@@ -93,7 +95,7 @@ const PlotManagement = () => {
 
     fetchData();
     fetchParcela();
-    fetchClient();
+    // fetchClient();
   }, [id]);
 if (isLogged && (funcionario.cargo == 'Administrador' || funcionario.cargo == 'Financeiro')){
   return (
@@ -103,18 +105,20 @@ if (isLogged && (funcionario.cargo == 'Administrador' || funcionario.cargo == 'F
         <div className="plot-container">
           <div className="plot-info">
             <h3>Nome: </h3>
-            <p>{client?.nome}</p>
+            <p>{data?.cliente.nome}</p>
             <h3>Titulo:</h3>
             <p>{data?.nome_produto}</p>
           </div>
-          {parcela && parcela.map((item: Parcela) => {
+          {parcela && parcela.map((item: Parcela, index: number) => {
             return (
               <details key={item.id_parcela}>
                 <summary>
-                  {/* {getDueMonth(item.data_vencimento)} */}
-                  <h3>Parcela / {item.data_vencimento }</h3>
+                  <p>{index + 1}ª Parcela </p>
+                  <p>Vencimento: {item.data_vencimento}</p>
                   <p>Status: {item?.status=='1'? 'Pago': 'Pendente'}</p>
-                  { item.status == "0" ? <Link to={`/payout/${item.id_parcela}`}>Ver mais</Link>: null}
+                  {item.data_pagamento ? <p>Data de pagamento: {item.data_pagamento}</p> : null}
+                  {/* <p>Data de pagamento: {item.data_pagamento?  }</p> */}
+                  { item.status == "0" ? <Link className="link" to={`/payout/${item.id_parcela}`}>Ver mais</Link>: null}
                   
                 </summary>
                 <div className="card-completo">
