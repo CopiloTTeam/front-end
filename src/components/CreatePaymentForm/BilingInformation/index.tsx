@@ -70,11 +70,12 @@ export function BilingInformation({ cpf, id_funcionario, data_geracao, valor, up
       </div>
       <div className="row">
         <div className="full-box">
-          <h1>ID do funcionario</h1>
+          <h1>CPF do funcionario</h1>
           <div className="tel-plus">
-            <input
+            <ReactInputMask
               type="text"
-              placeholder="ID do funcionario"
+              mask="999.999.999-99"
+              placeholder="CPF do funcionario"
               value={id_funcionario} onChange={e => updateFields({ id_funcionario: e.target.value })}
             />
           </div>
