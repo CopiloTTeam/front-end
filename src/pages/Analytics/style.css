@@ -1,35 +1,51 @@
-.top-box{
-    padding: 2rem 0;
+.container-stats {
+  padding: 7rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.button-select-graphics {
+  display: flex;
+  flex-direction: row;
+  margin-top: 2rem;
+  justify-content: center;
+}
+
+.button-graphics {
+  margin-right: 2rem;
+  background-color: #0044d0;
+  color: white;
+  border: none;
+  padding: 10px;
+  margin-left: 16px;
+  border-radius: 5px;
+}
+
+.select-box {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.select-box .select-input {
+  margin-top: 0.3rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.select-box .select-input h3 {
+  font-size: 1rem;
+}
+.select-box select {
+  height: 1.4rem;
+}
+@media (max-width: 768px) {
+  .top-box {
+    margin-top: 2rem;
+  }
+  .top-box .select-box {
     display: flex;
-    justify-content: center;
+    gap: 0.5rem;
     flex-direction: column;
-    align-items: center;
-}
-.select-box{
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-}
-.select-box .select-input{
-    margin-top: 0.3rem;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-}
-.select-box .select-input h3{
-    font-size: 1rem;
-}
-.select-box select{
-    height: 1.4rem;
-}
-@media(max-width: 768px){
-    .top-box{
-        margin-top: 2rem;
-    }
-    .top-box .select-box{
-        display: flex;
-        gap: 0.5rem;
-        flex-direction: column;
-    }
+  }
 }
