@@ -39,9 +39,9 @@ const Payout = () => {
             try {
                 const response = await baixaParcela(id);
                 const data = await response?.data;
-                const UsuarioDados = await dadosUsuario(data.cpf);
-                const dataUsuario = await UsuarioDados?.data;
-                setUsuario(dataUsuario);
+                // const UsuarioDados = await dadosUsuario(data.cliente_cpf);
+                // const dataUsuario = await UsuarioDados?.data;
+                // setUsuario(dataUsuario);
                 setParcela(data);
             } catch (error) {
                 console.error(error);
