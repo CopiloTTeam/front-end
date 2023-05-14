@@ -263,7 +263,6 @@ export const excludeFuncionario = async (cpf: any) => {
       return statuss.includes(status.toString()) ; // Define que apenas status 200 é válido
     }  
   }
-
     );
     const payload = {
       nome: user.data.nome,
@@ -339,31 +338,14 @@ export const excludeCliente = async (cpf: any) => {
 }
 
 export const updateFuncionario = async (cpf: any, value: any) => {
-  try {
-    const user = await api.get(`/listar/funcionario/${cpf}`, {
-      headers: {
-        'Authorization': `${localStorage.getItem('token')}`
-      },
-      timeout: 5000,
-      validateStatus: function (status) {
-      return statuss.includes(status.toString()) ; // Define que apenas status 200 é válido
-    }
-    });
-    const funcionario = {
-      cpf: "37750825819",
-      nome: "Guilherme Duarte Cenzi Dias",
-      email: "a@gui.com",
-      credential: {
-          password: "102030@@",
-          userName: "val@valderi",
-          roles: [
-              "Sem_Cargo"
-          ]
-      }
-        }
-   
+  try {    
+
     const response = await api.put(`/atualizar/funcionario`, {
-      data: funcionario,
+      cpf: cpf,
+      credential: {
+        role: value
+    }
+
     }, {
       headers: {
         'Authorization': `${localStorage.getItem('token')}`

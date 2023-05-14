@@ -54,23 +54,19 @@ const EmployeeManagement = () => {
           <h2 className="title-secundary">Solicitações Pendentes</h2>
           {funcionarioo && funcionarioo.length > 0 ? (
             <>
-              {funcionarioo.map((item: Funcionario) => {
-                // console.log(item.credential.id);
-                
-                if (item.credential.role == null && item.credential.id != funcionario.id || item.cargo == undefined && item.credential.id != funcionario.id  ) {
-                  // console.log(item.cpf);
-                  
+              {funcionarioo.map((item: Funcionario) => {   
+                if (item.credential.role == null && item.credential.id != funcionario.id || item.cargo == undefined && item.credential.id != funcionario.id  && item.credential.role == 'Sem_Cargo') {      
                   return (
-                    
+                  
                     <React.Fragment key={item.cpf}>
                       <EmployeeWait id_funcionario={item.credential.id} nome={item.nome} email={item.email} cpf={item.cpf} />
                     </React.Fragment>
                   );
                 } else if (
-                  item.cargo != null &&
-                  item.cargo != "Administrador" &&
-                  item.cargo != "Financeiro" &&
-                  item.cargo != "Comercial" 
+                  item.credential.role != null &&
+                  item.credential.role != "Administrador" &&
+                  item.credential.role != "Financeiro" &&
+                  item.credential.role != "Comercial" 
                 ) {
                   return null; // ignora funcionários com cargos específicos
                 }
@@ -83,10 +79,10 @@ const EmployeeManagement = () => {
 
           <h2 className="title-secundary">Funcionários do Sistema</h2>
           {funcionarioo && funcionarioo.map((item: Funcionario) => {
-            if (item.cargo != null && item.cpf != funcionario.cpf) {
+            if (item.credential.role != null && item.cpf != funcionario.cpf  && item.credential.role != 'Sem_Cargo') {
               return (
                 <React.Fragment key={item.cpf}>
-                  <EmployeeFixed id_funcionario={item.id_funcionario} nome={item.nome} email={item.email} cargo={item.cargo} cpf={item.cpf} tipo={"f"} />
+                  <EmployeeFixed id_funcionario={item.credential.id} nome={item.nome} email={item.email} cargo={item.credential.role} cpf={item.cpf} tipo={"f"} />
                 </React.Fragment>
               );
             } else if (item.cargo != null && item.cargo != 'Administrador' && item.cargo != 'Financeiro' && item.cargo != 'Comercial' ) {

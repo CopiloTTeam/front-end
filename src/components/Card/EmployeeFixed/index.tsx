@@ -14,11 +14,12 @@ interface employeeProps{
 }
 const EmployeeFixed = ({id_funcionario, nome, email, cpf, cargo, tipo}: employeeProps) => {
 
-  const navigate = useNavigate();
-  async function onExclude(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-    e.preventDefault();
-    await excludeCliente(cpf)
-    window.location.reload();
+  async function onExclude(cpf: any) {
+    // e.preventDefault();
+    console.log("excluir"+ cpf);
+    
+    await excludeFuncionario(cpf)
+    // window.location.reload();
     toast.success('Funcionário excluído com sucesso!');
     
   }
