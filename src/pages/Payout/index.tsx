@@ -82,7 +82,7 @@ const Payout = () => {
                 </h2>
                 <h2>
                   {" "}
-                  <b>Data de Vencimento: {parcela?.data_vencimento}</b>
+                  <b>Data de Vencimento: {parcela?.data_vencimento.split('-').reverse().join('/')}</b>
                 </h2>
               </div>
               <hr></hr>

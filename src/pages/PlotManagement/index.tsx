@@ -114,9 +114,9 @@ if (isLogged && (funcionario.cargo == 'Administrador' || funcionario.cargo == 'F
               <details key={item.id_parcela}>
                 <summary>
                   <p>{index + 1}ª Parcela </p>
-                  <p>Vencimento: {item.data_vencimento}</p>
+                  <p>Vencimento: {item?.data_vencimento.split('-').reverse().join('/')}</p>
                   <p>Status: {item?.status=='1'? 'Pago': 'Pendente'}</p>
-                  {item.data_pagamento ? <p>Data de pagamento: {item.data_pagamento}</p> : null}
+                  {item?.data_pagamento ? <p>Data de pagamento: {item?.data_pagamento.split('-').reverse().join('/')}</p> : null}
                   {/* <p>Data de pagamento: {item.data_pagamento?  }</p> */}
                   { item.status == "0" ? <Link className="link" to={`/payout/${item.id_parcela}`}>Ver mais</Link>: null}
                   
