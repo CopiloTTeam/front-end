@@ -76,7 +76,8 @@ export function BilingInformation({ cpf, id_funcionario, data_geracao, valor, up
               type="text"
               mask="999.999.999-99"
               placeholder="CPF do funcionario"
-              value={id_funcionario} onChange={e => updateFields({ id_funcionario: e.target.value })}
+              value={id_funcionario} 
+              onChange={e => updateFields({ id_funcionario: e.target.value })}
             />
           </div>
         </div>
@@ -99,7 +100,7 @@ export function BilingInformation({ cpf, id_funcionario, data_geracao, valor, up
             prefix="R$"
             decimalSeparator=","
             groupSeparator="."
-            value={valor} 
+            value={valor}
             onValueChange={(value) => updateFields({ valor: value?.replace("R$", "").replace(".", "").replace(",", ".") })}
             decimalScale={2}
             allowNegativeValue={false}
