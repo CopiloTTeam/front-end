@@ -416,6 +416,7 @@ export const updateParcela = async(id:any , valorPago:any) => {
   try {
     const response = await api.put(`/atualizar/parcela/${id}`, {
       valor_pago: valorPago,
+      status: true,
     }, {
       headers: {
         'Authorization': `${localStorage.getItem('token')}`

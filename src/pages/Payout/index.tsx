@@ -20,7 +20,9 @@ const Payout = () => {
     try {
       await updateParcela(id, valorPago);
       toast.success('Parcela paga com sucesso!');
-      navigate('/gerenciarparcelas/'+parcela?.id_titulo);
+      // navigate('/gerenciarparcelas/'+parcela);
+      navigate('/home'); 
+      
     } catch (error) {
       console.error(error);
       toast.error('Erro ao pagar a parcela. Por favor, tente novamente.');
