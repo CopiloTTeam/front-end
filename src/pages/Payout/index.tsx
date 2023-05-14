@@ -39,9 +39,11 @@ const Payout = () => {
             try {
                 const response = await baixaParcela(id);
                 const data = await response?.data;
-                // const UsuarioDados = await dadosUsuario(data.cliente_cpf);
-                // const dataUsuario = await UsuarioDados?.data;
-                // setUsuario(dataUsuario);
+                console.log(data);
+                
+                // const UsuarioDados = await dadosUsuario(data.cliente[0]);
+                const dataUsuario = await response?.data.cliente;
+                setUsuario(dataUsuario);
                 setParcela(data);
             } catch (error) {
                 console.error(error);
@@ -72,7 +74,7 @@ const Payout = () => {
             </h2> */}
             <h2>
               {" "}
-              <b>Valor da Parcela: {parcela?.valor.toFixed(2)}</b>
+              <b>Valor da Parcela: R${parcela?.valor}</b>
             </h2>
             <h2>
               {" "}
