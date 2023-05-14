@@ -38,8 +38,6 @@ const data = [
 ];
 
 export default class Example extends PureComponent {
-  static demoUrl = "https://codesandbox.io/s/stacked-area-chart-ix341";
-
   render() {
     return (
       <ResponsiveContainer width="70%" height="70%">
@@ -56,13 +54,10 @@ export default class Example extends PureComponent {
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" />
-          <YAxis
-            ticks={[0, 5, 10, 15, 20, 25, 30]}
-            tickCount={7}
-          />
+          <YAxis ticks={[0, 5, 10, 15, 20, 25, 30]} tickCount={7} />
           <Tooltip />
-          <Bar dataKey="Adimplente" barSize={20} fill="#82ca9d" />
-          <Bar dataKey="Inadimplente" barSize={20} fill="#ffc658" />
+          <Bar dataKey="Adimplente" barSize={20} fill="#6EFA9B" />
+          <Bar dataKey="Inadimplente" barSize={20} fill="#FA4C48" />
         </BarChart>
       </ResponsiveContainer>
     );
