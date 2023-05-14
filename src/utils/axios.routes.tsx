@@ -414,7 +414,7 @@ export const updateCliente = async (cpf: any, value: any) => {
 
 export const updateParcela = async(id:any , valorPago:any) => {
   try {
-    const response = await api.put(`/atualizar/parcela/${id}`, {
+    const response = await api.post(`/atualizar/parcela/${id}`, {
       valor_pago: valorPago,
       status: true,
     }, {
