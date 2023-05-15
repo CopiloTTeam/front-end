@@ -1,19 +1,19 @@
 import api from "../services/axios.config";
 
-const statuss = ['202','302','200','201']
+const statuss = ['202', '302', '200', '201']
 //login
 export const login = async (data: any) => {
   try {
     const response = await api.post('/login', data, {
       timeout: 5000,
       validateStatus: function (status) {
-        return statuss.includes(status.toString()) ; // Define que apenas status 200 é válido
+        return statuss.includes(status.toString()); // Define que apenas status 200 é válido
         // return status.toString() in statuss? true : false ; // Define que apenas status 200 é válido
-  }
+      }
       // Define que apenas status 200 é válido
     });
- 
-    
+
+
     return response.data
   } catch (error) {
     console.error(error);
@@ -28,8 +28,8 @@ export const AllUsers = async () => {
       },
       timeout: 5000,
       validateStatus: function (status) {
-        return statuss.includes(status.toString()) ; // Define que apenas status 200 é válido
-  }
+        return statuss.includes(status.toString()); // Define que apenas status 200 é válido
+      }
     });
     return response;
   } catch (error) {
@@ -46,8 +46,8 @@ export const dadosUsuario = async (id: any) => {
       },
       timeout: 5000,
       validateStatus: function (status) {
-        return statuss.includes(status.toString()) ; // Define que apenas status 200 é válido
-  }
+        return statuss.includes(status.toString()); // Define que apenas status 200 é válido
+      }
     });
     return response;
   } catch (error) {
@@ -63,8 +63,8 @@ export const dadosFuncionario = async (id: any) => {
       },
       timeout: 5000,
       validateStatus: function (status) {
-        return statuss.includes(status.toString()) ; // Define que apenas status 200 é válido
-  }
+        return statuss.includes(status.toString()); // Define que apenas status 200 é válido
+      }
     });
     return response;
   } catch (error) {
@@ -80,9 +80,9 @@ export const dadosFuncionarioc = async (cpf: string) => {
       },
       timeout: 5000,
       validateStatus: function (status) {
-        return statuss.includes(status.toString()) ; // Define que apenas status 200 é válido
+        return statuss.includes(status.toString()); // Define que apenas status 200 é válido
       }
-     
+
     });
     return response;
   } catch (error) {
@@ -98,8 +98,8 @@ export const dadosTitulos = async () => {
       },
       timeout: 5000,
       validateStatus: function (status) {
-        return statuss.includes(status.toString()) ; // Define que apenas status 200 é válido
-  }
+        return statuss.includes(status.toString()); // Define que apenas status 200 é válido
+      }
     });
     return response;
   } catch (error) {
@@ -115,8 +115,8 @@ export const dadosClientes = async () => {
       },
       timeout: 5000,
       validateStatus: function (status) {
-        return statuss.includes(status.toString()) ;// Define que apenas status 200 é válido
-  }
+        return statuss.includes(status.toString());// Define que apenas status 200 é válido
+      }
     });
     return response;
   } catch (error) {
@@ -132,8 +132,8 @@ export const gerenciarTitulo = async (id: any) => {
       },
       timeout: 5000,
       validateStatus: function (status) {
-        return statuss.includes(status.toString()) ; // Define que apenas status 200 é válido
-  }
+        return statuss.includes(status.toString()); // Define que apenas status 200 é válido
+      }
     });
     return response;
   } catch (error) {
@@ -149,8 +149,8 @@ export const gerenciarParcelaTitulo = async (id: any) => {
       },
       timeout: 5000,
       validateStatus: function (status) {
-        return statuss.includes(status.toString()) ; // Define que apenas status 200 é válido
-  }
+        return statuss.includes(status.toString()); // Define que apenas status 200 é válido
+      }
     });
     return response;
   } catch (error) {
@@ -166,8 +166,8 @@ export const criarCliente = async (cliente: any) => {
       },
       timeout: 5000,
       validateStatus: function (status) {
-        return statuss.includes(status.toString()) ; // Define que apenas status 200 é válido
-  }
+        return statuss.includes(status.toString()); // Define que apenas status 200 é válido
+      }
     });
     return response;
   } catch (error) {
@@ -187,7 +187,7 @@ export const criarTitulo = async (titulo: any) => {
       numero_boleto: "numeroboleto",
       // parcelas: 12,
       valor: titulo.valor,
-      
+
 
     }, {
       headers: {
@@ -195,8 +195,8 @@ export const criarTitulo = async (titulo: any) => {
       },
       timeout: 5000,
       validateStatus: function (status) {
-        return statuss.includes(status.toString()) ;// Define que apenas status 200 é válido
-  }
+        return statuss.includes(status.toString());// Define que apenas status 200 é válido
+      }
     });
     return response;
   } catch (error) {
@@ -210,26 +210,26 @@ export const criarFuncionario = async (nome: String, email: String, cpf: String,
       nome: nome,
       cpf: cpf,
       email: email,
-      credential :{
-       password: senha,
-       userName: email,
-       roles: [
-        "Sem_Cargo"
-      ]
+      credential: {
+        password: senha,
+        userName: email,
+        roles: [
+          "Sem_Cargo"
+        ]
       }
-      
+
     }, {
       headers: {
         'Authorization': `${localStorage.getItem('token')}`
       },
       timeout: 5000,
       validateStatus: function (status) {
-        return statuss.includes(status.toString()) ; // Define que apenas status 200 é válido
-  }
+        return statuss.includes(status.toString()); // Define que apenas status 200 é válido
+      }
     });
     return response;
   } catch (error) {
-    
+
     console.error(error);
   }
 }
@@ -242,8 +242,8 @@ export const dadosFuncionarios = async () => {
       },
       timeout: 5000,
       validateStatus: function (status) {
-        return statuss.includes(status.toString()) ; // Define que apenas status 200 é válido
-  }
+        return statuss.includes(status.toString()); // Define que apenas status 200 é válido
+      }
     });
 
     return response;
@@ -260,22 +260,22 @@ export const excludeFuncionario = async (cpf: any) => {
       },
       timeout: 5000,
       validateStatus: function (status) {
-      return statuss.includes(status.toString()) ; // Define que apenas status 200 é válido
-    }  
-  }
+        return statuss.includes(status.toString()); // Define que apenas status 200 é válido
+      }
+    }
     );
     const payload = {
       nome: user.data.nome,
-        cpf: user.data.cpf,
-        email: user.data.email,
-        credential :{
-         password: user.data.senha,
-         userName: user.data.email,
-         roles: [
+      cpf: user.data.cpf,
+      email: user.data.email,
+      credential: {
+        password: user.data.senha,
+        userName: user.data.email,
+        roles: [
           user.data.cargo
         ]
-        }
       }
+    }
 
 
     const response = await api.delete(`/deletar/funcionario`, {
@@ -285,8 +285,8 @@ export const excludeFuncionario = async (cpf: any) => {
       data: payload,
       timeout: 5000,
       validateStatus: function (status) {
-        return statuss.includes(status.toString()) ; // Define que apenas status 200 é válido
-  }
+        return statuss.includes(status.toString()); // Define que apenas status 200 é válido
+      }
     });
 
     return response;
@@ -303,32 +303,32 @@ export const excludeCliente = async (cpf: any) => {
       },
       timeout: 5000,
       validateStatus: function (status) {
-      return statuss.includes(status.toString()) ; // Define que apenas status 200 é válido
-    }  
-  }
+        return statuss.includes(status.toString()); // Define que apenas status 200 é válido
+      }
+    }
 
     );
     const payload = {
       nome: user.data.nome,
-        cpf: user.data.cpf,
-        email: user.data.email,
-        credential :{
-         password: user.data.senha,
-         userName: user.data.email,
-         roles: [
+      cpf: user.data.cpf,
+      email: user.data.email,
+      credential: {
+        password: user.data.senha,
+        userName: user.data.email,
+        roles: [
           user.data.cargo
         ]
-        }
       }
-    const response = await api.delete(`/deletar/cliente`, { 
+    }
+    const response = await api.delete(`/deletar/cliente`, {
       headers: {
         'Authorization': `${localStorage.getItem('token')}`
       },
       data: payload,
       timeout: 5000,
       validateStatus: function (status) {
-        return statuss.includes(status.toString()) ; // Define que apenas status 200 é válido
-  },
+        return statuss.includes(status.toString()); // Define que apenas status 200 é válido
+      },
     });
 
     return response;
@@ -338,13 +338,13 @@ export const excludeCliente = async (cpf: any) => {
 }
 
 export const updateFuncionario = async (cpf: any, value: any) => {
-  try {    
+  try {
 
     const response = await api.put(`/atualizar/funcionario`, {
       cpf: cpf,
       credential: {
         role: value
-    }
+      }
 
     }, {
       headers: {
@@ -352,8 +352,8 @@ export const updateFuncionario = async (cpf: any, value: any) => {
       },
       timeout: 5000,
       validateStatus: function (status) {
-        return statuss.includes(status.toString()) ; // Define que apenas status 200 é válido
-  }
+        return statuss.includes(status.toString()); // Define que apenas status 200 é válido
+      }
     });
 
     return response;
@@ -362,11 +362,11 @@ export const updateFuncionario = async (cpf: any, value: any) => {
   }
 }
 export const updateFuncionarioId = async (
-   id: any,
-   nome: any , 
-   email: any ,
-   senha: any , 
-   cpf: any ) => {
+  id: any,
+  nome: any,
+  email: any,
+  senha: any,
+  cpf: any) => {
   try {
 
     const response = await api.put(`/atualizar/funcionario`, {
@@ -380,8 +380,8 @@ export const updateFuncionarioId = async (
       },
       timeout: 5000,
       validateStatus: function (status) {
-        return statuss.includes(status.toString()) ; // Define que apenas status 200 é válido
-  }
+        return statuss.includes(status.toString()); // Define que apenas status 200 é válido
+      }
     });
 
     return response;
@@ -402,8 +402,8 @@ export const updateCliente = async (cpf: any, value: any) => {
       },
       timeout: 5000,
       validateStatus: function (status) {
-        return statuss.includes(status.toString()) ; // Define que apenas status 200 é válido
-  }
+        return statuss.includes(status.toString()); // Define que apenas status 200 é válido
+      }
     });
 
     return response;
@@ -412,7 +412,7 @@ export const updateCliente = async (cpf: any, value: any) => {
   }
 }
 
-export const updateParcela = async(id:any , valorPago:any) => {
+export const updateParcela = async (id: any, valorPago: any) => {
   try {
     const valorPagoFloat = parseFloat(valorPago.replace(',', '.'));
     const response = await api.put(`/atualizar/parcela/${id}`, {
@@ -424,8 +424,8 @@ export const updateParcela = async(id:any , valorPago:any) => {
       },
       timeout: 5000,
       validateStatus: function (status) {
-        return statuss.includes(status.toString()) ;// Define que apenas status 200 é válido
-  }
+        return statuss.includes(status.toString());// Define que apenas status 200 é válido
+      }
     });
 
     return response;
@@ -442,8 +442,8 @@ export const baixaParcela = async (id: any) => {
       },
       timeout: 5000,
       validateStatus: function (status) {
-        return statuss.includes(status.toString()) ; // Define que apenas status 200 é válido
-  }
+        return statuss.includes(status.toString()); // Define que apenas status 200 é válido
+      }
     });
 
     return response;
@@ -460,8 +460,8 @@ export const ListarCliente = async () => {
       },
       timeout: 5000,
       validateStatus: function (status) {
-        return statuss.includes(status.toString()) ; // Define que apenas status 200 é válido
-  }
+        return statuss.includes(status.toString()); // Define que apenas status 200 é válido
+      }
     });
 
     return response;
@@ -478,8 +478,27 @@ export const ListarParcela = async () => {
       },
       timeout: 5000,
       validateStatus: function (status) {
-        return statuss.includes(status.toString()) ; // Define que apenas status 200 é válido
-  }});
+        return statuss.includes(status.toString()); // Define que apenas status 200 é válido
+      }
+    });
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export const Parcela = async () => {
+  try {
+    const response = await api.get(`/parcela`, {
+      headers: {
+        'Authorization': `${localStorage.getItem('token')}`
+      },
+      timeout: 5000,
+      validateStatus: function (status) {
+        return statuss.includes(status.toString());
+      }
+    });
+
     return response;
   } catch (error) {
     console.error(error);

@@ -34,13 +34,14 @@ const Table = ({ data, client }: TableProps) => {
                 const clientInfo = client.find((c) => c.cpf === item.cliente.cpf);
                 const nomeCliente = clientInfo?.nome;
                 const cpf = clientInfo?.cpf;
+                const valorFormadado = item.valor.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
 
                 return (
                   <tr key={item.id}>
                     <td>{cpf}</td>
                     <td>{nomeCliente}</td>
                     <td>{item.id}</td>
-                    <td align="right">R${item.valor}</td>
+                    <td align="right">{valorFormadado}</td>
                     {/* {Object.values(item.map((valor: string) => (
                     <td>{valor}</td>)))} */}
                     <td>12</td>
