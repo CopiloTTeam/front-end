@@ -414,9 +414,10 @@ export const updateCliente = async (cpf: any, value: any) => {
 
 export const updateParcela = async (id: any, valorPago: any) => {
   try {
-    const response = await api.post(`/atualizar/parcela/${id}`, {
-      valor_pago: valorPago,
-      status: true,
+    const valorPagoFloat = parseFloat(valorPago.replace(',', '.'));
+    const response = await api.put(`/atualizar/parcela/${id}`, {
+      valor_pago: valorPagoFloat,
+      // status: true,
     }, {
       headers: {
         'Authorization': `${localStorage.getItem('token')}`
@@ -477,9 +478,8 @@ export const ListarParcela = async () => {
       },
       timeout: 5000,
       validateStatus: function (status) {
-        return statuss.includes(status.toString()); // Define que apenas status 200 é válido
-      }
-    });
+        return statuss.includes(status.toString()) ; // Define que apenas status 200 é válido
+  }});
     return response;
   } catch (error) {
     console.error(error);
@@ -514,3 +514,6 @@ export const criarLog = async (params: any) => {
   }
 
 }
+
+
+

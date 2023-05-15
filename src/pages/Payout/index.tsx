@@ -58,6 +58,7 @@ const Payout = () => {
 
   if (isLogged && (funcionario.cargo == 'Administrador' || funcionario.cargo == 'Financeiro')) {
 
+    const ValorFormatado = parcela?.valor.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
     return (
       <>
         <Navbar />
@@ -78,7 +79,7 @@ const Payout = () => {
             </h2> */}
                 <h2>
                   {" "}
-                  <b>Valor da Parcela: R${parcela?.valor}</b>
+                  <b>Valor da Parcela: {ValorFormatado}</b>
                 </h2>
                 <h2>
                   {" "}
