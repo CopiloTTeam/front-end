@@ -3,9 +3,9 @@ import React from 'react'
 const Validation = () => {
 
   return (
-    
-      <div className='container'>
-      </div>
+
+    <div className='container'>
+    </div>
   )
 }
 

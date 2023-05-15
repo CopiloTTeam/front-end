@@ -6,11 +6,14 @@ import Navbar from "../../components/Navbar";
 import "./style.css";
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
+import ClientFixed from '../../components/Card/ClientFixed';
 
 interface Cliente {
-  id_funcionario: number;
+  contato: {
+    email: string;
+    telefone: string;
+  }
   nome: string;
-  email: string;
   cpf: string;
   cargo: string | null;
 }
@@ -29,6 +32,7 @@ const ClienteManagement = () => {
         const funcs = await ListarCliente();
         const resp = await funcs?.data;
         setCliente(resp);
+        console.log(resp)
       } catch (error) {
         console.error(error);
       }
@@ -37,24 +41,24 @@ const ClienteManagement = () => {
     fetchData();
   }, []);
   if (isLogged && (funcionario.cargo == 'Administrador' || funcionario.cargo == 'Comercial')) {
-
     return (
       <>
         <div className="conteiner-employee-management">
           <Navbar />
           <h1 className="title-primary">Clientes do Sistema</h1>
           {cliente && cliente.map((item: Cliente) => {
+
             return (
               <React.Fragment key={item.cpf}>
-                <EmployeeFixed id_funcionario={item.id_funcionario} nome={item.nome} email={item.email} cargo={item.cpf} cpf={item.cpf} tipo={null} />
+                <ClientFixed cpf={item.cpf} email={item.contato.email} nome={item.nome} telefone={item.contato.telefone}></ClientFixed>
               </React.Fragment>
             )
           }
           )}
-          {!cliente && <EmployeeFixed id_funcionario="" nome="" email="" cargo="" cpf={null} tipo={null} />}
+          {!cliente && <ClientFixed cpf={''} email={''} nome={''} telefone={''} />}
         </div>
       </>
-    );    
+    );
   } else {
     return (
       <></>

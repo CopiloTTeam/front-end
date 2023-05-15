@@ -21,7 +21,6 @@ const EmployeeWait = ({ id_funcionario, nome, email, cpf }: employeeProps) => {
     e.preventDefault();
     const selectElement = document.querySelector('select[name="select"]') as HTMLSelectElement;
     const selectedValue = selectElement.value;
-    
     await updateFuncionario(cpf, selectedValue)
     toast.success('Funcionário aprovado com sucesso!');
     window.location.reload();
@@ -59,7 +58,7 @@ const EmployeeWait = ({ id_funcionario, nome, email, cpf }: employeeProps) => {
           <div className="box-confirm">
             <button className="deny" onClick={e => onExclude(e)}>Recusar</button>
             <button className="approve" onClick={e => onUpdate(e)}>Confirmar</button>
-            
+
           </div>
         </div>
       </details>

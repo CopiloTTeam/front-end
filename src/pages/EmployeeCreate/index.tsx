@@ -4,12 +4,11 @@ import { toast } from "react-toastify";
 
 import "./style.css";
 import { criarFuncionario } from "../../utils/axios.routes";
-import { useState, FormEvent } from "react";
+import React, { useState, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import EyeOff from "../../assets/eyeOff.png";
 import EyeOn from "../../assets/eyeOn.png";
 import ReactInputMask from "react-input-mask";
-
 
 const Register = () => {
   const navigate = useNavigate();
@@ -30,8 +29,49 @@ const Register = () => {
     senha: String
   ) {
     try {
-      const response = await criarFuncionario(nome, email, cpf, senha);
-      return response?.status === 201;
+      var strCPF = cpf.replace(/[^\d]+/g, '');
+      var Soma;
+      Soma = 0;
+      var Resto;
+      let CPFvalido = true;
+      if (strCPF == "00000000000" || strCPF == "11111111111" || strCPF == "22222222222" || strCPF == "33333333333" || strCPF == "44444444444" || strCPF == "55555555555" || strCPF == "66666666666" || strCPF == "77777777777" || strCPF == "88888888888" || strCPF == "99999999999") {
+        CPFvalido = false;
+      }
+      for (let i: number = 1; i <= 9; i++) Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (11 - i);
+      Resto = (Soma * 10) % 11;
+
+      if ((Resto == 10) || (Resto == 11)) Resto = 0;
+      if (Resto != parseInt(strCPF.substring(9, 10))) CPFvalido = false;
+
+      Soma = 0;
+      for (let i: number = 1; i <= 10; i++) Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (12 - i);
+      Resto = (Soma * 10) % 11;
+
+      if ((Resto == 10) || (Resto == 11)) Resto = 0;
+      if (Resto != parseInt(strCPF.substring(10, 11))) CPFvalido = false;
+
+      if (nome == null || !nome) {
+        toast.error(`O campo de nome está Vazio!`);
+      }
+      else if (strCPF == null || !strCPF) {
+        toast.error(`O campo de cpf está Vazio!`);
+      }
+      else if (strCPF.length < 11) {
+        toast.error(`O campo de cpf está incompleto!`);
+      }
+      else if (CPFvalido == false) {
+        toast.error(`O campo de cpf está inválido!`);
+      }
+      else if (!email || email == null) {
+        toast.error(`O campo email está vazio!`)
+      }
+      else if (!senha || senha == null) {
+        toast.error(`O campo senha está vazio!`)
+      }
+      else if (nome && email && senha && cpf) {
+        const response = await criarFuncionario(nome, email, cpf, senha);
+        return response?.status === 201;
+      }
     } catch (error) {
       return false;
     }
@@ -44,11 +84,8 @@ const Register = () => {
     if (success) {
       toast.success("Cadastro realizado com sucesso!");
       navigate("/");
-    } else {
-      toast.error(`Erro ao cadastrar`);
     }
   }
-  // if (isLogged){
 
   return (
     <div
@@ -67,7 +104,6 @@ const Register = () => {
         <div className="name-box">
           <h3>Nome</h3>
           <input
-            required
             type="text"
             placeholder="Digite seu Nome"
             value={nome}
@@ -78,10 +114,10 @@ const Register = () => {
         <div className="cpf-box">
           <h3>CPF</h3>
           <ReactInputMask
-            required
+            maskPlaceholder="_"
             mask="999.999.999-99"
             type="text"
-            placeholder="Digite seu CPF"
+            placeholder="CPF"
             value={cpf}
             onChange={(e) => setCpf(e.target.value)}
           />
@@ -90,7 +126,6 @@ const Register = () => {
         <div className="email-box">
           <h3>Email</h3>
           <input
-            required
             type="email"
             placeholder="Digite seu Email"
             value={email}
@@ -102,14 +137,13 @@ const Register = () => {
           <h3>Senha</h3>
           <div className="pass-box-container">
             <input
-              required
               type={showSenha ? "text" : "password"}
               placeholder="Digite sua Senha"
               value={senha}
               onChange={(e) => setSenha(e.target.value)}
             />
             <a className="button-password" onClick={handleShowSenha}>
-              {showSenha ? <img className="passwordImg" src={EyeOff}/> : <img className="passwordImg" src={EyeOn}/>}
+              {showSenha ? <img className="passwordImg" src={EyeOff} /> : <img className="passwordImg" src={EyeOn} />}
             </a>
           </div>
         </div>

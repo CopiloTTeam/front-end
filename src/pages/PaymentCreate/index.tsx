@@ -10,27 +10,37 @@ const PayForm = () => {
   const { isLogged, funcionario } = useContext(AuthContext)
   const [data, setData] = useState<any>();
 
-    useEffect(() => {
-      if(!isLogged){
-        navigate('/')
-   
-      }
-    }, []);
-    if(isLogged && (funcionario.cargo == 'Administrador' || funcionario.cargo == 'Comercial')){
+  useEffect(() => {
+    if (!isLogged) {
+      navigate('/')
+    }
+    // const fetchData = async () => {
+    //     try {
+    //         const response = await dadosUsuario();
+    //         const data = await response?.data
+    //         setData(data);
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    // };
 
-      return (
-        <>
-      <Navbar/>
-      <main>
-        <PaymentForm />
-      </main>
-    </>
-  );
-} else {
-  return(
-    <></>
-  )
-}
+    // fetchData();
+  }, []);
+  if (isLogged && (funcionario.cargo == 'Administrador' || funcionario.cargo == 'Comercial')) {
+
+    return (
+      <>
+        <Navbar />
+        <main>
+          <PaymentForm />
+        </main>
+      </>
+    );
+  } else {
+    return (
+      <></>
+    )
+  }
 };
 
 export default PayForm;

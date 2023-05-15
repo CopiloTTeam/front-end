@@ -1,13 +1,14 @@
 import React, { useState, useContext } from "react";
 import "./style.css";
 import Rocket from "../../assets/rocket.png";
-import { dadosFuncionarioc, login } from "../../utils/axios.routes";
+import { criarLog, dadosFuncionarioc, login } from "../../utils/axios.routes";
 import { useNavigate, Link } from "react-router-dom";
 import { AuthContext, FuncionarioInicio } from "../../contexts/AuthContext";
 import EyeOff from "../../assets/eyeOff.png";
 import EyeOn from "../../assets/eyeOn.png";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
+import { addAuthToken } from "../../services/axios.config";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -26,20 +27,24 @@ const Login = () => {
 
   const { setFuncionario, setIsLogged } = useContext(AuthContext);
   let funcionarioo = FuncionarioInicio;
-  async function procuraFuncionario(cpf: string) {
+  async function procuraFuncionario(cpf: string, token: string) {
+    addAuthToken(token);
+    localStorage.setItem("token", token);
     try {
       let funcionario = await dadosFuncionarioc(cpf);
+
+
+
       if (
-        funcionario != undefined &&
-        funcionario != null &&
-        funcionario.status == 200
+        funcionario !== undefined &&
+        funcionario != null
       ) {
-        funcionarioo.id = funcionario?.data.id;
-        funcionarioo.cargo = funcionario?.data.cargo;
+        funcionarioo.id = funcionario?.data.credential.id;
+        funcionarioo.cargo = funcionario?.data.credential.role;
         funcionarioo.cpf = funcionario?.data.cpf;
         funcionarioo.email = funcionario?.data.email;
         funcionarioo.nome = funcionario?.data.nome;
-        funcionarioo.senha = funcionario?.data.senha;
+        funcionarioo.senha = funcionario?.data.credential.password;
         setFuncionario(funcionarioo);
         setIsLogged(true);
         let infos = {
@@ -47,6 +52,10 @@ const Login = () => {
           "isLogged": true
         }
         localStorage.setItem("funcionario", JSON.stringify(infos))
+        await criarLog({
+          idFuncionario: funcionario.data.cpf,
+          descricao: `O funcionario ${funcionario.data.nome} acabou de logar no sistema`
+        });
       }
     } catch (error) {
       console.error(error);
@@ -58,19 +67,18 @@ const Login = () => {
   ): Promise<void> {
     event.preventDefault();
     const data = {
-      email: email,
-      senha: password,
+      password: password,
+      userName: email,
     };
     try {
       let resp = await login(data);
-      if (resp?.data && resp?.status === 200) {
-        const cpf = resp.data;
+      if (resp) {
+        const cpf = resp.funcionario.cpf;
         if (cpf) {
-          procuraFuncionario(cpf);
+          procuraFuncionario(cpf, resp.token);
         }
         navigate("/home");
       } else {
-     
         toast.error("Credenciais inválidas. Verifique seu email e senha!");
       }
     } catch (error) {
@@ -100,22 +108,22 @@ const Login = () => {
               />
             </div>
             <div className="pass-title">
-          <h3>Senha</h3>
-          <div className="pass-box-container">
-            <input
-              required
-              type={showSenha ? "text" : "password"}
-              placeholder="Digite sua Senha"
-              value={password}
-              onChange={handlePasswordChange}
-            />
-            <a className="button-password" onClick={handleShowSenha}>
-              {showSenha ? <img className="passwordImg" src={EyeOff}/> : <img className="passwordImg" src={EyeOn}/>}
-            </a>
-          </div>
-        </div>
+              <h3>Senha</h3>
+              <div className="pass-box-container">
+                <input
+                  required
+                  type={showSenha ? "text" : "password"}
+                  placeholder="Digite sua Senha"
+                  value={password}
+                  onChange={handlePasswordChange}
+                />
+                <a className="button-password" onClick={handleShowSenha}>
+                  {showSenha ? <img className="passwordImg" src={EyeOff} /> : <img className="passwordImg" src={EyeOn} />}
+                </a>
+              </div>
+            </div>
 
-            
+
             <div className="button-box">
               <button type="submit" className="enter-button">
                 {" "}

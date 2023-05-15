@@ -1,167 +1,115 @@
-import React, { useContext } from 'react'
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import Boleto from '../../assets/adicionarBoleto.png'
-import User from '../../assets/adicionarUser.png'
-import Estatisticas from '../../assets/estatistica.png'
-import Perfil from '../../assets/perfil.png'
-import ConfigFunc from '../../assets/configFunc.png'
-import Home from '../../assets/home.png'
-import './style.css'
-import { AuthContext } from '../../contexts/AuthContext'
+import Boleto from '../../assets/adicionarBoleto.png';
+import User from '../../assets/adicionarUser.png';
+import Estatisticas from '../../assets/estatistica.png';
+import Perfil from '../../assets/perfil.png';
+import './style.css';
+import { AuthContext } from '../../contexts/AuthContext';
 
 const Navbar = () => {
-    // const { funcionario } = useContext(AuthContext);
-    const { funcionario , logout} = useContext(AuthContext);
-    if (funcionario.cargo == 'Administrador') {
+    const { funcionario, logout } = useContext(AuthContext);
+
+    if (funcionario.cargo === 'Administrador') {
         return (
-            
             <div className='header'>
                 <div className='nav container'>
-                    <Link to="/perfil">
-                        <a className='navlogo'>
-                            <img src={Perfil} alt='Perfil' />
-                            <div className="logoText">
-                                <div className="info-container">
-                                <h3>Olá, {funcionario.nome}</h3>
-                                <p>{funcionario.cargo}</p>
-                                </div>
-                                <button className="logout-button" onClick={logout}>Logout</button>
-                            </div>
-                        </a>
+                    <Link to='/perfil' className='navlogo'>
+                        <img src={Perfil} alt='Perfil' />
+                        <div className='logoText'>
+                            <h3>Olá, {funcionario.nome}</h3>
+                            <p>{funcionario.cargo}</p>
+                        </div>
+                        <button className='logout-button' onClick={logout}>Logout</button>
                     </Link>
                     <div className='navmenu'>
                         <ul className='navlist'>
-                            <Link to="/home">
-                                <a className='navlink'>
-                                    <li className='navitem'>
-
-                                        <img src={Home} alt='Home' />
-                                        <span className='navname'>Home</span>
-
-                                    </li>
-                                </a>
-                            </Link>
-                            <Link to="/estatisticas">
-                                <a className='navlink'>
-                                    <li className='navitem'>
-
-                                        <img src={Estatisticas} alt='Estatisticas' />
-                                        <span className='navname'>Estatisticas</span>
-
-                                    </li>
-                                </a>
-                            </Link>
-                            <Link to="/cadastrousuario">
-                                <a className='navlink'>
-                                    <li className='navitem'>
-
-                                        <img src={User} alt='User' />
-                                        <span className='navname'>Cadastro de Clientes</span>
-
-                                    </li>
-                                </a>
-                            </Link>
-                            <Link to="/criarboleto">
-                                <a className='navlink'>
-                                    <li className='navitem'>
-
-                                        <img src={Boleto} alt='Boleto' />
-                                        <span className='navname'>Emitir Título</span>
-
-                                    </li></a>
-                            </Link>
-                            <Link to="/gerenciarfunc">
-                                <a className='navlink'>
-                                    <li className='navitem'>
-
-                                        <img src={ConfigFunc} alt='Gerenciar Funcionário' />
-                                        <span className='navname'>Gerenciar Funcionários</span>
-
-                                    </li></a>
-                            </Link>
-                            <Link to="/gerenciarcliente">
-                        <a className='navlink'>
                             <li className='navitem'>
-
-                                <img src={ConfigFunc} alt='Gerenciar Cliente' />
-                                <span className='navname'>Gerenciar Cliente</span>
-
-                            </li></a>
-                        </Link>
-
+                                <Link to='/home' className='navlink'>
+                                    <img src={Estatisticas} alt='Home' />
+                                    <span className='navname'>Home</span>
+                                </Link>
+                            </li>
+                            <li className='navitem'>
+                                <Link to='/estatisticas' className='navlink'>
+                                    <img src={Estatisticas} alt='Estatisticas' />
+                                    <span className='navname'>Estatísticas</span>
+                                </Link>
+                            </li>
+                            <li className='navitem'>
+                                <Link to='/cadastrousuario' className='navlink'>
+                                    <img src={User} alt='User' />
+                                    <span className='navname'>Cadastro de Clientes</span>
+                                </Link>
+                            </li>
+                            <li className='navitem'>
+                                <Link to='/criarboleto' className='navlink'>
+                                    <img src={Boleto} alt='Boleto' />
+                                    <span className='navname'>Emitir Título</span>
+                                </Link>
+                            </li>
+                            <li className='navitem'>
+                                <Link to='/gerenciarfunc' className='navlink'>
+                                    <img src={Boleto} alt='Gerenciar Funcionário' />
+                                    <span className='navname'>Gerenciar Funcionários</span>
+                                </Link>
+                            </li>
+                            <li className='navitem'>
+                                <Link to='/gerenciarcliente' className='navlink'>
+                                    <img src={Boleto} alt='Gerenciar Cliente' />
+                                    <span className='navname'>Gerenciar Cliente</span>
+                                </Link>
+                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
         );
-    } else if (funcionario.cargo == 'Comercial') {
-
-        
+    } else if (funcionario.cargo === 'Comercial') {
         return (
             <div className='header'>
-            <div className='nav container'>
-                <Link to="/perfil">
-                    <a className='navlogo'>
-                        <img src={Perfil} alt='Perfil' />
-                        <div className="logoText">
-                            <div className="info-container">
-                            <h3>Olá, {funcionario.nome}</h3>
-                            <p>{funcionario.cargo}</p>
+                <div className='nav container'>
+                    <Link to='/perfil'>
+                        <div className='navlogo'>
+                            <img src={Perfil} alt='Perfil' />
+                            <div className='logoText'>
+                                <h3>Olá, {funcionario.nome}</h3>
+                                <p>{funcionario.cargo}</p>
                             </div>
-                            <button className="logout-button" onClick={logout}>Logout</button>
                         </div>
-                    </a>
                     </Link>
                     <div className='navmenu'>
                         <ul className='navlist'>
-                            <Link to="/home">
-                                <a className='navlink'>
-                                    <li className='navitem'>
-
-                                        <img src={Estatisticas} alt='Home' />
-                                        <span className='navname'>Home</span>
-
-                                    </li>
-                                </a>
+                            <Link to='/home'>
+                                <li className='navitem'>
+                                    <img src={Estatisticas} alt='Home' />
+                                    <span className='navname'>Home</span>
+                                </li>
                             </Link>
-                            <Link to="/estatisticas">
-                                <a className='navlink'>
-                                    <li className='navitem'>
-
-                                        <img src={Estatisticas} alt='Estatisticas' />
-                                        <span className='navname'>Estatísticas</span>
-
-                                    </li>
-                                </a>
+                            <Link to='/estatisticas'>
+                                <li className='navitem'>
+                                    <img src={Estatisticas} alt='Estatisticas' />
+                                    <span className='navname'>Estatísticas</span>
+                                </li>
                             </Link>
-                            <Link to="/cadastrousuario">
-                                <a className='navlink'>
-                                    <li className='navitem'>
-
-                                        <img src={Boleto} alt='User' />
-                                        <span className='navname'>Cadastro de Clientes</span>
-
-                                    </li>
-                                </a>
+                            <Link to='/cadastrousuario'>
+                                <li className='navitem'>
+                                    <img src={User} alt='User' />
+                                    <span className='navname'>Cadastro de Clientes</span>
+                                </li>
                             </Link>
-                            <Link to="/criarboleto">
-                                <a className='navlink'>
-                                    <li className='navitem'>
-
-                                        <img src={Boleto} alt='Boleto' />
-                                        <span className='navname'>Emitir Título</span>
-
-                                    </li></a>
+                            <Link to='/criarboleto'>
+                                <li className='navitem'>
+                                    <img src={Boleto} alt='Boleto' />
+                                    <span className='navname'>Emitir Título</span>
+                                </li>
                             </Link>
-                            <Link to="/gerenciarcliente">
-                        <a className='navlink'>
-                            <li className='navitem'>
-
-                                <img src={Boleto} alt='Gerenciar Cliente' />
-                                <span className='navname'>Gerenciar Cliente</span>
-
-                            </li></a>
-                        </Link>
+                            <Link to='/gerenciarcliente'>
+                                <li className='navitem'>
+                                    <img src={Boleto} alt='Gerenciar Cliente' />
+                                    <span className='navname'>Gerenciar Cliente</span>
+                                </li>
+                            </Link>
                         </ul>
                     </div>
                 </div>
@@ -170,46 +118,34 @@ const Navbar = () => {
     } else if (funcionario.cargo == 'Financeiro') {
         return (
             <div className='header'>
-            <div className='nav container'>
-                <Link to="/perfil">
-                    <a className='navlogo'>
+                <div className='nav container'>
+                    <Link to="/perfil" className='navlogo'>
                         <img src={Perfil} alt='Perfil' />
                         <div className="logoText">
-                            <div className="info-container">
                             <h3>Olá, {funcionario.nome}</h3>
                             <p>{funcionario.cargo}</p>
-                            </div>
-                            <button className="logout-button" onClick={logout}>Logout</button>
                         </div>
-                    </a>
-                </Link>
+                    </Link>
                     <div className='navmenu'>
                         <ul className='navlist'>
-                            <Link to="/home">
-                                <a className='navlink'>
-                                    <li className='navitem'>
-
-                                        <img src={Estatisticas} alt='Home' />
-                                        <span className='navname'>Home</span>
-
-                                    </li>
-                                </a>
-                            </Link>
-                            <Link to="/estatisticas">
-                                <a className='navlink'>
-                                    <li className='navitem'>
-
-                                        <img src={Estatisticas} alt='Estatisticas' />
-                                        <span className='navname'>Estatísticas</span>
-
-                                    </li>
-                                </a>
-                            </Link>
+                            <li className='navitem' key="home">
+                                <Link to="/home" className='navlink'>
+                                    <img src={Estatisticas} alt='Home' />
+                                    <span className='navname'>Home</span>
+                                </Link>
+                            </li>
+                            <li className='navitem' key="estatisticas">
+                                <Link to="/estatisticas" className='navlink'>
+                                    <img src={Estatisticas} alt='Estatisticas' />
+                                    <span className='navname'>Estatísticas</span>
+                                </Link>
+                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
         );
+
     } else {
         return (
             <>

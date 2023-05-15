@@ -10,28 +10,19 @@ interface TableProps {
 
 const Table = ({ data, client }: TableProps) => {
   const { isLogged, funcionario } = useContext(AuthContext)
-  if (!data || data.length === 0) {
-    return (
-      <div className='table-box'>
-        <div className='table-title'>
-          <h1>Nenhum título cadastrado </h1>
-        </div>
-      </div>
-    );
-  }
   if (isLogged) {
     if (funcionario.cargo == 'Administrador' || funcionario.cargo == 'Financeiro') {
       return (
         <div className='table-box'>
           <div className='table-title'>
-            <h1>Lista de Títulos</h1>
+            <h1>Lista de Titulos</h1>
           </div>
           <table>
             <thead>
               <tr>
                 <td>CPF</td>
                 <td>Nome Cliente</td>
-                <td>Título</td>
+                <td>Titulo</td>
                 <td align="right">Valor Total</td>
                 <td>Nº Parcelas</td>
                 <td>Info.</td>
@@ -40,19 +31,23 @@ const Table = ({ data, client }: TableProps) => {
             <tbody>
               {data && data.map((item) => {
                 // Look up client information based on the cpf value
-                const clientInfo = client.find((c) => c.cpf_cliente === item.cpf);
+                const clientInfo = client.find((c) => c.cpf === item.cliente.cpf);
                 const nomeCliente = clientInfo?.nome;
                 const cpf = clientInfo?.cpf;
+                const valorFormadado = item.valor.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
 
                 return (
-                  <tr key={item.id_titulo}>
+                  <tr key={item.id}>
                     <td>{cpf}</td>
                     <td>{nomeCliente}</td>
-                    <td>{item.id_titulo}</td>
-                    <td align="right">R${item.valor}</td>
-                    <td>{item.parcelas}</td>
+                    <td>{item.id}</td>
+                    <td align="right">{valorFormadado}</td>
+                    {/* {Object.values(item.map((valor: string) => (
+                    <td>{valor}</td>)))} */}
+                    <td>12</td>
+                    {/* <td>{item.parcelas}</td> */}
                     <td>
-                      <Link className="link" to={`/gerenciarparcelas/${item.id_titulo}`}>Ver mais</Link>
+                      <Link to={`/gerenciarparcelas/${item.id}`}>Ver mais</Link>
                     </td>
                   </tr>
                 )
@@ -86,15 +81,14 @@ const Table = ({ data, client }: TableProps) => {
                 const cpf = clientInfo?.cpf;
 
                 return (
-                  <tr key={item.id_titulo}>
+                  <tr key={item.id}>
                     <td>{cpf}</td>
                     <td>{nomeCliente}</td>
-                    <td>{item.id_titulo}</td>
+                    <td>{item.id}</td>
                     <td align="right">R${item.valor}</td>
-                    <td>{item.parcelas}</td>
-                    {/* <td>
-                    <Link to={`/gerenciarparcelas/${item.id_titulo}`}>Ver mais</Link>
-                  </td> */}
+                    {/* {Object.values(item.map((valor: string) => (
+                    <td>{valor}</td>)))} */}
+                    {/* <td><Link to={`/gerenciarparcelas/${item.id}`}>Ver mais</Link></td> */}
                   </tr>
                 )
               })}
@@ -109,9 +103,9 @@ const Table = ({ data, client }: TableProps) => {
     }
 
   } else {
-    return(
+    return (
       <></>
     )
   }
 };
-  export default Table;
+export default Table;

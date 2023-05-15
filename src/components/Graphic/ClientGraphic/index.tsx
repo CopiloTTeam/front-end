@@ -1,0 +1,95 @@
+import React, { useEffect, useState } from "react";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Pie,
+  ResponsiveContainer,
+  PieChart,
+  Cell,
+} from "recharts";
+import { Parcela, dadosTitulos } from "../../../utils/axios.routes";
+
+export const ClientGraphic = () => {
+  const [titulos, setTitulos] = useState<any>([]);
+  const [parcelas, setParcelas] = useState<any>([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const titulos = await dadosTitulos();
+        const titulosData = titulos?.data;
+        const parcelas = await Parcela();
+        const parcelasData = parcelas?.data;
+        if (titulosData) {
+          setTitulos(titulosData);
+        }
+        if (parcelasData) {
+          setParcelas(parcelasData);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, []);
+  const hoje = new Date();
+  const clientesInadimplentes = titulos.reduce((acc: any, titulo: any) => {
+    if (titulo) {
+      const parcelas = titulo.parcelas;
+      const parcelasVencidas = parcelas.filter((parcela: any) => {
+        const dataVencimento = new Date(parcela.data_vencimento);
+        dataVencimento.setHours(dataVencimento.getHours() + 3);
+        if (parcela.status == 0 && dataVencimento < hoje) {
+          return parcela;
+        }
+      });
+      if (parcelasVencidas.length > 0) {
+        return acc + 1;
+      } else {
+        return acc;
+      }
+    }
+  }, 0);
+
+  const clientesAdimplentes = titulos.reduce((acc: any, titulo: any) => {
+    if (titulo) {
+      const parcelas = titulo.parcelas;
+      const parcelasVencidas = parcelas.filter((parcela: any) => {
+        const dataVencimento = new Date(parcela.data_vencimento);
+        dataVencimento.setHours(dataVencimento.getHours() + 3);
+        if (parcela.status == 0 && dataVencimento < hoje) {
+          return parcela;
+        }
+      });
+      if (parcelasVencidas.length == 0) {
+        return acc + 1;
+      } else {
+        return acc;
+      }
+    }
+  }, 0);
+
+  const data = [
+    { name: 'Clientes Adimplentes', value: clientesAdimplentes },
+    { name: 'Clientes Inadimplentes', value: clientesInadimplentes }
+  ];
+
+  const COLORS = ['#6EFA9B', '#FA4C48'];
+
+  return (
+    <PieChart width={500} height={400}>
+      <Pie data={data} dataKey="value" nameKey="name" >
+        {data.map((entry, index) => (
+          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+        ))}
+      </Pie>
+      <Tooltip />
+    </PieChart>
+  );
+
+}
+
+export default ClientGraphic;
