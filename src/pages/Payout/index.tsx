@@ -1,7 +1,7 @@
 import "./style.css";
 import Navbar from "../../components/Navbar";
 import React, { FormEvent, useEffect, useState, useContext } from 'react'
-import { baixaParcela, dadosUsuario, updateParcela } from '../../utils/axios.routes';
+import { baixaParcela, criarLog, dadosUsuario, updateParcela } from '../../utils/axios.routes';
 import { useParams, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import { toast } from "react-toastify";
@@ -21,6 +21,11 @@ const Payout = () => {
     try {
       await updateParcela(id, valorPago);
       toast.success('Parcela paga com sucesso!');
+      await criarLog({
+        idFuncionario: funcionario.cpf,
+        idCliente: usuario?.cpf,
+        descricao: `O funcionario ${funcionario.nome} acabou de dar baixa na parcela numero ${id} do cliente ${usuario?.nome}`
+      })
       // navigate('/gerenciarparcelas/'+parcela);
       navigate('/home');
 

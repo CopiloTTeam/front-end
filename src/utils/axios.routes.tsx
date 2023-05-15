@@ -478,8 +478,9 @@ export const ListarParcela = async () => {
       },
       timeout: 5000,
       validateStatus: function (status) {
-        return statuss.includes(status.toString()) ; // Define que apenas status 200 é válido
-  }});
+        return statuss.includes(status.toString()); // Define que apenas status 200 é válido
+      }
+    });
     return response;
   } catch (error) {
     console.error(error);
@@ -517,3 +518,20 @@ export const criarLog = async (params: any) => {
 
 
 
+export const Parcela = async () => {
+  try {
+    const response = await api.get(`/parcela`, {
+      headers: {
+        'Authorization': `${localStorage.getItem('token')}`
+      },
+      timeout: 5000,
+      validateStatus: function (status) {
+        return statuss.includes(status.toString());
+      }
+    });
+
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+}
