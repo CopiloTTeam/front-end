@@ -48,9 +48,7 @@ const Payout = () => {
       try {
         const response = await baixaParcela(id);
         const data = await response?.data;
-        console.log(data);
 
-        // const UsuarioDados = await dadosUsuario(data.cliente[0]);
         const dataUsuario = await response?.data.cliente;
         setUsuario(dataUsuario);
         setParcela(data);

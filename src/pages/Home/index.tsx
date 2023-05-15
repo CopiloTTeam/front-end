@@ -10,13 +10,13 @@ import Loading from '../../components/Loading'
 const Home = () => {
   const navigate = useNavigate();
   const { isLogged, funcionario } = useContext(AuthContext)
-  if(!isLogged){
+  if (!isLogged) {
     navigate('/')
   }
   const [data, setData] = useState([]);
   const [client, setClient] = useState([]);
   const [loading, setLoading] = useState(true)
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -36,22 +36,15 @@ const Home = () => {
 
   if (!isLogged) {
     navigate('/');
-    return <div>Você precisa estar logado para acessar esta página.</div>
   }
 
   if (loading) {
-    return <Loading/>;
+    return <Loading />;
   }
-
-  const isAdmin = funcionario.cargo === 'Administrador';
-  const isComercial = funcionario.cargo === 'Comercial';
-  const isFinanceiro = funcionario.cargo === 'Financeiro';
-
-  const shouldRenderTable = isAdmin || isComercial || isFinanceiro;
 
   return (
     <>
-      <Navbar/>
+      <Navbar />
       <main>
         <AnalyticBox />
         {<Table data={data} client={client} />}
@@ -59,5 +52,5 @@ const Home = () => {
     </>
   );
 };
-  
+
 export default Home;

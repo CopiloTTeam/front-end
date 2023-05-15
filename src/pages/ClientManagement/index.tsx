@@ -43,8 +43,7 @@ const ClienteManagement = () => {
           <Navbar />
           <h1 className="title-primary">Clientes do Sistema</h1>
           {cliente && cliente.map((item: Cliente) => {
-            console.log(item);
-            
+
             return (
               <React.Fragment key={item.cpf}>
                 <EmployeeFixed id_funcionario={item} nome={item.nome} email={item.email} cargo={item.cpf} cpf={item.cpf} tipo={null} />
@@ -55,7 +54,7 @@ const ClienteManagement = () => {
           {!cliente && <EmployeeFixed id_funcionario="" nome="" email="" cargo="" cpf={null} tipo={null} />}
         </div>
       </>
-    );    
+    );
   } else {
     return (
       <></>

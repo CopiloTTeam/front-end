@@ -1,11 +1,11 @@
-.login-container{
-    display:flex;
+.login-container {
+    display: flex;
     flex-direction: row;
     width: 100%;
     height: 100vh;
 }
 
-.image-left{
+.image-left {
     background-color: #3f3f3f;
     width: 50%;
     height: 100%;
@@ -15,7 +15,7 @@
     align-items: center;
 }
 
-.form-right{
+.form-right {
     width: 50%;
     padding: 15%;
     justify-content: center;
@@ -23,13 +23,13 @@
     flex-direction: column;
 }
 
-.form-box{
-    border:1px solid #3f3f3f;
+.form-box {
+    border: 1px solid #3f3f3f;
     padding: 2rem;
     border-radius: 5px;
 }
 
-.info{
+.info {
     margin-bottom: 32px;
 }
 
@@ -43,13 +43,15 @@
     font-weight: 400;
 }
 
-.email-box h3, .pass-box h3{
+.email-box h3,
+.pass-box h3 {
     font-size: 16px;
-    font-weight:500;
+    font-weight: 500;
     margin-bottom: 4px;
 }
 
-.email-box input, .pass-box input{
+.email-box input,
+.pass-box input {
     width: 100%;
     height: 32px;
     border: 1px solid #6e6e6e;
@@ -57,51 +59,52 @@
     margin-bottom: 16px;
 }
 
-.button-box{
+.button-box {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .button-box .enter-button {
-   background-color: #3f3f3f; 
-   width: 100%;
-   height: 40px;
-   margin: 26px 0 4px 0;
-   border-radius: 5px;
-   color:white;
-   font-weight: 600;
-   font-size: 16px;
+    background-color: #3f3f3f;
+    width: 100%;
+    height: 40px;
+    margin: 26px 0 4px 0;
+    border-radius: 5px;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
 }
 
-.button-box p{
-    color:#6e6e6e;
+.button-box p {
+    color: #6e6e6e;
     font-size: 14px;
 }
 
-.button-box a{
-    color:#6e6e6e;
+.button-box a {
+    color: #6e6e6e;
     font-size: 14px;
     text-decoration: underline;
 }
 
-.image-left img{
+.image-left img {
     min-width: 200px;
     max-width: 500px;
     object-fit: cover;
 }
-@media(max-width:1080px){
-    .login-container{
+
+@media(max-width:1080px) {
+    .login-container {
         align-items: center;
         justify-content: center;
     }
 
-    .image-left{
+    .image-left {
         display: none;
 
     }
 
-    .form-right{
+    .form-right {
         padding: 0 !important;
         width: 90% !important;
     }

@@ -3,12 +3,14 @@
   gap: 1rem;
   align-items: flex-end;
 }
+
 .select-input {
   display: flex;
   flex-direction: column;
   margin-bottom: 2rem;
 }
-.select-input h3{
+
+.select-input h3 {
   border-radius: 5px;
   margin-bottom: 0.3rem;
 }
@@ -30,6 +32,7 @@
   width: 18px;
   height: 19px;
 }
+
 .datepicker-toggle-button {
   position: absolute;
   left: 0;
@@ -38,6 +41,7 @@
   height: 100%;
   background-image: url("data:image/svg+xml;base64,...");
 }
+
 .button-graphics {
   margin-right: 2rem;
   background-color: #0044d0;
@@ -52,6 +56,7 @@
   .top-box {
     margin-top: 2rem;
   }
+
   .top-box .select-box {
     display: flex;
     gap: 0.5rem;

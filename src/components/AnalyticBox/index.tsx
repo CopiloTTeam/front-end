@@ -17,8 +17,12 @@ const AnalyticBox = () => {
         const titulosData = titulos?.data;
         const parcelas = await Parcela();
         const parcelasData = parcelas?.data;
-        setTitulos(titulosData);
-        setParcelas(parcelasData);
+        if (titulosData) {
+          setTitulos(titulosData);
+        }
+        if (parcelasData) {
+          setParcelas(parcelasData);
+        }
       } catch (error) {
         console.error(error);
       }
@@ -92,7 +96,7 @@ const AnalyticBox = () => {
       return acc;
     }
   }, 0);
-  
+
   const parcelasPagasHoje = parcelas.reduce((acc: any, parcela: any) => {
     const data_pagamento = new Date(parcela.data_pagamento);
     data_pagamento.setHours(data_pagamento.getHours() + 3);
@@ -121,7 +125,7 @@ const AnalyticBox = () => {
                 <h1>{valorAReceberFormatado}</h1>
               </div>
               <div className="box">
-                <p>Total de titulos emitidos:</p>
+                <p>Total de títulos emitidos:</p>
                 <h1>{titulos.length}</h1>
               </div>
             </div>
@@ -136,15 +140,15 @@ const AnalyticBox = () => {
             <div className="box-container">
               <div className="box">
                 <p>Clientes inadimplentes:</p>
-                <h1>{ clientesInadimplentes }</h1>
+                <h1>{clientesInadimplentes}</h1>
               </div>
               <div className="box">
                 <p>Clientes adimplentes:</p>
-                <h1>{ clientesAdimplentes }</h1>
+                <h1>{clientesAdimplentes}</h1>
               </div>
               <div className="box">
                 <p>Parcelas pagas hoje:</p>
-                <h1>{ parcelasPagasHoje }</h1>
+                <h1>{parcelasPagasHoje}</h1>
               </div>
             </div>
           </div>
@@ -157,16 +161,16 @@ const AnalyticBox = () => {
           <div className="bg">
             <div className="box-container">
               <div className="box">
-                <p>Total de titulos emitidos:</p>
-                <h1>{ titulos.length }</h1>
+                <p>Total de títulos emitidos:</p>
+                <h1>{titulos.length}</h1>
               </div>
               <div className="box">
-                <p>Total de titulos emitidos hoje:</p>
-                <h1>{ titulosEmitidosHoje }</h1>
+                <p>Total de títulos emitidos hoje:</p>
+                <h1>{titulosEmitidosHoje}</h1>
               </div>
               <div className="box">
                 <p>Total de clientes inadimplentes:</p>
-                <h1>{ clientesInadimplentes }</h1>
+                <h1>{clientesInadimplentes}</h1>
               </div>
             </div>
           </div>

@@ -58,7 +58,7 @@ const EmployeeWait = ({ id_funcionario, nome, email, cpf }: employeeProps) => {
           <div className="box-confirm">
             <button className="deny" onClick={e => onExclude(e)}>Recusar</button>
             <button className="approve" onClick={e => onUpdate(e)}>Confirmar</button>
-            
+
           </div>
         </div>
       </details>

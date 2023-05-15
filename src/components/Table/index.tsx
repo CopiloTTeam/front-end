@@ -103,9 +103,9 @@ const Table = ({ data, client }: TableProps) => {
     }
 
   } else {
-    return(
+    return (
       <></>
     )
   }
 };
-  export default Table;
+export default Table;

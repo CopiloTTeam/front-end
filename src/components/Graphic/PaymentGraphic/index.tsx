@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { PureComponent, useEffect, useState } from "react";
 import {
   BarChart,
   Bar,
@@ -8,50 +8,105 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import { Parcela, dadosTitulos } from "../../../utils/axios.routes";
 
-const data = [
-  {
-    name: "Semana 01/05 até 07/05",
-    "Pagamento Não Realizado": 20,
-    "Pagamento Em Aguardo": 5,
-    "Pagamento Aprovado": 8,
-    "Pagamento Vencido": 12,
-  },
-  {
-    name: "Semana 08/05 até 14/05",
-    "Pagamento Não Realizado": 23,
-    "Pagamento Em Aguardo": 1,
-    "Pagamento Aprovado": 2,
-    "Pagamento Vencido": 6,
-  },
-  {
-    name: "Semana 15/05 até 21/05",
-    "Pagamento Não Realizado": 12,
-    "Pagamento Em Aguardo": 4,
-    "Pagamento Aprovado": 25,
-    "Pagamento Vencido": 21,
-  },
-  {
-    name: "Semana 22/05 até 28/05",
-    "Pagamento Não Realizado": 12,
-    "Pagamento Em Aguardo": 1,
-    "Pagamento Aprovado": 6,
-    "Pagamento Vencido": 9,
-  },
-  {
-    name: " Semana 29/05 até 31/05",
-    "Pagamento Não Realizado": 9,
-    "Pagamento Em Aguardo": 2,
-    "Pagamento Aprovado": 2,
-    "Pagamento Vencido": 13,
-  },
-];
 
-export default class Example extends PureComponent {
-  static demoUrl = "https://codesandbox.io/s/stacked-area-chart-ix341";
+export const PaymentGraphic = () => {
+  const [titulos, setTitulos] = useState<any>([]);
+  const [parcelas, setParcelas] = useState<any>([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const titulos = await dadosTitulos();
+        const titulosData = titulos?.data;
+        const parcelas = await Parcela();
+        const parcelasData = parcelas?.data;
+        if (titulosData) {
+          setTitulos(titulosData);
+        }
+        if (parcelasData) {
+          setParcelas(parcelasData);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, []);
 
-  render() {
-    return (
+  const data = [];
+  const [inicio, setInicio] = useState('');
+  const [fim, setFim] = useState('');
+
+  const datainicial = new Date(inicio)
+  const datafinal = new Date(fim)
+
+  for (let data_for = new Date(datainicial); data_for <= datafinal; data_for.setDate(data_for.getDate() + 1)) {
+
+    const PagamentoAguardo = parcelas.reduce((acc: any, parcela: any) => {
+      const data_pagamento = new Date(parcela.data_pagamento);
+      const data_credito = new Date(parcela.data_credito)
+      data_pagamento.setHours(data_pagamento.getHours() + 3);
+      if (parcela.status == 1 && data_pagamento < data_for && data_credito >= data_for) {
+        return acc + 1;
+      } else {
+        return acc;
+      }
+    }, 0);
+
+    const PagamentoAprovado = parcelas.reduce((acc: any, parcela: any) => {
+      const data_credito = new Date(parcela.data_credito);
+      data_credito.setHours(data_credito.getHours() + 3);
+      if (parcela.status == 1 && data_credito < data_for) {
+        return acc + 1;
+      } else {
+        return acc;
+      }
+    }, 0);
+
+    const PagamentoVencido = parcelas.reduce((acc: any, parcela: any) => {
+      const data_vencimento = new Date(parcela.data_vencimento);
+
+      data_vencimento.setHours(data_vencimento.getHours() + 3);
+      if (parcela.status == 0 && data_vencimento < data_for) {
+        return acc + 1;
+      } else {
+        return acc;
+      }
+    }, 0);
+
+
+    const dia = String(data_for.getDate()).padStart(2, '0');
+    const mes = String(data_for.getMonth() + 1).padStart(2, '0');
+    const ano = String(data_for.getFullYear());
+
+    data.push({
+      name: (dia + "/" + mes + "/" + ano),
+      "Pagamento Em Aguardo": PagamentoAguardo,
+      "Pagamento Aprovado": PagamentoAprovado,
+      "Pagamento Vencido": PagamentoVencido,
+    });
+  }
+  return (
+    <>
+      <div className="select-box">
+        <div className="select-input">
+          <h3>Data de Inicio</h3>
+          <input type= "date"
+            value = {inicio}
+            max={fim}
+            onChange={(ev) => setInicio(ev.target.value)} />
+        </div>
+        <div className="select-input">
+          <h3>Data de Fim</h3>
+          <input type= "date"
+            value = {fim}
+            min={inicio}
+            onChange={(ev) => setFim(ev.target.value)}/>
+        </div>
+      </div>
+
+
       <ResponsiveContainer width="70%" height="70%">
         <BarChart
           width={500}
@@ -64,16 +119,17 @@ export default class Example extends PureComponent {
             bottom: 0,
           }}
         >
-          <CartesianGrid strokeDasharray="3 3" />
+          <CartesianGrid strokeDasharray="3 0 " />
           <XAxis dataKey="name" />
-          <YAxis ticks={[0, 5, 10, 15, 20, 25, 30]} tickCount={7} />
+          <YAxis ticks={[0, 1, 2, 3, 4, 5, 6, 7, 8]} />
           <Tooltip />
-          <Bar dataKey={"Pagamento Não Realizado"} barSize={20} fill="#3C45FA" />
+          {/* <Bar dataKey={"Pagamento Não Realizado"} barSize={20} fill="#3C45FA" /> */}
           <Bar dataKey={"Pagamento Em Aguardo"} barSize={20} fill="#FADA55" />
           <Bar dataKey={"Pagamento Aprovado"} barSize={20} fill="#6EFA9B" />
           <Bar dataKey={"Pagamento Vencido"} barSize={20} fill="#FA4C48" />
         </BarChart>
       </ResponsiveContainer>
-    );
-  }
+    </>
+  );
 }
+export default PaymentGraphic;

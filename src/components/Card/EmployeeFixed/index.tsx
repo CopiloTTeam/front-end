@@ -15,11 +15,8 @@ interface employeeProps{
 const EmployeeFixed = ({id_funcionario, nome, email, cpf, cargo, tipo}: employeeProps) => {
 
   async function onExclude(cpf: any) {
-    // e.preventDefault();
-    console.log("excluir"+ cpf);
-    
+
     await excludeFuncionario(cpf)
-    // window.location.reload();
     toast.success('Funcionário excluído com sucesso!');
     
   }
@@ -29,7 +26,7 @@ const EmployeeFixed = ({id_funcionario, nome, email, cpf, cargo, tipo}: employee
     const selectElement = document.querySelector('select[name="select"]') as HTMLSelectElement;
     const selectedValue = selectElement.value;
     await updateFuncionario(cpf, selectedValue)
-    console.log('Employee updated!');
+  
     window.location.reload();
     toast.success('Cargo alterado com sucesso!');
   }
@@ -97,7 +94,6 @@ const EmployeeFixed = ({id_funcionario, nome, email, cpf, cargo, tipo}: employee
     </>
   );
 }else if(cpf == null ) {  
-  console.log(cpf);
   
 return (
   <div className="information-wait-box">

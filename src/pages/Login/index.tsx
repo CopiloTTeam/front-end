@@ -27,14 +27,14 @@ const Login = () => {
 
   const { setFuncionario, setIsLogged } = useContext(AuthContext);
   let funcionarioo = FuncionarioInicio;
-  async function procuraFuncionario(cpf: string , token : string ) {
+  async function procuraFuncionario(cpf: string, token: string) {
     addAuthToken(token);
     localStorage.setItem("token", token);
     try {
       let funcionario = await dadosFuncionarioc(cpf);
 
-      
-      
+
+
       if (
         funcionario !== undefined &&
         funcionario != null
@@ -71,12 +71,11 @@ const Login = () => {
       userName: email,
     };
     try {
-      let resp = await login(data);     
-      console.log(data) 
+      let resp = await login(data);
       if (resp) {
         const cpf = resp.funcionario.cpf;
         if (cpf) {
-          procuraFuncionario(cpf , resp.token);
+          procuraFuncionario(cpf, resp.token);
         }
         navigate("/home");
       } else {
@@ -109,22 +108,22 @@ const Login = () => {
               />
             </div>
             <div className="pass-title">
-          <h3>Senha</h3>
-          <div className="pass-box-container">
-            <input
-              required
-              type={showSenha ? "text" : "password"}
-              placeholder="Digite sua Senha"
-              value={password}
-              onChange={handlePasswordChange}
-            />
-            <a className="button-password" onClick={handleShowSenha}>
-              {showSenha ? <img className="passwordImg" src={EyeOff}/> : <img className="passwordImg" src={EyeOn}/>}
-            </a>
-          </div>
-        </div>
+              <h3>Senha</h3>
+              <div className="pass-box-container">
+                <input
+                  required
+                  type={showSenha ? "text" : "password"}
+                  placeholder="Digite sua Senha"
+                  value={password}
+                  onChange={handlePasswordChange}
+                />
+                <a className="button-password" onClick={handleShowSenha}>
+                  {showSenha ? <img className="passwordImg" src={EyeOff} /> : <img className="passwordImg" src={EyeOn} />}
+                </a>
+              </div>
+            </div>
 
-            
+
             <div className="button-box">
               <button type="submit" className="enter-button">
                 {" "}

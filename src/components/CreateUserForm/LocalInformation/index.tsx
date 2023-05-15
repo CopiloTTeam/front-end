@@ -38,7 +38,7 @@ export function LocalInformation({ nome, cpf, email, data, telefone, updateField
             type="text"
             placeholder="CPF"
             value={cpf}
-            onChange={(e) => updateFields({cpf: e.target.value})}
+            onChange={(e) => updateFields({ cpf: e.target.value })}
           />
         </div>
       </div>
@@ -50,7 +50,7 @@ export function LocalInformation({ nome, cpf, email, data, telefone, updateField
             required
             type="text"
             placeholder="Email"
-            value={email} 
+            value={email}
             onChange={e => updateFields({ email: e.target.value })}
           />
         </div>
@@ -62,12 +62,12 @@ export function LocalInformation({ nome, cpf, email, data, telefone, updateField
             min={"1900-01-01"}
             max={new Date(new Date().setFullYear(new Date().getFullYear() - 18)).toISOString().split("T")[0]}
             placeholder="Data de Nascimento"
-            value={data} 
+            value={data}
             onChange={e => updateFields({ data: e.target.value })}
           />
         </div>
       </div>
-        <div className="row">
+      <div className="row">
         <div className="box-tel">
           <h1>Telefone</h1>
           <div className="tel-plus">
@@ -81,8 +81,8 @@ export function LocalInformation({ nome, cpf, email, data, telefone, updateField
             <a>+</a>
           </div>
         </div>
-       </div>       
-      
+      </div>
+
     </div>
   )
 }

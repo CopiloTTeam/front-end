@@ -23,10 +23,10 @@
   margin: 0;
 }
 
-.inside-box{
+.inside-box {
   display: flex;
   flex-direction: row;
-  align-items: self-end ;
+  align-items: self-end;
   justify-content: space-between;
 }
 
@@ -79,13 +79,13 @@
   cursor: pointer;
 }
 
-.card-wait .box-confirm .approve{
+.card-wait .box-confirm .approve {
   color: #fff;
   background: rgb(7, 99, 7);
   margin-right: 10px;
 }
 
-.card-wait .box-confirm .deny{
+.card-wait .box-confirm .deny {
   color: #fff;
   background: rgb(167, 0, 0);
   margin-right: 10px;

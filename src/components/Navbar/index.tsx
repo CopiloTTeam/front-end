@@ -33,7 +33,7 @@ const Navbar = () => {
                             <li className='navitem'>
                                 <Link to='/estatisticas' className='navlink'>
                                     <img src={Estatisticas} alt='Estatisticas' />
-                                    <span className='navname'>Estatisticas</span>
+                                    <span className='navname'>Estatísticas</span>
                                 </Link>
                             </li>
                             <li className='navitem'>
@@ -89,7 +89,7 @@ const Navbar = () => {
                             <Link to='/estatisticas'>
                                 <li className='navitem'>
                                     <img src={Estatisticas} alt='Estatisticas' />
-                                    <span className='navname'>Estatisticas</span>
+                                    <span className='navname'>Estatísticas</span>
                                 </li>
                             </Link>
                             <Link to='/cadastrousuario'>
@@ -137,7 +137,7 @@ const Navbar = () => {
                             <li className='navitem' key="estatisticas">
                                 <Link to="/estatisticas" className='navlink'>
                                     <img src={Estatisticas} alt='Estatisticas' />
-                                    <span className='navname'>Estatisticas</span>
+                                    <span className='navname'>Estatísticas</span>
                                 </Link>
                             </li>
                         </ul>

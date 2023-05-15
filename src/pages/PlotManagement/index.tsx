@@ -23,7 +23,7 @@ const PlotManagement = () => {
   const [parcela, setParcela] = useState<any>(null);
 
   const getMonthName = (month: number) => {
-   
+
     const months = [
       'Janeiro',
       'Fevereiro',
@@ -49,10 +49,10 @@ const PlotManagement = () => {
       return '';
     }
   };
-  
+
 
   useEffect(() => {
-    if(!isLogged){
+    if (!isLogged) {
       navigate('/')
     }
     const fetchData = async () => {
@@ -73,8 +73,8 @@ const PlotManagement = () => {
     //     const response = await dadosUsuario(cpf);
     //     const Cliente = await response?.data;
     //     setClient(Cliente);
-        
-        
+
+
     //   } catch (error) {
     //     console.error(error);
     //   }
@@ -84,10 +84,9 @@ const PlotManagement = () => {
       try {
         const response = await gerenciarTitulo(id);
         const data = await response?.data.parcelas;
-        console.log(data);
-        
+
         setParcela(data);
-    
+
       } catch (error) {
         console.error(error);
       }
@@ -95,47 +94,45 @@ const PlotManagement = () => {
 
     fetchData();
     fetchParcela();
-    // fetchClient();
   }, [id]);
-if (isLogged && (funcionario.cargo == 'Administrador' || funcionario.cargo == 'Financeiro')){
-  return (
-    <>
-      <Navbar />
-      <main>
-        <div className="plot-container">
-          <div className="plot-info">
-            <h3>Nome: </h3>
-            <p>{data?.cliente.nome}</p>
-            <h3>Titulo:</h3>
-            <p>{data?.nome_produto}</p>
+  if (isLogged && (funcionario.cargo == 'Administrador' || funcionario.cargo == 'Financeiro')) {
+    return (
+      <>
+        <Navbar />
+        <main>
+          <div className="plot-container">
+            <div className="plot-info">
+              <h3>Nome: </h3>
+              <p>{data?.cliente.nome}</p>
+              <h3>Titulo:</h3>
+              <p>{data?.nome_produto}</p>
+            </div>
+            {parcela && parcela.map((item: Parcela, index: number) => {
+              return (
+                <details key={item.id_parcela}>
+                  <summary>
+                    <p>{index + 1}ª Parcela </p>
+                    <p>Vencimento: {item?.data_vencimento.split('-').reverse().join('/')}</p>
+                    <p>Status: {item?.status == '1' ? 'Pago' : 'Pendente'}</p>
+                    {item?.data_pagamento ? <p>Data de pagamento: {item?.data_pagamento.split('-').reverse().join('/')}</p> : null}
+                    {item.status == "0" ? <Link className="link" to={`/payout/${item.id_parcela}`}>Ver mais</Link> : null}
+
+                  </summary>
+                  <div className="card-completo">
+                    <div className="conteudo"></div>
+                  </div>
+                </details>
+              );
+            })}
           </div>
-          {parcela && parcela.map((item: Parcela, index: number) => {
-            return (
-              <details key={item.id_parcela}>
-                <summary>
-                  <p>{index + 1}ª Parcela </p>
-                  <p>Vencimento: {item?.data_vencimento.split('-').reverse().join('/')}</p>
-                  <p>Status: {item?.status=='1'? 'Pago': 'Pendente'}</p>
-                  {item?.data_pagamento ? <p>Data de pagamento: {item?.data_pagamento.split('-').reverse().join('/')}</p> : null}
-                  {/* <p>Data de pagamento: {item.data_pagamento?  }</p> */}
-                  { item.status == "0" ? <Link className="link" to={`/payout/${item.id_parcela}`}>Ver mais</Link>: null}
-                  
-                </summary>
-                <div className="card-completo">
-                  <div className="conteudo"></div>
-                </div>
-              </details>
-            );
-          })}
-        </div>
-      </main>
-    </>
-  );
-} else {
-  return(
-    <></>
-  )
-}
+        </main>
+      </>
+    );
+  } else {
+    return (
+      <></>
+    )
+  }
 };
 
 export default PlotManagement;

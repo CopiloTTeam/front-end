@@ -4,42 +4,25 @@ import PaymentGraphic from "../../components/Graphic/PaymentGraphic";
 import ValueGraphic from "../../components/Graphic/ValueGraphic";
 import Navbar from "../../components/Navbar";
 import "./style.css";
-import { dadosUsuario } from "../../utils/axios.routes";
-import { useNavigate } from "react-router-dom";
+import { Parcela, dadosTitulos } from "../../utils/axios.routes";
 import { AuthContext } from "../../contexts/AuthContext";
 
 const Analytics = () => {
-  const navigate = useNavigate();
   const { isLogged, funcionario } = useContext(AuthContext);
 
   const [data, setData] = useState<any>();
   const [selectedButton, setSelectedButton] = useState<string>("");
-
-  useEffect(() => {
-    if (!isLogged) {
-      navigate("/");
-    }
-    const fetchData = async () => {
-      try {
-        const response = await dadosUsuario(2);
-        const data = await response?.data;
-        setData(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchData();
-  }, []);
+  const [titulos, setTitulos] = useState<any>([]);
+  const [parcelas, setParcelas] = useState<any>([]);
 
   const renderSelectedGraphic = () => {
     switch (selectedButton) {
       case "clientes":
-        return <ClientGraphic />;
+        return (<ClientGraphic />)
       case "pagamentos":
-        return <PaymentGraphic />;
+        return (<PaymentGraphic />)
       case "valores":
-        return <ValueGraphic />;
+        return (<ValueGraphic />)
       default:
         return null;
     }
@@ -49,6 +32,27 @@ const Analytics = () => {
     setSelectedButton(selected);
   };
 
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const titulos = await dadosTitulos();
+        const parcelas = await Parcela();
+
+        if (titulos) {
+          const titulosData = titulos?.data;
+          setTitulos(titulosData);
+        }
+        if (parcelas) {
+          const parcelasData = parcelas?.data;
+          setParcelas(parcelasData);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, []);
   if (
     isLogged &&
     (funcionario.cargo == "Administrador" || funcionario.cargo == "Financeiro")
@@ -57,7 +61,7 @@ const Analytics = () => {
       <>
         <Navbar />
         <div className="main">
-          <h2>Estatisticas</h2>
+          <h2>Estatísticas</h2>
           <div className="button-select-graphics">
             <button
               className="button-graphics"
@@ -75,19 +79,19 @@ const Analytics = () => {
               className="button-graphics"
               onClick={() => handleButtonSelect("valores")}
             >
-              Valores
+              Valores Acúmulativos
             </button>
           </div>
-          <div className="select-box">
+          {/* <div className="select-box">
             <div className="select-input">
               <h3>Data de Inicio</h3>
               <input type="date" />
             </div>
             <div className="select-input">
               <h3>Data de Fim</h3>
-              <input type="date"/>
+              <input type="date" />
             </div>
-          </div>
+          </div> */}
           {renderSelectedGraphic()}
         </div>
       </>

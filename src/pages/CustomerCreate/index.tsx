@@ -10,26 +10,26 @@ const CustomerForm = () => {
   const navigate = useNavigate();
   const { isLogged, funcionario } = useContext(AuthContext)
 
-    useEffect(() => {
-      if(!isLogged){
-        navigate('/')
-      }
-    }, []);
-    if (isLogged && (funcionario.cargo = 'Administrador' || funcionario.cargo == 'Comercial')){
+  useEffect(() => {
+    if (!isLogged) {
+      navigate('/')
+    }
+  }, []);
+  if (isLogged && (funcionario.cargo = 'Administrador' || funcionario.cargo == 'Comercial')) {
 
-      return (
-        <>
-      <Navbar/>
-      <main>
-        <UserForm />
-      </main>
-    </>
-  );
-} else {
-  return(
-    <></>
-  )
-}
+    return (
+      <>
+        <Navbar />
+        <main>
+          <UserForm />
+        </main>
+      </>
+    );
+  } else {
+    return (
+      <></>
+    )
+  }
 };
 
 export default CustomerForm;
