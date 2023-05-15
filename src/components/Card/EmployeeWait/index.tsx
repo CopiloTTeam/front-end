@@ -21,6 +21,7 @@ const EmployeeWait = ({ id_funcionario, nome, email, cpf }: employeeProps) => {
     e.preventDefault();
     const selectElement = document.querySelector('select[name="select"]') as HTMLSelectElement;
     const selectedValue = selectElement.value;
+    
     await updateFuncionario(cpf, selectedValue)
     toast.success('Funcionário aprovado com sucesso!');
     window.location.reload();

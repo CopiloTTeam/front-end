@@ -14,27 +14,28 @@ const Payout = () => {
   const [parcela, setParcela] = useState<any>();
   const [usuario, setUsuario] = useState<any>();
   const { id } = useParams<{ id: string }>();
-  const [valorPago, setValorPago] = useState("");
+  const [valorPago, setValorPago] = useState<any>();
   const [titulo, setTitulo] = useState("");
 
-  async function submitdata(valorPago: String) {
+  async function submitdata(valorPago: number) {
     try {
+      if (valorPago < parcela.valor) {
+        toast.error('Valor pago menor que o valor da parcela!');
+        return;
+      }
       await updateParcela(id, valorPago);
       toast.success('Parcela paga com sucesso!');
-      // navigate('/gerenciarparcelas/'+parcela);
-      navigate('/home');
-
+      navigate('/gerenciarparcelas/' + parcela?.id_titulo);
     } catch (error) {
       console.error(error);
       toast.error('Erro ao pagar a parcela. Por favor, tente novamente.');
     }
   }
-
   function onsubmit(e: FormEvent) {
     e.preventDefault()
     submitdata(valorPago)
-  }
 
+  }
   useEffect(() => {
     if (!isLogged) {
       navigate('/')
@@ -43,10 +44,8 @@ const Payout = () => {
       try {
         const response = await baixaParcela(id);
         const data = await response?.data;
-        console.log(data);
-
-        // const UsuarioDados = await dadosUsuario(data.cliente[0]);
-        const dataUsuario = await response?.data.cliente;
+        const UsuarioDados = await dadosUsuario(data.cpf);
+        const dataUsuario = await UsuarioDados?.data;
         setUsuario(dataUsuario);
         setParcela(data);
       } catch (error) {
@@ -58,7 +57,6 @@ const Payout = () => {
 
   if (isLogged && (funcionario.cargo == 'Administrador' || funcionario.cargo == 'Financeiro')) {
 
-    const ValorFormatado = parcela?.valor.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
     return (
       <>
         <Navbar />
@@ -73,32 +71,30 @@ const Payout = () => {
                   {" "}
                   <b>Nome: {usuario?.nome}</b>
                 </h2>
-                {/* <h2>
-              {" "}
-              <b>Titulo:</b> Nome do titulo
-            </h2> */}
                 <h2>
                   {" "}
-                  <b>Valor da Parcela: {ValorFormatado}</b>
+                  <b>Valor da Parcela: {parcela?.valor}</b>
                 </h2>
                 <h2>
                   {" "}
-                  <b>Data de Vencimento: {parcela?.data_vencimento.split('-').reverse().join('/')}</b>
+                  <b>Data de Vencimento: {parcela?.data_vencimento}</b>
                 </h2>
               </div>
               <hr></hr>
               <div className="box-date">
+
                 <div className="input-date">
                   <h1>Valor do Pagamento</h1>
                   <CurrencyInput
                     required
-                    placeholder="Valor"
+                    placeholder="Valor do Pagamento"
                     prefix="R$"
                     decimalSeparator=","
                     groupSeparator="."
                     value={valorPago}
-                    onValueChange={(value) => setValorPago(value as string)}
+                    onValueChange={(value) => setValorPago(value)}
                     decimalScale={2}
+                    fixedDecimalLength={2}
                     allowNegativeValue={false}
                   />
                 </div>

@@ -3,7 +3,7 @@ import { useMultistepForm } from '../../utils/function'
 import { LocalInformation } from './LocalInformation'
 import { PersonalInformation } from './PersonalInformation'
 import { criarCliente } from '../../utils/axios.routes'
-import { isRouteErrorResponse, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify'
 
 
@@ -21,7 +21,6 @@ const UserForm = () => {
     estado: string,
     logradouro: string,
     complemento: string,
-    telefone: string
   }
   const INITIAL_DATA: FormData = {
     nome: "",
@@ -35,7 +34,6 @@ const UserForm = () => {
     estado: "",
     logradouro: "",
     complemento: "",
-    telefone: ""
   }
   const [data, setData] = useState(INITIAL_DATA)
   function updateFields(fields: Partial<FormData>) {
@@ -48,121 +46,32 @@ const UserForm = () => {
     useMultistepForm([
       <LocalInformation {...data} updateFields={updateFields} />,
       <PersonalInformation {...data} updateFields={updateFields} />,
+      // <Validation {...data} updateFields={updateFields}/>,
     ])
-
-  function verificarCampos(data: any) {
-    let errors = 0;
-    let nome = data.nome;
-    let cpf = data.cpf;
-    let email = data.email;
-    let data_nascimento = data.data;
-    let cep = data.cep;
-    let rua = data.rua;
-    let bairro = data.bairro;
-    let cidade = data.cidade;
-    let estado = data.estado;
-    let logradouro = data.logradouro;
-    let complemento = data.complemento;
-    let telefone = data.telefone;
-
-    var strCPF = cpf.replace(/[^\d]+/g, '');
-    var Soma;
-    Soma = 0;
-    var Resto;
-    let CPFvalido = true;
-    if (strCPF == "00000000000" || strCPF == "11111111111" || strCPF == "22222222222" || strCPF == "33333333333" || strCPF == "44444444444" || strCPF == "55555555555" || strCPF == "66666666666" || strCPF == "77777777777" || strCPF == "88888888888" || strCPF == "99999999999") {
-      CPFvalido = false;
-    }
-    for (let i: number = 1; i <= 9; i++) Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (11 - i);
-    Resto = (Soma * 10) % 11;
-
-    if ((Resto == 10) || (Resto == 11)) Resto = 0;
-    if (Resto != parseInt(strCPF.substring(9, 10))) CPFvalido = false;
-
-    Soma = 0;
-    for (let i: number = 1; i <= 10; i++) Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (12 - i);
-    Resto = (Soma * 10) % 11;
-
-    if ((Resto == 10) || (Resto == 11)) Resto = 0;
-    if (Resto != parseInt(strCPF.substring(10, 11))) CPFvalido = false;
-
-    if (nome == null || !nome) {
-      toast.warning(`Nome não está preenchido`);
-    }
-    else if (strCPF == null || !strCPF) {
-      toast.warning(`O campo de cpf está Vazio!`);
-    }
-    else if (strCPF.length < 11) {
-      toast.warning(`O campo de cpf está incompleto!`);
-    }
-    else if (CPFvalido == false) {
-      toast.warning(`O campo de cpf está inválido!`);
-    }
-    else if (email == null || !email) {
-      toast.warning(`Email não está preenchido`);
-    }
-    else if (data_nascimento == null || !data_nascimento) {
-      toast.warning(`Data Nascimento não está preenchido`);
-    }
-    else if (cep == null || !cep) {
-      toast.warning(`CEP não está preenchido`);
-    }
-    else if (rua == null || !rua) {
-      toast.warning(`Rua não está preenchido`);
-    }
-    else if (bairro == null || !bairro) {
-      toast.warning(`Bairro não está preenchido`);
-    }
-    else if (cidade == null || !cidade) {
-      toast.warning(`Cidade não está preenchido`);
-    }
-    else if (estado == null || !estado) {
-      toast.warning(`Estado não está preenchido`);
-    }
-    else if (logradouro == null || !logradouro) {
-      toast.warning(`Logradouro não está preenchido`);
-    }
-    else if (complemento == null || !complemento) {
-      toast.warning(`Complemento não está preenchido`);
-    }
-    else if (telefone == null || !telefone) {
-      toast.warning(`Telefone não está preenchido`);
-    }
-    else if (nome && cpf && email && data_nascimento && cep && rua && bairro && cidade && estado && logradouro && complemento && telefone) {
-      return true
-    }
-    return false
-  }
-  async function submitData(data: any) {
-    try {
-      let verifica = verificarCampos(data);
-      if (verifica == true) {
+    
+    async function submitData(data: any) {
+      try {
         let resp = await criarCliente(data);
-        if (resp?.status === 201) {
-          toast.success('Cliente criado com sucesso!');
-          return true;
-        }
+        toast.success('Cliente criado com sucesso!');
+        return true;
+      } catch (error) {
         toast.error('Não foi possível criar o cliente. Por favor, tente novamente mais tarde.');
-        return false
+        console.error(error);
+        return false;
       }
-    } catch (error) {
-      toast.error('Não foi possível criar o cliente. Por favor, tente novamente mais tarde.');
-      console.error(error);
-      return false;
     }
-  }
-
-  function onSubmit(e: FormEvent) {
-    e.preventDefault();
-    if (isLastStep) {
-      submitData(data).then((success) => {
-        if (success) {
-          navigate('/home');
-        }
-      });
+    
+    function onSubmit(e: FormEvent) {
+      e.preventDefault();
+      if (isLastStep) {
+        submitData(data).then((success) => {
+          if (success) {
+            navigate('/home');
+          }
+        });
+      }
+      next();
     }
-    next();
-  }
   return (
     <>
       <div>
