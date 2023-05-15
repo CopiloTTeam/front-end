@@ -1,50 +1,89 @@
-import React, { FormEvent, useContext, useState } from 'react'
+import React, { FormEvent, useContext, useEffect, useState } from 'react'
 import { useMultistepForm } from '../../utils/function'
 import { LocalInformation } from './LocalInformation'
 import { PersonalInformation } from './PersonalInformation'
-import { criarCliente, criarLog } from '../../utils/axios.routes'
-import { isRouteErrorResponse, useNavigate } from 'react-router-dom';
+import { criarCliente, criarLog, dadosUsuario, updateCliente } from '../../utils/axios.routes'
+import { Form, isRouteErrorResponse, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify'
 import { AuthContext } from '../../contexts/AuthContext'
+import Loading from '../Loading'
 
+type UserFormProps = {
+  id?: string;
+};
 
-const UserForm = () => {
-  const { isLogged, funcionario } = useContext(AuthContext)
+const getCliente = async (id: string) => {
+  let cliente = await dadosUsuario(id);
+  return cliente?.data;
+};
+
+const UserForm = (props: UserFormProps) => {
+  const id = props.id || '';
+  const { isLogged, funcionario } = useContext(AuthContext);
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   type FormData = {
-    nome: string,
-    cpf: string,
-    email: string,
-    data: string,
-    cep: string,
-    rua: string,
-    bairro: string,
-    cidade: string,
-    estado: string,
-    logradouro: string,
-    complemento: string,
-    telefone: string
-  }
-  const INITIAL_DATA: FormData = {
-    nome: "",
-    cpf: "",
-    email: "",
-    data: "",
-    cep: "",
-    rua: "",
-    bairro: "",
-    cidade: "",
-    estado: "",
-    logradouro: "",
-    complemento: "",
-    telefone: ""
-  }
-  const [data, setData] = useState(INITIAL_DATA)
+    nome: string;
+    cpf: string;
+    email: string;
+    data: string;
+    cep: string;
+    rua: string;
+    bairro: string;
+    cidade: string;
+    estado: string;
+    logradouro: string;
+    complemento: string;
+    telefone: string;
+  };
+
+  const [cliente, setCliente] = useState<any>(null);
+  const [data, setData] = useState<FormData>({
+    nome: '',
+    cpf: '',
+    email: '',
+    data: '',
+    cep: '',
+    rua: '',
+    bairro: '',
+    cidade: '',
+    estado: '',
+    logradouro: '',
+    complemento: '',
+    telefone: '',
+  });
+
+  useEffect(() => {
+    const fetchCliente = async () => {
+      setIsLoading(true);
+      const clienteData = await getCliente(id);
+      setCliente(clienteData);
+      const INITIAL_DATA: FormData = {
+        nome: clienteData?.nome || '',
+        cpf: clienteData?.cpf || '',
+        email: clienteData?.contato?.email || '',
+        data: clienteData?.data_nascimento || '',
+        cep: clienteData?.endereco?.cep || '',
+        rua: clienteData?.endereco?.rua || '',
+        bairro: clienteData?.endereco?.bairro || '',
+        cidade: clienteData?.endereco?.cidade || '',
+        estado: clienteData?.endereco?.estado || '',
+        logradouro: clienteData?.endereco?.logradouro || '',
+        complemento: clienteData?.endereco?.complemento || '',
+        telefone: clienteData?.contato?.telefone || '',
+      };
+      setData(INITIAL_DATA);
+      setIsLoading(false);
+    };
+
+    fetchCliente();
+  }, [id]);
+
   function updateFields(fields: Partial<FormData>) {
     setData(prev => {
       return { ...prev, ...fields }
-    })
+    });
   }
 
   const { steps, currentStepIndex, step, isFirstStep, isLastStep, next, back } =
@@ -160,36 +199,72 @@ const UserForm = () => {
     }
   }
 
+  async function updateData(data: any) {
+    try{
+      let verifica = verificarCampos(data);
+      if (verifica == true) {
+        let resp = await updateCliente(data);
+        if (resp?.status === 202) {
+          toast.success('Cliente atualizado com sucesso!');
+          await criarLog({
+            idFuncionario: funcionario.cpf,
+            idCliente: data.cpf,
+            descricao: `O funcionario ${funcionario.nome} acabou de atualizar o cliente ${data.nome}`
+          })
+          return true;
+        }
+      }
+    } catch (error) {
+      toast.error('Não foi possível atualizar o cliente. Por favor, tente novamente mais tarde.');
+      console.error(error);
+      return false;
+    }
+  }
+
   function onSubmit(e: FormEvent) {
     e.preventDefault();
     if (isLastStep) {
-      submitData(data).then((success) => {
-        if (success) {
-          navigate('/home');
-        }
-      });
+      if (!id) {
+
+        submitData(data).then((success) => {
+          if (success) {
+            navigate('/home');
+          }
+        });
+      } else {
+        updateData(data).then((success) => {
+          if (success) {
+            navigate('/home');
+          }
+        })
+      }
+
     }
     next();
   }
-  return (
-    <>
-      <div>
-        <form onSubmit={onSubmit}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <h2>Cadastro de Clientes</h2>
-            {currentStepIndex + 1} / {steps.length}
+  if (isLoading) {
+    return <Loading />
+  } else {
+    return (
+      <>
+        <div>
+          <form onSubmit={onSubmit}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <h2>Cadastro de Clientes</h2>
+              {currentStepIndex + 1} / {steps.length}
+            </div>
+            {step}
+          </form>
+          <div className='btn-form'>
+            {!isFirstStep && <button className='red' type="button" onClick={back}>Voltar</button>}
+            <button className='green' type="submit" onClick={onSubmit}>
+              {isLastStep ? "Concluir" : "Avançar"}
+            </button>
           </div>
-          {step}
-        </form>
-        <div className='btn-form'>
-          {!isFirstStep && <button className='red' type="button" onClick={back}>Voltar</button>}
-          <button className='green' type="submit" onClick={onSubmit}>
-            {isLastStep ? "Concluir" : "Avançar"}
-          </button>
         </div>
-      </div>
-    </>
-  )
+      </>
+    )
+  }
 }
 
 export default UserForm

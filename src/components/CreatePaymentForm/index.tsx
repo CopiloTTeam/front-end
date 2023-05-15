@@ -52,7 +52,7 @@ const PaymentForm = () => {
       data.data_geracao = new Date
       let nome_produto = data.nome_produto;
       data.parcelas = 12;
-      let valor = data.valor;
+      let valor = parseFloat(data.valor);
 
       if (cpf == null || !cpf) {
         toast.warning("O Campo CPF não está preenchido!");
@@ -79,7 +79,7 @@ const PaymentForm = () => {
           await criarLog({
             idFuncionario: funcionario.cpf,
             idCliente: data.cpf,
-            descricao: `O funcionario ${funcionario.nome} acabou de cadastrar o Titulo ${resp.data.id}`
+            descricao: `O funcionario ${funcionario.nome} acabou de cadastrar o Titulo`
           })
           return true;
         }

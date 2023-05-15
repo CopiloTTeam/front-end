@@ -297,34 +297,10 @@ export const excludeFuncionario = async (cpf: any) => {
 
 export const excludeCliente = async (cpf: any) => {
   try {
-    const user = await api.get(`/listar/cliente/${cpf}`, {
+    const response = await api.delete(`/deletar/cliente/${cpf}`, {
       headers: {
         'Authorization': `${localStorage.getItem('token')}`
       },
-      timeout: 5000,
-      validateStatus: function (status) {
-        return statuss.includes(status.toString()); // Define que apenas status 200 é válido
-      }
-    }
-
-    );
-    const payload = {
-      nome: user.data.nome,
-      cpf: user.data.cpf,
-      email: user.data.email,
-      credential: {
-        password: user.data.senha,
-        userName: user.data.email,
-        roles: [
-          user.data.cargo
-        ]
-      }
-    }
-    const response = await api.delete(`/deletar/cliente`, {
-      headers: {
-        'Authorization': `${localStorage.getItem('token')}`
-      },
-      data: payload,
       timeout: 5000,
       validateStatus: function (status) {
         return statuss.includes(status.toString()); // Define que apenas status 200 é válido
@@ -392,11 +368,9 @@ export const updateFuncionarioId = async (
 
 
 
-export const updateCliente = async (cpf: any, value: any) => {
+export const updateCliente = async (data: any) => {
   try {
-    const response = await api.put(`/atualizar/funcionarioc/${cpf}`, {
-      cargo: value
-    }, {
+    const response = await api.put(`/atualizar/cliente`, data, {
       headers: {
         'Authorization': `${localStorage.getItem('token')}`
       },
@@ -412,11 +386,13 @@ export const updateCliente = async (cpf: any, value: any) => {
   }
 }
 
-export const updateParcela = async (id: any, valorPago: any) => {
+export const updateParcela = async (id: any, valorPago: any ,dataPagamento : any , dataCredito : any) => {
   try {
     const valorPagoFloat = parseFloat(valorPago.replace(',', '.'));
     const response = await api.put(`/atualizar/parcela/${id}`, {
       valor_pago: valorPagoFloat,
+      data_credito: dataCredito,
+      data_pagamento: dataPagamento,
       // status: true,
     }, {
       headers: {

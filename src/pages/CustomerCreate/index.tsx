@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import UserForm from '../../components/CreateUserForm'
 import Navbar from '../../components/Navbar'
 import { dadosUsuario } from '../../utils/axios.routes';
@@ -9,12 +9,31 @@ import { AuthContext } from '../../contexts/AuthContext';
 const CustomerForm = () => {
   const navigate = useNavigate();
   const { isLogged, funcionario } = useContext(AuthContext)
-
+  const { id } = useParams<{ id: string }>();
   useEffect(() => {
+
     if (!isLogged) {
       navigate('/')
     }
   }, []);
+
+  if (id != null) {
+    if (isLogged && (funcionario.cargo = 'Administrador' || funcionario.cargo == 'Comercial')) {
+
+      return (
+        <>
+          <Navbar />
+          <main>
+            <UserForm id={id} />
+          </main>
+        </>
+      );
+    } else {
+      return (
+        <></>
+      )
+    }
+  }
   if (isLogged && (funcionario.cargo = 'Administrador' || funcionario.cargo == 'Comercial')) {
 
     return (
