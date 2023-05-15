@@ -6,7 +6,6 @@ import CurrencyInput from "react-currency-input-field";
 
 type UserData = {
   cpf: string,
-  id_funcionario: string
   data_geracao: string,
   valor: string
 }
@@ -15,7 +14,7 @@ type UserFormProps = UserData & {
   updateFields: (fields: Partial<UserData>) => void
 }
 
-export function BilingInformation({ cpf, id_funcionario, data_geracao, valor, updateFields }: UserFormProps) {
+export function BilingInformation({ cpf, data_geracao, valor, updateFields }: UserFormProps) {
   const [Usuarios, setUsuarios] = useState<any>();
   const [nomeUsuario, setNomeUsuario] = useState<any>();
 
@@ -69,18 +68,6 @@ export function BilingInformation({ cpf, id_funcionario, data_geracao, valor, up
         </div>
       </div>
       <div className="row">
-        <div className="full-box">
-          <h1>CPF do funcionario</h1>
-          <div className="tel-plus">
-            <ReactInputMask
-              type="text"
-              mask="999.999.999-99"
-              placeholder="CPF do funcionario"
-              value={id_funcionario} 
-              onChange={e => updateFields({ id_funcionario: e.target.value })}
-            />
-          </div>
-        </div>
         <div className="full-box">
           <h1>Data de Geração</h1>
           <input

@@ -1,14 +1,17 @@
-import React, { FormEvent, useState } from 'react'
+import React, { FormEvent, useContext, useState } from 'react'
 import { useMultistepForm } from '../../utils/function'
 import { LocalInformation } from './LocalInformation'
 import { PersonalInformation } from './PersonalInformation'
-import { criarCliente } from '../../utils/axios.routes'
+import { criarCliente, criarLog } from '../../utils/axios.routes'
 import { isRouteErrorResponse, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify'
+import { AuthContext } from '../../contexts/AuthContext'
 
 
 const UserForm = () => {
+  const { isLogged, funcionario } = useContext(AuthContext)
   const navigate = useNavigate();
+
   type FormData = {
     nome: string,
     cpf: string,
@@ -140,6 +143,11 @@ const UserForm = () => {
         let resp = await criarCliente(data);
         if (resp?.status === 201) {
           toast.success('Cliente criado com sucesso!');
+          await criarLog({
+            idFuncionario: funcionario.cpf,
+            idCliente: data.cpf,
+            descricao: `O funcionario ${funcionario.nome} acabou de cadastrar o cliente ${data.nome}`
+          })
           return true;
         }
         toast.error('Não foi possível criar o cliente. Por favor, tente novamente mais tarde.');

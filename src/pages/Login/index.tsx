@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import "./style.css";
 import Rocket from "../../assets/rocket.png";
-import { dadosFuncionarioc, login } from "../../utils/axios.routes";
+import { criarLog, dadosFuncionarioc, login } from "../../utils/axios.routes";
 import { useNavigate, Link } from "react-router-dom";
 import { AuthContext, FuncionarioInicio } from "../../contexts/AuthContext";
 import EyeOff from "../../assets/eyeOff.png";
@@ -52,6 +52,10 @@ const Login = () => {
           "isLogged": true
         }
         localStorage.setItem("funcionario", JSON.stringify(infos))
+        await criarLog({
+          idFuncionario: funcionario.data.cpf,
+          descricao: `O funcionario ${funcionario.data.nome} acabou de logar no sistema`
+        });
       }
     } catch (error) {
       console.error(error);
