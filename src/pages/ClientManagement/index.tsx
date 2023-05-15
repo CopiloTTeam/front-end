@@ -37,17 +37,16 @@ const ClienteManagement = () => {
     fetchData();
   }, []);
   if (isLogged && (funcionario.cargo == 'Administrador' || funcionario.cargo == 'Comercial')) {
+
     return (
       <>
         <div className="conteiner-employee-management">
           <Navbar />
           <h1 className="title-primary">Clientes do Sistema</h1>
           {cliente && cliente.map((item: Cliente) => {
-            console.log(item);
-            
             return (
               <React.Fragment key={item.cpf}>
-                <EmployeeFixed id_funcionario={item} nome={item.nome} email={item.email} cargo={item.cpf} cpf={item.cpf} tipo={null} />
+                <EmployeeFixed id_funcionario={item.id_funcionario} nome={item.nome} email={item.email} cargo={item.cpf} cpf={item.cpf} tipo={null} />
               </React.Fragment>
             )
           }

@@ -1,7 +1,7 @@
 import React from 'react'
 import './style.css'
 import axios from 'axios';
-import ReactInputMask from 'react-input-mask';
+import ReactInputMask from "react-input-mask";
 
 type UserData = {
   cep: string,
@@ -61,7 +61,7 @@ export function PersonalInformation({ cep, rua, bairro, cidade, estado, logradou
         <div className="first-box-local">
           <h1>CEP</h1>
           <ReactInputMask
-            maskPlaceholder="_"
+            required
             mask="99999-999"
             type="text"
             placeholder="CEP"
@@ -73,6 +73,7 @@ export function PersonalInformation({ cep, rua, bairro, cidade, estado, logradou
         <div className="second-box-local">
           <h1>Rua</h1>
           <input
+            required
             type="text"
             placeholder="Rua"
             value={rua}
@@ -84,6 +85,7 @@ export function PersonalInformation({ cep, rua, bairro, cidade, estado, logradou
         <div className="third-box">
           <h1>Bairro</h1>
           <input
+            required
             type="text"
             placeholder="Bairro"
             value={bairro}
@@ -93,6 +95,7 @@ export function PersonalInformation({ cep, rua, bairro, cidade, estado, logradou
         <div className="fourth-box">
           <h1>Cidade</h1>
           <input
+            required
             type="text"
             placeholder="Cidade"
             value={cidade}
@@ -103,6 +106,7 @@ export function PersonalInformation({ cep, rua, bairro, cidade, estado, logradou
         <div className="fifth-box">
           <h1>Estado</h1>
           <input
+            required
             type="text"
             placeholder="Estado"
             value={estado}
@@ -114,6 +118,7 @@ export function PersonalInformation({ cep, rua, bairro, cidade, estado, logradou
         <div className="sixth-box">
           <h1>Número</h1>
           <input
+            required
             type="number"
             placeholder="Número"
             value={logradouro}
@@ -123,6 +128,7 @@ export function PersonalInformation({ cep, rua, bairro, cidade, estado, logradou
         <div className="seventh-box">
           <h1>Complemento</h1>
           <input
+            required
             type="text"
             placeholder="Complemento"
             value={complemento}

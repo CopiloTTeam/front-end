@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
 
 interface Funcionario {
-  credential: any;
   id_funcionario: number;
   nome: string;
   email: string;
@@ -28,15 +27,13 @@ const EmployeeManagement = () => {
     }
     const fetchData = async () => {
       try {
-        // const response = await dadosUsuario(2);
-        // const data = await response?.data;
-        // setData(data);
+        const response = await dadosUsuario(2);
+        const data = await response?.data;
+        setData(data);
 
         const funcs = await dadosFuncionarios();
         const resp = await funcs?.data;
         setFuncionario(resp);
-        // console.log(funcs?.data[0].credential.role);
-        
       } catch (error) {
         console.error(error);
       }
@@ -54,19 +51,18 @@ const EmployeeManagement = () => {
           <h2 className="title-secundary">Solicitações Pendentes</h2>
           {funcionarioo && funcionarioo.length > 0 ? (
             <>
-              {funcionarioo.map((item: Funcionario) => {   
-                if (item.credential.role == null && item.credential.id != funcionario.id || item.cargo == undefined && item.credential.id != funcionario.id  && item.credential.role == 'Sem_Cargo') {      
+              {funcionarioo.map((item: Funcionario) => {
+                if (item.cargo == null || item.cargo == undefined) {
                   return (
-                  
                     <React.Fragment key={item.cpf}>
-                      <EmployeeWait id_funcionario={item.credential.id} nome={item.nome} email={item.email} cpf={item.cpf} />
+                      <EmployeeWait id_funcionario={item.id_funcionario} nome={item.nome} email={item.email} cpf={item.cpf} />
                     </React.Fragment>
                   );
                 } else if (
-                  item.credential.role != null &&
-                  item.credential.role != "Administrador" &&
-                  item.credential.role != "Financeiro" &&
-                  item.credential.role != "Comercial" 
+                  item.cargo != null &&
+                  item.cargo != "admin" &&
+                  item.cargo != "Financeiro" &&
+                  item.cargo != "Comercial"
                 ) {
                   return null; // ignora funcionários com cargos específicos
                 }
@@ -79,13 +75,13 @@ const EmployeeManagement = () => {
 
           <h2 className="title-secundary">Funcionários do Sistema</h2>
           {funcionarioo && funcionarioo.map((item: Funcionario) => {
-            if (item.credential.role != null && item.cpf != funcionario.cpf  && item.credential.role != 'Sem_Cargo') {
+            if (item.cargo != null) {
               return (
                 <React.Fragment key={item.cpf}>
-                  <EmployeeFixed id_funcionario={item.credential.id} nome={item.nome} email={item.email} cargo={item.credential.role} cpf={item.cpf} tipo={"f"} />
+                  <EmployeeFixed id_funcionario={item.id_funcionario} nome={item.nome} email={item.email} cargo={item.cargo} cpf={item.cpf} tipo={"f"} />
                 </React.Fragment>
               );
-            } else if (item.cargo != null && item.cargo != 'Administrador' && item.cargo != 'Financeiro' && item.cargo != 'Comercial' ) {
+            } else if (item.cargo != null && item.cargo != 'Administrador' && item.cargo != 'Financeiro' && item.cargo != 'Comercial') {
               return (
                 <>
                   <h2>Sem Funcionarios Cadastrados</h2>

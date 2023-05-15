@@ -6,13 +6,18 @@ import { dadosClientes, dadosTitulos } from '../../utils/axios.routes'
 import { AuthContext } from '../../contexts/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import Loading from '../../components/Loading'
+import { toast } from 'react-toastify'
 
 const Home = () => {
   const navigate = useNavigate();
   const { isLogged, funcionario } = useContext(AuthContext)
-  if(!isLogged){
-    navigate('/')
+  if (!isLogged) {      
+      // setTimeout(() => {
+          // toast.error("Você não está logado. Por favor, faça o login para acessar esta página.");
+          navigate('/')
+        // }, 1)
   }
+  
   const [data, setData] = useState([]);
   const [client, setClient] = useState([]);
   const [loading, setLoading] = useState(true)
@@ -22,11 +27,16 @@ const Home = () => {
       try {
         const titulos = await dadosTitulos();
         const data = titulos?.data;
+        // if(data == undefined){
+        //   setData([])
+        // }
         setData(data);
         const cliente = await dadosClientes();
         const client = cliente?.data;
         setClient(client);
         setLoading(false);
+        
+        
       } catch (error) {
         console.error(error);
       }
@@ -34,30 +44,29 @@ const Home = () => {
     fetchData();
   }, []);
 
-  if (!isLogged) {
-    navigate('/');
-    return <div>Você precisa estar logado para acessar esta página.</div>
+if(isLogged){
+
+  if (!loading && (funcionario.cargo == 'Administrador' || funcionario.cargo == 'Comercial' || funcionario.cargo == 'Financeiro')) {
+    return (
+      <>
+        <Navbar/>
+        <main>
+          <AnalyticBox />
+          <Table data={data} client={client} />
+        </main>
+      </>
+    );
+  } else {
+    return(
+      <Loading/> 
+      )
+    }
+    
+  } else{
+    return(
+      <></>
+    )
   }
-
-  if (loading) {
-    return <Loading/>;
-  }
-
-  const isAdmin = funcionario.cargo === 'Administrador';
-  const isComercial = funcionario.cargo === 'Comercial';
-  const isFinanceiro = funcionario.cargo === 'Financeiro';
-
-  const shouldRenderTable = isAdmin || isComercial || isFinanceiro;
-
-  return (
-    <>
-      <Navbar/>
-      <main>
-        <AnalyticBox />
-        {<Table data={data} client={client} />}
-      </main>
-    </>
-  );
-};
+  };
   
-export default Home;
+  export default Home;
