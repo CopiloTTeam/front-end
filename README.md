@@ -25,9 +25,9 @@ Com o [Node](https://nodejs.org/en/) instalado em sua máquina, utilize estes co
 $ git clone https://github.com/CopiloTTeam/front-end
 
 # Acesse a pasta e inicie o projeto
-$ cd Send.me-FrontEnd-2022-2
-$ yarn install
-$ yarn start
+$ cd front-end
+$ yarn
+$ yarn dev
 ```
 
 A aplicação iniciará localmente na porta 3000. Use o navegador para acessar o link [http://localhost:3000](http://localhost:3000) e executar apenas o FrontEnd da aplicação.
