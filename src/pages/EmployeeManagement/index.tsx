@@ -45,7 +45,11 @@ const EmployeeManagement = () => {
       <>
         <div className="conteiner-employee-management">
           <Navbar />
-          <h1 className="title-primary">Usuário do Sistema</h1>
+          <div className='head-gerenciarfunc'>
+            <h1 className="title-primary">Usuário do Sistema</h1>
+            <input type='text' className='input-table' placeholder='Digite aqui'/>
+          </div>
+
           <h2 className="title-secundary">Solicitações Pendentes</h2>
           {funcionarioo && funcionarioo.length > 0 ? (
             <>

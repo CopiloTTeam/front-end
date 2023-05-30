@@ -16,6 +16,7 @@ const Table = ({ data, client }: TableProps) => {
         <div className='table-box'>
           <div className='table-title'>
             <h1>Lista de Titulos</h1>
+            <input type='text' placeholder='Digite aqui' className='input-table'/>
           </div>
           <table>
             <thead>

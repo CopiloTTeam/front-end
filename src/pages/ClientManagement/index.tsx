@@ -41,7 +41,10 @@ const ClienteManagement = () => {
       <>
         <div className="conteiner-employee-management">
           <Navbar />
-          <h1 className="title-primary">Clientes do Sistema</h1>
+          <div className='head-gerenciarcliente'>
+            <h1 className="title-primary">Cliente do Sistema</h1>
+            <input type='text' className='input-table' placeholder='Digite aqui'/>
+          </div>
           {cliente && cliente.map((item: Cliente) => {
 
             return (
