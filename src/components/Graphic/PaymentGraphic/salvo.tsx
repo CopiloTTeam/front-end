@@ -9,10 +9,16 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { Parcela, dadosTitulos } from "../../../utils/axios.routes";
+import { log } from "console";
 
 export const PaymentGraphic = () => {
   const [titulos, setTitulos] = useState<any>([]);
   const [parcelas, setParcelas] = useState<any>([]);
+  const [tick, setTick] = useState<any>([]);
+  const [PagamentoAguardo, setPagamentoAguardo] = useState<any>([]);
+  const [PagamentoAprovado, setPagamentoAprovado] = useState<any>([]);
+  const [PagamentoVencido, setPagamentoVencido] = useState<any>([]);
+  const [ParcelasAVencer, setParcelasAVencer] = useState<any>([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -54,14 +60,17 @@ export const PaymentGraphic = () => {
   const datainicial = new Date(inicio);
   const datafinal = new Date(fim);
 
-  for (let data_for = new Date(datainicial); data_for <= datafinal; data_for.setDate(data_for.getDate() + 1)
+  for (
+    let data_for = new Date(datainicial);
+    data_for <= datafinal;
+    data_for.setDate(data_for.getDate() + 1)
   ) {
     const PagamentoAguardo = parcelas.reduce((acc: any, parcela: any) => {
       const data_pagamento = new Date(parcela.data_pagamento);
       const data_credito = new Date(parcela.data_credito);
       data_pagamento.setHours(data_pagamento.getHours() + 3);
       if (
-        parcela.status === 1 &&
+        parcela.status == 1 &&
         data_pagamento < data_for &&
         data_credito >= data_for
       ) {
@@ -74,7 +83,7 @@ export const PaymentGraphic = () => {
     const PagamentoAprovado = parcelas.reduce((acc: any, parcela: any) => {
       const data_credito = new Date(parcela.data_credito);
       data_credito.setHours(data_credito.getHours() + 3);
-      if (parcela.status === 1 && data_credito < data_for) {
+      if (parcela.status == 1 && data_credito < data_for) {
         return acc + 1;
       } else {
         return acc;
@@ -85,7 +94,7 @@ export const PaymentGraphic = () => {
       const data_vencimento = new Date(parcela.data_vencimento);
 
       data_vencimento.setHours(data_vencimento.getHours() + 3);
-      if (parcela.status === 0 && data_vencimento < data_for) {
+      if (parcela.status == 0 && data_vencimento < data_for) {
         return acc + 1;
       } else {
         return acc;
@@ -105,7 +114,7 @@ export const PaymentGraphic = () => {
     const dia = String(data_for.getDate()).padStart(2, "0");
     const mes = String(data_for.getMonth() + 1).padStart(2, "0");
     const ano = String(data_for.getFullYear());
-
+    
     data.push({
       name: dia + "/" + mes + "/" + ano,
       "Parcelas pendentes": PagamentoAguardo,
@@ -113,10 +122,29 @@ export const PaymentGraphic = () => {
       "Parcelas vencidas": PagamentoVencido,
       "Parcelas a vencer": ParcelasAVencer,
     });
+
+    setPagamentoAguardo(PagamentoAguardo);
+    setPagamentoAprovado(PagamentoAprovado);
+    setPagamentoVencido(PagamentoVencido);
+    setParcelasAVencer(ParcelasAVencer);
+
   }
 
-  const totalParcelas = parcelas.length;
-  const tickValues = Array.from({ length: 10 }, (_, index) => Math.ceil((index + 1) * totalParcelas / 10));
+  const quantidade_de_parcelas = PagamentoAguardo + PagamentoAprovado + PagamentoVencido + ParcelasAVencer;
+
+  const ticks_dinamicos = [];
+
+  for (let i = 0; i < 10; i++) {
+    const tick = quantidade_de_parcelas / 10 * i;
+    // round the number
+    ticks_dinamicos.push(Math.round(tick));
+    // transform the list into a set
+    const set = new Set(ticks_dinamicos);
+    // transform the set into an list again
+    setTick(Array.from(set));
+  }
+
+  console.log(tick);
 
   return (
     <>
@@ -141,7 +169,7 @@ export const PaymentGraphic = () => {
         </div>
         <div className="select-box">
           <div>
-            <h3>Selecione as colunas que deseja visualizar</h3>
+            <h3>Selecione os campos que deseja visualizar</h3>
             <div className="select-input">
               <input
                 type="checkbox"
@@ -197,7 +225,7 @@ export const PaymentGraphic = () => {
         >
           <CartesianGrid strokeDasharray="3 0 " />
           <XAxis dataKey="name" />
-          <YAxis ticks={tickValues} />
+          <YAxis ticks={[0, 1, 2, 3, 4, 5, 6, 7, 8]} />
           <Tooltip />
           {checkboxes["Parcelas pendentes"] && (
             <Bar dataKey={"Parcelas pendentes"} barSize={20} fill="#FADA55" />

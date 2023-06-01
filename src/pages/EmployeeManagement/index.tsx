@@ -46,7 +46,7 @@ const EmployeeManagement = () => {
         <div className="conteiner-employee-management">
           <Navbar />
           <div className='head-gerenciarfunc'>
-            <h1 className="title-primary">Usuário do Sistema</h1>
+            <h1 className="title-primary">Usuário do sistema</h1>
             <input type='text' className='input-table' placeholder='Digite aqui'/>
           </div>
 
@@ -76,7 +76,7 @@ const EmployeeManagement = () => {
             <h2>SEM SOLICITACOES</h2>
           )}
 
-          <h2 className="title-secundary">Funcionários do Sistema</h2>
+          <h2 className="title-secundary">Funcionários do sistema</h2>
           {funcionarioo && funcionarioo.map((item: Funcionario) => {
             if (item.credential.role != null && item.cpf != funcionario.cpf && item.credential.role != 'Sem_Cargo') {
               return (

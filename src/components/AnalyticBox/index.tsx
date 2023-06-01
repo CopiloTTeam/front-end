@@ -117,11 +117,11 @@ const AnalyticBox = () => {
           <div className="bg">
             <div className="box-container">
               <div className="box">
-                <p>Crédito Real:</p>
+                <p>Valor creditado:</p>
                 <h1>{valorPagoFormatado}</h1>
               </div>
               <div className="box">
-                <p>Expectaviva de Crédito:</p>
+                <p>Valor pendente:</p>
                 <h1>{valorAReceberFormatado}</h1>
               </div>
               <div className="box">

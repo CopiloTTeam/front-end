@@ -58,18 +58,18 @@ export function BilingInformation({ cpf, data_geracao, valor, updateFields }: Us
         </div>
         <div className="full-box">
 
-          <h1>Nome do Cliente</h1>
+          <h1>Nome do cliente</h1>
           <input
             type="text"
             value={nomeUsuario || ""}
-            placeholder="Nome do Cliente"
+            placeholder="Nome do cliente"
             readOnly
           />
         </div>
       </div>
       <div className="row">
         <div className="full-box">
-          <h1>Data de Geração</h1>
+          <h1>Data de geração</h1>
           <input
             type="date"
             placeholder="Data de Vencimento"

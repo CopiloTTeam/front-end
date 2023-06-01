@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
-import { dadosUsuario, gerenciarParcelaTitulo, gerenciarTitulo } from "../../utils/axios.routes";
+import { gerenciarTitulo } from "../../utils/axios.routes";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import "./style.css";
 import { AuthContext } from "../../contexts/AuthContext";
@@ -19,37 +19,7 @@ const PlotManagement = () => {
   const { isLogged, funcionario } = useContext(AuthContext)
   const { id } = useParams<{ id: string }>();
   const [data, setData] = useState<any>(null);
-  const [client, setClient] = useState<any>();
   const [parcela, setParcela] = useState<any>(null);
-
-  const getMonthName = (month: number) => {
-
-    const months = [
-      'Janeiro',
-      'Fevereiro',
-      'Março',
-      'Abril',
-      'Maio',
-      'Junho',
-      'Julho',
-      'Agosto',
-      'Setembro',
-      'Outubro',
-      'Novembro',
-      'Dezembro',
-    ];
-    return months[month];
-  };
-
-  const getDueMonth = (dataVencimento: any) => {
-    if (dataVencimento) {
-      const dueDate = new Date(dataVencimento);
-      return getMonthName(dueDate.getMonth());
-    } else {
-      return '';
-    }
-  };
-
 
   useEffect(() => {
     if (!isLogged) {
@@ -65,11 +35,21 @@ const PlotManagement = () => {
       }
     };
 
-
     const fetchParcela = async () => {
       try {
         const response = await gerenciarTitulo(id);
         const data = await response?.data.parcelas;
+
+        // parcelas ordenadas pelo o status, as pendentens primeiro
+        data.sort((a: Parcela, b: Parcela) => {
+          if (a.status < b.status) {
+            return -1;
+          }
+          if (a.status > b.status) {
+            return 1;
+          }
+          return 0;
+        });
 
         setParcela(data);
 
@@ -80,6 +60,7 @@ const PlotManagement = () => {
 
     fetchData();
     fetchParcela();
+
   }, [id]);
   if (isLogged && (funcionario.cargo == 'Administrador' || funcionario.cargo == 'Financeiro')) {
     return (

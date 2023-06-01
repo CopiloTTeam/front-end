@@ -39,25 +39,25 @@ const Navbar = () => {
                             <li className='navitem'>
                                 <Link to='/cadastrousuario' className='navlink'>
                                     <img src={User} alt='User' />
-                                    <span className='navname'>Cadastro de Clientes</span>
+                                    <span className='navname'>Cadastro de clientes</span>
                                 </Link>
                             </li>
                             <li className='navitem'>
                                 <Link to='/criarboleto' className='navlink'>
                                     <img src={Boleto} alt='Boleto' />
-                                    <span className='navname'>Emitir Título</span>
+                                    <span className='navname'>Emitir título</span>
                                 </Link>
                             </li>
                             <li className='navitem'>
                                 <Link to='/gerenciarfunc' className='navlink'>
                                     <img src={Boleto} alt='Gerenciar Funcionário' />
-                                    <span className='navname'>Gerenciar Funcionários</span>
+                                    <span className='navname'>Gerenciar funcionários</span>
                                 </Link>
                             </li>
                             <li className='navitem'>
                                 <Link to='/gerenciarcliente' className='navlink'>
                                     <img src={Boleto} alt='Gerenciar Cliente' />
-                                    <span className='navname'>Gerenciar Cliente</span>
+                                    <span className='navname'>Gerenciar cliente</span>
                                 </Link>
                             </li>
                         </ul>
@@ -95,19 +95,19 @@ const Navbar = () => {
                             <Link to='/cadastrousuario'>
                                 <li className='navitem'>
                                     <img src={User} alt='User' />
-                                    <span className='navname'>Cadastro de Clientes</span>
+                                    <span className='navname'>Cadastro de clientes</span>
                                 </li>
                             </Link>
                             <Link to='/criarboleto'>
                                 <li className='navitem'>
                                     <img src={Boleto} alt='Boleto' />
-                                    <span className='navname'>Emitir Título</span>
+                                    <span className='navname'>Emitir título</span>
                                 </li>
                             </Link>
                             <Link to='/gerenciarcliente'>
                                 <li className='navitem'>
                                     <img src={Boleto} alt='Gerenciar Cliente' />
-                                    <span className='navname'>Gerenciar Cliente</span>
+                                    <span className='navname'>Gerenciar cliente</span>
                                 </li>
                             </Link>
                         </ul>

@@ -67,31 +67,21 @@ const Analytics = () => {
               className="button-graphics"
               onClick={() => handleButtonSelect("clientes")}
             >
-              Situação dos Clientes
+              Situação dos clientes
             </button>
             <button
               className="button-graphics"
               onClick={() => handleButtonSelect("pagamentos")}
             >
-              Situação dos Pagamento
+              Situação das parcelas
             </button>
             <button
               className="button-graphics"
               onClick={() => handleButtonSelect("valores")}
             >
-              Valores Acúmulativos
+              Valores acúmulativos
             </button>
           </div>
-          {/* <div className="select-box">
-            <div className="select-input">
-              <h3>Data de Inicio</h3>
-              <input type="date" />
-            </div>
-            <div className="select-input">
-              <h3>Data de Fim</h3>
-              <input type="date" />
-            </div>
-          </div> */}
           {renderSelectedGraphic()}
         </div>
       </>

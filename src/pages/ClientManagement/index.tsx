@@ -36,13 +36,27 @@ const ClienteManagement = () => {
 
     fetchData();
   }, []);
+  // order the clients by name
+  cliente?.sort((a: Cliente, b: Cliente) => {
+    if (a.nome < b.nome) {
+      return -1;
+    }
+    if (a.nome > b.nome) {
+      return 1;
+    }
+    return 0;
+  }
+  );
+
+
+  
   if (isLogged && (funcionario.cargo == 'Administrador' || funcionario.cargo == 'Comercial')) {
     return (
       <>
         <div className="conteiner-employee-management">
           <Navbar />
           <div className='head-gerenciarcliente'>
-            <h1 className="title-primary">Cliente do Sistema</h1>
+            <h1 className="title-primary">Cliente do sistema</h1>
             <input type='text' className='input-table' placeholder='Digite aqui'/>
           </div>
           {cliente && cliente.map((item: Cliente) => {

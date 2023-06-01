@@ -20,15 +20,21 @@ const Payout = () => {
   async function submitdata(valorPago: String) {
     try {
       await updateParcela(id, valorPago);
-      toast.success('Parcela paga com sucesso!');
+      const valorPagoFloat = parseFloat(valorPago.replace('R$', '').replace(',', '.'));
+      console.log(valorPagoFloat, parcela?.valor);
+      if ( valorPagoFloat < parcela?.valor) {
+        toast.error('Valor pago menor que o valor da parcela. Por favor, tente novamente.');
+        const erro = true;
+      } else {
+        toast.success('Pagamento realizado com sucesso!');
+        navigate('/home');
+        const erro = false;
+      }
       await criarLog({
         idFuncionario: funcionario.cpf,
         idCliente: usuario?.cpf,
         descricao: `O funcionario ${funcionario.nome} acabou de dar baixa na parcela numero ${id} do cliente ${usuario?.nome}`
       })
-      // navigate('/gerenciarparcelas/'+parcela);
-      navigate('/home');
-
     } catch (error) {
       console.error(error);
       toast.error('Erro ao pagar a parcela. Por favor, tente novamente.');

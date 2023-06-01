@@ -34,13 +34,28 @@ export const ValueGraphic = () => {
     fetchData();
   }, []);
 
-  const data = [];
+
   const [inicio, setInicio] = useState('');
   const [fim, setFim] = useState('');
+  const [checkboxes, setCheckboxes] = useState({
+    "Parcelas pendentes": true,
+    "Parcelas creditadas": true,
+    "Parcelas vencidas": true,
+    "Parcelas a vencer": true,
+  });
 
+  const handleCheckboxChange = (event: { target: { name: any; checked: any; }; }) => {
+    const { name, checked } = event.target;
+    setCheckboxes((prevState) => ({
+      ...prevState,
+      [name]: checked,
+    }));
+  };
+
+  const data = [];
   const datainicial = new Date(inicio)
   const datafinal = new Date(fim)
-  
+
 
   for (let data_for = new Date(datainicial); data_for <= datafinal; data_for.setDate(data_for.getDate() + 1)) {
 
@@ -76,6 +91,16 @@ export const ValueGraphic = () => {
       }
     }, 0);
 
+    const PagamentoAVencer = parcelas.reduce((acc: any, parcela: any) => {
+      const data_vencimento = new Date(parcela.data_vencimento);
+      data_vencimento.setHours(data_vencimento.getHours() + 3);
+      if (data_vencimento >= data_for) {
+        return acc + parcela.valor;
+      } else {
+        return acc;
+      }
+    }, 0);
+
 
     const dia = String(data_for.getDate()).padStart(2, '0');
     const mes = String(data_for.getMonth() + 1).padStart(2, '0');
@@ -83,54 +108,113 @@ export const ValueGraphic = () => {
 
     data.push({
       name: (dia + "/" + mes + "/" + ano),
-      "Pagamento Em Aguardo": PagamentoAguardo,
-      "Pagamento Aprovado": PagamentoAprovado,
-      "Pagamento Vencido": PagamentoVencido,
+      "Valor pendente": PagamentoAguardo,
+      "Valor creditado": PagamentoAprovado,
+      "Valor vencido": PagamentoVencido,
+      "Valor a vencer": PagamentoAVencer,
     });
   }
-  
+
+  const maiorValor = data.reduce((acc: any, item: any) => {
+    const valor = item["Valor pendente"] + item["Valor creditado"] + item["Valor vencido"] + item["Valor a vencer"];
+    return valor > acc ? valor : acc;
+  }, 0);
+  const tickValues = Array.from({ length: 10 }, (_, i) => Math.round(maiorValor / 10) * i);
+
   return (
     <>
       <div className="select-box">
         <div className="select-input">
           <h3>Data de Início</h3>
-          <input type= "date"
-            value = {inicio}
+          <input type="date"
+            value={inicio}
             max={fim}
             onChange={(ev) => setInicio(ev.target.value)} />
         </div>
         <div className="select-input">
           <h3>Data de Fim</h3>
-          <input type= "date"
-            value = {fim}
+          <input type="date"
+            value={fim}
             min={inicio}
-            onChange={(ev) => setFim(ev.target.value)}/>
+            onChange={(ev) => setFim(ev.target.value)} />
         </div>
       </div>
-    <ResponsiveContainer width="70%" height="70%">
-      <BarChart
-        width={500}
-        height={400}
-        data={data}
-        margin={{
-          top: 10,
-          right: 30,
-          left: 0,
-          bottom: 0,
-        }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis
-          ticks={[0, 50, 100, 150, 200, 250, 300]}
-          tickCount={7}
-        />
-        <Tooltip />
-        <Bar dataKey={"Pagamento Em Aguardo"} barSize={20} fill="#FADA55" />
-        <Bar dataKey={"Pagamento Aprovado"} barSize={20} fill="#6EFA9B" />
-        <Bar dataKey={"Pagamento Vencido"} barSize={20} fill="#FA4C48" />
-      </BarChart>
-    </ResponsiveContainer>
+      <div className="select-box">
+        <div>
+          <h3>Selecione as colunas que deseja visualizar</h3>
+          <div className="select-input">
+            <input
+              type="checkbox"
+              id="Parcelas pendentes"
+              name="Parcelas pendentes"
+              value="Parcelas pendentes"
+              checked={checkboxes["Parcelas pendentes"]}
+              onChange={handleCheckboxChange}
+            />
+            <label htmlFor="Parcelas pendentes">Parcelas pendentes</label>
+            <input
+              type="checkbox"
+              id="Parcelas creditadas"
+              name="Parcelas creditadas"
+              value="Parcelas creditadas"
+              checked={checkboxes["Parcelas creditadas"]}
+              onChange={handleCheckboxChange}
+            />
+            <label htmlFor="Parcelas creditadas">Parcelas creditadas</label>
+            <input
+              type="checkbox"
+              id="Parcelas vencidas"
+              name="Parcelas vencidas"
+              value="Parcelas vencidas"
+              checked={checkboxes["Parcelas vencidas"]}
+              onChange={handleCheckboxChange}
+            />
+            <label htmlFor="Parcelas vencidas">Parcelas vencidas</label>
+            <input
+              type="checkbox"
+              id="Parcelas a vencer"
+              name="Parcelas a vencer"
+              value="Parcelas a vencer"
+              checked={checkboxes["Parcelas a vencer"]}
+              onChange={handleCheckboxChange}
+            />
+            <label htmlFor="Parcelas a vencer">Parcelas a vencer</label>
+          </div>
+        </div>
+      </div>
+      <ResponsiveContainer width="70%" height="70%">
+        <BarChart
+          width={500}
+          height={400}
+          data={data}
+          margin={{
+            top: 10,
+            right: 30,
+            left: 0,
+            bottom: 0,
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="name" />
+          <YAxis
+            ticks={tickValues}
+            tickCount={7}
+          />
+          <Tooltip />
+          {checkboxes["Parcelas pendentes"] && (
+          <Bar dataKey={"Valor pendente"} barSize={20} fill="#FADA55" />
+          )}
+          {checkboxes["Parcelas creditadas"] && (
+          <Bar dataKey={"Valor creditado"} barSize={20} fill="#6EFA9B" />
+          )}
+          {checkboxes["Parcelas vencidas"] && (
+          <Bar dataKey={"Valor vencido"} barSize={20} fill="#FA4C48" />
+          )}
+          {checkboxes["Parcelas a vencer"] && (
+          <Bar dataKey={"Valor a vencer"} barSize={20} fill="#3C45FA" />
+          )}
+        </BarChart>
+      </ResponsiveContainer>
     </>
   );
 }
