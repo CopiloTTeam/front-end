@@ -13,6 +13,7 @@ import EmployeeManagement from './pages/EmployeeManagement';
 import Payout from './pages/Payout';
 import ClienteManagement from './pages/ClientManagement';
 import Error from './pages/NotFound';
+import Boleto from './components/CreatePaymentForm/Boleto';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path="/gerenciarcliente" element={<ClienteManagement />} />
         <Route path="/payout/:id" element={<Payout />} />
         <Route path="/error/" element={<Error />} />
+        <Route path ="/Boleto" element = {<Boleto />} />
       </Routes>
       <ToastContainer />
     </BrowserRouter>

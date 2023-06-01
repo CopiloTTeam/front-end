@@ -65,20 +65,6 @@ const PlotManagement = () => {
       }
     };
 
-    // const fetchClient = async () => {
-    //   try {
-    //     const responseTeste = await gerenciarTitulo(id);
-    //     const dadosTeste = await responseTeste?.data;
-    //     const cpf = dadosTeste?.cpf;
-    //     const response = await dadosUsuario(cpf);
-    //     const Cliente = await response?.data;
-    //     setClient(Cliente);
-
-
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // };
 
     const fetchParcela = async () => {
       try {
@@ -116,6 +102,7 @@ const PlotManagement = () => {
                     <p>Status: {item?.status == '1' ? 'Pago' : 'Pendente'}</p>
                     {item?.data_pagamento ? <p>Data de pagamento: {item?.data_pagamento.split('-').reverse().join('/')}</p> : null}
                     {item.status == "0" ? <Link className="link" to={`/payout/${item.id_parcela}`}>Ver mais</Link> : null}
+                    <button className="button">Gerar Boleto</button>
 
                   </summary>
                   <div className="card-completo">
