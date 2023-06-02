@@ -1,0 +1,8 @@
+.select-check input{
+    margin-right: 5px;
+}
+
+.select-box-filtro{
+    display: flex;
+    flex-direction: row;
+}

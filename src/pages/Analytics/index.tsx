@@ -33,6 +33,7 @@ const Analytics = () => {
   };
 
 
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -81,7 +82,15 @@ const Analytics = () => {
             >
               Valores acúmulativos
             </button>
+            <button
+              className="button-graphics"
+              onClick={() => handleButtonSelect("relatorio")}
+            >
+              Visualizar relatório
+            </button>
           </div>
+         
+  
           {renderSelectedGraphic()}
         </div>
       </>
@@ -111,7 +120,14 @@ const Analytics = () => {
             >
               Valores
             </button>
+            <button
+              className="button-graphics"
+              onClick={() => handleButtonSelect("relatorio")}
+            >
+              Visualizar relatório
+            </button>
           </div>
+
           {renderSelectedGraphic()}
         </div>
       </>

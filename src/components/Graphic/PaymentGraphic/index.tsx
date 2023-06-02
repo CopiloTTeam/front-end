@@ -9,6 +9,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { Parcela, dadosTitulos } from "../../../utils/axios.routes";
+import "./style.css"
 
 export const PaymentGraphic = () => {
   const [titulos, setTitulos] = useState<any>([]);
@@ -139,37 +140,42 @@ export const PaymentGraphic = () => {
             onChange={(ev) => setFim(ev.target.value)}
           />
         </div>
-        <div className="select-box">
-          <div>
-            <h3>Selecione as colunas que deseja visualizar</h3>
+        <div className="select-box-filtro">
             <div className="select-input">
-              <input
-                type="checkbox"
-                id="Parcelas pendentes"
-                name="Parcelas pendentes"
-                value="Parcelas pendentes"
-                checked={checkboxes["Parcelas pendentes"]}
-                onChange={handleCheckboxChange}
-              />
-              <label htmlFor="Parcelas pendentes">Parcelas pendentes</label>
-              <input
-                type="checkbox"
-                id="Parcelas creditadas"
-                name="Parcelas creditadas"
-                value="Parcelas creditadas"
-                checked={checkboxes["Parcelas creditadas"]}
-                onChange={handleCheckboxChange}
-              />
-              <label htmlFor="Parcelas creditadas">Parcelas creditadas</label>
-              <input
-                type="checkbox"
-                id="Parcelas vencidas"
-                name="Parcelas vencidas"
-                value="Parcelas vencidas"
-                checked={checkboxes["Parcelas vencidas"]}
-                onChange={handleCheckboxChange}
-              />
-              <label htmlFor="Parcelas vencidas">Parcelas vencidas</label>
+              <div className="select-check">
+                <input
+                  type="checkbox"
+                  id="Parcelas pendentes"
+                  name="Parcelas pendentes"
+                  value="Parcelas pendentes"
+                  checked={checkboxes["Parcelas pendentes"]}
+                  onChange={handleCheckboxChange}
+                />
+                <label  htmlFor="Parcelas pendentes">Pendentes</label>
+              </div>
+              <div className="select-check">
+                <input
+                  type="checkbox"
+                  id="Parcelas creditadas"
+                  name="Parcelas creditadas"
+                  value="Parcelas creditadas"
+                  checked={checkboxes["Parcelas creditadas"]}
+                  onChange={handleCheckboxChange}
+                />
+                <label htmlFor="Parcelas creditadas">Creditadas</label>
+              </div>
+              <div className="select-check">
+                <input
+                  type="checkbox"
+                  id="Parcelas vencidas"
+                  name="Parcelas vencidas"
+                  value="Parcelas vencidas"
+                  checked={checkboxes["Parcelas vencidas"]}
+                  onChange={handleCheckboxChange}
+                />
+                <label htmlFor="Parcelas vencidas">Vencidas</label>
+              </div>  
+              <div className="select-check">
               <input
                 type="checkbox"
                 id="Parcelas a vencer"
@@ -179,8 +185,8 @@ export const PaymentGraphic = () => {
                 onChange={handleCheckboxChange}
               />
               <label htmlFor="Parcelas a vencer">Parcelas a vencer</label>
+              </div>
             </div>
-          </div>
         </div>
       </div>
       <ResponsiveContainer width="70%" height="70%">
