@@ -4,6 +4,10 @@ import Boleto from '../../assets/adicionarBoleto.png';
 import User from '../../assets/adicionarUser.png';
 import Estatisticas from '../../assets/estatistica.png';
 import Perfil from '../../assets/perfil.png';
+import Home from '../../assets/home.png';
+import GerenciarFuncionario from '../../assets/gerenciarfunc.png';
+import GerenciarCliente from '../../assets/gerenciarcli.png';
+
 import './style.css';
 import { AuthContext } from '../../contexts/AuthContext';
 
@@ -26,7 +30,7 @@ const Navbar = () => {
                         <ul className='navlist'>
                             <li className='navitem'>
                                 <Link to='/home' className='navlink'>
-                                    <img src={Estatisticas} alt='Home' />
+                                    <img src={Home} alt='Home' />
                                     <span className='navname'>Home</span>
                                 </Link>
                             </li>
@@ -50,13 +54,13 @@ const Navbar = () => {
                             </li>
                             <li className='navitem'>
                                 <Link to='/gerenciarfunc' className='navlink'>
-                                    <img src={Boleto} alt='Gerenciar Funcionário' />
+                                    <img src={GerenciarFuncionario} alt='Gerenciar Funcionário' className='gerenciarfunc-icon'/>
                                     <span className='navname'>Gerenciar funcionários</span>
                                 </Link>
                             </li>
                             <li className='navitem'>
                                 <Link to='/gerenciarcliente' className='navlink'>
-                                    <img src={Boleto} alt='Gerenciar Cliente' />
+                                    <img src={GerenciarCliente} alt='Gerenciar Cliente' />
                                     <span className='navname'>Gerenciar cliente</span>
                                 </Link>
                             </li>

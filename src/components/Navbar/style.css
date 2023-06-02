@@ -50,7 +50,11 @@
   width: 25px;
   height: 25px;
 }
-
+.navlink .gerenciarfunc-icon{
+width: 25px;
+height: 30.5px;
+margin-top: 6px;
+}
 .navmenu {
   width: 850px;
   display: flex;
