@@ -1,9 +1,10 @@
 import React from 'react'
 import Logo from "../../assets/CopiloTTeam.png"
+import './multistepForm.css'
 
 const Boleto = () => {
   return (
-    <div>
+    <div className='boleto-box'>
       <div className='boletoContainer'>
         <div className='head-content'>
           <div className='logo'>
@@ -16,54 +17,54 @@ const Boleto = () => {
         </div>
         <div className='mid-content'>
           <div className='right-side'>
-            <div className='item'>
+            <div className='itemBoleto'>
               <p>Local de Pagamento</p>
               <h2>pagável preferêncialmente nas agências do bradesco</h2>
             </div>
-            <div className='item'>
+            <div className='itemBoleto'>
               <p>Cedente</p>
               <h2>NF-e Associação NF-e</h2>
             </div>
-            <div className='item-flex'>
-              <div className='item'>
+            <div className='itemBoleto-flex'>
+              <div className='itemBoleto'>
                 <p>Data do Documento</p>
                 <h2>25/01/2011</h2>
               </div>
-              <div className='item'>
+              <div className='itemBoleto'>
                 <p>N° Documento</p>
                 <h2>NF 1 1/1</h2>
               </div>
-              <div className='item'>
+              <div className='itemBoleto'>
                 <p>Espécie doc.</p>
                 <h2>.</h2>
               </div>
-              <div className='item'>
+              <div className='itemBoleto'>
                 <p>Aceite</p>
                 <h2>N</h2>
               </div>
-              <div className='item'>
+              <div className='itemBoleto'>
                 <p>Data Processamento</p>
                 <h2>25/01/2011</h2>
               </div>
             </div>
-            <div className='item-flex'>
-              <div className='item'>
+            <div className='itemBoleto-flex'>
+              <div className='itemBoleto'>
                 <p>Uso do Banco</p>
                 <h2>.</h2>
               </div>
-              <div className='item'>
+              <div className='itemBoleto'>
                 <p>Carteira</p>
                 <h2>6</h2>
               </div>
-              <div className='item'>
+              <div className='itemBoleto'>
                 <p>Espécie </p>
                 <h2>R$</h2>
               </div>
-              <div className='item'>
+              <div className='itemBoleto'>
                 <p>Quantidade</p>
                 <h2>.</h2>
               </div>
-              <div className='item'>
+              <div className='itemBoleto'>
                 <p>Valor</p>
                 <h2>.</h2>
               </div>
@@ -76,31 +77,31 @@ const Boleto = () => {
             </div>
           </div>
           <div className='left-side'>
-            <div className='item'>
+            <div className='itemBoleto'>
               <p>Vencimento</p>
             </div>
-            <div className='item'>
+            <div className='itemBoleto'>
               <p>Agência/Código cedente</p>
             </div>
-            <div className='item'>
+            <div className='itemBoleto'>
               <p>Carteira/Nosso Número</p>
             </div>
-            <div className='item'>
+            <div className='itemBoleto'>
               <p>Valor Documento</p>
             </div>
-            <div className='item'>
+            <div className='itemBoleto'>
               <p>Desconto/Abatimento</p>
             </div>
-            <div className='item'>
+            <div className='itemBoleto'>
               <p>Outras Opções</p>
             </div>
-            <div className='item'>
+            <div className='itemBoleto'>
               <p>Mora/Multa</p>
             </div>
-            <div className='item'>
+            <div className='itemBoleto'>
               <p>Outros Acréscimos</p>
             </div>
-            <div className='item'>
+            <div className='itemBoleto'>
               <p>Valor Cobrado</p>
             </div>
           </div>

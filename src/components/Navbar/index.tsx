@@ -17,7 +17,7 @@ const Navbar = () => {
     if (funcionario.cargo === 'Administrador') {
         return (
             <div className='header'>
-                <div className='nav container'>
+                <div className='nav container-navbar'>
                     <Link to='/perfil' className='navlogo'>
                         <img src={Perfil} alt='Perfil' />
                         <div className='logoText'>
@@ -72,7 +72,7 @@ const Navbar = () => {
     } else if (funcionario.cargo === 'Comercial') {
         return (
             <div className='header'>
-                <div className='nav container'>
+                <div className='nav container-navbar'>
                     <Link to='/perfil'>
                         <div className='navlogo'>
                             <img src={Perfil} alt='Perfil' />
@@ -122,7 +122,7 @@ const Navbar = () => {
     } else if (funcionario.cargo == 'Financeiro') {
         return (
             <div className='header'>
-                <div className='nav container'>
+                <div className='nav container-navbar'>
                     <Link to="/perfil" className='navlogo'>
                         <img src={Perfil} alt='Perfil' />
                         <div className="logoText">

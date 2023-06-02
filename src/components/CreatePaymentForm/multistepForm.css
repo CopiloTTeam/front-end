@@ -1,4 +1,4 @@
-.form .btn {
+ .form .btn {
     display: flex;
     justify-content: flex-end;
     margin: 20px 0;
@@ -89,9 +89,15 @@ p {
     font-size: 18px;
 }
 
+.boleto-box{
+    top: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .boletoContainer {
     width: 70%;
-    border: 1px solid var(--color-primary);
+    border: 1px solid #000;
     padding: 10px;
 }
 
@@ -119,27 +125,27 @@ p {
 .boletoContainer .mid-content{
     display: grid;
     grid-template-columns: 2fr 1fr;
-    border-top: 1px solid var(--color-primary);
+    border-top: 1px solid #000;
 }
 
-.boletoContainer .mid-content .item{
-    border: 1px solid var(--color-primary);
+.boletoContainer .mid-content .itemBoleto{
+    border: 1px solid #000;
     border-right: 0;
     height: 40px;
     width: 100%;
 }
-.boletoContainer .mid-content .item p{
+.boletoContainer .mid-content .itemBoleto p{
     font-size: 12px;
 }
 .boletoContainer .mid-content .right-side{
-    border: 1px solid var(--color-primary);
+    border: 1px solid #000;
     border-right: 0;
 }
 .boletoContainer .mid-content .right-side h2{
     font-size: 14px;
     margin: 0;
 }
-.boletoContainer .mid-content .right-side .item-flex{
+.boletoContainer .mid-content .right-side .itemBoleto-flex{
     display: flex;
     width: 100%;
 }
