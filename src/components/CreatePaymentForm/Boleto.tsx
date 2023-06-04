@@ -1,8 +1,34 @@
-import React from 'react'
 import Logo from "../../assets/CopiloTTeam.png"
+import { Link, useNavigate, useParams } from "react-router-dom";
 import './multistepForm.css'
+import { dadosClientes, dadosTitulos } from '../../utils/axios.routes'
+import React, { useContext, useEffect, useState } from 'react'
+
+import * as puppeteer from 'puppeteer';
+
+// const [data, setData] = useState([]);
+// const [client, setClient] = useState([]);
+// const [loading, setLoading] = useState(true)
+
+// useEffect(() => {
+//   const fetchData = async () => {
+//     try {
+//       const titulos = await dadosTitulos();
+//       const data = titulos?.data;
+//       setData(data);
+//       const cliente = await dadosClientes();
+//       const client = cliente?.data;
+//       setClient(client);
+//       setLoading(false);
+//     } catch (error) {
+//       console.error(error);
+//     }
+//   };
+//   fetchData();
+// }, []);
 
 const Boleto = () => {
+
   return (
     <div className='boleto-box'>
       <div className='boletoContainer'>

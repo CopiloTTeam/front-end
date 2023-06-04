@@ -4,6 +4,7 @@ import { gerenciarTitulo } from "../../utils/axios.routes";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import "./style.css";
 import { AuthContext } from "../../contexts/AuthContext";
+import Boleto from "../../components/CreatePaymentForm/Boleto";
 
 interface Parcela {
   data_vencimento: string;
@@ -20,6 +21,7 @@ const PlotManagement = () => {
   const { id } = useParams<{ id: string }>();
   const [data, setData] = useState<any>(null);
   const [parcela, setParcela] = useState<any>(null);
+  const [showBoleto, setShowBoleto] = useState<boolean>(false);
 
   useEffect(() => {
     if (!isLogged) {
@@ -62,7 +64,12 @@ const PlotManagement = () => {
     fetchParcela();
 
   }, [id]);
-  if (isLogged && (funcionario.cargo == 'Administrador' || funcionario.cargo == 'Financeiro')) {
+
+  const handleGerarBoleto = () => {
+    setShowBoleto(true); // Ative o estado para renderizar o boleto
+  };
+
+  if (isLogged && (funcionario.cargo === 'Administrador' || funcionario.cargo === 'Financeiro')) {
     return (
       <>
         <Navbar />
@@ -71,7 +78,7 @@ const PlotManagement = () => {
             <div className="plot-info">
               <h3>Nome: </h3>
               <p>{data?.cliente.nome}</p>
-              <h3>Titulo:</h3>
+              <h3>Título:</h3>
               <p>{data?.nome_produto}</p>
             </div>
             {parcela && parcela.map((item: Parcela, index: number) => {
@@ -80,11 +87,11 @@ const PlotManagement = () => {
                   <summary>
                     <p>{index + 1}ª Parcela </p>
                     <p>Vencimento: {item?.data_vencimento.split('-').reverse().join('/')}</p>
-                    <p>Status: {item?.status == '1' ? 'Pago' : 'Pendente'}</p>
+                    <p>Status: {item?.status === '1' ? 'Pago' : 'Pendente'}</p>
                     {item?.data_pagamento ? <p>Data de pagamento: {item?.data_pagamento.split('-').reverse().join('/')}</p> : null}
                     {item.status == "0" ? <Link className="link" to={`/payout/${item.id_parcela}`}>Ver mais</Link> : null}
-                    <button className="button">Gerar Boleto</button>
-
+                    <button onClick={handleGerarBoleto}>Gerar Boleto</button>
+                    {showBoleto && <Boleto />}
                   </summary>
                   <div className="card-completo">
                     <div className="conteudo"></div>
@@ -102,5 +109,4 @@ const PlotManagement = () => {
     )
   }
 };
-
 export default PlotManagement;
