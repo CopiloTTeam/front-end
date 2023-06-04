@@ -42,9 +42,19 @@
   background-image: url("data:image/svg+xml;base64,...");
 }
 
+.selected {
+  margin-right: 2rem;
+  background-color: #0075ff;
+  color: white;
+  border: none;
+  padding: 10px;
+  margin-left: 16px;
+  border-radius: 5px;
+}
+
 .button-graphics {
   margin-right: 2rem;
-  background-color: #0044d0;
+  background-color: #333333;
   color: white;
   border: none;
   padding: 10px;

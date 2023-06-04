@@ -72,6 +72,17 @@ export const ClientGraphic = () => {
     }
   }, 0);
 
+  console.log(clientesInadimplentes, clientesAdimplentes);
+  
+
+  if (clientesInadimplentes == 0 && clientesAdimplentes == 0) {
+    return (
+      <div className="noData">
+        <h1>Não há dados para exibir</h1>
+      </div>
+    );
+  }
+
   const data = [
     { name: 'Clientes Adimplentes', value: clientesAdimplentes },
     { name: 'Clientes Inadimplentes', value: clientesInadimplentes }
