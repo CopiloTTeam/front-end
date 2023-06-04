@@ -73,23 +73,25 @@ export const ClientGraphic = () => {
   }, 0);
 
   const data = [
-    { name: 'Clientes Adimplentes', value: clientesAdimplentes },
-    { name: 'Clientes Inadimplentes', value: clientesInadimplentes }
+    { name: "Clientes Adimplentes", value: clientesAdimplentes },
+    { name: "Clientes Inadimplentes", value: clientesInadimplentes },
   ];
 
-  const COLORS = ['#6EFA9B', '#FA4C48'];
+  const COLORS = ["#6EFA9B", "#FA4C48"];
 
   return (
-    <PieChart width={500} height={400}>
-      <Pie data={data} dataKey="value" nameKey="name" >
-        {data.map((entry, index) => (
-          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-        ))}
-      </Pie>
-      <Tooltip />
-    </PieChart>
+    <>
+      <h2 className="title-stats"> Situação dos clientes </h2>
+      <PieChart width={500} height={400}>
+        <Pie data={data} dataKey="value" nameKey="name">
+          {data.map((entry, index) => (
+            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+          ))}
+        </Pie>
+        <Tooltip />
+      </PieChart>
+    </>
   );
-
-}
+};
 
 export default ClientGraphic;

@@ -9,7 +9,6 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { Parcela, dadosTitulos } from "../../../utils/axios.routes";
-import "./style.css"
 
 export const PaymentGraphic = () => {
   const [titulos, setTitulos] = useState<any>([]);
@@ -43,7 +42,9 @@ export const PaymentGraphic = () => {
     "Parcelas a vencer": true,
   });
 
-  const handleCheckboxChange = (event: { target: { name: any; checked: any; }; }) => {
+  const handleCheckboxChange = (event: {
+    target: { name: any; checked: any };
+  }) => {
     const { name, checked } = event.target;
     setCheckboxes((prevState) => ({
       ...prevState,
@@ -55,7 +56,10 @@ export const PaymentGraphic = () => {
   const datainicial = new Date(inicio);
   const datafinal = new Date(fim);
 
-  for (let data_for = new Date(datainicial); data_for <= datafinal; data_for.setDate(data_for.getDate() + 1)
+  for (
+    let data_for = new Date(datainicial);
+    data_for <= datafinal;
+    data_for.setDate(data_for.getDate() + 1)
   ) {
     const PagamentoAguardo = parcelas.reduce((acc: any, parcela: any) => {
       const data_pagamento = new Date(parcela.data_pagamento);
@@ -117,78 +121,82 @@ export const PaymentGraphic = () => {
   }
 
   const totalParcelas = parcelas.length;
-  const tickValues = Array.from({ length: 10 }, (_, index) => Math.ceil((index + 1) * totalParcelas / 10));
+  const tickValues = Array.from({ length: 10 }, (_, index) =>
+    Math.ceil(((index + 1) * totalParcelas) / 10)
+  );
 
   return (
     <>
+      <h2 className="title-stats"> Situação das Parcelas </h2>
       <div className="select-box">
-        <div className="select-input">
-          <h3>Data de Inicio</h3>
-          <input
-            type="date"
-            value={inicio}
-            max={fim}
-            onChange={(ev) => setInicio(ev.target.value)}
-          />
+        <div className="select-box-data">
+          <div className="select-input">
+            <h3>Data de Inicio</h3>
+            <input
+              type="date"
+              value={inicio}
+              max={fim}
+              onChange={(ev) => setInicio(ev.target.value)}
+            />
+          </div>
+          <div className="select-input">
+            <h3>Data de Fim</h3>
+            <input
+              type="date"
+              value={fim}
+              min={inicio}
+              onChange={(ev) => setFim(ev.target.value)}
+            />
+          </div>
         </div>
-        <div className="select-input">
-          <h3>Data de Fim</h3>
-          <input
-            type="date"
-            value={fim}
-            min={inicio}
-            onChange={(ev) => setFim(ev.target.value)}
-          />
-        </div>
-        <div className="select-box-filtro">
-            <div className="select-input">
-              <div className="select-check">
-                <input
-                  type="checkbox"
-                  id="Parcelas pendentes"
-                  name="Parcelas pendentes"
-                  value="Parcelas pendentes"
-                  checked={checkboxes["Parcelas pendentes"]}
-                  onChange={handleCheckboxChange}
-                />
-                <label  htmlFor="Parcelas pendentes">Pendentes</label>
-              </div>
-              <div className="select-check">
-                <input
-                  type="checkbox"
-                  id="Parcelas creditadas"
-                  name="Parcelas creditadas"
-                  value="Parcelas creditadas"
-                  checked={checkboxes["Parcelas creditadas"]}
-                  onChange={handleCheckboxChange}
-                />
-                <label htmlFor="Parcelas creditadas">Creditadas</label>
-              </div>
-              <div className="select-check">
-                <input
-                  type="checkbox"
-                  id="Parcelas vencidas"
-                  name="Parcelas vencidas"
-                  value="Parcelas vencidas"
-                  checked={checkboxes["Parcelas vencidas"]}
-                  onChange={handleCheckboxChange}
-                />
-                <label htmlFor="Parcelas vencidas">Vencidas</label>
-              </div>  
-              <div className="select-check">
-              <input
-                type="checkbox"
-                id="Parcelas a vencer"
-                name="Parcelas a vencer"
-                value="Parcelas a vencer"
-                checked={checkboxes["Parcelas a vencer"]}
-                onChange={handleCheckboxChange}
-              />
-              <label htmlFor="Parcelas a vencer">Parcelas a vencer</label>
-              </div>
-            </div>
+        <div className="select-box-status">
+          <div className="select-check">
+            <input
+              type="checkbox"
+              id="Parcelas pendentes"
+              name="Parcelas pendentes"
+              value="Parcelas pendentes"
+              checked={checkboxes["Parcelas pendentes"]}
+              onChange={handleCheckboxChange}
+            />
+            <label htmlFor="Parcelas pendentes">Pendentes</label>
+          </div>
+          <div className="select-check">
+            <input
+              type="checkbox"
+              id="Parcelas creditadas"
+              name="Parcelas creditadas"
+              value="Parcelas creditadas"
+              checked={checkboxes["Parcelas creditadas"]}
+              onChange={handleCheckboxChange}
+            />
+            <label htmlFor="Parcelas creditadas">Creditadas</label>
+          </div>
+          <div className="select-check">
+            <input
+              type="checkbox"
+              id="Parcelas vencidas"
+              name="Parcelas vencidas"
+              value="Parcelas vencidas"
+              checked={checkboxes["Parcelas vencidas"]}
+              onChange={handleCheckboxChange}
+            />
+            <label htmlFor="Parcelas vencidas">Vencidas</label>
+          </div>
+          <div className="select-check">
+            <input
+              type="checkbox"
+              id="Parcelas a vencer"
+              name="Parcelas a vencer"
+              value="Parcelas a vencer"
+              checked={checkboxes["Parcelas a vencer"]}
+              onChange={handleCheckboxChange}
+            />
+            <label htmlFor="Parcelas a vencer">Parcelas a vencer</label>
+          </div>
         </div>
       </div>
+
       <ResponsiveContainer width="70%" height="70%">
         <BarChart
           width={500}
