@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import './style.css'
+import React, { useContext, useState } from 'react';
+import './style.css';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
 
@@ -8,70 +8,66 @@ interface TableProps {
   client: any[];
 }
 
-
 const Table = ({ data, client }: TableProps) => {
-  const { isLogged, funcionario } = useContext(AuthContext)
+  const { isLogged, funcionario } = useContext(AuthContext);
+  const [searchValue, setSearchValue] = useState('');
 
-  // order client by name
-  client.sort((a, b) => {
-    if (a.nome < b.nome) {
-      return -1;
-    }
-    if (a.nome > b.nome) {
-      return 1;
-    }
-    return 0;
-  }
-  );
-  data.sort((a, b) => {
-    if (a.cliente.nome < b.cliente.nome) {
-      return -1;
-    }
-    if (a.cliente.nome > b.cliente.nome) {
-      return 1;
-    }
-    return 0;
-  }
-  );
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(event.target.value);
+  };
 
   if (isLogged) {
     if (funcionario.cargo === 'Administrador' || funcionario.cargo === 'Financeiro') {
+      // Filter the data based on search value
+      const filteredData = data.filter((item) =>
+        item.cliente.nome.toLowerCase().includes(searchValue.toLowerCase())
+      );
+
       return (
         <div className='table-box'>
           <div className='table-title'>
-            <h1>Lista de titulos</h1>
-            <input type='text' placeholder='Digite aqui' className='input-table' />
+            <h1>Lista de títulos</h1>
+            <input
+              type='text'
+              placeholder='Digite aqui'
+              className='input-table'
+              value={searchValue}
+              onChange={handleSearchChange}
+            />
           </div>
           <table>
             <thead>
               <tr>
                 <td>Nome cliente</td>
                 <td>CPF</td>
-                <td>Titulo</td>
-                <td align="right">Valor total</td>
+                <td>Título</td>
+                <td align='right'>Valor total</td>
                 <td>Nº parcelas</td>
                 <td>Info.</td>
               </tr>
             </thead>
             <tbody>
-              {data && data.map((item) => {
+              {filteredData.map((item) => {
                 const clientInfo = client.find((c) => c.cpf === item.cliente.cpf);
                 const nomeCliente = clientInfo?.nome;
                 const cpf = clientInfo?.cpf;
-                const valorFormadado = item.valor.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
+                const valorFormadado = item.valor.toLocaleString('pt-br', {
+                  style: 'currency',
+                  currency: 'BRL',
+                });
 
                 return (
                   <tr key={item.id}>
                     <td>{nomeCliente}</td>
                     <td>{cpf}</td>
                     <td>{item.id}</td>
-                    <td align="right">{valorFormadado}</td>
+                    <td align='right'>{valorFormadado}</td>
                     <td>12</td>
                     <td>
                       <Link to={`/gerenciarparcelas/${item.id}`}>Ver mais</Link>
                     </td>
                   </tr>
-                )
+                );
               })}
             </tbody>
           </table>
@@ -81,20 +77,20 @@ const Table = ({ data, client }: TableProps) => {
       return (
         <div className='table-box'>
           <div className='table-title'>
-            <h1>Lista de titulos</h1>
+            <h1>Lista de títulos</h1>
           </div>
           <table>
             <thead>
               <tr>
                 <td>Nome cliente</td>
                 <td>CPF</td>
-                <td>Titulo</td>
-                <td align="right">Valor total</td>
+                <td>Título</td>
+                <td align='right'>Valor total</td>
                 <td>Nº parcelas</td>
               </tr>
             </thead>
             <tbody>
-              {data && data.map((item) => {
+              {data.map((item) => {
                 const clientInfo = client.find((c) => c.cpf === item.cpf);
                 const nomeCliente = clientInfo?.nome;
                 const cpf = clientInfo?.cpf;
@@ -104,24 +100,20 @@ const Table = ({ data, client }: TableProps) => {
                     <td>{nomeCliente}</td>
                     <td>{cpf}</td>
                     <td>{item.id}</td>
-                    <td align="right">R${item.valor}</td>
+                    <td align='right'>R${item.valor}</td>
                   </tr>
-                )
+                );
               })}
             </tbody>
           </table>
         </div>
       );
     } else {
-      return (
-        <></>
-      )
+      return <></>;
     }
-
   } else {
-    return (
-      <></>
-    )
+    return <></>;
   }
 };
+
 export default Table;
