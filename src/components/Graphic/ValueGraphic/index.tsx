@@ -10,7 +10,6 @@ import {
 } from "recharts";
 import { Parcela, dadosTitulos } from "../../../utils/axios.routes";
 
-
 export const ValueGraphic = () => {
   const [titulos, setTitulos] = useState<any>([]);
   const [parcelas, setParcelas] = useState<any>([]);
@@ -34,9 +33,8 @@ export const ValueGraphic = () => {
     fetchData();
   }, []);
 
-
-  const [inicio, setInicio] = useState('');
-  const [fim, setFim] = useState('');
+  const [inicio, setInicio] = useState("");
+  const [fim, setFim] = useState("");
   const [checkboxes, setCheckboxes] = useState({
     "Parcelas pendentes": true,
     "Parcelas creditadas": true,
@@ -44,7 +42,9 @@ export const ValueGraphic = () => {
     "Parcelas a vencer": true,
   });
 
-  const handleCheckboxChange = (event: { target: { name: any; checked: any; }; }) => {
+  const handleCheckboxChange = (event: {
+    target: { name: any; checked: any };
+  }) => {
     const { name, checked } = event.target;
     setCheckboxes((prevState) => ({
       ...prevState,
@@ -53,17 +53,23 @@ export const ValueGraphic = () => {
   };
 
   const data = [];
-  const datainicial = new Date(inicio)
-  const datafinal = new Date(fim)
+  const datainicial = new Date(inicio);
+  const datafinal = new Date(fim);
 
-
-  for (let data_for = new Date(datainicial); data_for <= datafinal; data_for.setDate(data_for.getDate() + 1)) {
-
+  for (
+    let data_for = new Date(datainicial);
+    data_for <= datafinal;
+    data_for.setDate(data_for.getDate() + 1)
+  ) {
     const PagamentoAguardo = parcelas.reduce((acc: any, parcela: any) => {
       const data_pagamento = new Date(parcela.data_pagamento);
-      const data_credito = new Date(parcela.data_credito)
+      const data_credito = new Date(parcela.data_credito);
       data_pagamento.setHours(data_pagamento.getHours() + 3);
-      if (parcela.status == 1 && data_pagamento < data_for && data_credito >= data_for) {
+      if (
+        parcela.status == 1 &&
+        data_pagamento < data_for &&
+        data_credito >= data_for
+      ) {
         return acc + parcela.valor_pago;
       } else {
         return acc;
@@ -101,13 +107,12 @@ export const ValueGraphic = () => {
       }
     }, 0);
 
-
-    const dia = String(data_for.getDate()).padStart(2, '0');
-    const mes = String(data_for.getMonth() + 1).padStart(2, '0');
+    const dia = String(data_for.getDate()).padStart(2, "0");
+    const mes = String(data_for.getMonth() + 1).padStart(2, "0");
     const ano = String(data_for.getFullYear());
 
     data.push({
-      name: (dia + "/" + mes + "/" + ano),
+      name: dia + "/" + mes + "/" + ano,
       "Valor pendente": PagamentoAguardo,
       "Valor creditado": PagamentoAprovado,
       "Valor vencido": PagamentoVencido,
@@ -116,33 +121,44 @@ export const ValueGraphic = () => {
   }
 
   const maiorValor = data.reduce((acc: any, item: any) => {
-    const valor = item["Valor pendente"] + item["Valor creditado"] + item["Valor vencido"] + item["Valor a vencer"];
+    const valor =
+      item["Valor pendente"] +
+      item["Valor creditado"] +
+      item["Valor vencido"] +
+      item["Valor a vencer"];
     return valor > acc ? valor : acc;
   }, 0);
-  const tickValues = Array.from({ length: 10 }, (_, i) => Math.round(maiorValor / 10) * i);
+  const tickValues = Array.from(
+    { length: 10 },
+    (_, i) => Math.round(maiorValor / 10) * i
+  );
 
   return (
     <>
+      <h2 className="title-stats"> Valores Acúmulativos </h2>
       <div className="select-box">
-        <div className="select-input">
-          <h3>Data de Início</h3>
-          <input type="date"
-            value={inicio}
-            max={fim}
-            onChange={(ev) => setInicio(ev.target.value)} />
-        </div>
-        <div className="select-input">
-          <h3>Data de Fim</h3>
-          <input type="date"
-            value={fim}
-            min={inicio}
-            onChange={(ev) => setFim(ev.target.value)} />
-        </div>
-      </div>
-      <div className="select-box">
-        <div>
-          <h3>Selecione as colunas que deseja visualizar</h3>
+        <div className="select-box-data">
           <div className="select-input">
+            <h3>Data de Inicio</h3>
+            <input
+              type="date"
+              value={inicio}
+              max={fim}
+              onChange={(ev) => setInicio(ev.target.value)}
+            />
+          </div>
+          <div className="select-input">
+            <h3>Data de Fim</h3>
+            <input
+              type="date"
+              value={fim}
+              min={inicio}
+              onChange={(ev) => setFim(ev.target.value)}
+            />
+          </div>
+        </div>
+        <div className="select-box-status">
+          <div className="select-check">
             <input
               type="checkbox"
               id="Parcelas pendentes"
@@ -151,7 +167,9 @@ export const ValueGraphic = () => {
               checked={checkboxes["Parcelas pendentes"]}
               onChange={handleCheckboxChange}
             />
-            <label htmlFor="Parcelas pendentes">Parcelas pendentes</label>
+            <label htmlFor="Parcelas pendentes">Pendentes</label>
+          </div>
+          <div className="select-check">
             <input
               type="checkbox"
               id="Parcelas creditadas"
@@ -160,7 +178,9 @@ export const ValueGraphic = () => {
               checked={checkboxes["Parcelas creditadas"]}
               onChange={handleCheckboxChange}
             />
-            <label htmlFor="Parcelas creditadas">Parcelas creditadas</label>
+            <label htmlFor="Parcelas creditadas">Creditadas</label>
+          </div>
+          <div className="select-check">
             <input
               type="checkbox"
               id="Parcelas vencidas"
@@ -169,7 +189,9 @@ export const ValueGraphic = () => {
               checked={checkboxes["Parcelas vencidas"]}
               onChange={handleCheckboxChange}
             />
-            <label htmlFor="Parcelas vencidas">Parcelas vencidas</label>
+            <label htmlFor="Parcelas vencidas">Vencidas</label>
+          </div>
+          <div className="select-check">
             <input
               type="checkbox"
               id="Parcelas a vencer"
@@ -196,27 +218,24 @@ export const ValueGraphic = () => {
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" />
-          <YAxis
-            ticks={tickValues}
-            tickCount={7}
-          />
+          <YAxis ticks={tickValues} tickCount={7} />
           <Tooltip />
           {checkboxes["Parcelas pendentes"] && (
-          <Bar dataKey={"Valor pendente"} barSize={20} fill="#FADA55" />
+            <Bar dataKey={"Valor pendente"} barSize={20} fill="#FADA55" />
           )}
           {checkboxes["Parcelas creditadas"] && (
-          <Bar dataKey={"Valor creditado"} barSize={20} fill="#6EFA9B" />
+            <Bar dataKey={"Valor creditado"} barSize={20} fill="#6EFA9B" />
           )}
           {checkboxes["Parcelas vencidas"] && (
-          <Bar dataKey={"Valor vencido"} barSize={20} fill="#FA4C48" />
+            <Bar dataKey={"Valor vencido"} barSize={20} fill="#FA4C48" />
           )}
           {checkboxes["Parcelas a vencer"] && (
-          <Bar dataKey={"Valor a vencer"} barSize={20} fill="#3C45FA" />
+            <Bar dataKey={"Valor a vencer"} barSize={20} fill="#3C45FA" />
           )}
         </BarChart>
       </ResponsiveContainer>
     </>
   );
-}
+};
 
 export default ValueGraphic;

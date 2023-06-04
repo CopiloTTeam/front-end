@@ -48,7 +48,9 @@ export const PaymentGraphic = () => {
     "Parcelas a vencer": true,
   });
 
-  const handleCheckboxChange = (event: { target: { name: any; checked: any; }; }) => {
+  const handleCheckboxChange = (event: {
+    target: { name: any; checked: any };
+  }) => {
     const { name, checked } = event.target;
     setCheckboxes((prevState) => ({
       ...prevState,
@@ -114,7 +116,7 @@ export const PaymentGraphic = () => {
     const dia = String(data_for.getDate()).padStart(2, "0");
     const mes = String(data_for.getMonth() + 1).padStart(2, "0");
     const ano = String(data_for.getFullYear());
-    
+
     data.push({
       name: dia + "/" + mes + "/" + ano,
       "Parcelas pendentes": PagamentoAguardo,
@@ -127,15 +129,15 @@ export const PaymentGraphic = () => {
     setPagamentoAprovado(PagamentoAprovado);
     setPagamentoVencido(PagamentoVencido);
     setParcelasAVencer(ParcelasAVencer);
-
   }
 
-  const quantidade_de_parcelas = PagamentoAguardo + PagamentoAprovado + PagamentoVencido + ParcelasAVencer;
+  const quantidade_de_parcelas =
+    PagamentoAguardo + PagamentoAprovado + PagamentoVencido + ParcelasAVencer;
 
   const ticks_dinamicos = [];
 
   for (let i = 0; i < 10; i++) {
-    const tick = quantidade_de_parcelas / 10 * i;
+    const tick = (quantidade_de_parcelas / 10) * i;
     // round the number
     ticks_dinamicos.push(Math.round(tick));
     // transform the list into a set
@@ -148,66 +150,72 @@ export const PaymentGraphic = () => {
 
   return (
     <>
+      <h2 className="title-stats"> Situação das Parcelas </h2>
       <div className="select-box">
-        <div className="select-input">
-          <h3>Data de Inicio</h3>
-          <input
-            type="date"
-            value={inicio}
-            max={fim}
-            onChange={(ev) => setInicio(ev.target.value)}
-          />
+        <div className="select-box-data">
+          <div className="select-input">
+            <h3>Data de Inicio</h3>
+            <input
+              type="date"
+              value={inicio}
+              max={fim}
+              onChange={(ev) => setInicio(ev.target.value)}
+            />
+          </div>
+          <div className="select-input">
+            <h3>Data de Fim</h3>
+            <input
+              type="date"
+              value={fim}
+              min={inicio}
+              onChange={(ev) => setFim(ev.target.value)}
+            />
+          </div>
         </div>
-        <div className="select-input">
-          <h3>Data de Fim</h3>
-          <input
-            type="date"
-            value={fim}
-            min={inicio}
-            onChange={(ev) => setFim(ev.target.value)}
-          />
-        </div>
-        <div className="select-box">
-          <div>
-            <h3>Selecione os campos que deseja visualizar</h3>
-            <div className="select-input">
-              <input
-                type="checkbox"
-                id="Parcelas pendentes"
-                name="Parcelas pendentes"
-                value="Parcelas pendentes"
-                checked={checkboxes["Parcelas pendentes"]}
-                onChange={handleCheckboxChange}
-              />
-              <label htmlFor="Parcelas pendentes">Parcelas pendentes</label>
-              <input
-                type="checkbox"
-                id="Parcelas creditadas"
-                name="Parcelas creditadas"
-                value="Parcelas creditadas"
-                checked={checkboxes["Parcelas creditadas"]}
-                onChange={handleCheckboxChange}
-              />
-              <label htmlFor="Parcelas creditadas">Parcelas creditadas</label>
-              <input
-                type="checkbox"
-                id="Parcelas vencidas"
-                name="Parcelas vencidas"
-                value="Parcelas vencidas"
-                checked={checkboxes["Parcelas vencidas"]}
-                onChange={handleCheckboxChange}
-              />
-              <label htmlFor="Parcelas vencidas">Parcelas vencidas</label>
-              <input
-                type="checkbox"
-                id="Parcelas a vencer"
-                name="Parcelas a vencer"
-                value="Parcelas a vencer"
-                checked={checkboxes["Parcelas a vencer"]}
-                onChange={handleCheckboxChange}
-              />
-              <label htmlFor="Parcelas a vencer">Parcelas a vencer</label>
-            </div>
+        <div className="select-box-status">
+          <div className="select-check">
+            <input
+              type="checkbox"
+              id="Parcelas pendentes"
+              name="Parcelas pendentes"
+              value="Parcelas pendentes"
+              checked={checkboxes["Parcelas pendentes"]}
+              onChange={handleCheckboxChange}
+            />
+            <label htmlFor="Parcelas pendentes">Parcelas pendentes</label>
+          </div>
+          <div className="select-check">
+            <input
+              type="checkbox"
+              id="Parcelas creditadas"
+              name="Parcelas creditadas"
+              value="Parcelas creditadas"
+              checked={checkboxes["Parcelas creditadas"]}
+              onChange={handleCheckboxChange}
+            />
+            <label htmlFor="Parcelas creditadas">Parcelas creditadas</label>
+          </div>
+          <div className="select-check">
+            <input
+              type="checkbox"
+              id="Parcelas vencidas"
+              name="Parcelas vencidas"
+              value="Parcelas vencidas"
+              checked={checkboxes["Parcelas vencidas"]}
+              onChange={handleCheckboxChange}
+            />
+            <label htmlFor="Parcelas vencidas">Parcelas vencidas</label>
+          </div>
+          <div className="select-check">
+            <input
+              type="checkbox"
+              id="Parcelas a vencer"
+              name="Parcelas a vencer"
+              value="Parcelas a vencer"
+              checked={checkboxes["Parcelas a vencer"]}
+              onChange={handleCheckboxChange}
+            />
+            <label htmlFor="Parcelas a vencer">Parcelas a vencer</label>
           </div>
         </div>
       </div>
