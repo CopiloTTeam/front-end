@@ -4,8 +4,6 @@ import './multistepForm.css'
 import { dadosClientes, dadosTitulos } from '../../utils/axios.routes'
 import React, { useContext, useEffect, useState } from 'react'
 
-import * as puppeteer from 'puppeteer';
-
 // const [data, setData] = useState([]);
 // const [client, setClient] = useState([]);
 // const [loading, setLoading] = useState(true)
