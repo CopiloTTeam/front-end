@@ -2,11 +2,12 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Boleto from '../../assets/adicionarBoleto.png';
 import User from '../../assets/adicionarUser.png';
-import Estatisticas from '../../assets/estatistica.png';
+import Graficos from '../../assets/graficos.png';
 import Perfil from '../../assets/perfil.png';
 import Home from '../../assets/home.png';
 import GerenciarFuncionario from '../../assets/gerenciarfunc.png';
 import GerenciarCliente from '../../assets/gerenciarcli.png';
+import Relatorio from '../../assets/relatorio.png';
 
 import './style.css';
 import { AuthContext } from '../../contexts/AuthContext';
@@ -35,9 +36,15 @@ const Navbar = () => {
                                 </Link>
                             </li>
                             <li className='navitem'>
-                                <Link to='/estatisticas' className='navlink'>
-                                    <img src={Estatisticas} alt='Estatisticas' />
-                                    <span className='navname'>Estatísticas</span>
+                                <Link to='/graficos' className='navlink'>
+                                    <img src={Graficos} alt='Graficos' />
+                                    <span className='navname'>Gráficos</span>
+                                </Link>
+                            </li>
+                            <li className='navitem'>
+                                <Link to='/relatorio' className='navlink'>
+                                    <img src={Relatorio} alt='Relatorio' />
+                                    <span className='navname'>Relatório</span>
                                 </Link>
                             </li>
                             <li className='navitem'>
@@ -54,7 +61,7 @@ const Navbar = () => {
                             </li>
                             <li className='navitem'>
                                 <Link to='/gerenciarfunc' className='navlink'>
-                                    <img src={GerenciarFuncionario} alt='Gerenciar Funcionário' className='gerenciarfunc-icon'/>
+                                    <img src={GerenciarFuncionario} alt='Gerenciar Funcionário' className='gerenciarfunc-icon' />
                                     <span className='navname'>Gerenciar funcionários</span>
                                 </Link>
                             </li>
@@ -86,14 +93,20 @@ const Navbar = () => {
                         <ul className='navlist'>
                             <Link to='/home'>
                                 <li className='navitem'>
-                                    <img src={Estatisticas} alt='Home' />
+                                    <img src={Graficos} alt='Home' />
                                     <span className='navname'>Home</span>
                                 </li>
                             </Link>
-                            <Link to='/estatisticas'>
+                            <Link to='/graficos'>
                                 <li className='navitem'>
-                                    <img src={Estatisticas} alt='Estatisticas' />
-                                    <span className='navname'>Estatísticas</span>
+                                    <img src={Graficos} alt='Graficos' />
+                                    <span className='navname'>Gráficos</span>
+                                </li>
+                            </Link>
+                            <Link to='/relatorio'>
+                                <li className='navitem'>
+                                    <img src={Relatorio} alt='Relatorio' />
+                                    <span className='navname'>Relatório</span>
                                 </li>
                             </Link>
                             <Link to='/cadastrousuario'>
@@ -134,14 +147,20 @@ const Navbar = () => {
                         <ul className='navlist'>
                             <li className='navitem' key="home">
                                 <Link to="/home" className='navlink'>
-                                    <img src={Estatisticas} alt='Home' />
+                                    <img src={Graficos} alt='Home' />
                                     <span className='navname'>Home</span>
                                 </Link>
                             </li>
-                            <li className='navitem' key="estatisticas">
-                                <Link to="/estatisticas" className='navlink'>
-                                    <img src={Estatisticas} alt='Estatisticas' />
-                                    <span className='navname'>Estatísticas</span>
+                            <li className='navitem' key="graficos">
+                                <Link to="/graficos" className='navlink'>
+                                    <img src={Graficos} alt='Graficos' />
+                                    <span className='navname'>Gráficos</span>
+                                </Link>
+                            </li>
+                            <li className='navitem' key="relatorio">
+                                <Link to="/relatorio" className='navlink'>
+                                    <img src={Relatorio} alt='Relatorio' />
+                                    <span className='navname'>Relatório</span>
                                 </Link>
                             </li>
                         </ul>
