@@ -3,7 +3,6 @@ import './style.css'
 
 type UserData = {
   codigo_barra: string,
-  // qr_code: string,
   parcelas: string,
   nome_produto: string,
 }

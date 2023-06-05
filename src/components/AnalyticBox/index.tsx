@@ -32,7 +32,6 @@ const AnalyticBox = () => {
 
   console.log("parcelas:", parcelas);
   const hoje = new Date();
-  // formatar a data para o padrão aaaa-mm-dd
 
   const valorPago = parcelas.reduce((acc: any, parcela: any) => {
     const dataCredito = new Date(parcela.data_credito);

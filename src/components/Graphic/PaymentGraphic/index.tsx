@@ -127,7 +127,7 @@ export const PaymentGraphic = () => {
 
   return (
     <>
-      <h2 className="title-stats"> Situação das Parcelas </h2>
+      {/* <h2 className="title-stats"> Situação das Parcelas </h2> */}
       <div className="select-box">
         <div className="select-box-data">
           <div className="select-input">

@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
 import { gerenciarTitulo , EnviarEmail} from "../../utils/axios.routes";
-import { gerenciarTitulo } from "../../utils/axios.routes";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import "./style.css";
 import { AuthContext } from "../../contexts/AuthContext";
@@ -9,7 +8,6 @@ import { toast } from "react-toastify";
 
 interface Parcela {
   data_vencimento: string;
-  // cpf: string;
   nome_produto: string;
   id_parcela: string;
   data_pagamento: string;
@@ -43,7 +41,6 @@ const PlotManagement = () => {
         const response = await gerenciarTitulo(id);
         const data = await response?.data.parcelas;
 
-        // parcelas ordenadas pelo o status, as pendentens primeiro
         data.sort((a: Parcela, b: Parcela) => {
           if (a.status < b.status) {
             return -1;

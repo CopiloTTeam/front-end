@@ -41,7 +41,6 @@ const PaymentForm = () => {
     useMultistepForm([
       <PersonalInformation {...data} updateFields={updateFields} />,
       <BilingInformation {...data} updateFields={updateFields} />,
-      // <Validation {...data} updateFields={updateFields}/>,
     ])
 
   async function submitData(data: any) {

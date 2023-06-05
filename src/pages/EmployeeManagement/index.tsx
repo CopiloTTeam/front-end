@@ -40,7 +40,6 @@ const EmployeeManagement = () => {
     fetchData();
   }, []);
 
-  // Filter the employees based on search value
   const filteredFuncionarios = funcionarioo?.filter((item: Funcionario) =>
     item.nome.toLowerCase().includes(searchValue.toLowerCase())
   );
@@ -76,12 +75,12 @@ const EmployeeManagement = () => {
                   item.credential.role != "Financeiro" &&
                   item.credential.role != "Comercial"
                 ) {
-                  return null; // ignora funcionários com cargos específicos
+                  return null; 
                 }
               })}
             </>
           ) : (
-            <h2>SEM SOLICITACOES</h2>
+            <h2>SEM SOLICITAÇÕES</h2>
           )}
 
           <h2 className="title-secundary">Funcionários do sistema</h2>

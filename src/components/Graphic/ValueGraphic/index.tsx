@@ -135,7 +135,7 @@ export const ValueGraphic = () => {
 
   return (
     <>
-      <h2 className="title-stats"> Valores Acúmulativos </h2>
+      {/* <h2 className="title-stats"> Valores Acúmulativos </h2> */}
       <div className="select-box">
         <div className="select-box-data">
           <div className="select-input">

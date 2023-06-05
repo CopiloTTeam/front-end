@@ -42,7 +42,6 @@ const ClienteManagement = () => {
     fetchData();
   }, []);
 
-  // Order the clients by name
   cliente?.sort((a: Cliente, b: Cliente) => {
     if (a.nome < b.nome) {
       return -1;
@@ -53,7 +52,6 @@ const ClienteManagement = () => {
     return 0;
   });
 
-  // Filter the clients based on search value
   const filteredClientes = cliente?.filter((item: Cliente) =>
     item.nome.toLowerCase().includes(searchValue.toLowerCase())
   );
@@ -67,17 +65,18 @@ const ClienteManagement = () => {
       <>
         <div className="conteiner-employee-management">
           <Navbar />
-          <h1 className="title-primary">Clientes do Sistema</h1>
-          {cliente && cliente.map((item: Cliente) => {
-
-            return (
+          <div className='head-gerenciarcliente'>
+            <h1 className="title-primary">Cliente do sistema</h1>
+            <input type='text' className='input-table' placeholder='Digite aqui' value={searchValue} onChange={handleSearchChange} />
+          </div>
+          {filteredClientes && filteredClientes.map((item: Cliente) => (
               <React.Fragment key={item.cpf}>
                 <ClientFixed cpf={item.cpf} email={item.contato.email} nome={item.nome} telefone={item.contato.telefone}></ClientFixed>
               </React.Fragment>
             )
-          }
+          
           )}
-          {!cliente && <ClientFixed cpf={''} email={''} nome={''} telefone={''} />}
+          {!filteredClientes && <ClientFixed cpf={''} email={''} nome={''} telefone={''} />}
         </div>
       </>
     );

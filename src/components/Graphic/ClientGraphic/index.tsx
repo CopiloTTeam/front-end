@@ -92,7 +92,7 @@ export const ClientGraphic = () => {
 
   return (
     <>
-      <h2 className="title-stats"> Situação dos clientes </h2>
+      {/* <h2 className="title-stats"> Situação dos clientes </h2> */}
       <PieChart width={500} height={400}>
         <Pie data={data} dataKey="value" nameKey="name">
           {data.map((entry, index) => (

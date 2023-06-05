@@ -53,7 +53,6 @@ const Relatorio = () => {
         isLogged &&
         (funcionario.cargo === "Administrador" || funcionario.cargo === "Financeiro")
     ) {
-        // Filtrar as parcelas com base na opção selecionada
         const filteredParcelas = selectedButton === "todos"
             ? parcelas
             : parcelas.filter((parcela: any) => {
@@ -71,10 +70,9 @@ const Relatorio = () => {
                     return !parcela.status && objeto_data_vencimento < data_atual;
                 }
 
-                return true; // Retorna todas as parcelas se nenhuma opção de filtro for selecionada
+                return true;
             });
 
-        // Filtrar as parcelas com base na data inicial e final comparando com a data de vencimento
         const filteredParcelasData = filteredParcelas.filter((parcela: any) => {
             const objeto_data_vencimento = new Date(parcela.data_vencimento);
 
@@ -86,7 +84,7 @@ const Relatorio = () => {
                 return objeto_data_vencimento <= new Date(fim);
             }
 
-            return true; // Retorna todas as parcelas se nenhuma data for selecionada
+            return true;
         }
         );
 

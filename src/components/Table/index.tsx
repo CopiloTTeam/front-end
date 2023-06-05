@@ -18,7 +18,6 @@ const Table = ({ data, client }: TableProps) => {
 
   if (isLogged) {
     if (funcionario.cargo === 'Administrador' || funcionario.cargo === 'Financeiro') {
-      // Filter the data based on search value
       const filteredData = data.filter((item) =>
         item.cliente.nome.toLowerCase().includes(searchValue.toLowerCase())
       );

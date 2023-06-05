@@ -1,16 +1,15 @@
 import api from "../services/axios.config";
 
 const statuss = ['202', '302', '200', '201']
-//login
+
 export const login = async (data: any) => {
   try {
     const response = await api.post('/login', data, {
       timeout: 5000,
       validateStatus: function (status) {
-        return statuss.includes(status.toString()); // Define que apenas status 200 é válido
-        // return status.toString() in statuss? true : false ; // Define que apenas status 200 é válido
+        return statuss.includes(status.toString());
       }
-      // Define que apenas status 200 é válido
+
     });
 
 
@@ -20,7 +19,7 @@ export const login = async (data: any) => {
   }
 };
 
-export const EnviarEmail = async (id:any , nome_produto : any) => {
+export const EnviarEmail = async (id: any, nome_produto: any) => {
   try {
     const response = await api.get(`/listar/parcela/${id}`, {
       headers: {
@@ -31,7 +30,7 @@ export const EnviarEmail = async (id:any , nome_produto : any) => {
         return statuss.includes(status.toString()); // Define que apenas status 200 é válido
       }
     });
-    
+
     const cpf = response.data.cliente.cpf;
     const responseCliente = await api.get(`/listar/cliente/${cpf}`, {
       headers: {
@@ -48,7 +47,7 @@ export const EnviarEmail = async (id:any , nome_produto : any) => {
       valor: response.data.valor,
       data_vencimento: response.data.data_vencimento,
       nome_produto: nome_produto,
-      }
+    }
     const responseEmail = await api.post(`/email`, payload, {
       headers: {
         'Authorization': `${localStorage.getItem('token')}`
@@ -65,9 +64,6 @@ export const EnviarEmail = async (id:any , nome_produto : any) => {
   }
 }
 
-export const downloadBoleto = async (parcelaId: string) => {
-  // Implementação da função downloadBoleto
-};
 
 export const AllUsers = async () => {
   try {
@@ -234,7 +230,6 @@ export const criarTitulo = async (titulo: any) => {
       nome_produto: titulo.nome_produto,
       qr_code: "https://example.com/qr_code",
       numero_boleto: "numeroboleto",
-      // parcelas: 12,
       valor: titulo.valor,
 
 
@@ -435,14 +430,13 @@ export const updateCliente = async (data: any) => {
   }
 }
 
-export const updateParcela = async (id: any, valorPago: any ,dataPagamento : any , dataCredito : any) => {
+export const updateParcela = async (id: any, valorPago: any, dataPagamento: any, dataCredito: any) => {
   try {
     const valorPagoFloat = parseFloat(valorPago.replace(',', '.'));
     const response = await api.put(`/atualizar/parcela/${id}`, {
       valor_pago: valorPagoFloat,
       data_credito: dataCredito,
       data_pagamento: dataPagamento,
-      // status: true,
     }, {
       headers: {
         'Authorization': `${localStorage.getItem('token')}`

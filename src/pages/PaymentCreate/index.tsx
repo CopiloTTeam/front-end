@@ -14,17 +14,7 @@ const PayForm = () => {
     if (!isLogged) {
       navigate('/')
     }
-    // const fetchData = async () => {
-    //     try {
-    //         const response = await dadosUsuario();
-    //         const data = await response?.data
-    //         setData(data);
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // };
-
-    // fetchData();
+  
   }, []);
   if (isLogged && (funcionario.cargo == 'Administrador' || funcionario.cargo == 'Comercial')) {
 
