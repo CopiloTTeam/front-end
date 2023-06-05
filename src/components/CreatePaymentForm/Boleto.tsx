@@ -4,26 +4,6 @@ import './multistepForm.css'
 import { dadosClientes, dadosTitulos } from '../../utils/axios.routes'
 import React, { useContext, useEffect, useState } from 'react'
 
-// const [data, setData] = useState([]);
-// const [client, setClient] = useState([]);
-// const [loading, setLoading] = useState(true)
-
-// useEffect(() => {
-//   const fetchData = async () => {
-//     try {
-//       const titulos = await dadosTitulos();
-//       const data = titulos?.data;
-//       setData(data);
-//       const cliente = await dadosClientes();
-//       const client = cliente?.data;
-//       setClient(client);
-//       setLoading(false);
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   };
-//   fetchData();
-// }, []);
 
 const Boleto = () => {
 

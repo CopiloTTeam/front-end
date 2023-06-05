@@ -1,10 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
+import { gerenciarTitulo , EnviarEmail} from "../../utils/axios.routes";
 import { gerenciarTitulo } from "../../utils/axios.routes";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import "./style.css";
 import { AuthContext } from "../../contexts/AuthContext";
-import Boleto from "../../components/CreatePaymentForm/Boleto";
+import { toast } from "react-toastify";
 
 interface Parcela {
   data_vencimento: string;
@@ -22,7 +23,6 @@ const PlotManagement = () => {
   const { id } = useParams<{ id: string }>();
   const [data, setData] = useState<any>(null);
   const [parcela, setParcela] = useState<any>(null);
-  const [showBoleto, setShowBoleto] = useState<boolean>(false);
 
   useEffect(() => {
     if (!isLogged) {
@@ -66,9 +66,12 @@ const PlotManagement = () => {
 
   }, [id]);
 
-  const handleGerarBoleto = () => {
-    setShowBoleto(true); // Ative o estado para renderizar o boleto
-  };
+  async function Email (e: React.MouseEvent<HTMLButtonElement, MouseEvent>){
+    e.preventDefault();
+    await EnviarEmail(id , data?.nome_produto);
+    toast.success('Email enviado com sucesso!');
+    window.location.reload();
+  }
 
   if (isLogged && (funcionario.cargo === 'Administrador' || funcionario.cargo === 'Financeiro')) {
     return (
@@ -92,7 +95,7 @@ const PlotManagement = () => {
                       <p>Status: {'Pendente'}</p>
                       {item?.data_pagamento ? <p>Data de pagamento: {item?.data_pagamento.split('-').reverse().join('/')}</p> : null}
                       {item.status == false ? <Link className="link" to={`/payout/${item.id_parcela}`}>Ver mais</Link> : null}
-
+                      {item.status == false ? <button onClick={e => Email(e)}>Cobrar Parcela</button> : null}
                     </summary>
                     <div className="card-completo">
                       <div className="conteudo"></div>

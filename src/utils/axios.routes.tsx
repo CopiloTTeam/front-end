@@ -19,6 +19,52 @@ export const login = async (data: any) => {
     console.error(error);
   }
 };
+
+export const EnviarEmail = async (id:any , nome_produto : any) => {
+  try {
+    const response = await api.get(`/listar/parcela/${id}`, {
+      headers: {
+        'Authorization': `${localStorage.getItem('token')}`
+      },
+      timeout: 5000,
+      validateStatus: function (status) {
+        return statuss.includes(status.toString()); // Define que apenas status 200 é válido
+      }
+    });
+    
+    const cpf = response.data.cliente.cpf;
+    const responseCliente = await api.get(`/listar/cliente/${cpf}`, {
+      headers: {
+        'Authorization': `${localStorage.getItem('token')}`
+      },
+      timeout: 5000,
+      validateStatus: function (status) {
+        return statuss.includes(status.toString()); // Define que apenas status 200 é válido
+      }
+    });
+
+    const payload = {
+      email: responseCliente.data.contato.email,
+      valor: response.data.valor,
+      data_vencimento: response.data.data_vencimento,
+      nome_produto: nome_produto,
+      }
+    const responseEmail = await api.post(`/email`, payload, {
+      headers: {
+        'Authorization': `${localStorage.getItem('token')}`
+      },
+      timeout: 5000,
+      validateStatus: function (status) {
+        return statuss.includes(status.toString());
+      }
+    });
+    return responseEmail;
+
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export const downloadBoleto = async (parcelaId: string) => {
   // Implementação da função downloadBoleto
 };
