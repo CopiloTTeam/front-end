@@ -13,6 +13,7 @@ interface Parcela {
   id_parcela: string;
   data_pagamento: string;
   status: any;
+  numeroParcelaTitulo: string;
 }
 
 const PlotManagement = () => {
@@ -82,22 +83,42 @@ const PlotManagement = () => {
               <p>{data?.nome_produto}</p>
             </div>
             {parcela && parcela.map((item: Parcela, index: number) => {
-              return (
-                <details key={item.id_parcela}>
-                  <summary>
-                    <p>{index + 1}ª Parcela </p>
-                    <p>Vencimento: {item?.data_vencimento.split('-').reverse().join('/')}</p>
-                    <p>Status: {item?.status === true ? 'Pago' : 'Pendente'}</p>
-                    {item?.data_pagamento ? <p>Data de pagamento: {item?.data_pagamento.split('-').reverse().join('/')}</p> : null}
-                    {item.status == false ? <Link className="link" to={`/payout/${item.id_parcela}`}>Ver mais</Link> : null}
-                    <button onClick={handleGerarBoleto}>Gerar Boleto</button>
-                    {showBoleto && <Boleto />}
-                  </summary>
-                  <div className="card-completo">
-                    <div className="conteudo"></div>
-                  </div>
-                </details>
-              );
+              if (item.status == false) {
+                return (
+                  <details key={item.id_parcela}>
+                    <summary>
+                      <p>{item.numeroParcelaTitulo}ª Parcela </p>
+                      <p>Vencimento: {item?.data_vencimento.split('-').reverse().join('/')}</p>
+                      <p>Status: {'Pendente'}</p>
+                      {item?.data_pagamento ? <p>Data de pagamento: {item?.data_pagamento.split('-').reverse().join('/')}</p> : null}
+                      {item.status == false ? <Link className="link" to={`/payout/${item.id_parcela}`}>Ver mais</Link> : null}
+
+                    </summary>
+                    <div className="card-completo">
+                      <div className="conteudo"></div>
+                    </div>
+                  </details>
+                );
+              }
+            })}
+            {parcela && parcela.map((item: Parcela, index: number) => {
+              if (item.status == true) {
+                return (
+                  <details key={item.id_parcela}>
+                    <summary>
+                      <p>{item.numeroParcelaTitulo}ª Parcela </p>
+                      <p>Vencimento: {item?.data_vencimento.split('-').reverse().join('/')}</p>
+                      <p>Status: {'Pago'}</p>
+                      {item?.data_pagamento ? <p>Data de pagamento: {item?.data_pagamento.split('-').reverse().join('/')}</p> : null}
+                      {/* {item.status == true ? <Link className="link" to={`/payout/${item.id_parcela}`}>Ver mais</Link> : null} */}
+
+                    </summary>
+                    <div className="card-completo">
+                      <div className="conteudo"></div>
+                    </div>
+                  </details>
+                );
+              }
             })}
           </div>
         </main>

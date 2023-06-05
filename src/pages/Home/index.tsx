@@ -9,7 +9,7 @@ import Loading from '../../components/Loading'
 
 const Home = () => {
   const navigate = useNavigate();
-  const { isLogged, funcionario } = useContext(AuthContext)
+  const { isLogged } = useContext(AuthContext)
   if (!isLogged) {
     navigate('/')
   }

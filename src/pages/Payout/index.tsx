@@ -15,11 +15,13 @@ const Payout = () => {
   const [usuario, setUsuario] = useState<any>();
   const { id } = useParams<{ id: string }>();
   const [valorPago, setValorPago] = useState("");
+  const [dataPagamento, setDataPagamento] = useState<any>();
+  const [dataCredito, setDataCredito] = useState("");
   const [titulo, setTitulo] = useState("");
 
-  async function submitdata(valorPago: String) {
+  async function submitdata(valorPago: String , dataCredito: String ,dataPagamento: String ) {
     try {
-      await updateParcela(id, valorPago);
+      await updateParcela(id, valorPago, dataCredito, dataPagamento);
       const valorPagoFloat = parseFloat(valorPago.replace('R$', '').replace(',', '.'));
       console.log(valorPagoFloat, parcela?.valor);
       if ( valorPagoFloat < parcela?.valor) {
@@ -43,7 +45,8 @@ const Payout = () => {
 
   function onsubmit(e: FormEvent) {
     e.preventDefault()
-    submitdata(valorPago)
+    console.log(e);
+    submitdata(valorPago , dataCredito , dataPagamento)
   }
 
   useEffect(() => {
@@ -111,7 +114,24 @@ const Payout = () => {
                     allowNegativeValue={false}
                   />
                 </div>
-
+                <div className="input-date">
+                  <h1>Data de Crédito</h1>
+                  <input
+                    required
+                    type="date"
+                    value={dataCredito}
+                    onChange={(value) => setDataCredito(value.target.value)}
+                  />
+                </div>
+                <div className="input-date">
+                  <h1>Data de Pagamento</h1>
+                  <input
+                    required
+                    type="date"
+                    value={dataPagamento}
+                    onChange={(value) => setDataPagamento(value.target.value)}
+                  />
+                </div>
               </div>
               <div className="button-payout">
                 <button className="enter-button" type="submit"> Confirmar </button>

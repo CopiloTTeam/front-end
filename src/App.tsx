@@ -26,6 +26,7 @@ function App() {
         <Route path="/graficos" element={<Analytics />} />
         <Route path="/relatorio" element={<Relatorio />} />
         <Route path="/cadastrousuario" element={<CustomerForm />} />
+        <Route path="/updateUser/:id" element={<CustomerForm />} />
         <Route path="/criarboleto" element={<PayForm />} />
         <Route path="/perfil/" element={<Profile />} />
         <Route path="/gerenciarparcelas/:id" element={<PlotManagement />} />
