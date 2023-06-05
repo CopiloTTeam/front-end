@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
-import { gerenciarTitulo , EnviarEmail} from "../../utils/axios.routes";
+import { gerenciarTitulo, EnviarEmail } from "../../utils/axios.routes";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import "./style.css";
 import { AuthContext } from "../../contexts/AuthContext";
@@ -63,9 +63,9 @@ const PlotManagement = () => {
 
   }, [id]);
 
-  async function Email (e: React.MouseEvent<HTMLButtonElement, MouseEvent>){
+  async function Email(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
-    await EnviarEmail(id , data?.nome_produto);
+    await EnviarEmail(id, data?.nome_produto);
     toast.success('Email enviado com sucesso!');
     window.location.reload();
   }
@@ -77,10 +77,21 @@ const PlotManagement = () => {
         <main>
           <div className="plot-container">
             <div className="plot-info">
-              <h3>Nome: </h3>
-              <p>{data?.cliente.nome}</p>
-              <h3>Título:</h3>
-              <p>{data?.nome_produto}</p>
+              <div>
+                <h3>Nome: </h3>
+                <p>{data?.cliente.nome}</p>
+              </div>
+              <div>
+                <h3>Título:</h3>
+                <p>{data?.nome_produto}</p>
+              </div>
+            </div>
+            <div className="line-info">
+              <p>N° da Parcela</p>
+              <p>Data de Vencimento</p>
+              <p>Status</p>
+              <p></p>
+              <p></p>
             </div>
             {parcela && parcela.map((item: Parcela, index: number) => {
               if (item.status == false) {
@@ -88,11 +99,14 @@ const PlotManagement = () => {
                   <details key={item.id_parcela}>
                     <summary>
                       <p>{item.numeroParcelaTitulo}ª Parcela </p>
-                      <p>Vencimento: {item?.data_vencimento.split('-').reverse().join('/')}</p>
-                      <p>Status: {'Pendente'}</p>
+                      <p>{item?.data_vencimento.split('-').reverse().join('/')}</p>
+                      <p> {'Pendente'}</p>
                       {item?.data_pagamento ? <p>Data de pagamento: {item?.data_pagamento.split('-').reverse().join('/')}</p> : null}
-                      {item.status == false ? <Link className="link" to={`/payout/${item.id_parcela}`}>Ver mais</Link> : null}
-                      {item.status == false ? <button onClick={e => Email(e)}>Cobrar Parcela</button> : null}
+                      <div className="buttons-together">
+                        {item.status == false ? <button onClick={e => Email(e)} className='button-parcela'>Enviar Cobrança</button> : null}
+                        {item.status == false ? <Link className="link-parcela" to={`/payout/${item.id_parcela}`}>Ver mais</Link> : null}
+
+                      </div>
                     </summary>
                     <div className="card-completo">
                       <div className="conteudo"></div>

@@ -75,24 +75,45 @@
 }
 
 .selected {
-  margin-right: 2rem;
+  margin:0 2rem;
   background-color: #333;
   color: white;
   border: none;
   padding: 10px;
-  margin-left: 16px;
   border-radius: 5px;
 }
 
 .button-graphics {
-  margin-right: 2rem;
+  margin:0 2rem;
   color: #333;
   border: 2px solid #333;
   padding: 10px;
-  margin-left: 16px;
   border-radius: 5px;
 }
-
+.graphic-container{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 3rem;
+}
+.graphic-container .graphic-box{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.3rem;
+}
+.graphic-container .graphic-color-green{
+  background-color: #6EFA9B;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+}
+.graphic-container .graphic-color-red{
+  background-color: #FA4C48;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+}
 @media (max-width: 768px) {
   .top-box {
     margin-top: 2rem;

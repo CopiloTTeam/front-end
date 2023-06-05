@@ -73,7 +73,7 @@ export const ClientGraphic = () => {
   }, 0);
 
   console.log(clientesInadimplentes, clientesAdimplentes);
-  
+
 
   if (clientesInadimplentes == 0 && clientesAdimplentes == 0) {
     return (
@@ -101,6 +101,20 @@ export const ClientGraphic = () => {
         </Pie>
         <Tooltip />
       </PieChart>
+      <div className="graphic-container">
+        <div className="graphic-box">
+          <div className="graphic-color-green">
+
+          </div>
+          <p>Clientes Adimplentes</p>
+        </div>
+        <div className="graphic-box">
+          <div  className="graphic-color-red">
+
+          </div>
+          <p>Clientes Inadimplentes</p>
+        </div>
+      </div>
     </>
   );
 };
