@@ -55,13 +55,13 @@ export function LocalInformation({ nome, cpf, email, data, telefone, updateField
           />
         </div>
         <div className="second-box">
-          <h1>Data de Nascimento</h1>
+          <h1>Data de nascimento</h1>
           <input
             required
             type="date"
             min={"1900-01-01"}
             max={new Date(new Date().setFullYear(new Date().getFullYear() - 18)).toISOString().split("T")[0]}
-            placeholder="Data de Nascimento"
+            placeholder="Data de nascimento"
             value={data}
             onChange={e => updateFields({ data: e.target.value })}
           />
@@ -78,7 +78,6 @@ export function LocalInformation({ nome, cpf, email, data, telefone, updateField
               value={telefone}
               onChange={e => updateFields({ telefone: e.target.value })}
             />
-            <a>+</a>
           </div>
         </div>
       </div>

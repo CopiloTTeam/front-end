@@ -1,6 +1,7 @@
 import { ToastContainer } from 'react-toastify';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Analytics from './pages/Analytics';
+import Relatorio from './pages/Relatorio';
 import CustomerForm from './pages/CustomerCreate';
 import PayForm from './pages/PaymentCreate';
 import Login from './pages/Login';
@@ -13,6 +14,7 @@ import EmployeeManagement from './pages/EmployeeManagement';
 import Payout from './pages/Payout';
 import ClienteManagement from './pages/ClientManagement';
 import Error from './pages/NotFound';
+import Boleto from './components/CreatePaymentForm/Boleto';
 
 function App() {
   return (
@@ -21,7 +23,8 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/cadastro" element={<EmployeeForm />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/estatisticas" element={<Analytics />} />
+        <Route path="/graficos" element={<Analytics />} />
+        <Route path="/relatorio" element={<Relatorio />} />
         <Route path="/cadastrousuario" element={<CustomerForm />} />
         <Route path="/updateUser/:id" element={<CustomerForm />} />
         <Route path="/criarboleto" element={<PayForm />} />
@@ -31,6 +34,7 @@ function App() {
         <Route path="/gerenciarcliente" element={<ClienteManagement />} />
         <Route path="/payout/:id" element={<Payout />} />
         <Route path="/error/" element={<Error />} />
+        <Route path ="/Boleto" element = {<Boleto />} />
       </Routes>
       <ToastContainer />
     </BrowserRouter>

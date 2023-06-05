@@ -1,7 +1,35 @@
+.title-stats {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
 .select-box {
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
+  align-items: start;
+  flex-direction: row;
+}
+
+.select-box-data {
+  display: flex;
   align-items: flex-end;
+  flex-direction: row;
+}
+
+.select-box-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.3rem;
+  flex-direction: row;
+}
+
+.select-box-status label {
+  margin-right: 20px;
+}
+
+.select-check input {
+  margin-right: 5px;
 }
 
 .select-input {
@@ -13,6 +41,10 @@
 .select-input h3 {
   border-radius: 5px;
   margin-bottom: 0.3rem;
+}
+
+.select-input input {
+  margin-right: 10px;
 }
 
 .button-select-graphics {
@@ -42,11 +74,20 @@
   background-image: url("data:image/svg+xml;base64,...");
 }
 
-.button-graphics {
+.selected {
   margin-right: 2rem;
-  background-color: #0044d0;
+  background-color: #333;
   color: white;
   border: none;
+  padding: 10px;
+  margin-left: 16px;
+  border-radius: 5px;
+}
+
+.button-graphics {
+  margin-right: 2rem;
+  color: #333;
+  border: 2px solid #333;
   padding: 10px;
   margin-left: 16px;
   border-radius: 5px;

@@ -27,7 +27,7 @@ export function PersonalInformation({ codigo_barra, nome_produto, updateFields }
           />
         </div>
         <div className="second-box">
-          <h1>Número de Parcelas</h1>
+          <h1>Número de parcelas</h1>
           <input
             required
             type="text"
@@ -38,11 +38,11 @@ export function PersonalInformation({ codigo_barra, nome_produto, updateFields }
       </div>
       <div className="row">
         <div className="full-box">
-          <h1>Nome do Produto</h1>
+          <h1>Nome do produto</h1>
           <input
             required
             type="text"
-            placeholder="Nome do Produto"
+            placeholder="Nome do produto"
             value={nome_produto}
             onChange={e => updateFields({ nome_produto: e.target.value })}
           />

@@ -1,9 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
-import { dadosUsuario, gerenciarParcelaTitulo, gerenciarTitulo } from "../../utils/axios.routes";
+import { gerenciarTitulo } from "../../utils/axios.routes";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import "./style.css";
 import { AuthContext } from "../../contexts/AuthContext";
+import Boleto from "../../components/CreatePaymentForm/Boleto";
 
 interface Parcela {
   data_vencimento: string;
@@ -11,7 +12,7 @@ interface Parcela {
   nome_produto: string;
   id_parcela: string;
   data_pagamento: string;
-  status: string;
+  status: any;
   numeroParcelaTitulo: string;
 }
 
@@ -20,37 +21,8 @@ const PlotManagement = () => {
   const { isLogged, funcionario } = useContext(AuthContext)
   const { id } = useParams<{ id: string }>();
   const [data, setData] = useState<any>(null);
-  const [client, setClient] = useState<any>();
   const [parcela, setParcela] = useState<any>(null);
-
-  const getMonthName = (month: number) => {
-
-    const months = [
-      'Janeiro',
-      'Fevereiro',
-      'Março',
-      'Abril',
-      'Maio',
-      'Junho',
-      'Julho',
-      'Agosto',
-      'Setembro',
-      'Outubro',
-      'Novembro',
-      'Dezembro',
-    ];
-    return months[month];
-  };
-
-  const getDueMonth = (dataVencimento: any) => {
-    if (dataVencimento) {
-      const dueDate = new Date(dataVencimento);
-      return getMonthName(dueDate.getMonth());
-    } else {
-      return '';
-    }
-  };
-
+  const [showBoleto, setShowBoleto] = useState<boolean>(false);
 
   useEffect(() => {
     if (!isLogged) {
@@ -66,26 +38,22 @@ const PlotManagement = () => {
       }
     };
 
-    // const fetchClient = async () => {
-    //   try {
-    //     const responseTeste = await gerenciarTitulo(id);
-    //     const dadosTeste = await responseTeste?.data;
-    //     const cpf = dadosTeste?.cpf;
-    //     const response = await dadosUsuario(cpf);
-    //     const Cliente = await response?.data;
-    //     setClient(Cliente);
-
-
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // };
-
     const fetchParcela = async () => {
       try {
         const response = await gerenciarTitulo(id);
         const data = await response?.data.parcelas;
-        // console.log(data);
+
+        // parcelas ordenadas pelo o status, as pendentens primeiro
+        data.sort((a: Parcela, b: Parcela) => {
+          if (a.status < b.status) {
+            return -1;
+          }
+          if (a.status > b.status) {
+            return 1;
+          }
+          return 0;
+        });
+
         setParcela(data);
 
       } catch (error) {
@@ -95,8 +63,14 @@ const PlotManagement = () => {
 
     fetchData();
     fetchParcela();
+
   }, [id]);
-  if (isLogged && (funcionario.cargo == 'Administrador' || funcionario.cargo == 'Financeiro')) {
+
+  const handleGerarBoleto = () => {
+    setShowBoleto(true); // Ative o estado para renderizar o boleto
+  };
+
+  if (isLogged && (funcionario.cargo === 'Administrador' || funcionario.cargo === 'Financeiro')) {
     return (
       <>
         <Navbar />
@@ -105,11 +79,11 @@ const PlotManagement = () => {
             <div className="plot-info">
               <h3>Nome: </h3>
               <p>{data?.cliente.nome}</p>
-              <h3>Titulo:</h3>
+              <h3>Título:</h3>
               <p>{data?.nome_produto}</p>
             </div>
             {parcela && parcela.map((item: Parcela, index: number) => {
-              if (item.status == "0") {
+              if (item.status == false) {
                 return (
                   <details key={item.id_parcela}>
                     <summary>
@@ -117,7 +91,7 @@ const PlotManagement = () => {
                       <p>Vencimento: {item?.data_vencimento.split('-').reverse().join('/')}</p>
                       <p>Status: {'Pendente'}</p>
                       {item?.data_pagamento ? <p>Data de pagamento: {item?.data_pagamento.split('-').reverse().join('/')}</p> : null}
-                      {item.status == "0" ? <Link className="link" to={`/payout/${item.id_parcela}`}>Ver mais</Link> : null}
+                      {item.status == false ? <Link className="link" to={`/payout/${item.id_parcela}`}>Ver mais</Link> : null}
 
                     </summary>
                     <div className="card-completo">
@@ -128,7 +102,7 @@ const PlotManagement = () => {
               }
             })}
             {parcela && parcela.map((item: Parcela, index: number) => {
-              if (item.status == "1") {
+              if (item.status == true) {
                 return (
                   <details key={item.id_parcela}>
                     <summary>
@@ -136,7 +110,7 @@ const PlotManagement = () => {
                       <p>Vencimento: {item?.data_vencimento.split('-').reverse().join('/')}</p>
                       <p>Status: {'Pago'}</p>
                       {item?.data_pagamento ? <p>Data de pagamento: {item?.data_pagamento.split('-').reverse().join('/')}</p> : null}
-                      {/* {item.status == "1" ? <Link className="link" to={`/payout/${item.id_parcela}`}>Ver mais</Link> : null} */}
+                      {/* {item.status == true ? <Link className="link" to={`/payout/${item.id_parcela}`}>Ver mais</Link> : null} */}
 
                     </summary>
                     <div className="card-completo">
@@ -156,5 +130,4 @@ const PlotManagement = () => {
     )
   }
 };
-
 export default PlotManagement;

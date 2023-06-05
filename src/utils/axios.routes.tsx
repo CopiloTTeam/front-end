@@ -19,6 +19,9 @@ export const login = async (data: any) => {
     console.error(error);
   }
 };
+export const downloadBoleto = async (parcelaId: string) => {
+  // Implementação da função downloadBoleto
+};
 
 export const AllUsers = async () => {
   try {

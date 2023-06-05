@@ -20,12 +20,13 @@ interface Cliente {
 
 const ClienteManagement = () => {
   const navigate = useNavigate();
-  const { isLogged, funcionario } = useContext(AuthContext)
+  const { isLogged, funcionario } = useContext(AuthContext);
   const [cliente, setCliente] = useState<any>();
+  const [searchValue, setSearchValue] = useState('');
 
   useEffect(() => {
     if (!isLogged) {
-      navigate('/')
+      navigate('/');
     }
     const fetchData = async () => {
       try {
@@ -40,7 +41,28 @@ const ClienteManagement = () => {
 
     fetchData();
   }, []);
-  if (isLogged && (funcionario.cargo == 'Administrador' || funcionario.cargo == 'Comercial')) {
+
+  // Order the clients by name
+  cliente?.sort((a: Cliente, b: Cliente) => {
+    if (a.nome < b.nome) {
+      return -1;
+    }
+    if (a.nome > b.nome) {
+      return 1;
+    }
+    return 0;
+  });
+
+  // Filter the clients based on search value
+  const filteredClientes = cliente?.filter((item: Cliente) =>
+    item.nome.toLowerCase().includes(searchValue.toLowerCase())
+  );
+
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(event.target.value);
+  };
+
+  if (isLogged && (funcionario.cargo === 'Administrador' || funcionario.cargo === 'Comercial')) {
     return (
       <>
         <div className="conteiner-employee-management">
@@ -60,9 +82,7 @@ const ClienteManagement = () => {
       </>
     );
   } else {
-    return (
-      <></>
-    )
+    return <></>;
   }
 };
 

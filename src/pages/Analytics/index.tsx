@@ -18,11 +18,11 @@ const Analytics = () => {
   const renderSelectedGraphic = () => {
     switch (selectedButton) {
       case "clientes":
-        return (<ClientGraphic />)
+        return (<ClientGraphic />);
       case "pagamentos":
-        return (<PaymentGraphic />)
+        return (<PaymentGraphic />);
       case "valores":
-        return (<ValueGraphic />)
+        return (<ValueGraphic />);
       default:
         return null;
     }
@@ -31,7 +31,6 @@ const Analytics = () => {
   const handleButtonSelect = (selected: string) => {
     setSelectedButton(selected);
   };
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -53,50 +52,41 @@ const Analytics = () => {
     };
     fetchData();
   }, []);
+
   if (
     isLogged &&
-    (funcionario.cargo == "Administrador" || funcionario.cargo == "Financeiro")
+    (funcionario.cargo === "Administrador" || funcionario.cargo === "Financeiro")
   ) {
     return (
       <>
         <Navbar />
         <div className="main">
-          <h2>Estatísticas</h2>
+          <h2>Gráficos</h2>
           <div className="button-select-graphics">
             <button
-              className="button-graphics"
+              className={selectedButton === "clientes" ? "selected" : "button-graphics"}
               onClick={() => handleButtonSelect("clientes")}
             >
-              Situação dos Clientes
+              Situação dos clientes
             </button>
             <button
-              className="button-graphics"
+              className={selectedButton === "pagamentos" ? "selected" : "button-graphics"}
               onClick={() => handleButtonSelect("pagamentos")}
             >
-              Situação dos Pagamento
+              Situação das parcelas
             </button>
             <button
-              className="button-graphics"
+              className={selectedButton === "valores" ? "selected" : "button-graphics"}
               onClick={() => handleButtonSelect("valores")}
             >
-              Valores Acúmulativos
+              Valores acúmulativos
             </button>
           </div>
-          {/* <div className="select-box">
-            <div className="select-input">
-              <h3>Data de Inicio</h3>
-              <input type="date" />
-            </div>
-            <div className="select-input">
-              <h3>Data de Fim</h3>
-              <input type="date" />
-            </div>
-          </div> */}
           {renderSelectedGraphic()}
         </div>
       </>
     );
-  } else if (isLogged && funcionario.cargo == "Comercial") {
+  } else if (isLogged && funcionario.cargo === "Comercial") {
     return (
       <>
         <Navbar />
@@ -104,19 +94,19 @@ const Analytics = () => {
           <h2>Cadastro de Clientes</h2>
           <div className="button-select-graphics">
             <button
-              className="button-graphics"
+              className={selectedButton === "clientes" ? "selected" : ""}
               onClick={() => handleButtonSelect("clientes")}
             >
               Situação dos Clientes
             </button>
             <button
-              className="button-graphics"
+              className={selectedButton === "pagamentos" ? "selected" : ""}
               onClick={() => handleButtonSelect("pagamentos")}
             >
               Situação dos Pagamento
             </button>
             <button
-              className="button-graphics"
+              className={selectedButton === "valores" ? "selected" : ""}
               onClick={() => handleButtonSelect("valores")}
             >
               Valores
@@ -130,4 +120,5 @@ const Analytics = () => {
     return <></>;
   }
 };
+
 export default Analytics;

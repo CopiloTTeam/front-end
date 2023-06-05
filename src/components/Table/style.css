@@ -6,7 +6,18 @@
     border-radius: 1rem;
     display: grid;
 }
-
+.table-title{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 30px 0 0;
+}
+.table-title .input-table {
+    width: 280px;
+    height: 32px;
+    border: 1px solid #6e6e6e;
+    border-radius: 5px;
+    margin-bottom: 24px;
+}
 .table-box .table-title h1 {
     font-size: 1.3rem;
     padding: 0 0.6rem;
