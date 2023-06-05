@@ -42,7 +42,7 @@ export const ClientGraphic = () => {
       const parcelasVencidas = parcelas.filter((parcela: any) => {
         const dataVencimento = new Date(parcela.data_vencimento);
         dataVencimento.setHours(dataVencimento.getHours() + 3);
-        if (parcela.status == 0 && dataVencimento < hoje) {
+        if (parcela.status == false && dataVencimento < hoje) {
           return parcela;
         }
       });
@@ -60,7 +60,7 @@ export const ClientGraphic = () => {
       const parcelasVencidas = parcelas.filter((parcela: any) => {
         const dataVencimento = new Date(parcela.data_vencimento);
         dataVencimento.setHours(dataVencimento.getHours() + 3);
-        if (parcela.status == 0 && dataVencimento < hoje) {
+        if (parcela.status == false && dataVencimento < hoje) {
           return parcela;
         }
       });

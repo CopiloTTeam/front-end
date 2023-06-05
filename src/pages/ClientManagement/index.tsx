@@ -64,7 +64,7 @@ const ClienteManagement = () => {
         <div className="conteiner-employee-management">
           <Navbar />
           <div className='head-gerenciarcliente'>
-            <h1 className="title-primary">Cliente do sistema</h1>
+            <h1 className="title-primary">Lista de Clientes</h1>
             <input type='text' className='input-table' placeholder='Digite aqui' value={searchValue} onChange={handleSearchChange} />
           </div>
           {filteredClientes && filteredClientes.map((item: Cliente) => (

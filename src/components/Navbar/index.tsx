@@ -50,25 +50,25 @@ const Navbar = () => {
                             <li className='navitem'>
                                 <Link to='/cadastrousuario' className='navlink'>
                                     <img src={User} alt='User' />
-                                    <span className='navname'>Cadastro de clientes</span>
+                                    <span className='navname'>Cadastro de Clientes</span>
                                 </Link>
                             </li>
                             <li className='navitem'>
                                 <Link to='/criarboleto' className='navlink'>
                                     <img src={Boleto} alt='Boleto' />
-                                    <span className='navname'>Emitir título</span>
+                                    <span className='navname'>Emitir Título</span>
                                 </Link>
                             </li>
                             <li className='navitem'>
                                 <Link to='/gerenciarfunc' className='navlink'>
                                     <img src={GerenciarFuncionario} alt='Gerenciar Funcionário' className='gerenciarfunc-icon' />
-                                    <span className='navname'>Gerenciar funcionários</span>
+                                    <span className='navname'>Gerenciar Funcionários</span>
                                 </Link>
                             </li>
                             <li className='navitem'>
                                 <Link to='/gerenciarcliente' className='navlink'>
                                     <img src={GerenciarCliente} alt='Gerenciar Cliente' />
-                                    <span className='navname'>Gerenciar cliente</span>
+                                    <span className='navname'>Gerenciar Cliente</span>
                                 </Link>
                             </li>
                         </ul>

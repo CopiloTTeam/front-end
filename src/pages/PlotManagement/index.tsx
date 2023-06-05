@@ -12,7 +12,7 @@ interface Parcela {
   nome_produto: string;
   id_parcela: string;
   data_pagamento: string;
-  status: string;
+  status: any;
 }
 
 const PlotManagement = () => {
@@ -87,9 +87,9 @@ const PlotManagement = () => {
                   <summary>
                     <p>{index + 1}ª Parcela </p>
                     <p>Vencimento: {item?.data_vencimento.split('-').reverse().join('/')}</p>
-                    <p>Status: {item?.status === '1' ? 'Pago' : 'Pendente'}</p>
+                    <p>Status: {item?.status === true ? 'Pago' : 'Pendente'}</p>
                     {item?.data_pagamento ? <p>Data de pagamento: {item?.data_pagamento.split('-').reverse().join('/')}</p> : null}
-                    {item.status == "0" ? <Link className="link" to={`/payout/${item.id_parcela}`}>Ver mais</Link> : null}
+                    {item.status == false ? <Link className="link" to={`/payout/${item.id_parcela}`}>Ver mais</Link> : null}
                     <button onClick={handleGerarBoleto}>Gerar Boleto</button>
                     {showBoleto && <Boleto />}
                   </summary>

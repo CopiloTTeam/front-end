@@ -56,7 +56,7 @@ const EmployeeManagement = () => {
         <div className="conteiner-employee-management">
           <Navbar />
           <div className='head-gerenciarfunc'>
-            <h1 className="title-primary">Usuário do sistema</h1>
+            <h1 className="title-primary">Lista de Funcionários</h1>
             <input type='text' className='input-table' placeholder='Digite aqui' value={searchValue} onChange={handleSearchChange} />
           </div>
 

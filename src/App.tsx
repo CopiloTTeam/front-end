@@ -1,6 +1,7 @@
 import { ToastContainer } from 'react-toastify';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Analytics from './pages/Analytics';
+import Relatorio from './pages/Relatorio';
 import CustomerForm from './pages/CustomerCreate';
 import PayForm from './pages/PaymentCreate';
 import Login from './pages/Login';
@@ -23,6 +24,7 @@ function App() {
         <Route path="/cadastro" element={<EmployeeForm />} />
         <Route path="/home" element={<Home />} />
         <Route path="/graficos" element={<Analytics />} />
+        <Route path="/relatorio" element={<Relatorio />} />
         <Route path="/cadastrousuario" element={<CustomerForm />} />
         <Route path="/criarboleto" element={<PayForm />} />
         <Route path="/perfil/" element={<Profile />} />

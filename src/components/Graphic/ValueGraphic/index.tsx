@@ -66,7 +66,7 @@ export const ValueGraphic = () => {
       const data_credito = new Date(parcela.data_credito);
       data_pagamento.setHours(data_pagamento.getHours() + 3);
       if (
-        parcela.status == 1 &&
+        parcela.status == true &&
         data_pagamento < data_for &&
         data_credito >= data_for
       ) {
@@ -79,7 +79,7 @@ export const ValueGraphic = () => {
     const PagamentoAprovado = parcelas.reduce((acc: any, parcela: any) => {
       const data_credito = new Date(parcela.data_pagamento);
       data_credito.setHours(data_credito.getHours() + 3);
-      if (parcela.status == 1 && data_credito < data_for) {
+      if (parcela.status == true && data_credito < data_for) {
         return acc + parcela.valor_pago;
       } else {
         return acc;
@@ -90,7 +90,7 @@ export const ValueGraphic = () => {
       const data_vencimento = new Date(parcela.data_vencimento);
 
       data_vencimento.setHours(data_vencimento.getHours() + 3);
-      if (parcela.status == 0 && data_vencimento < data_for) {
+      if (parcela.status == false && data_vencimento < data_for) {
         return acc + parcela.valor;
       } else {
         return acc;

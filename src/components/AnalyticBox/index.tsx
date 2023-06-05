@@ -37,7 +37,7 @@ const AnalyticBox = () => {
   const valorPago = parcelas.reduce((acc: any, parcela: any) => {
     const dataCredito = new Date(parcela.data_credito);
     dataCredito.setHours(dataCredito.getHours() + 3);
-    if (parcela.status == 1 && dataCredito < hoje) {
+    if (parcela.status == true && dataCredito < hoje) {
       return acc + parcela.valor_pago;
     } else {
       return acc;
@@ -47,7 +47,7 @@ const AnalyticBox = () => {
   const valorAReceber = parcelas.reduce((acc: any, parcela: any) => {
     const dataCredito = new Date(parcela.data_credito);
     dataCredito.setHours(dataCredito.getHours() + 3);
-    if (parcela.status == 1 && dataCredito > hoje) {
+    if (parcela.status == true && dataCredito > hoje) {
       return acc + parcela.valor_pago;
     } else {
       return acc;
@@ -60,7 +60,7 @@ const AnalyticBox = () => {
     const parcelasVencidas = parcelas.filter((parcela: any) => {
       const dataVencimento = new Date(parcela.data_vencimento);
       dataVencimento.setHours(dataVencimento.getHours() + 3);
-      if (parcela.status == 0 && dataVencimento < hoje) {
+      if (parcela.status == false && dataVencimento < hoje) {
         return parcela;
       }
     });
@@ -76,7 +76,7 @@ const AnalyticBox = () => {
     const parcelasVencidas = parcelas.filter((parcela: any) => {
       const dataVencimento = new Date(parcela.data_vencimento);
       dataVencimento.setHours(dataVencimento.getHours() + 3);
-      if (parcela.status == 0 && dataVencimento < hoje) {
+      if (parcela.status == false && dataVencimento < hoje) {
         return parcela;
       }
     });

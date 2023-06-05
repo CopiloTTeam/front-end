@@ -78,7 +78,6 @@ export function LocalInformation({ nome, cpf, email, data, telefone, updateField
               value={telefone}
               onChange={e => updateFields({ telefone: e.target.value })}
             />
-            <a>+</a>
           </div>
         </div>
       </div>

@@ -76,7 +76,7 @@
 
 .selected {
   margin-right: 2rem;
-  background-color: #0075ff;
+  background-color: #333;
   color: white;
   border: none;
   padding: 10px;
@@ -86,9 +86,8 @@
 
 .button-graphics {
   margin-right: 2rem;
-  background-color: #333333;
-  color: white;
-  border: none;
+  color: #333;
+  border: 2px solid #333;
   padding: 10px;
   margin-left: 16px;
   border-radius: 5px;
