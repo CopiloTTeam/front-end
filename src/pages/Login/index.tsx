@@ -72,7 +72,7 @@ const Login = () => {
     };
     try {
       let resp = await login(data);
-      
+
       if (resp) {
         const cpf = resp.funcionario.cpf;
         if (cpf) {

@@ -72,9 +72,6 @@ export const ClientGraphic = () => {
     }
   }, 0);
 
-  console.log(clientesInadimplentes, clientesAdimplentes);
-
-
   if (clientesInadimplentes == 0 && clientesAdimplentes == 0) {
     return (
       <div className="noData">
@@ -92,7 +89,6 @@ export const ClientGraphic = () => {
 
   return (
     <>
-      {/* <h2 className="title-stats"> Situação dos clientes </h2> */}
       <PieChart width={500} height={400}>
         <Pie data={data} dataKey="value" nameKey="name">
           {data.map((entry, index) => (
@@ -106,13 +102,13 @@ export const ClientGraphic = () => {
           <div className="graphic-color-green">
 
           </div>
-          <p>Clientes Adimplentes</p>
+          <p>Clientes adimplentes</p>
         </div>
         <div className="graphic-box">
-          <div  className="graphic-color-red">
+          <div className="graphic-color-red">
 
           </div>
-          <p>Clientes Inadimplentes</p>
+          <p>Clientes inadimplentes</p>
         </div>
       </div>
     </>

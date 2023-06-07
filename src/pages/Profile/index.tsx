@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState, FormEvent } from 'react'
 import Navbar from '../../components/Navbar'
-import { dadosFuncionarioc, dadosUsuario, updateFuncionario } from '../../utils/axios.routes';
+import { dadosFuncionarioc } from '../../utils/axios.routes';
 import './style.css'
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
@@ -11,7 +11,6 @@ const Profile = () => {
     const navigate = useNavigate();
     const { isLogged, funcionario } = useContext(AuthContext)
     const [data, setData] = useState<any>();
-
     const [nome, setNome] = useState("");
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
@@ -77,7 +76,6 @@ const Profile = () => {
                                         placeholder={data?.email}
                                         value={email}
                                         onChange={e => setEmail(e.target.value)} />
-                                    {/* <p>{data?.email}</p> */}
                                 </div>
                             </div>
                             <div className='profile-content'>
@@ -105,7 +103,7 @@ const Profile = () => {
                                 </div>
                             </div>
                             <div className='btn'>
-                                <button className='green'>Confirmar Alteração</button>
+                                <button className='green'>Confirmar alteração</button>
                             </div>
                         </div>
 

@@ -153,7 +153,7 @@ const Register = () => {
             {" "}
             Cadastrar{" "}
           </button>
-          <p> Ao clicar em "cadastrar" você aceita os termos de uso</p>
+          <p> Ao clicar em "Cadastrar" você aceita os termos de uso</p>
         </div>
       </form>
     </div>

@@ -1,7 +1,5 @@
-import { dadosUsuario, ListarCliente } from '../../utils/axios.routes';
+import { ListarCliente } from '../../utils/axios.routes';
 import React, { useContext, useEffect, useState } from 'react'
-import EmployeeWait from "../../components/Card/EmployeeWait";
-import EmployeeFixed from "../../components/Card/EmployeeFixed";
 import Navbar from "../../components/Navbar";
 import "./style.css";
 import { useNavigate } from 'react-router-dom';
@@ -33,14 +31,13 @@ const ClienteManagement = () => {
         const funcs = await ListarCliente();
         const resp = await funcs?.data;
         setCliente(resp);
-        console.log(resp)
       } catch (error) {
         console.error(error);
       }
     };
 
     fetchData();
-  }, []);
+  },);
 
   cliente?.sort((a: Cliente, b: Cliente) => {
     if (a.nome < b.nome) {
@@ -70,11 +67,11 @@ const ClienteManagement = () => {
             <input type='text' className='input-table' placeholder='Digite aqui' value={searchValue} onChange={handleSearchChange} />
           </div>
           {filteredClientes && filteredClientes.map((item: Cliente) => (
-              <React.Fragment key={item.cpf}>
-                <ClientFixed cpf={item.cpf} email={item.contato.email} nome={item.nome} telefone={item.contato.telefone}></ClientFixed>
-              </React.Fragment>
-            )
-          
+            <React.Fragment key={item.cpf}>
+              <ClientFixed cpf={item.cpf} email={item.contato.email} nome={item.nome} telefone={item.contato.telefone}></ClientFixed>
+            </React.Fragment>
+          )
+
           )}
           {!filteredClientes && <ClientFixed cpf={''} email={''} nome={''} telefone={''} />}
         </div>

@@ -1,4 +1,4 @@
-.table-box-relatorio{
+.table-box-relatorio {
     width: 96.5%;
     margin: 6rem 2rem;
     box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
@@ -15,24 +15,24 @@
 
 
 
-.filtros-relatorio{
+.filtros-relatorio {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
 }
 
-.filtros-relatorio h5{
+.filtros-relatorio h5 {
     margin-bottom: 3px;
 }
 
-.filtro-date-relatorio{
+.filtro-date-relatorio {
     margin-right: 30px;
     display: flex;
     flex-direction: row;
 }
 
-.filtro-date-relatorio input{
+.filtro-date-relatorio input {
     margin-right: 10px;
     height: 30px;
     width: 150px;
@@ -40,12 +40,12 @@
     border-radius: 5px
 }
 
-.filtro-select-relatorio{
+.filtro-select-relatorio {
     display: flex;
     flex-direction: row;
 }
 
-.filtro-select-relatorio div{
+.filtro-select-relatorio div {
     margin-left: 10px;
 }
 
@@ -61,14 +61,14 @@
     border-radius: 5px
 }
 
-.input-table-relatorio{
+.input-table-relatorio {
     height: 30px;
     width: 230px;
     border: 1px solid #6e6e6e;
     border-radius: 5px;
 }
 
-.img-link{
+.img-link {
     width: 30px;
     height: 30px;
     margin-right: 20px;

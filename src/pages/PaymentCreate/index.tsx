@@ -14,7 +14,7 @@ const PayForm = () => {
     if (!isLogged) {
       navigate('/')
     }
-  
+
   }, []);
   if (isLogged && (funcionario.cargo == 'Administrador' || funcionario.cargo == 'Comercial')) {
 

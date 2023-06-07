@@ -77,7 +77,7 @@ export const ValueGraphic = () => {
     }, 0);
 
     const PagamentoAprovado = parcelas.reduce((acc: any, parcela: any) => {
-      const data_credito = new Date(parcela.data_pagamento);
+      const data_credito = new Date(parcela.data_credito);
       data_credito.setHours(data_credito.getHours() + 3);
       if (parcela.status == true && data_credito < data_for) {
         return acc + parcela.valor_pago;
@@ -98,14 +98,26 @@ export const ValueGraphic = () => {
     }, 0);
 
     const PagamentoAVencer = parcelas.reduce((acc: any, parcela: any) => {
+      const data_pagamento = new Date(parcela.data_pagamento);
+      const data_credito = new Date(parcela.data_credito);
       const data_vencimento = new Date(parcela.data_vencimento);
+    
+      data_pagamento.setHours(data_pagamento.getHours() + 3);
+      data_credito.setHours(data_credito.getHours() + 3);
       data_vencimento.setHours(data_vencimento.getHours() + 3);
-      if (data_vencimento >= data_for) {
-        return acc + parcela.valor;
+    
+      if (
+        parcela.status === false &&
+        data_vencimento >= data_for &&
+        data_pagamento > data_for &&
+        data_credito > data_for
+      ) {
+        return acc + parcela.valor_pago;
       } else {
         return acc;
       }
-    }, 0);
+    }, parcelas.reduce((acc: any, parcela: any) => acc + parcela.valor, 0) - PagamentoAguardo - PagamentoAprovado - PagamentoVencido);
+    
 
     const dia = String(data_for.getDate()).padStart(2, "0");
     const mes = String(data_for.getMonth() + 1).padStart(2, "0");
@@ -135,7 +147,6 @@ export const ValueGraphic = () => {
 
   return (
     <>
-      {/* <h2 className="title-stats"> Valores Acúmulativos </h2> */}
       <div className="select-box">
         <div className="select-box-data">
           <div className="select-input">
@@ -148,7 +159,7 @@ export const ValueGraphic = () => {
             />
           </div>
           <div className="select-input">
-            <h3>Data de Fim</h3>
+            <h3>Data de fim</h3>
             <input
               type="date"
               value={fim}

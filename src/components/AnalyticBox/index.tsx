@@ -30,7 +30,6 @@ const AnalyticBox = () => {
     fetchData();
   }, []);
 
-  console.log("parcelas:", parcelas);
   const hoje = new Date();
 
   const valorPago = parcelas.reduce((acc: any, parcela: any) => {

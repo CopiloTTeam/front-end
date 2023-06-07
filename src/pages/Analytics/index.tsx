@@ -91,7 +91,7 @@ const Analytics = () => {
       <>
         <Navbar />
         <div className="main">
-          <h2>Cadastro de Clientes</h2>
+          <h2>Cadastro de cliente</h2>
           <div className="button-select-graphics">
             <button
               className={selectedButton === "clientes" ? "selected" : ""}

@@ -55,11 +55,11 @@ const EmployeeManagement = () => {
         <div className="conteiner-employee-management">
           <Navbar />
           <div className='head-gerenciarfunc'>
-            <h1 className="title-primary">Lista de Funcionários</h1>
+            <h1 className="title-primary">Lista de funcionários</h1>
             <input type='text' className='input-table' placeholder='Digite aqui' value={searchValue} onChange={handleSearchChange} />
           </div>
 
-          <h2 className="title-secundary">Solicitações Pendentes</h2>
+          <h2 className="title-secundary">Solicitações pendentes</h2>
           {filteredFuncionarios && filteredFuncionarios.length > 0 ? (
             <>
               {filteredFuncionarios.map((item: Funcionario) => {
@@ -75,7 +75,7 @@ const EmployeeManagement = () => {
                   item.credential.role != "Financeiro" &&
                   item.credential.role != "Comercial"
                 ) {
-                  return null; 
+                  return null;
                 }
               })}
             </>

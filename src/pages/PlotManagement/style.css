@@ -12,18 +12,21 @@
     justify-content: space-between;
     margin-bottom: 1rem;
 }
-.plot-container .line-info  p{
+
+.plot-container .line-info p {
     font-weight: 500;
     font-size: 1.12rem;
 }
-.buttons-together{
+
+.buttons-together {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     gap: 2rem;
 }
-.link-parcela{
+
+.link-parcela {
     width: 100px;
     height: 30px;
     border: none;
@@ -36,7 +39,8 @@
     font-size: 0.9rem;
     cursor: pointer;
 }
-.button-parcela{
+
+.button-parcela {
     width: 150px;
     height: 30px;
     border: none;
@@ -48,13 +52,15 @@
     font-weight: 500;
     cursor: pointer;
 }
+
 .plot-info {
     display: flex;
     flex-direction: column;
     margin-bottom: 2rem;
     gap: 1.1rem;
 }
-.plot-info > div{
+
+.plot-info>div {
     display: flex;
     gap: 0.5rem;
     align-items: center;

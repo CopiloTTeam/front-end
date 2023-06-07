@@ -124,8 +124,6 @@ const PlotManagement = () => {
                       <p>Vencimento: {item?.data_vencimento.split('-').reverse().join('/')}</p>
                       <p>Status: {'Pago'}</p>
                       {item?.data_pagamento ? <p>Data de pagamento: {item?.data_pagamento.split('-').reverse().join('/')}</p> : null}
-                      {/* {item.status == true ? <Link className="link" to={`/payout/${item.id_parcela}`}>Ver mais</Link> : null} */}
-
                     </summary>
                     <div className="card-completo">
                       <div className="conteudo"></div>

@@ -21,11 +21,11 @@ export function LocalInformation({ nome, cpf, email, data, telefone, updateField
     <div className="cont">
       <div className="row">
         <div className="first-box">
-          <h1>Nome Completo</h1>
+          <h1>Nome completo</h1>
           <input
             required
             type="text"
-            placeholder="Nome Completo"
+            placeholder="Nome completo"
             value={nome}
             onChange={e => updateFields({ nome: e.target.value })}
           />

@@ -108,7 +108,7 @@ const PaymentForm = () => {
       <div>
         <form onSubmit={onSubmit}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <h2>Emitir Título</h2>
+            <h2>Emitir título</h2>
             {currentStepIndex + 1} / {steps.length}
           </div>
           {step}

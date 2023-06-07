@@ -1,17 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
 import "./style.css";
-import { Parcela, dadosTitulos, dadosClientes } from "../../utils/axios.routes";
+import { dadosTitulos, dadosClientes } from "../../utils/axios.routes";
 import { AuthContext } from "../../contexts/AuthContext";
 import { Link } from "react-router-dom";
 
 const Relatorio = () => {
     const { isLogged, funcionario } = useContext(AuthContext);
 
-    const [data, setData] = useState<any>();
     const [selectedButton, setSelectedButton] = useState<string>("");
     const [titulos, setTitulos] = useState<any>([]);
-    const [parcelas, setParcelas] = useState<any>([]);
     const [clientes, setClientes] = useState<any>([]);
     const [inicio, setInicio] = useState<any>();
     const [fim, setFim] = useState<any>();
@@ -20,22 +18,14 @@ const Relatorio = () => {
         const fetchData = async () => {
             try {
                 const titulos = await dadosTitulos();
-                const parcelas = await Parcela();
                 const clientes = await dadosClientes();
 
                 if (titulos) {
                     const titulosData = titulos?.data;
-                    console.log(titulosData)
                     setTitulos(titulosData);
-                }
-                if (parcelas) {
-                    const parcelasData = parcelas?.data;
-                    console.log(parcelasData)
-                    setParcelas(parcelasData);
                 }
                 if (clientes) {
                     const clientesData = clientes?.data;
-                    console.log(clientesData)
                     setClientes(clientesData);
                 }
             } catch (error) {
@@ -44,6 +34,21 @@ const Relatorio = () => {
         };
         fetchData();
     }, []);
+
+    const parcelas = titulos.map((titulo: any) => {
+        const parcelas = titulo.parcelas.map((parcela: any) => {
+            return {
+                ...parcela,
+                nome_produto: titulo.nome_produto,
+                nome_cliente: clientes.find((cliente: any) => cliente.id === titulo.id_cliente)?.nome,
+                cpf_cliente: clientes.find((cliente: any) => cliente.id === titulo.id_cliente)?.cpf,
+                valor_parcela: titulo.valor_parcela,
+                numero_parcelas: titulo.numero_parcelas,
+            };
+        });
+        return parcelas;
+    }
+    ).flat();
 
     const handleFilterChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedButton(event.target.value);
@@ -93,7 +98,7 @@ const Relatorio = () => {
                 <Navbar />
                 <div className='table-box-relatorio'>
                     <div className='table-title-relatorio'>
-                        <h1>Relatório de Parcelas</h1>
+                        <h1>Relatório de parcelas</h1>
                         <div className='filtros-relatorio'>
                             <div className="filtro-date-relatorio">
                                 <div className='aaa'>
@@ -132,12 +137,6 @@ const Relatorio = () => {
                                     </select>
                                 </div>
                                 <div>
-                                    {/* <h5>Digite o Nome ou CPF</h5>
-                                <input
-                                    type='text'
-                                    placeholder='Digite aqui'
-                                    className='input-table-relatorio'
-                                /> */}
                                 </div>
                             </div>
                         </div>
@@ -148,24 +147,22 @@ const Relatorio = () => {
                             <tr>
                                 <td>Nome cliente</td>
                                 <td>CPF</td>
-                                <td>Nome Produto</td>
-                                <td align='right'>Valor Parcela</td>
-                                <td align='right'>Valor Pago</td>
+                                <td>Nome produto</td>
+                                <td align='right'>Valor parcela</td>
+                                <td align='right'>Valor pago</td>
                                 <td>Nº parcelas</td>
-                                <td>Data de Pagamento</td>
-                                <td>Data de Crédito</td>
-                                <td>Data de Vencimento</td>
+                                <td>Data de pagamento</td>
+                                <td>Data de crédito</td>
+                                <td>Data de vencimento</td>
                                 <td>Status</td>
-                                <td>Acessar Parcela</td>
+                                <td>Acessar parcela</td>
                             </tr>
                         </thead>
                         <tbody>
                             {filteredParcelasData.map((parcela: any) => {
                                 const nome_cliente = clientes.find((cliente: any) => cliente.id === parcela.id_cliente)?.nome;
                                 const cpf_cliente = clientes.find((cliente: any) => cliente.id === parcela.id_cliente)?.cpf;
-                                const nome_produto = titulos.find((titulo: any) => titulo.id === parcela.titulo_id)?.nome_produto;
                                 var valor_pago_formatado = "R$ 0,00";
-                                console.log("aaaa: ", nome_produto);
                                 if (parcela.valor_pago != null) {
                                     valor_pago_formatado = parcela.valor_pago.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
                                 }
@@ -208,10 +205,10 @@ const Relatorio = () => {
                                     <tr>
                                         <td>{nome_cliente}</td>
                                         <td>{cpf_cliente}</td>
-                                        <td>{nome_produto}</td>
+                                        <td>{parcela.nome_produto}</td>
                                         <td align='right'>{valor_parcela_formatado}</td>
                                         <td align='right'>{valor_pago_formatado}</td>
-                                        <td>{parcela.numeroParcelaTitulo}</td>
+                                        <td>{parcela.numeroParcelaTitulo}ª Parcela</td>
                                         <td>{data_pagamento_formatado}</td>
                                         <td>{data_credito_formatado}</td>
                                         <td>{data_vencimento_formatado}</td>

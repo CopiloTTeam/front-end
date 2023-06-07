@@ -25,14 +25,14 @@ const Navbar = () => {
                             <h3>Olá, {funcionario.nome}</h3>
                             <p>{funcionario.cargo}</p>
                         </div>
-                        <button className='logout-button' onClick={logout}>Logout</button>
+                        <button className='logout-button' onClick={logout}>Sair</button>
                     </Link>
                     <div className='navmenu'>
                         <ul className='navlist'>
                             <li className='navitem'>
                                 <Link to='/home' className='navlink'>
                                     <img src={Home} alt='Home' />
-                                    <span className='navname'>Home</span>
+                                    <span className='navname'>Início</span>
                                 </Link>
                             </li>
                             <li className='navitem'>
@@ -50,25 +50,25 @@ const Navbar = () => {
                             <li className='navitem'>
                                 <Link to='/cadastrousuario' className='navlink'>
                                     <img src={User} alt='User' />
-                                    <span className='navname'>Cadastro de Clientes</span>
+                                    <span className='navname'>Cadastro de cliente</span>
                                 </Link>
                             </li>
                             <li className='navitem'>
                                 <Link to='/criarboleto' className='navlink'>
                                     <img src={Boleto} alt='Boleto' />
-                                    <span className='navname'>Emitir Título</span>
+                                    <span className='navname'>Emitir título</span>
                                 </Link>
                             </li>
                             <li className='navitem'>
                                 <Link to='/gerenciarfunc' className='navlink'>
-                                    <img src={GerenciarFuncionario} alt='Gerenciar Funcionário' className='gerenciarfunc-icon' />
-                                    <span className='navname'>Gerenciar Funcionários</span>
+                                    <img src={GerenciarFuncionario} alt='Gerenciar funcionário' className='gerenciarfunc-icon' />
+                                    <span className='navname'>Gerenciar funcionários</span>
                                 </Link>
                             </li>
                             <li className='navitem'>
                                 <Link to='/gerenciarcliente' className='navlink'>
-                                    <img src={GerenciarCliente} alt='Gerenciar Cliente' />
-                                    <span className='navname'>Gerenciar Cliente</span>
+                                    <img src={GerenciarCliente} alt='Gerenciar clientes' />
+                                    <span className='navname'>Gerenciar clientes</span>
                                 </Link>
                             </li>
                         </ul>
@@ -94,7 +94,7 @@ const Navbar = () => {
                             <Link to='/home'>
                                 <li className='navitem'>
                                     <img src={Graficos} alt='Home' />
-                                    <span className='navname'>Home</span>
+                                    <span className='navname'>Início</span>
                                 </li>
                             </Link>
                             <Link to='/graficos'>
@@ -112,7 +112,7 @@ const Navbar = () => {
                             <Link to='/cadastrousuario'>
                                 <li className='navitem'>
                                     <img src={User} alt='User' />
-                                    <span className='navname'>Cadastro de clientes</span>
+                                    <span className='navname'>Cadastro de cliente</span>
                                 </li>
                             </Link>
                             <Link to='/criarboleto'>
@@ -123,8 +123,8 @@ const Navbar = () => {
                             </Link>
                             <Link to='/gerenciarcliente'>
                                 <li className='navitem'>
-                                    <img src={Boleto} alt='Gerenciar Cliente' />
-                                    <span className='navname'>Gerenciar cliente</span>
+                                    <img src={Boleto} alt='Gerenciar clientes' />
+                                    <span className='navname'>Gerenciar clientes</span>
                                 </li>
                             </Link>
                         </ul>

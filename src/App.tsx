@@ -34,7 +34,7 @@ function App() {
         <Route path="/gerenciarcliente" element={<ClienteManagement />} />
         <Route path="/payout/:id" element={<Payout />} />
         <Route path="/error/" element={<Error />} />
-        <Route path ="/Boleto" element = {<Boleto />} />
+        <Route path="/Boleto" element={<Boleto />} />
       </Routes>
       <ToastContainer />
     </BrowserRouter>

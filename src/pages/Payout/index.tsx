@@ -19,12 +19,11 @@ const Payout = () => {
   const [dataCredito, setDataCredito] = useState("");
   const [titulo, setTitulo] = useState("");
 
-  async function submitdata(valorPago: String , dataCredito: String ,dataPagamento: String ) {
+  async function submitdata(valorPago: String, dataCredito: String, dataPagamento: String) {
     try {
       await updateParcela(id, valorPago, dataCredito, dataPagamento);
       const valorPagoFloat = parseFloat(valorPago.replace('R$', '').replace(',', '.'));
-      console.log(valorPagoFloat, parcela?.valor);
-      if ( valorPagoFloat < parcela?.valor) {
+      if (valorPagoFloat < parcela?.valor) {
         toast.error('Valor pago menor que o valor da parcela. Por favor, tente novamente.');
         const erro = true;
       } else {
@@ -45,8 +44,7 @@ const Payout = () => {
 
   function onsubmit(e: FormEvent) {
     e.preventDefault()
-    console.log(e);
-    submitdata(valorPago , dataCredito , dataPagamento)
+    submitdata(valorPago, dataCredito, dataPagamento)
   }
 
   useEffect(() => {
@@ -85,10 +83,6 @@ const Payout = () => {
                   {" "}
                   <b>Nome: {usuario?.nome}</b>
                 </h2>
-                {/* <h2>
-              {" "}
-              <b>Titulo:</b> Nome do titulo
-            </h2> */}
                 <h2>
                   {" "}
                   <b>Valor da Parcela: {ValorFormatado}</b>
@@ -115,21 +109,23 @@ const Payout = () => {
                   />
                 </div>
                 <div className="input-date">
-                  <h1>Data de Crédito</h1>
-                  <input
-                    required
-                    type="date"
-                    value={dataCredito}
-                    onChange={(value) => setDataCredito(value.target.value)}
-                  />
-                </div>
-                <div className="input-date">
                   <h1>Data de Pagamento</h1>
                   <input
                     required
                     type="date"
                     value={dataPagamento}
+                    max={dataCredito}
                     onChange={(value) => setDataPagamento(value.target.value)}
+                  />
+                </div>
+                <div className="input-date">
+                  <h1>Data de Crédito</h1>
+                  <input
+                    required
+                    type="date"
+                    value={dataCredito}
+                    min={dataPagamento}
+                    onChange={(value) => setDataCredito(value.target.value)}
                   />
                 </div>
               </div>
